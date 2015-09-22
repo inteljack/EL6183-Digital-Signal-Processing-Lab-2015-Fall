@@ -1,0 +1,193 @@
+<!DOCTYPE html PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<!-- saved from url=(0068)http://eeweb.poly.edu/iselesni/dsp_lab/lecture_02/makefilter_02.html -->
+<html><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
+      
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>makefilter_02.m</title><meta name="generator" content="MATLAB 8.5"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-09-11"><meta name="DC.source" content="makefilter_02.m"><style type="text/css">
+html,body,div,span,applet,object,iframe,h1,h2,h3,h4,h5,h6,p,blockquote,pre,a,abbr,acronym,address,big,cite,code,del,dfn,em,font,img,ins,kbd,q,s,samp,small,strike,strong,sub,sup,tt,var,b,u,i,center,dl,dt,dd,ol,ul,li,fieldset,form,label,legend,table,caption,tbody,tfoot,thead,tr,th,td{margin:0;padding:0;border:0;outline:0;font-size:100%;vertical-align:baseline;background:transparent}body{line-height:1}ol,ul{list-style:none}blockquote,q{quotes:none}blockquote:before,blockquote:after,q:before,q:after{content:'';content:none}:focus{outine:0}ins{text-decoration:none}del{text-decoration:line-through}table{border-collapse:collapse;border-spacing:0}
+
+html { min-height:100%; margin-bottom:1px; }
+html body { height:100%; margin:0px; font-family:Arial, Helvetica, sans-serif; font-size:10px; color:#000; line-height:140%; background:#fff none; overflow-y:scroll; }
+html body td { vertical-align:top; text-align:left; }
+
+h1 { padding:0px; margin:0px 0px 25px; font-family:Arial, Helvetica, sans-serif; font-size:1.5em; color:#d55000; line-height:100%; font-weight:normal; }
+h2 { padding:0px; margin:0px 0px 8px; font-family:Arial, Helvetica, sans-serif; font-size:1.2em; color:#000; font-weight:bold; line-height:140%; border-bottom:1px solid #d6d4d4; display:block; }
+h3 { padding:0px; margin:0px 0px 5px; font-family:Arial, Helvetica, sans-serif; font-size:1.1em; color:#000; font-weight:bold; line-height:140%; }
+
+a { color:#005fce; text-decoration:none; }
+a:hover { color:#005fce; text-decoration:underline; }
+a:visited { color:#004aa0; text-decoration:none; }
+
+p { padding:0px; margin:0px 0px 20px; }
+img { padding:0px; margin:0px 0px 20px; border:none; }
+p img, pre img, tt img, li img, h1 img, h2 img { margin-bottom:0px; } 
+
+ul { padding:0px; margin:0px 0px 20px 23px; list-style:square; }
+ul li { padding:0px; margin:0px 0px 7px 0px; }
+ul li ul { padding:5px 0px 0px; margin:0px 0px 7px 23px; }
+ul li ol li { list-style:decimal; }
+ol { padding:0px; margin:0px 0px 20px 0px; list-style:decimal; }
+ol li { padding:0px; margin:0px 0px 7px 23px; list-style-type:decimal; }
+ol li ol { padding:5px 0px 0px; margin:0px 0px 7px 0px; }
+ol li ol li { list-style-type:lower-alpha; }
+ol li ul { padding-top:7px; }
+ol li ul li { list-style:square; }
+
+.content { font-size:1.2em; line-height:140%; padding: 20px; }
+
+pre, code { font-size:12px; }
+tt { font-size: 1.2em; }
+pre { margin:0px 0px 20px; }
+pre.codeinput { padding:10px; border:1px solid #d3d3d3; background:#f7f7f7; }
+pre.codeoutput { padding:10px 11px; margin:0px 0px 20px; color:#4c4c4c; }
+pre.error { color:red; }
+
+@media print { pre.codeinput, pre.codeoutput { word-wrap:break-word; width:100%; } }
+
+span.keyword { color:#0000FF }
+span.comment { color:#228B22 }
+span.string { color:#A020F0 }
+span.untermstring { color:#B20000 }
+span.syscmd { color:#B28C00 }
+
+.footer { width:auto; padding:10px 0px; margin:25px 0px 0px; border-top:1px dotted #878787; font-size:0.8em; line-height:140%; font-style:italic; color:#878787; text-align:left; float:none; }
+.footer p { margin:0px; }
+.footer a { color:#878787; }
+.footer a:hover { color:#878787; text-decoration:underline; }
+.footer a:visited { color:#878787; }
+
+table th { padding:7px 5px; text-align:left; vertical-align:middle; border: 1px solid #d6d4d4; font-weight:bold; }
+table td { padding:7px 5px; text-align:left; vertical-align:top; border:1px solid #d6d4d4; }
+
+
+
+
+
+  </style></head><body><div class="content"><h1>makefilter_02.m</h1><!--introduction--><p>The filter is implemented using a second-order recursive difference equation</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="http://eeweb.poly.edu/iselesni/dsp_lab/lecture_02/makefilter_02.html#2">Difference equation</a></li><li><a href="http://eeweb.poly.edu/iselesni/dsp_lab/lecture_02/makefilter_02.html#3">Impulse response</a></li><li><a href="http://eeweb.poly.edu/iselesni/dsp_lab/lecture_02/makefilter_02.html#4">Listen</a></li><li><a href="http://eeweb.poly.edu/iselesni/dsp_lab/lecture_02/makefilter_02.html#5">Pole-zero plot</a></li><li><a href="http://eeweb.poly.edu/iselesni/dsp_lab/lecture_02/makefilter_02.html#6">Frequency response</a></li></ul></div><pre class="codeinput">clear
+</pre><h2>Difference equation<a name="2"></a></h2><p>y(n) = b0 x(n) - a1 y(n-1) - a2 y(n-2)</p><pre class="codeinput">Fs = 8000;              <span class="comment">% sampling frequency (sample/second)</span>
+F1 = 400;               <span class="comment">% frequency (cycles/second)</span>
+f1 = F1/Fs              <span class="comment">% normalized fequenccy (cycles/sample)</span>
+om1 = 2*pi * f1;      <span class="comment">% normalized fequenccy (radians/sample)</span>
+
+Ta = 0.5;               <span class="comment">% duration (seconds) [time till 1% amplitude]</span>
+Na = Ta * Fs;
+r = 0.01^(1/Na)
+
+a1 = -2*r*cos(om1);
+a2 = r^2;
+
+a = [1 a1 a2]          <span class="comment">% recursive part</span>
+b = 1;                  <span class="comment">% non-recursive part</span>
+</pre><pre class="codeoutput">f1 =
+
+    0.0500
+
+
+r =
+
+    0.9988
+
+
+a =
+
+    1.0000   -1.8999    0.9977
+
+</pre><h2>Impulse response<a name="3"></a></h2><p>Note that the amplitude profile has the form E(n) = r^n.</p><pre class="codeinput">N = Fs;
+n = 0:N;
+
+imp = [1 zeros(1, N)];
+h = filter(b, a, imp);
+
+figure(1)
+clf
+plot(n/Fs, h)
+title(<span class="string">'Impulse response'</span>);
+xlabel(<span class="string">'Time (sec)'</span>)
+</pre><img vspace="5" hspace="5" src="./makefilter_02.m_files/makefilter_02_01.png" alt=""> <h2>Listen<a name="4"></a></h2><pre class="codeinput">soundsc(h, Fs)
+</pre><h2>Pole-zero plot<a name="5"></a></h2><p>Note that the poles are at z = r exp(om1 j) and z = r exp(-om1 j)</p><pre class="codeinput">zplane(b, a)
+title(<span class="string">'Pole-zero Plot'</span>)
+</pre><img vspace="5" hspace="5" src="./makefilter_02.m_files/makefilter_02_02.png" alt=""> <h2>Frequency response<a name="6"></a></h2><p>Note that the frequency response has a peak at f1 = 400 Hz</p><pre class="codeinput">[H, om] = freqz(b, a);
+f = om / (2*pi) * Fs;
+plot(f, abs(H))
+title(<span class="string">'Frequency response'</span>)
+xlabel(<span class="string">'Frequency (cycles/second)'</span>)
+xlim([0 1000])
+grid
+
+<span class="comment">% What is the peak value of the frequency response? (in terms of f1 and r)</span>
+</pre><img vspace="5" hspace="5" src="./makefilter_02.m_files/makefilter_02_03.png" alt=""> <p class="footer"><br><a href="http://www.mathworks.com/products/matlab/">Published with MATLAB® R2015a</a><br></p></div><!--
+##### SOURCE BEGIN #####
+%% makefilter_02.m 
+% The filter is implemented using a second-order recursive difference equation 
+
+%%
+
+clear
+
+%% Difference equation
+% y(n) = b0 x(n) - a1 y(n-1) - a2 y(n-2)
+
+Fs = 8000;              % sampling frequency (sample/second)
+F1 = 400;               % frequency (cycles/second)
+f1 = F1/Fs              % normalized fequenccy (cycles/sample)
+om1 = 2*pi * f1;      % normalized fequenccy (radians/sample)
+
+Ta = 0.5;               % duration (seconds) [time till 1% amplitude]
+Na = Ta * Fs;
+r = 0.01^(1/Na)
+
+a1 = -2*r*cos(om1);
+a2 = r^2;
+   
+a = [1 a1 a2]          % recursive part
+b = 1;                  % non-recursive part
+
+%% Impulse response
+% Note that the amplitude profile has the form E(n) = r^n.
+
+N = Fs;
+n = 0:N;
+
+imp = [1 zeros(1, N)];
+h = filter(b, a, imp);
+
+figure(1)
+clf
+plot(n/Fs, h)
+title('Impulse response');
+xlabel('Time (sec)')
+
+%% Listen
+
+soundsc(h, Fs)
+
+%% Pole-zero plot
+% Note that the poles are at z = r exp(om1 j) and z = r exp(-om1 j)
+
+zplane(b, a)
+title('Pole-zero Plot')
+
+%% Frequency response
+% Note that the frequency response has a peak at f1 = 400 Hz
+
+[H, om] = freqz(b, a);
+f = om / (2*pi) * Fs;
+plot(f, abs(H))
+title('Frequency response')
+xlabel('Frequency (cycles/second)')
+xlim([0 1000])
+grid
+
+% What is the peak value of the frequency response? (in terms of f1 and r)
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>
