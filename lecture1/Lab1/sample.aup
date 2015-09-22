@@ -1,0 +1,22 @@
+<?xml version="1.0" standalone="no" ?>
+<!DOCTYPE project PUBLIC "-//audacityproject-1.3.0//DTD//EN" "http://audacity.sourceforge.net/xml/audacityproject-1.3.0.dtd" >
+<project xmlns="http://audacity.sourceforge.net/xml/" projname="sample_data" version="1.3.0" audacityversion="2.0.5" sel0="0.0194094198" sel1="0.0194094198" vpos="0" h="0.0000000000" zoom="515.2137515348" rate="48000.0">
+	<tags>
+		<tag name="TRACKNUMBER" value="#1"/>
+		<tag name="ALBUM" value="DSP Lab"/>
+		<tag name="ARTIST" value="YingTa Lin"/>
+		<tag name="YEAR" value="2015"/>
+		<tag name="GENRE" value="Rock &amp; Roll"/>
+		<tag name="TITLE" value="sample"/>
+	</tags>
+	<wavetrack name="sample" channel="2" linked="0" mute="0" solo="0" height="150" minimized="0" isSelected="0" rate="16000" gain="1.0" pan="0.0">
+		<waveclip offset="0.00000000">
+			<sequence maxsamples="262144" sampleformat="262159" numsamples="19503">
+				<waveblock start="0">
+					<simpleblockfile filename="e0000d14.au" len="19503" min="-0.994055" max="0.994517" rms="0.09083"/>
+				</waveblock>
+			</sequence>
+			<envelope numpoints="0"/>
+		</waveclip>
+	</wavetrack>
+</project>
