@@ -14,11 +14,13 @@ F1 = 400;           % frequency (cycles/second)
 f1 = F1/Fs          % normalized fequenccy (cycles/sample)
 om1 = 2*pi * f1;    % normalized fequenccy (radians/sample)
 
-Ta = 0.5;           % duration (seconds) [time till 1% amplitude]
-r = 0.01^(1/(Ta*Fs))
+Ta = 0.4;           % duration (seconds) [time till 1% amplitude]
+Tb = 0.9;
+r1 = 0.01^(1/(Ta*Fs));
+r2 = 0.01^(1/(Tb*Fs));
 
-a = [1 -2*r*cos(om1) r^2]  % recursive part
-b = [1;              % non-recursive part
+a = [1 -2*r1*cos(om1) r1^2]  % recursive part
+b = 1;              % non-recursive part
 
 %% Impulse response
 % Note that the amplitude profile has the form E(n) = n r^n.
@@ -40,10 +42,12 @@ zoom xon
 
 soundsc(h, Fs)
 
-%% Twice the filter
+%% Second filter
+a1_2 = [1 -2*r2*cos(om1) r2^2];  % recursive part
+b1_2 = 1;
 
-a2 = conv(a, a)
-b2 = 1;
+a2 = conv(a, a1_2);
+b2 = conv(b, b1_2);
 
 h2 = filter(b2, a2, imp);
 
@@ -53,9 +57,10 @@ xlabel('Time (sec)')
 
 % What is the peak amplitude in terms of f1 and r?
 
+peak = log((r1-1)/(r2-1))/log(r2/r1)
+peak = peak/Fs
 
 %% Listen
-
 soundsc(h2, Fs)
 
 %% Pole-zero plot
@@ -85,11 +90,3 @@ title('Frequency response')
 xlabel('Frequency (cycles/second)')
 xlim([0 1000])
 grid
-
-
-
-
-
-
-
-

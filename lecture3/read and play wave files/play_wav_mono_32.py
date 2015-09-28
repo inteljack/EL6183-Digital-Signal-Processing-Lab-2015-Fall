@@ -4,16 +4,8 @@ import pyaudio
 import wave
 import struct
 import math
+import clipping
 
-def clip16(sample,gain):
-    limit = 0.0
-    limit = 32767.0
-    if abs(sample * gain) > limit:
-        print sample,'exceed limit'
-        sample = sample / abs(sample) * limit
-    else:
-        pass
-    return sample
 # def clip16( x ):    
 #     # Clipping for 16 bits
 #     if x > 32767:
@@ -47,7 +39,7 @@ print("There are %d bytes per sample."         % width)
 
 p = pyaudio.PyAudio()
 
-stream = p.open(format      = pyaudio.paInt16,
+stream = p.open(format      = pyaudio.paInt32,
                 channels    = num_channels,
                 rate        = Fs,
                 input       = False,
@@ -58,15 +50,18 @@ input_string = wf.readframes(1)          # Get first frame
 while input_string != '':
 
     # Convert string to number
-    input_tuple = struct.unpack('h', input_string)  # One-element tuple
+    input_tuple = struct.unpack('h',input_string)  # One-element tuple
     input_value = input_tuple[0]                    # Number
 
     # Compute output value
-    output_value = clip16(input_value,gain)    # Number
+    output_value = clipping.clip32(input_value * gain)    # Number
 
     # Convert output value to binary string
-    output_string = struct.pack('h', output_value)  
-
+    output_string = struct.pack('hh',0,output_value)  
+    k=[]
+    for r in output_string:
+        k.append(r)
+    print k
     # Write output value to audio stream
     stream.write(output_string)                     
 

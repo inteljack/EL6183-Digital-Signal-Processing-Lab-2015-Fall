@@ -6,7 +6,7 @@ import pyaudio
 import wave
 import struct
 import math
-from myfunctions import clip16
+from clipping import clip16
 
 wavfile = "author.wav"
 print("Play the wave file %s." % wavfile)
@@ -35,13 +35,14 @@ g2 = 0.3        # a feed-forward gain
 #  (Check..)
 
 delay1_sec = 0.03
-delay2_sec = 0.5   # delay2_sec > delay1_sec
+delay2_sec = 1.0   # delay2_sec > delay1_sec
 
 delay1 = int( math.floor( Fs * delay1_sec ) )    # Delay in samples
 delay2 = int( math.floor( Fs * delay2_sec ) ) 
 
 # Create a delay line (buffer) to store past values. Initialize to zero.
 buffer_length = delay2      # minimal-length buffer
+echoleft = delay2
 buffer = [ 0 for i in range(buffer_length) ]    
 
 print('The delay of {0:.3f} seconds is {1:d} samples.'.format(delay1_sec, delay1))
@@ -62,7 +63,7 @@ input_string = wf.readframes(1)
 # Delay line (buffer) indices
 k = 0
 m1 = delay1
-m2 = 0
+#m2 = 0
 
 print ("**** Playing ****")
 
@@ -72,7 +73,7 @@ while input_string != '':
     input_value = struct.unpack('h', input_string)[0]
 
     # Compute output value
-    output_value = g0 * input_value + g1 * buffer[m1] + g2 * buffer[m2];
+    output_value = g0 * input_value + g1 * buffer[m1] + g2 * buffer[k];
 
     # Update buffer
     buffer[k] = input_value + Gfb * buffer[k]
@@ -80,13 +81,13 @@ while input_string != '':
     # Update buffer indices
     k = k + 1
     m1 = m1 + 1
-    m2 = m2 + 1
+    #m2 = m2 + 1
     if k == buffer_length:
         k = 0
     if m1 >= buffer_length:
         m1 = 0
-    if m2 >= buffer_length:
-        m2 = 0
+    # if m2 >= buffer_length:
+    #     m2 = 0
 
     # Clip output value and convert to binary string
     output_string = struct.pack('h', clip16(output_value))
@@ -97,6 +98,30 @@ while input_string != '':
     # Get next frame (sample)
     input_string = wf.readframes(1)     
 
+while echoleft != 0:
+        # Compute output value
+    output_value = g1 * buffer[m1] + g2 * buffer[k];
+
+    # Update buffer
+    buffer[k] = Gfb * buffer[k]
+
+    # Update buffer indices
+    k = k + 1
+    m1 = m1 + 1
+    #m2 = m2 + 1
+    if k == buffer_length:
+        k = 0
+    if m1 >= buffer_length:
+        m1 = 0
+    # if m2 >= buffer_length:
+    #     m2 = 0
+
+    # Clip output value and convert to binary string
+    output_string = struct.pack('h', clip16(output_value))
+
+    # Write output value to audio stream
+    stream.write(output_string)
+    echoleft = echoleft-1
 print("**** Done ****")
 
 stream.stop_stream()

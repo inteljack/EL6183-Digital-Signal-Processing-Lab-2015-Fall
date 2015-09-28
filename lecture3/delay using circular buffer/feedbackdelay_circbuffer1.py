@@ -27,12 +27,12 @@ print("The file has %d frames."                % signal_length)
 print("There are %d bytes per sample."         % width)
 
 # Set parameters of delay system
-Gfb = 1.5       # feed-back gain
+Gfb = 0.5       # feed-back gain
 Gdp = 0.8       # direct-path gain
 Gff = 0.3       # feed-forward gain
 # Gff = 0.0         # feed-forward gain (set to zero for no effect)
 
-delay_sec = 0.08 # 50 milliseconds
+delay_sec = 0.2 # 50 milliseconds
 delay_samples = int( math.floor( Fs * delay_sec ) ) 
 
 print('The delay of {0:.3f} seconds is {1:d} samples.'.format(delay_sec, delay_samples))
