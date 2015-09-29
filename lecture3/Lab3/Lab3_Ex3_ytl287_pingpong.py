@@ -63,6 +63,10 @@ input_string = wf.readframes(1)
 # Delay line (buffer) index
 k = 0
 m = 0
+
+counter0 = 10
+counter1 = 10
+
 buffer0[k] = 0.0
 buffer1[m] = 0.0
 
@@ -101,9 +105,8 @@ while input_string != '':
     # Get next frame (sample)
     input_string = wf.readframes(1) 
 
-while echoleft != 0:
-    # Convert string to numbers
-
+while echoleft != 0 and (counter0 > 0 or counter1 > 0) :
+    
     output_value0 = Gc0 * buffer0[k]
     output_value1 = Gc1 * buffer1[m]
 
@@ -115,19 +118,22 @@ while echoleft != 0:
     if k == buffer_length0:
         # We have reached the end of the buffer. Circle back to front.
         k = 0
+        counter0 = counter0 - 1
 
     m = m + 1
     if m == buffer_length1:
         # We have reached the end of the buffer. Circle back to front.
-        m= 0
-
+        m = 0
+        counter1 = counter1 - 1
+    
     # Clip output value to 16 bits and convert to binary string
     output_value0 = clip16(output_value0)
     output_value1 = clip16(output_value1)
     output_string = struct.pack('hh', output_value0, output_value1)
 
     # Write output value to audio stream
-    stream.write(output_string)  
+    stream.write(output_string)
+
 
 print("**** Done ****")
 

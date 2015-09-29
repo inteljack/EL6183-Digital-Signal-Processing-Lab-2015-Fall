@@ -1,0 +1,19 @@
+
+demo 06 - blocking
+
+These files illustrate blocking implementation
+as applied for amplitude modulation of speech.
+
+Wave file as input:
+playAM_noblocking.py
+playAM_blocking.pyplayAM_blocking_fix.pyplayAM_blocking_savewave.py
+playAM_noblocking.py
+
+Microphone input:
+recplayAM_mono.py
+
+
+
+
+
+ 

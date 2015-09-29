@@ -1,0 +1,23 @@
+
+Demo 07 - vibrato
+
+See chapter 2 of text book
+
+play_delay_longbuffer.py  Basic delay using circular buffer of non-minimum length.
+  This program is a starting point for vibrato effect.
+
+play_vibrato_simple.py
+   This program does fractional delay by converting fractional
+   delay index to an integer index.play_vibrato_interpolation.py   This program does fractional delay by linear interpolation
+   of adjacent signal values. 
+
+Note: The parameters (buffer length and time-varying delay)
+should be set so that the delay is:
+  1) causal
+  2) shorter than buffer length.
+Otherwise output signal will have audible artifacts.
+
+
+
+
+
