@@ -66,6 +66,7 @@ m2 = 0
 
 print ("**** Playing ****")
 
+counter = 10
 while input_string != '':
 
     # Convert string to number

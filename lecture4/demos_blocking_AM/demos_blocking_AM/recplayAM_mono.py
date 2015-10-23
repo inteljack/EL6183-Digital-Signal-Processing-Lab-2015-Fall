@@ -14,14 +14,14 @@ import pyaudio
 import struct
 import math
 
-# f0 = 0      # Normal audio
-f0 = 400    # 'Duck' audio
+f0 = 0      # Normal audio
+#f0 = 400    # 'Duck' audio
 
 BLOCKSIZE = 64  # Number of frames per block
 
 WIDTH = 2       # Number of bytes per sample
 CHANNELS = 1    # mono
-RATE = 32000    # Sampling rate (samples/second)
+RATE = 44100    # Sampling rate (samples/second)
 RECORD_SECONDS = 5
 
 p = pyaudio.PyAudio()
@@ -41,6 +41,7 @@ stream = p.open(format = p.get_format_from_width(WIDTH),
                 input = True,
                 output = True)
 
+#Initialize block
 output_block = [0 for i in range(0, BLOCKSIZE)]
 
 # Initialize angle

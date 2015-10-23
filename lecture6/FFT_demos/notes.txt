@@ -1,0 +1,6 @@
+
+FFT in NumPy:
+
+http://docs.scipy.org/doc/numpy/reference/routines.fft.html
+
+

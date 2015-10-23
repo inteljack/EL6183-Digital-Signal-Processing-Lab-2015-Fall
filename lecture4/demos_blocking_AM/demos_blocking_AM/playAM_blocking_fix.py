@@ -72,7 +72,7 @@ for i in range(0, num_blocks):
         # Amplitude modulation  (f0 Hz cosine)
         output_block[n] = input_tuple[n] * math.cos(2*math.pi*n*f0/RATE + theta)
         # output_block[n] = input_tuple[n] * 1.0  # for no processing
-
+        
     # Set angle for next block
     theta = theta + theta_del
 

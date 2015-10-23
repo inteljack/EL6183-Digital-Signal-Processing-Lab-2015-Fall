@@ -55,15 +55,8 @@ for n in range(0, N):
     y2 = y1
     y1 = y0
 
-    # Difference equation second time
-    y00 = y0 - a1 * y01 - a2 * y02
-
-    # Delays
-    y02 = y01
-    y01 = y00
-
     # Output
-    out = gain * y00
+    out = gain * y0
     str_out = struct.pack('h', out)     # 'h' for 16 bits
     stream.write(str_out, 1)
 

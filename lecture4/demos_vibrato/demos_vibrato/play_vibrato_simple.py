@@ -10,7 +10,7 @@ import struct
 import math
 from myfunctions import clip16
 
-wavfile = 'author.wav'
+wavfile = 'sin01_mono.wav'
 print 'Play the wave file: {0:s}.'.format(wavfile)
 
 # Open wave file
@@ -28,7 +28,7 @@ print('The file has %d frames.'             % LEN)
 print('The file has %d bytes per sample.'   % WIDTH)
 
 # Vibrato parameters
-f0 = 2
+f0 = 1
 W = 0.2
 # W = 0 # for no effct
 

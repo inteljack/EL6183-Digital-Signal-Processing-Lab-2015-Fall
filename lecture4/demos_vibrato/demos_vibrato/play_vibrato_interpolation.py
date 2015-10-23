@@ -70,10 +70,10 @@ for n in range(0, LEN):
 
     # Get previous and next buffer values (since kr is fractional)
     kr_prev = int(math.floor(kr))               
-    kr_next = kr_prev + 1
+    kr_next = (kr_prev + 1) % buffer_MAX
     frac = kr - kr_prev    # 0 <= frac < 1
-    if kr_next >= buffer_MAX:
-        kr_next = kr_next - buffer_MAX
+    # if kr_next >= buffer_MAX:
+    #     kr_next = kr_next - buffer_MAX
 
     # Compute output value using interpolation
     output_value = (1-frac) * buffer[kr_prev] + frac * buffer[kr_next]

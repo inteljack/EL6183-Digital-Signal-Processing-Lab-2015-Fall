@@ -19,7 +19,7 @@ a2 = 0.9977
 # Initialization
 y1 = 0.0
 y2 = 0.0
-gain = 1000000
+gain = 10000
 
 p = pyaudio.PyAudio()
 stream = p.open(format = pyaudio.paInt16,
