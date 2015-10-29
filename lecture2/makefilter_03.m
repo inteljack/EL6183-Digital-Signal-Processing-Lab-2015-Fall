@@ -11,13 +11,13 @@ clear
 
 Fs = 8000;          % sampling frequency (sample/second)
 F1 = 400;           % frequency (cycles/second)
-f1 = F1/Fs          % normalized fequenccy (cycles/sample)
+f1 = F1/Fs;         % normalized fequenccy (cycles/sample)
 om1 = 2*pi * f1;    % normalized fequenccy (radians/sample)
 
 Ta = 0.5;           % duration (seconds) [time till 1% amplitude]
-r = 0.01^(1/(Ta*Fs))
+r = 0.01^(1/(Ta*Fs));
 
-a = [1 -2*r*cos(om1) r^2]  % recursive part
+a = [1 -2*r*cos(om1) r^2];  % recursive part
 b = 1;              % non-recursive part
 
 %% Impulse response
@@ -32,6 +32,9 @@ h = filter(b, a, imp);
 figure(1)
 clf
 plot(n/Fs, h)
+hold on
+stem(n/Fs, h,'filled')
+grid on
 title('Impulse response');
 xlabel('Time (sec)')
 zoom xon
@@ -42,7 +45,7 @@ soundsc(h, Fs)
 
 %% Twice the filter
 
-a2 = conv(a, a)
+a2 = conv(a, a);
 b2 = 1;
 
 h2 = filter(b2, a2, imp);
