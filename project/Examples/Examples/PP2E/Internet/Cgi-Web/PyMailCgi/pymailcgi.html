@@ -1,0 +1,57 @@
+<HTML><BODY>
+<TITLE>PyMailCgi Main Page</TITLE>
+<H1 align=center>PyMailCgi</H1>
+<H2 align=center>A POP/SMTP Email Interface</H2>
+<P align=center><I>Version 1.0, April 2000</I></P>
+
+<table><tr><td><hr>
+<P>
+<A href="http://rmi.net/~lutz/about-pp.html">
+<IMG src="../PyErrata/ppsmall.gif" align=left 
+alt="[Book Cover]" border=1 hspace=10></A>
+This site implements a simple web-browser interface to POP/SMTP email
+accounts.  Anyone can send email with this interface, but for security
+reasons, you cannot view email unless you install the scripts with your
+own email account information, in your own server account directory.
+PyMailCgi is implemented as a number of Python-coded CGI scripts that run on
+a server machine (not your local computer), and generate HTML to interact 
+with the client/browser.  See the book <I>Programming Python, 2nd Edition</I>
+for more details.</P>
+
+<tr><td><hr>
+<h2>Actions</h2>
+<P><UL>
+<LI><a href="onRootViewLink.cgi">View, Reply, Forward, Delete POP mail</a>
+<LI><a href="onRootSendLink.cgi">Send a new email message by SMTP</a>
+</UL></P>
+
+<tr><td><hr>
+<P>Caveats: PyMailCgi 1.0 was initially written during a 2-hour layover at 
+Chicago's O'Hare airport.  This release is not nearly as fast or complete 
+as PyMailGui (e.g., each click requires an Internet transaction, there
+is no save operation, and email is reloaded often).  On the other hand, 
+PyMailCgi runs on any web broswer, whether you have Python (and Tk) 
+installed on your machine or not.  
+
+<P>Also note that if you use these scripts to read your own email, PyMailCgi
+does not guarantee security for your account password, so be careful out there.
+See the notes in the View action page as well as the book for more information
+on security policies.  Also see:
+
+<UL>
+<li>The <I>PyMailGui</I> program in the Email directory, which
+        implements a client-side Python+Tk email GUI
+<li>The <I>pymail.py</I> program in the Email directory, which 
+        provides a simple command-line email interface
+<li>The Python imaplib module which supports the IMAP email protocol
+        instead of POP
+<li>The upcoming openSSL support for secure transactions in the new 
+        Python 1.6 socket module  
+</UL></P>
+</table><hr>
+
+<A href="http://www.python.org">
+<IMG SRC="../PyErrata/PythonPoweredSmall.gif" ALIGN=left   
+ALT="[Python Logo]" border=0 hspace=15></A> 
+<A href="../PyInternetDemos.html">More examples</A>
+</BODY></HTML>

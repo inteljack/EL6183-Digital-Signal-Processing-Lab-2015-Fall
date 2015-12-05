@@ -1,0 +1,167 @@
+[lutz@starship lutz]$ python smtpmail.py
+From? lutz@rmi.net
+To?   lutz@starship.python.net
+Subj? test smptlib 1
+Type message text, end with line=(ctrl + D or Z)
+spam
+Spam
+SPAM
+Connecting...
+No errors.
+Bye.
+[lutz@starship lutz]$ python smtpmail.py
+From? lutz@rmi.net
+To?   lutz@starship.python.net
+Subj? test smtplib 2
+Type message text, end with line=(ctrl + D or Z)
+xxx
+Connecting...
+No errors.
+Bye.
+You have new mail in /home/crew/lutz/Mailbox       
+[lutz@starship lutz]$ mail
+Mail version 8.1 6/6/93.  Type ? for help.
+"/home/crew/lutz/Mailbox": 25 messages 15 new 25 unread
+ U  1 anonymous@server.pyt  Sun Sep 19 04:49  19/550   "PP2E Errata"
+...
+ N 24 lutz@rmi.net          Fri Feb 11 22:26  15/445   "test smptlib 1"
+ N 25 lutz@rmi.net          Fri Feb 11 22:27  13/434   "test smtplib 2"
+& 24
+Message 24:
+From lutz@rmi.net Fri Feb 11 22:26:25 2000
+Delivered-To: lutz@starship.python.net
+From: lutz@rmi.net
+To: lutz@starship.python.net
+Date: Fri Feb 11 17:26:14 2000
+Subject: test smptlib 1
+
+spam
+Spam
+SPAM
+
+
+& 25
+Message 25:
+From lutz@rmi.net Fri Feb 11 22:27:19 2000
+Delivered-To: lutz@starship.python.net
+From: lutz@rmi.net
+To: lutz@starship.python.net
+Date: Fri Feb 11 17:26:55 2000
+Subject: test smtplib 2
+
+xxx
+
+
+& save temp
+"temp" [New file]
+& x
+You have mail in /home/crew/lutz/Mailbox
+[lutz@starship lutz]$ cat temp
+From lutz@rmi.net Fri Feb 11 22:27:19 2000
+Return-Path: <lutz@rmi.net>
+Delivered-To: lutz@starship.python.net
+Received: (qmail 3749 invoked from network); 11 Feb 2000 22:27:19 -0000
+Received: from server.python.net (HELO starship.python.net) (lutz@209.50.192.113
+)
+  by server.python.net with SMTP; 11 Feb 2000 22:27:19 -0000
+From: lutz@rmi.net
+To: lutz@starship.python.net
+Date: Fri Feb 11 17:26:55 2000
+Subject: test smtplib 2
+Status: R
+
+xxx
+
+
+[lutz@starship lutz]$
+
+
+
+
+------------------
+
+
+
+
+[lutz@starship lutz]$ python smtpmail.py
+From? lutz@starship.python.net
+To?   lutz@rmi.net
+Subj? howdy
+Type message text, end with line=(ctrl + D or Z)
+from starship to rmi...
+Connecting...
+No errors.
+Bye.                       
+[lutz@starship lutz]$ python popmail.py
+Password for pop.rmi.net?
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <9d3f0000b58da438@chevalier>
+There are 5 mail messages in 10038 bytes
+('+OK 5 messages (10038 octets)', ['1 908', '2 908', '3 3432', '4 3944', '5 846'
+], 37)
+--------------------------------------------------------------------------------
+[Press any key]
+...
+
+--------------------------------------------------------------------------------
+[Press any key]
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Fri Feb 11 15:31:55 2000)
+X-From_: lutz@server.python.net  Fri Feb 11 15:30:19 2000
+Return-Path: <lutz@server.python.net>
+Received: from server.python.net (server.python.net [209.50.192.113])
+        by chevalier.rmi.net (8.9.3/8.9.3) with SMTP id PAA15053
+        for <lutz@rmi.net>; Fri, 11 Feb 2000 15:30:18 -0700 (MST)
+Message-Id: <200002112230.PAA15053@chevalier.rmi.net>
+Received: (qmail 3798 invoked from network); 11 Feb 2000 22:30:39 -0000
+Received: from server.python.net (HELO starship.python.net) (lutz@209.50.192.113
+)
+  by server.python.net with SMTP; 11 Feb 2000 22:30:39 -0000
+From: lutz@server.python.net
+To: lutz@rmi.net
+Date: Fri Feb 11 17:30:29 2000
+Subject: howdy
+
+from starship to rmi...
+
+--------------------------------------------------------------------------------
+Bye.
+[lutz@starship lutz]$
+
+
+
+
+
+==============
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Email>python smtpmail.py
+From? marketing.maniacs.from.hell
+To?   lutz@starship.python.net
+Subj? READ ME
+Type message text, end with line=(ctrl + D or Z)
+Spam!
+Connecting...
+No errors.
+Bye.
+
+
+
+[lutz@starship lutz]$ mail
+Mail version 8.1 6/6/93.  Type ? for help.
+"/home/crew/lutz/Mailbox": 30 messages 20 new 30 unread
+ U  1 anonymous@server.pyt  Sun Sep 19 04:49  19/550   "PP2E Errata"
+...
+ N 30 marketing.maniacs.fr  Fri Feb 11 22:42  13/449   "READ ME"
+& 30
+Message 30:
+From marketing.maniacs.from.hell Fri Feb 11 22:42:26 2000
+Delivered-To: lutz@starship.python.net
+From: marketing.maniacs.from.hell
+To: lutz@starship.python.net
+Date: Fri Feb 11 15:29:05 2000
+Subject: READ ME
+
+Spam!
+
+

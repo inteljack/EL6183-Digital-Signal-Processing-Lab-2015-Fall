@@ -1,0 +1,11 @@
+To start from scratch, you need to have the following
+2 lock files in this directory:
+
+    commentDB.lck  errataDB.lck
+
+They can be simply empty text files, or contain any
+arbitrary text (they're only used for mutex locks).
+The system creates files commentDB, errataDB (shelves),
+commentDB.log, and errataDB.log (lock message logs).
+See ../dbswitch.py to enable shelve mode.
+

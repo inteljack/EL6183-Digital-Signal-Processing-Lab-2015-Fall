@@ -1,0 +1,6 @@
+
+[mark@toy ~/tmp]$ python pipes.py
+Child 797 of 796 got arg: spam
+Parent got: "Child 797 got: [Hello 1 from parent 796]"
+Parent got: "Child 797 got: [Hello 2 from parent 796]"
+

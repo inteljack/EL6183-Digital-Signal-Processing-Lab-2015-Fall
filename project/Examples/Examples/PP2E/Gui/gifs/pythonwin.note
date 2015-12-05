@@ -1,0 +1,5 @@
+The icon used for Python ports on MS-Windows.
+Originally used in Mark Hammond's PythonWin,
+which is more Windows-specific than the main
+Windows port at python.org right now (see the
+new O'Reilly book on Python for Win32).

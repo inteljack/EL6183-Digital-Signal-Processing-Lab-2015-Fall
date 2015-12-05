@@ -1,0 +1,29 @@
+[mark@toy ~/tmp]$ python signal1.py 12 &
+[1] 809
+[mark@toy ~/tmp]$ ps
+  PID TTY          TIME CMD
+  578 ttyp1    00:00:00 tcsh
+  809 ttyp1    00:00:00 python
+  810 ttyp1    00:00:00 ps
+[mark@toy ~/tmp]$ kill -12 809
+[mark@toy ~/tmp]$ Got signal 12 at Fri Sep  8 00:27:01 2000
+kill -12 809
+[mark@toy ~/tmp]$ Got signal 12 at Fri Sep  8 00:27:03 2000
+kill -12 809
+[mark@toy ~/tmp]$ Got signal 12 at Fri Sep  8 00:27:04 2000
+
+[mark@toy ~/tmp]$ kill -9 809
+
+
+
+
+
+[mark@toy ~/tmp]$ python signal2.py
+Setting at Fri Sep  8 00:27:53 2000
+Got alarm 14 at Fri Sep  8 00:27:58 2000
+Setting at Fri Sep  8 00:27:58 2000
+Got alarm 14 at Fri Sep  8 00:28:03 2000
+Setting at Fri Sep  8 00:28:03 2000
+Got alarm 14 at Fri Sep  8 00:28:08 2000
+Setting at Fri Sep  8 00:28:08 2000
+

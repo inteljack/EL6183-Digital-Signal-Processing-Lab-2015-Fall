@@ -1,0 +1,54 @@
+C:\>python %X%\System\Filetools\diffall.py PP2ndEd G:\PP2ndEd
+--------------------
+Comparing PP2ndEd to G:\PP2ndEd
+Files unique to G:\PP2ndEd
+... examples.tar.gz
+Comparing contents
+README.txt DIFFERS
+--------------------
+...
+--------------------
+Comparing PP2ndEd\examples\PP2E\Config to G:\PP2ndEd\examples\PP2E\Config
+Files unique to PP2ndEd\examples\PP2E\Config
+... .cshrc
+Comparing contents
+--------------------
+...
+--------------------
+Comparing PP2ndEd\chapters to G:\PP2ndEd\chapters
+Directory lists are identical
+Comparing contents
+ch01-intro.doc DIFFERS
+ch04-os3.doc DIFFERS
+ch05-gui1.doc DIFFERS
+ch06-gui2.doc DIFFERS
+--------------------
+...
+========================================
+Diffs found: 11
+- unique files at PP2ndEd - G:\PP2ndEd
+- files differ at PP2ndEd\README.txt - G:\PP2ndEd\README.txt
+
+- files differ at PP2ndEd\examples\PP2E\Gui\TextEditor\textEditor.py - G:\PP2ndE
+d\examples\PP2E\Gui\TextEditor\textEdit.py
+
+- files differ at PP2ndEd\examples\PP2E\Gui\TextEditor\textEditor.pyc - G:\PP2nd
+Ed\examples\PP2E\Gui\TextEditor\textEditor.pyc
+
+- unique files at PP2ndEd\examples\PP2E\System\Filetools - G:\PP2ndEd\examples\P
+P2E\System\Filetools
+
+- files differ at PP2ndEd\examples\PP2E\System\Filetools\diffall.py - G:\PP2ndEd
+\examples\PP2E\System\Filetools\diffall.py
+
+- unique files at PP2ndEd\examples\PP2E\Config - G:\PP2ndEd\examples\PP2E\Config
+
+- files differ at PP2ndEd\chapters\ch01-intro.doc - G:\PP2ndEd\chapters\ch01-int
+ro.doc
+- files differ at PP2ndEd\chapters\ch04-os3.doc - G:\PP2ndEd\chapters\ch04-os3.d
+oc
+- files differ at PP2ndEd\chapters\ch05-gui1.doc - G:\PP2ndEd\chapters\ch05-gui1
+.doc
+- files differ at PP2ndEd\chapters\ch06-gui2.doc - G:\PP2ndEd\chapters\ch06-gui2
+.doc
+

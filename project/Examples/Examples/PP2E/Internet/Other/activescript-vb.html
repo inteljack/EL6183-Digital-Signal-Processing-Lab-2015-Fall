@@ -1,0 +1,23 @@
+<HTML>
+<BODY>
+<H1>Embedded code demo: VBScript</H1>
+<SCRIPT Language=VBScript>
+
+' do the same but with embedded VBScript;
+' the Language option in the SCRIPT tag
+' tells IE which interpreter to use
+
+sub message(i)
+    if i = 2 then 
+        alert("Finished!")
+    else
+        alert("A VBScript-generated alert => " & i)
+    end if
+end sub
+
+for count = 0 to 2 step 1
+    message(count)
+next
+
+</SCRIPT>
+</BODY></HTML>

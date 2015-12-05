@@ -1,0 +1,27 @@
+--during file/dir scan, vi editor pops up for each file containing "Tools"
+
+C:\PP2ndEd\examples>python PyTools\visitor_edit.py Tools
+. ...
+1 => .\setup-pp.bat
+2 => .\Launcher.py
+3 => .\autoexec.bat
+4 => .\makeall.csh
+5 => .\__init__.py
+6 => .\package.csh
+7 => .\pyformData
+8 => .\cleanall.csh
+9 => .\xferall.linux.csh
+10 => .\PyDemos.pyw
+11 => .\Launcher.pyc
+.
+.
+.
+1172 => .\PyTools\search_all.py
+1173 => .\PyTools\search_all.out.txt
+1174 => .\PyTools\visitor.py
+1175 => .\PyTools\visitor.out.txt
+1176 => .\PyTools\visitor.pyc
+1177 => .\PyTools\visitor_edit.py
+1178 => .\PyTools\__init__.py
+1179 => .\PyTools\__init__.pyc
+Edited 53 files, visited 1179

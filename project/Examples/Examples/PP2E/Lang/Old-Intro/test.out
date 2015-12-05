@@ -1,0 +1,8 @@
+> cheader.py test.h
+1 include stdio.h
+2 include usr/local/include/Py/Python.h
+4 SPAM = 
+5 SHOE_SIZE = 7.5
+7 include local_constants.h
+8 PARROT = dead + bird
+

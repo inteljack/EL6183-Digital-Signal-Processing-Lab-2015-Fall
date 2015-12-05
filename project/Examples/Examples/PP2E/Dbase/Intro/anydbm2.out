@@ -1,0 +1,15 @@
+% python
+>>> import anydbm
+>>> map = anydbm.open('movie')       # open existing dbm file
+>>> map['Batman']                             
+'Pow!'
+>>> map.keys()
+['Joker', 'Robbin', 'Cat-woman', 'Batman']
+>>> for key in map.keys(): print key, map[key]
+... 
+Joker Wham!
+Robbin Bang!
+Cat-woman Splat!
+Batman Pow!
+>>> map['Batman'] = 'Ka-Boom!'       # change dictionary again
+>>> del map['Robbin']

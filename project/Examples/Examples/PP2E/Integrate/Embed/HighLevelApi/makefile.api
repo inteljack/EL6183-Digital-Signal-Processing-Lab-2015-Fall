@@ -1,0 +1,24 @@
+##########################################################################
+# Build higher-level Python embedding API library: "make -f makefile.api"
+##########################################################################
+
+CC      = gcc
+PY      = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+APIMODS = ppembed-modules.o \
+          ppembed-globals.o \
+          ppembed-strings.o \
+          ppembed-callables.o \
+          ppembed-attributes.o \
+          ppembed-errors.o
+
+# link into a single lib
+libppembed.a: $(APIMODS)
+	ar -crv libppembed.a $(APIMODS)
+	rm -f $(APIMODS)
+
+# compile each extended api file
+ppembed%.o: ppembed%.c ppembed.h
+	$(CC) ppembed$*.c -c -g -I$(PY)/Include -I$(PY)
+
+clean: 
+	rm -f *.o *.a

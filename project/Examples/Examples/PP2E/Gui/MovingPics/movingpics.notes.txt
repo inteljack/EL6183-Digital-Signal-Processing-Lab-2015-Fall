@@ -1,0 +1,114 @@
+# NOTE: see canvas drawing demo in Tour (old movingpics1.py)
+#
+# mention that looks best in maximized/fullscreen mode; 
+# canvas expands to fill entire window;
+# doesn't work:
+#    canvas.focus()
+#    canvas.bind('<KeyPress>',      self.onKeyboard)   # change type
+# does work:
+#    parent.bind('<KeyPress>',      self.onKeyboard)   # change type
+# ==> see bind_all note in calculator.py
+#
+# ??? fails if other events during move
+# Units = number units to move after each movedelay
+# Delay = seconds between moves (0.01 = one hundred times per second)
+# note: can move info text around too--another kind of object
+# canvas commands accept object ids or tags;   note raise => tkraise
+# note that can resize and maximize canvas--grows with the window
+# note the phots inserted at last coordinates (click left 1st to pick spot)
+# ??? do move in a thread?
+# ??? rewrite to be more object-based? (sigle 'current' object/where
+# model doesn't support threads well (moving > 1 in parallel);
+# BUT: would need to use locks to prevent an object being moved
+# from being selected and moved again, while current move in progress;
+# AND: eanch image would need a lock to prevent deletes while moving,
+# drages while moving, etc.
+#
+# explain why need 'lambda self' in key table for thnigs without 
+# ags--uniformity (1st few specify args to be passed, so lambda
+# needed to delay calls; to call all with 'self' all must use
+# lambda;  alt = self.fill in table, and def fill(self, dummy))
+# changed: use defaults for self entries, instead of passing in 
+# self via keymap[event.char](self) and lambda self: self.method();
+# but since defaults are demod in other guis, used last of these
+# 4 ways to code:
+#   keymap[event.char](self) and lambda self: self.method() for all
+#   keymap[event.char](self) and def method(self, dummy) for some
+#   keymap[event.char]() and lambda s=self: s.method() for some
+# * keymap[event.char](self) and MovingPics.method unbound meth for some
+#
+# image open pattern
+#   fixed
+# some things can happen during move; list of moving objects?
+#   fixed: can now drag and grow while move in progress
+#   can start another move but it makes curent move sleep until 
+#   2nd move is finished
+#
+# note: changing speed during a move changes velocity of the 
+# move--reads global pickDelays each time through for loops
+#
+# mention postscript file save option
+#
+# def onGrow(self, event):
+#       # varies by object type and pen style
+#       # elastic:  delete and redraw from start point to here
+#       # scribble: draw again from last stop point to here
+#       # trails:   redraw again from start point, no delete
+# caveat: in scribble and trails mode, object = last segment only
+
+
+thread version notes...
+
+ to try: start this modules, maximize screen, draw a few 
+# objects on the left edge of canvas (or load pics), pick
+# one (middle) and move to right edge (left), then pick rest 
+# and start moves to right while other moves in progress;
+# they all move at the same time, since move is implemented
+# as a thread;
+# 
+# note need for mutex: more than one thread may be updating 
+# the self.moving list at same time--thread share global 
+# memory, and self attrs are global to threads (i.e.,
+# not local to thread func);  python vm switches threads
+# every few virtual macine ops--things like append and
+# remove are not necesarily atomic???
+#
+# original movingpics.py allows > 1 move to be started,
+# but only one is ever moving at a time; startin a new
+# move suspends the one in progress till new move finishes;
+#
+# works on Linux???
+# _does_ work on MS-Windows 98, provided the canvas.update()
+# calls are not run (else exits with fatal errors, some objs
+# start moving immediately after drawn, etc.)
+#
+# on win98 before mutex and update() calls disabled--object
+# moves start veering to follow the mouse
+#
+# suggested exercise: add binding for button-3 double click
+# in init, which animates the current object: e.g.,move it
+# left anf right a finite number of times; need to add to 
+# self.moving list, so not moved by > 1 thread at once;
+
+    self.canvas.bind('<Double-3>', self.onAnimate)     # double right click
+
+    def onAnimate(self, event):
+        object = self.object
+        if object and object not in self.moving: 
+            self.mutex.acquire()
+            self.moving.append(object) 
+            self.mutex.release()
+            thread.start_new_thread(
+                self.doAnimate, (self.canvas, object))
+    def doAnimate(self, canvas, object):
+        for i in range(1000):
+            canvas.move(object, 
+                        random.choice(range(-10,10)), 
+                        random.choice(range(-10,10)))
+            time.sleep(pickDelays[0])
+        self.mutex.acquire()
+        self.moving.remove(object)
+        self.mutex.release()
+
+
+###############################################################

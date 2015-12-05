@@ -1,0 +1,5 @@
+#!/bin/csh
+# run custom swig install
+
+source $PP2EHOME/Integrate/Extend/Swig/setup-swig.csh
+swig $*

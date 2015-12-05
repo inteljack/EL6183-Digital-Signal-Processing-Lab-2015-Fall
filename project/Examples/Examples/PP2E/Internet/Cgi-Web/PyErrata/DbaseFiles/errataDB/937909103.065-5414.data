@@ -1,0 +1,46 @@
+(dp0
+S'Page number'
+p1
+S'cover'
+p2
+sS'Type'
+p3
+S'Typo'
+p4
+sS'Printing Date'
+p5
+S''
+p6
+sS'Chapter number'
+p7
+g6
+sS'Submit date'
+p8
+S'1999/09/21, 06:18:23'
+p9
+sS'Report state'
+p10
+S'Rejected - not a real bug'
+p11
+sS'Submitter name'
+p12
+S'anonymous'
+p13
+sS'Submitter email'
+p14
+g6
+sS'Description'
+p15
+S'Reject reason: Unreasonably silly\012\012[Original description=>]\012Change "Mar Klutz" to "Mark Lutz" on \015\012the cover. :-)\015\012\015\012          '
+p16
+sS'Submit mode'
+p17
+g6
+sS'Part number'
+p18
+g6
+sS'Severity'
+p19
+S'Unknown'
+p20
+s.

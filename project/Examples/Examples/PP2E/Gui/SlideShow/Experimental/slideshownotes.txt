@@ -1,0 +1,188 @@
+***PLEASE IGNORE THIS FILE***
+
+
+
+slideShow_toplevels...
+# XXX - same pic on > 1 screen (not if run >1 process)
+
+
+
+slideshow1...
+# show this in ch2, with ref to class-based version in gui ch (> 1 copy)
+# in gui ch: 
+# show this too, with explanation, then class-base version with clients
+# subclass or embed to add filename label?, menu?, text note?
+# ontimer: + mycanvas.delete(image-id)??? - 
+# note that the image objects are automatically deleted when they 
+# are reclaimed due to no more references (in their __del__ method 
+# in Tkinter.py); don't need to manually delete here, but do need to 
+# retain an explicit refernece to the image object, unlike all other
+# Tknter widgets (for others, TKinter maintains a ref internally)
+# -: only .gif for now, can't create > 1 viewer per process -> GUI ch
+# update() not needed here, is in class version -> bad redraws, 
+# file open errors in tcl,...
+###############################################################################
+
+
+
+
+slideshow...
+# - canvas, + small canvas ex
+# - menu, + 2 small exs for 2menu styles
+# - beep
+# - after
+# - open
+# - grid?
+# - title, icon
+# - embed > 1 instance in a toplevel?
+# add filename label?
+# side defaults to TOP
+# could use funcs (not classes), but then no way to 
+# make two copies without dictionaries for state info vars
+# could use root-level class, but hard to config from outside
+# note need for update() -- forces screen refresh, else can 
+# wind up with old pics under new ones, when > 1 slideshow in process;
+# note: dictionaries can be used in place of lists, if don't know size
+# ahead of time, and can't just append to end (like perl lists):
+# dict[i]=value, where i can be any number, not consecutive (hanoi.py)
+# in self.ontimer()
+# # self.canvas.config(height=self.image.height(), 
+# #                    width=self.image.width())
+# # ???
+# # self.canvas.delete()  (see note in func-based file)
+# adds wm title/iconname
+# adds all image file types for open dialog and initial glob
+#
+# self.canvas.delete(self.handle) had no effect on tcl errors
+# THIS is what causes the tcl file open errors (not redraw errors):
+#           self.image = PhotoImage(file=pick, name=pick)
+#
+# THIS FIXED REDRAW PROBLEM:
+#           global counter
+#           self.image = PhotoImage(master=self.canvas, file=pick, 
+#                                        name=`counter`); counter=counter+1 
+#           self.canvas.create_image(2, 2, image=self.image, anchor=NW)
+#
+# related to auto-generated image names based on `id()`--may be prob
+# if heap block of prior image is reused after reclaimed for other
+# side's images;  these didn't work:
+#   self.canvas.update(),
+#   self.canvas.update_idletasks(),
+#   threads instead of after (though good thread example)
+#   PhotoImage(master=self,...
+#
+# THIS ALSO FIXES REDRAW PROBLEM: prmaking all images on __init__,
+# so that not dynamically generating new names from `id()` as 
+# other side's images being deleted/reclaimed/realloc'd, 
+#
+# AND doing self.canvas.delete(self.drawn) -- else prior image
+# still on screen on new draw (old version auto-erased prior 
+# image when it was reclaimed--__del__); self.drawn is id (==tag)
+#
+# if don't save open file in self.image, doesn't appear->auto
+# deleted when reclaimed
+# note: side=TOP is the default
+#
+# Note that can resize and maximize gui--canvas expands to fill
+# screen, but editor and buttons take space left after current
+# canvas size, no matter how big window is; if don't set canvas
+# size, it takes up a default size in window
+
+
+
+
+slideshowplus...
+
+# new 2/00: add try around note file write so doens't fail if
+# file is not writeable (e.g., 'open' when running off cdrom)
+#
+# mention that this looks best in maximized/fullscreen mode
+# when note editor is active
+# MENTION: idle path browser -> Tkinter.py; Tcl/Tk parms books
+# note: can't map back from image to self.files list from initial
+# glob--may open file anywhere, in open dialog (not on glob list)
+# mention ipwp for internet topics
+# after works as good as threads here (uses threads)
+# + show top menu varient
+# disable file menu for component (TextEditor)
+# note: superclass's makeWidgets hasn't set self.msecs 
+# yet in overloaded makeWidgets here (later in constructor)
+# note: from canvaspicsthreads import SlideShow -> fails, 
+# because doesn't call overloadable method each time, so
+# changed canvaspics to have common drawNext method
+#
+# thread bug and locks: when close note box by pressing 'Note',
+# it's possible that the timer thread may be in the midst of a
+# drawNext call: drawNext->switchNote->saveNote->editor.getAllText
+# ->text.get('1.0',...); when it starts saveNote the editor is
+# open, but by the time it gets to the text widget operation,
+# the text widget may have been destroyed as the result of the 
+# onNote callback handler execution (the thread runs in parallel
+# with the callback handler);  to prevent this, a lock is used 
+# to prevent saveNote from running is a destroy is in progress;
+# the thread module's allocate_lock returns a lock object, which
+# is sometimes called a mutex or binary semaphore; lock objects
+# may be acquired by at most one thread at a given time; they 
+# start unlocked,and is used to synchronize (serialize) the thread
+# and callback handler;  this isn't an issue if we use the Tk
+# after to do the timer, but threads can be faster in general,
+#    NOT TRUE -> after() version seems just as fast at 0 msec delay,
+#                but requires canvas.update() call else hangs at msecs=0
+# and this showd some of the things you need to consider...threads;
+# unfortunately, this isn't quite foolproof either--eventually get
+# an odd and unrlated error due to the fact the Tk is not thread safe;
+# therefore--changed to use pack_forget( ) instead of destroy (just hides)
+#
+# ??? what if timer thread changes text editor filename while onNote
+# isin the process of saving the current note -> note text may wind
+# up in wrong note file???  SOLN: don't saveNote when hide editor:
+# don't need to if editor not being deleted!  coding soln completely
+# avoids thread synch problem this time
+#         NO -> thread bug still makes file get stored under wrong name
+# 
+#
+# "It's important to understand the Tk details of this interface,
+# but for the purposes of this book, the OO model matters just as
+# much.  Can you see what's going on here?  <bullets>We started with the 
+# basic slide show utility (canvaspics.SlideShow), added threads
+# for the timer (canvaspicsthreads.SlideShow), extended the basic
+# slide show with a label and slider (canvaspicsextra.SlideShowPlus,
+# and finally, used composition to embed an instance of the TextEditor
+# object we wrote in the prior section, for editing notes associated
+# with images.  ALong the way, we specialized classes with inheritance
+# to add new functionality (threads, new widgets), and employed 
+# composition to build up an interface from parts (the note editor).
+# Even basic Tk widgets imply composition: every object you see on 
+# a Tk GUI is an object in its own right.  Like I said, when used 
+# well, Python's OO nature is a naturla for building an extending
+# GUI applications. <class tree diagram?>
+#
+# ??? how tp make editor smaller on startup?
+# note: starts out big, but can resize as usual (the note
+# area expands and contracts as window grows/shrinks)
+
+# Could subclass to use a shelve if get tired of lots of
+# little files (+: easily viewed).  
+# - change TextEditor to disable save button for minimal
+# - overload save/load ops to goto shelve file here
+# 
+# to fix thread problem for good, either:
+# - use Tk after: from canvaspicsthreads import SlideShow
+# - don't save note files during slideshow, AND
+#   don't save note files when note box hidde (can 
+#   be pressed while thread is changing file name);
+#   only auto-saved on Open and Quit (both do a popup 1st,
+#   now that we overload quit, not onQuit here);  this 
+#   seemed to fix file problems, but still observes a "getint"
+#   type error after running thread version for awhile 
+#
+#    -> now uses after(), and doesn't save text on note hides;
+#       required canvas.update() call else hangs if msecs = 0;
+#       observed crashes on exit (illegal op popup from windows);
+#       added self.update() call in self.onQuit--not crashes so far
+#
+# - other texteditor styles not fully functional here 
+#   yet; if popup, need to guard against popup being 
+#   deleted by user (WM setting--see old ch12 listbox),
+#   and TopLevelMain puts editor at bottom of screen--too 
+#   small--since parent = toplevel, not frame

@@ -1,0 +1,23 @@
+C:\temp>python %X%\Part2\System\Filetools\cpall.py examples cpexamples
+Note: dirTo was created
+Copying...
+Copied 1379 files, 121 directories in 2.68999993801 seconds
+
+C:\temp>python %X%\Part2\System\Filetools\rmall.py cpexamples
+Removed 1379 files and 122 dirs in 0.549999952316 secs
+
+C:\temp>ls cpexamples
+ls: File or directory "cpexamples" is not found
+
+
+
+C:\temp>python %X%\Part2\System\Filetools\cpall.py examples cpexamples
+Note: dirTo was created
+Copying...
+Copied 1379 files, 121 directories in 2.52999997139 seconds
+
+C:\temp>python %X%\Part2\System\Filetools\rmall2.py cpexamples
+Removed 1379 files and 122 dirs in 0.550000071526 secs
+
+C:\temp>ls cpexamples
+ls: File or directory "cpexamples" is not found

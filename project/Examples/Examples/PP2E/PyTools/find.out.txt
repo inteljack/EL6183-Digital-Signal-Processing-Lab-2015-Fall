@@ -1,0 +1,60 @@
+>>> l = ['ccc', 'bbb', 'aaa', 'aaa.xxx', 'aaa.yyy', 'aaa.xxx.nnn']
+>>> l
+['ccc', 'bbb', 'aaa', 'aaa.xxx', 'aaa.yyy', 'aaa.xxx.nnn']
+>>> l.sort()
+>>> l
+['aaa', 'aaa.xxx', 'aaa.xxx.nnn', 'aaa.yyy', 'bbb', 'ccc']
+
+
+
+
+C:\temp>python %X%\PyTools\find-test.py
+removing 'C:\\PP2ndEd\\examples\\PyTools'
+<module 'find' from 'C:\Program Files\Python\Lib\find.pyc'>
+<module 'PyTools.find' from 'C:\PP2ndEd\examples\PyTools\find.pyc'>
+*.py =>
+676 C:\PP2ndEd\examples\tounix.py
+676 C:\PP2ndEd\examples\tounix.py
+0 1
+*.html =>
+37 C:\PP2ndEd\examples\Part2\System\Filetools\template.html
+37 C:\PP2ndEd\examples\Part2\System\Filetools\template.html
+1 1
+*.c =>
+46 C:\PP2ndEd\examples\Part3\Mixed\Regist\cregister.c
+46 C:\PP2ndEd\examples\Part3\Mixed\Regist\cregister.c
+0 1
+*.cgi =>
+24 C:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyMailCgi\onViewSubmit.cgi
+24 C:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyMailCgi\onViewSubmit.cgi
+1 1
+* =>
+1511 C:\PP2ndEd\examples\xferall.linux.csh
+1511 C:\PP2ndEd\examples\xferall.linux.csh
+0 1
+
+
+
+
+C:\temp>python %X%\PyTools\find.py *.cxx C:\PP2ndEd\examples
+C:\PP2ndEd\examples\Part3\Extend\Swig\Shadow\main.cxx
+C:\PP2ndEd\examples\Part3\Extend\Swig\Shadow\number.cxx
+
+C:\temp>python %X%\PyTools\find.py *.asp C:\PP2ndEd\examples
+C:\PP2ndEd\examples\Part2\Internet\Other\asp-py.asp
+
+C:\temp>python %X%\PyTools\find.py *.i C:\PP2ndEd\examples
+C:\PP2ndEd\examples\Part3\Extend\Swig\Environ\environ.i
+C:\PP2ndEd\examples\Part3\Extend\Swig\Shadow\number.i
+C:\PP2ndEd\examples\Part3\Extend\Swig\hellolib.i
+
+C:\temp>python %X%\PyTools\find.py setup*.csh C:\PP2ndEd\examples
+C:\PP2ndEd\examples\Part3\Extend\Swig\setup-swig.csh
+C:\PP2ndEd\examples\Part3\Mixed\Exports\ClassAndMod\setup-class.csh
+C:\PP2ndEd\examples\setup-pp-embed.csh
+C:\PP2ndEd\examples\setup-pp.csh
+
+
+
+
+

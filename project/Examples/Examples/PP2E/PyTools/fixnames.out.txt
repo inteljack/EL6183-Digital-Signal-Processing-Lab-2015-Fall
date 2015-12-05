@@ -1,0 +1,202 @@
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples
+LECTURE8    lecture10   lecture13   lecture16   lecture5    readme.txt
+LECTURE9    lecture11   lecture14   lecture2    lecture6
+Lecture3    lecture12   lecture15   lecture4    lecture7
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples\Lecture8
+CLASSEXC.PY       HELLOEXC.PY       NESTEXC.PY        firstexamples.py
+FINALLY.PY        IDIOMS.PY         classexc2.py
+
+
+
+C:\Stuff\Mark\Training\Ship.cdrom\Html\Examples>python ..\..\PyTools\fixnames_all.
+py
+Using Python find
+1 => .\LECTURE8
+Convert dir=. file=LECTURE8? (y|Y)y
+Type new file name (enter=lecture8):
+Renamed: .\LECTURE8 to .\lecture8
+Press enter to continue
+2 => .\LECTURE8\CLASSEXC.PY
+Convert dir=.\LECTURE8 file=CLASSEXC.PY? (y|Y)y
+Type new file name (enter=classexc.py): classexc.py
+Renamed: .\LECTURE8\CLASSEXC.PY to .\LECTURE8\classexc.py
+Press enter to continue
+3 => .\LECTURE8\FINALLY.PY
+Convert dir=.\LECTURE8 file=FINALLY.PY? (y|Y)y
+Type new file name (enter=finally.py):
+Renamed: .\LECTURE8\FINALLY.PY to .\LECTURE8\finally.py
+Press enter to continue
+.
+.
+.
+Convert dir=.\lecture7 file=SET.PY? (y|Y)
+146 => .\lecture7\ZOO.PY
+Convert dir=.\lecture7 file=ZOO.PY? (y|Y)
+147 => .\lecture7\deeperlook.py
+148 => .\lecture7\employees.py
+149 => .\lecture7\extending.py
+150 => .\lecture7\firstlook.py
+151 => .\lecture7\namespace1.py
+152 => .\lecture7\number.py
+153 => .\lecture7\overloads.py
+154 => .\lecture7\pizzashop.py
+155 => .\lecture7\specialize.py
+156 => .\readme.txt
+Converted 3 files, visited 156
+
+
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples
+LECTURE9    lecture11   lecture14   lecture2    lecture6    readme.txt
+Lecture3    lecture12   lecture15   lecture4    lecture7
+lecture10   lecture13   lecture16   lecture5    lecture8
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples\Lecture8
+HELLOEXC.PY       NESTEXC.PY        classexc2.py      firstexamples.py
+IDIOMS.PY         classexc.py       finally.py
+
+
+----------------------------------------------------------------------------------
+
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples
+LECTURE9    lecture11   lecture14   lecture2    lecture6    readme.txt
+Lecture3    lecture12   lecture15   lecture4    lecture7
+lecture10   lecture13   lecture16   lecture5    lecture8
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples\Lecture9
+BOOM.PY        MESSAGE.PY     inspecting.py
+DYNAMIC.PY     SAFE.PY        testinline.py
+
+
+
+C:\Stuff\Mark\Training\Ship.cdrom\Html\Examples>python ..\..\PyTools\fixnames_all2
+.py
+.
+.
+.
+33 => .\lecture7\pizzashop.py
+34 => .\lecture7\number.py
+35 => .\LECTURE9
+Convert dir=. file=LECTURE9? (y|Y)
+36 => .\LECTURE9\SAFE.PY
+Convert dir=.\LECTURE9 file=SAFE.PY? (y|Y)y
+Type new file name (enter=safe.py):
+Renamed: .\LECTURE9\SAFE.PY to .\LECTURE9\safe.py
+Press enter to continue
+37 => .\LECTURE9\BOOM.PY
+Convert dir=.\LECTURE9 file=BOOM.PY? (y|Y)y
+Type new file name (enter=boom.py):
+Renamed: .\LECTURE9\BOOM.PY to .\LECTURE9\boom.py
+Press enter to continue
+38 => .\LECTURE9\inspecting.py
+39 => .\LECTURE9\MESSAGE.PY
+Convert dir=.\LECTURE9 file=MESSAGE.PY? (y|Y)
+40 => .\LECTURE9\DYNAMIC.PY
+Convert dir=.\LECTURE9 file=DYNAMIC.PY? (y|Y)
+.
+.
+.
+Convert dir=.\lecture8 file=IDIOMS.PY? (y|Y)
+153 => .\lecture8\NESTEXC.PY
+Convert dir=.\lecture8 file=NESTEXC.PY? (y|Y)
+154 => .\lecture8\HELLOEXC.PY
+Convert dir=.\lecture8 file=HELLOEXC.PY? (y|Y)
+155 => .\lecture8\classexc2.py
+156 => .\lecture8\classexc.py
+157 => .\lecture8\finally.py
+Converted 2 files, visited 157
+
+
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples
+LECTURE9    lecture11   lecture14   lecture2    lecture6    readme.txt
+Lecture3    lecture12   lecture15   lecture4    lecture7
+lecture10   lecture13   lecture16   lecture5    lecture8
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples\Lecture9
+DYNAMIC.PY     boom.py        safe.py
+MESSAGE.PY     inspecting.py  testinline.py
+
+
+--------
+
+
+C:\Stuff\Mark\Training\Ship.cdrom\Html\Examples>python ..\..\PyTools\fixnames_all2
+.py
+.
+.
+.
+33 => .\lecture7\pizzashop.py
+34 => .\lecture7\number.py
+35 => .\LECTURE9
+Convert dir=. file=LECTURE9? (y|Y)y
+Type new file name (enter=lecture9):
+Renamed: .\LECTURE9 to .\lecture9
+Press enter to continue
+36 => .\LECTURE9\inspecting.py
+37 => .\LECTURE9\MESSAGE.PY
+Convert dir=.\LECTURE9 file=MESSAGE.PY? (y|Y)y
+Type new file name (enter=message.py): message.py
+Renamed: .\LECTURE9\MESSAGE.PY to .\LECTURE9\message.py
+Press enter to continue
+38 => .\LECTURE9\DYNAMIC.PY
+Convert dir=.\LECTURE9 file=DYNAMIC.PY? (y|Y)y
+Type new file name (enter=dynamic.py):
+Renamed: .\LECTURE9\DYNAMIC.PY to .\LECTURE9\dynamic.py
+Press enter to continue
+39 => .\LECTURE9\testinline.py
+40 => .\LECTURE9\safe.py
+41 => .\LECTURE9\boom.py
+42 => .\lecture10
+43 => .\lecture10\PLAY.PY
+Convert dir=.\lecture10 file=PLAY.PY? (y|Y)
+.
+.
+.
+155 => .\lecture8\classexc2.py
+156 => .\lecture8\classexc.py
+157 => .\lecture8\finally.py
+Converted 3 files, visited 157
+
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples
+Lecture3    lecture12   lecture15   lecture4    lecture7    readme.txt
+lecture10   lecture13   lecture16   lecture5    lecture8
+lecture11   lecture14   lecture2    lecture6    lecture9
+
+C:\Stuff\Mark\Training\Ship.cdrom\PyTools>ls ..\html\examples\Lecture9
+boom.py        inspecting.py  safe.py
+dynamic.py     message.py     testinline.py
+
+
+.
+.
+.
+Convert dir=.\lecture5 file=MULTIPLE.PY? (y|Y)y
+Type new file name (enter=multiple.py):
+Renamed: .\lecture5\MULTIPLE.PY to .\lecture5\multiple.py
+Press enter to continue
+7 => .\lecture5\scopes1.py
+8 => .\lecture5\matching1.py
+9 => .\lecture5\matching2.py
+10 => .\lecture5\INDIRECT.PY
+Convert dir=.\lecture5 file=INDIRECT.PY? (y|Y)y
+Type new file name (enter=indirect.py):
+Renamed: .\lecture5\INDIRECT.PY to .\lecture5\indirect.py
+Press enter to continue
+...
+90 => .\lecture14\mirrorflat.py
+91 => .\lecture14\uploadall.py
+92 => .\lecture14\uploadflat.py
+93 => .\lecture14\decodeAll.py
+94 => .\lecture14\pymail.py
+95 => .\lecture14\PyMailGui.py
+96 => .\lecture15
+97 => .\lecture15\ENVIRON.C
+Convert dir=.\lecture15 file=ENVIRON.C? (y|Y)y
+Type new file name (enter=environ.c):
+Renamed: .\lecture15\ENVIRON.C to .\lecture15\environ.c
+Press enter to continue
+...

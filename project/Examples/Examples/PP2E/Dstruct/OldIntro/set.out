@@ -1,0 +1,23 @@
+% python
+>>> from set import *
+>>> x = Set('abcd')			# create 2 Set instances
+>>> y = Set(['x', 'a', 'y', 'b'])
+>>> y.concat('lm')			# tack on another sequence
+>>> print x.intersect('sjuabl')
+<Set:['a', 'b']>			# use __repr__ print overload
+>>> x & Set(('b', 'q'))			# use __and__ method overload
+<Set:['b']>
+>>> z = (x | y)				# use __or__ union operator
+>>> for item in z: print item,		# use __getitem__ Set iteration
+... 
+a b c d x y l m
+>>> for i in range(len(z)):		# use __len__ overload
+...     if z[i] in x:			# use 'in' Set membership test
+...         print z[i],			# use __getitem__ Set indexing
+... 
+a b c d
+>>> x = Set([1,1,2,3])
+>>> x
+<Set:[1, 2, 3]>
+>>> x | Set([1,2,3,4,4,2])		# duplicates filtered out
+<Set:[1, 2, 3, 4]>

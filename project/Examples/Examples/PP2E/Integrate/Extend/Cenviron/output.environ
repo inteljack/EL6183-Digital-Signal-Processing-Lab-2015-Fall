@@ -1,0 +1,247 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ make -f makefile.cenviron clean
+rm -f *.pyc cenviron.so
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ ls
+Setup.MAX   envattr.py  envsub2.out        makefile.embed2
+Setup.MIN   envmap.py   envsub2.py         makefile.old
+cenviron.c  envmod.py   makefile.cenviron  output.embed
+embed.c     envsub.py   makefile.embed1    output.environ
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ make -f makefile.cenviron
+gcc cenviron.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cenviron.so
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ ls
+Setup.MAX    embed.c     envsub.py          makefile.embed1  output.environ
+Setup.MIN    envattr.py  envsub2.out        makefile.embed2
+cenviron.c   envmap.py   envsub2.py         makefile.old
+cenviron.so  envmod.py   makefile.cenviron  output.embed
+
+
+#
+# note that you don't need to source setup-pp-embed.csh here, since 
+# we run "python": python correctly guesses std libs and adds '.' to path
+#
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+Python 1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>>
+>>> import cenviron
+>>> cenviron.getenv('USER')
+'mark'
+>>> cenviron.putenv('USER', 'gilligan')
+>>> cenviron.getenv('USER')
+'gilligan'
+
+
+>>> dir(cenviron)
+['__doc__', '__file__', '__name__', 'getenv', 'putenv']
+>>> cenviron.__file__
+'./cenviron.so'
+>>> cenviron.__name__
+'cenviron'
+>>> cenviron.getenv
+<built-in function getenv>
+>>> cenviron
+<module 'cenviron' from './cenviron.so'>
+>>>
+>>> print cenviron.getenv('HOST'), cenviron.getenv('DISPLAY')
+toy :0.0
+
+
+>>> cenviron.getenv(42)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: string, int
+>>>
+>>> cenviron.getarg()
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+AttributeError: getarg
+>>>
+>>> cenviron.getenv('nonesuch')
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+SystemError: Error calling getenv
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> from cenviron import *
+>>> getenv('USER')
+'mark'
+>>> putenv('USER', 'gilligan')
+>>> getenv('USER')
+'gilligan'
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import os
+>>> os.environ['USER']
+'mark'
+>>> os.environ['USER'] = 'skipper'
+>>> os.environ['USER']
+'skipper'
+>>>
+>>> from cenviron import getenv, putenv
+>>> getenv('USER')
+'skipper'
+>>> putenv('USER', 'gilligan')
+>>> getenv('USER')
+'gilligan'
+>>> os.environ['USER']
+'skipper'
+>>>
+
+
+
+###########################################################################
+# Python 1.5's os.environ is a dictionary--really, a UserDict.UserDict
+# subclass that overloads __setitem__ operations such as to call C's
+# putenv automatically when a key is assigned (os.environ[key]=val):
+#
+#           def __setitem__(self, key, item):
+#               putenv(key, item)
+#               self.data[key] = item
+#
+# The original raw dictionary is still available in the posix module;
+# the os module just wraps it in a class to intercept key assignments:
+#
+# >>> import os, posix
+# >>> type(os.environ)                 # UserDict subclass instance
+# <type 'instance'>
+# >>> type(posix.environ)              # simple var:value dictionary
+# <type 'dictionary'>
+#
+# >>> cenviron.getenv('USER')
+# 'mark'
+# >>> posix.environ['USER'] = 'bob'
+# >>> cenviron.getenv('USER')
+# 'mark'
+# >>> os.environ['USER'] = 'bob'
+# >>> cenviron.getenv('USER')
+# 'bob'
+#
+# This guarantees that assignments to os.environ in Python code are
+# exported to the C layer (getenv calls) and subprocesses.  On the
+# other hand, os.environ is loaded from the C layer's enviroment only
+# once, when os is first imported (which may happen automatically).  If
+# any other C component in the process later calls putenv, Python's
+# os.environ dictionary won't reflect the change.  That's what happens
+# here--assignments to os.environ are exported to C (so direct getenv calls
+# in C work), but direct putenv calls in C aren't noticed by Python because
+# the os.environ dictionary has already been loaded.  Python 1.5 also exports
+# the C putenv call as os.putenv, but does not export C's getenv at all, so
+# changing os.environ to always call getenv on key accesses isn't simple.
+#
+# Wich means that the cenviron C module shown may still be useful
+# if you need to write Python code that references env vars set by
+# linked-in C components (call cenviron.getenv instead of os.environ[]).
+# If not, simply use the os.environ table for all cases -- it reflects
+# changes made in Python code, and exports those changes to the C layer's
+# environment as well as any subprocesses (it only fails to reflect any
+# changes made by the C layer outside of the Python interpreter).
+#
+# In order to syncronize Python's os.environ with cenviron calls,
+# we can either change the implementation of cenviron to call out 
+# to Python to update os.environ, or 'wrap' cenviron in Python code
+# which takes care to update os.environ automatically.  A number of
+# wrapper-based customizations are tested below.  In all, cenviron's
+# putenv is combined with an explicit update of os.environ, so as to
+# update the Python table in addition to the C environment.  As a 
+# heuristic, cenviron's getenv is also extended to copy the current
+# variable's value out to os.environ too: it could be that another 
+# C library has called getenv outside of Python's domain, so we copy
+# the current value over just in case.  Note that since os.environ 
+# assignments already call the C putenv, we don't strictly need to 
+# call cenviron.putenv too, if we manually assigne os.putenv in the 
+# customizations; but because we have in mind to allow arbitrary 
+# specialized code in cenviron, the call has been left in (in the 
+# current implementations of os.environ and cenviron, this means 
+# that the C putenv call may be run twice).
+##########################################################################
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import cenviron, os
+>>> os.environ['USER'], cenviron.getenv('USER')
+('mark', 'mark')
+>>> cenviron.putenv('USER', 'gilligan')               # direct C putenv calls 
+>>> os.environ['USER'], cenviron.getenv('USER')       # don't change os.environ
+('mark', 'gilligan')
+>>> os.environ['USER'] = 'skipper'                    # os.environ assignment
+>>> os.environ['USER'], cenviron.getenv('USER')       # does change C environ 
+('skipper', 'skipper')
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> from cenviron import *
+>>> getenv('USER')
+'mark'
+>>> putenv('USER', 'gilligan')
+>>> import os
+>>> getenv('USER')
+'gilligan'
+>>> os.environ['USER']
+'mark'
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import sys
+>>> sys.modules.keys()
+['os.path', 'os', 'exceptions', '__main__', 'posix', 'sys', '__builtin__', 'site', 'signal', 'UserDict', 'posixpath', 'stat']
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import os, envmod
+>>> os.environ['USER']
+'mark'
+>>> envmod.putenv('USER', 'skipper')       # customized to update os.environ 
+>>> os.environ['USER']
+'skipper'
+>>> envmod.getenv('USER')
+'skipper'
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import os
+>>> from envsub import Env
+>>> os.environ['USER']
+'mark'
+>>> Env.getenv('USER')
+'mark'
+>>> Env.putenv('USER', 'professor')
+>>> os.environ['USER']
+'professor'
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import os
+>>> from envattr import Env
+>>> os.environ['USER']
+'mark'
+>>> Env.USER
+'mark'
+>>> Env.USER = 'ginger'
+>>> Env.USER
+'ginger'
+>>> Env.NEW = 'mary-anne'
+>>> os.environ['NEW']
+'mary-anne'
+>>> Env.NEW
+'mary-anne'
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import os
+>>> from envmap import Env
+>>> Env['USER']
+'mark'
+>>> Env['USER'] = 'Mr. Howle'
+>>> os.environ['USER']
+'Mr. Howle'
+>>> Env['USER']
+'Mr. Howle'
+>>> os.environ['USER'] = 'Mrs. Howle'
+>>> Env['USER']
+'Mrs. Howle'
+
+

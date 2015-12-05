@@ -1,0 +1,45 @@
+typedef struct {
+    PyObject_HEAD
+    ...etc.             /* a dictionary instance */
+} mappingobject;
+
+static int mapping_length(mappingobject *mp);
+static PyObject *mapping_subscript(mappingobject *mp, PyObject *key);
+static int mapping_ass_sub(mappingobject *mp, PyObject *key, PyObject *value);
+
+
+static PyMappingMethods mapping_as_mapping = {  /* mapping type supplement */
+        (inquiry)       mapping_length,         /* mp_length        'len(x)'  */
+        (binaryfunc)    mapping_subscript,      /* mp_subscript     'x[k]'    */
+        (objobjargproc) mapping_ass_sub,        /* mp_ass_subscript 'x[k] = v'*/
+};
+
+static struct PyMethodDef mapp_methods[] = {    /* dictionary methods */
+        {"has_key",     mapping_has_key},       /* 'dict.has_key(k)'  */
+        {"items",       mapping_items},         /* 'dict.items()'     */
+        {"keys",        mapping_keys},          /* 'dict.keys()'      */
+        {"values",      mapping_values},        /* 'dict.values()'    */
+        {NULL,          NULL} 
+};
+
+static PyObject *mapping_getattr(mappingobject *mp, char *name)
+{
+        return Py_FindMethod(mapp_methods, (PyObject *)mp, name);
+}
+
+PyTypeObject Mappingtype = {                /* dictionary type-descriptor */
+        PyObject_HEAD_INIT(&PyType_Type)    /* shared by all instances    */
+        0,
+        "dictionary",
+        sizeof(mappingobject),
+        0,
+        (destructor)mapping_dealloc,    /* tp_dealloc */
+        (printfunc)mapping_print,       /* tp_print */
+        (getattrfunc)mapping_getattr,   /* tp_getattr: search method table */
+        0,                              /* tp_setattr: no mutable attributes */
+        (cmpfunc)mapping_compare,       /* tp_compare */
+        (reprfunc)mapping_repr,         /* tp_repr */
+        0,                              /* tp_as_number */
+        0,                              /* tp_as_sequence */
+        &mapping_as_mapping,            /* tp_as_mapping: the operator link */
+};                                      /* the rest are all zero (unused) */

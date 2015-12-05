@@ -1,0 +1,128 @@
+######################################################
+# PyMailGui 1.0 - A Python/Tkinter email client.
+#
+# Adds a Tkinter-based GUI interface to the pymail
+# script's functionality.  Works for POP/SMTP based
+# email accounts using sockets on the machine on 
+# which this script is run. 
+#
+# I like this script for two main reasons:
+# 1) It's scriptable--you control its evolution
+# from this point forward, and can easily customize
+# and program it by editing the Python code in this
+# file, unlike canned products like MS-Outlook.
+# 2) It's portable--this script can be used to 
+# process your email on any machine with internet
+# sockets where Python and Tkinter are installed; 
+# use the simple command-line based pymail.py if 
+# you have sockets and Python but not Tkinter.
+# E.g., I use this to read my pop email account
+# from UNIX machines when I'm away from home PC.
+#
+# Caveats:
+# - Only fetches new mail on 'Load' button for speed,
+#   but that assumes nothing else is changing the pop 
+#   mailbox while the gui is running.  No other 
+#   email tools (or PyMailGui instances) can delete 
+#   mail off the pop server while gui runs, else mail
+#   numbers displayed are invalid.  Note that the email
+#   box is locked during deletes too: incoming mail won't
+#   invalidate numbers, since added to end when unlocked.
+# - Run me from command line or file explorer to watch 
+#   my printed messages (not visible from launchers). 
+# - On a Save, the file select dialog pops up a 
+#   warning about replacing an existing file if one is
+#   chosen, even though messages are simply appended 
+#   ('a' mode) to the existing file; this is a Tk 
+#   issue (Tkinter calls TK's tk_getSaveFile command). 
+# - Save also doesn't remember the directory where a 
+#   file was last saved (You need to renavigate from the
+#   examples root); to rememeber the last selected dir,
+#   make and save a tkFileDialog.SaveAs class object,
+#   and call its show( ) method to get a filename,
+#   instead of calling tkFileDialog.asksaveasfilename.
+#   Change: this program now implements this scheme.
+#
+# On long-running callbacks (load, send, delete):
+# Handles load/send/delete wait states by running the
+# blocking call in a non-gui thread, and posting a
+# modal dialog box during the wait (else the GUI is
+# hung while the blocking call runs).  The main 
+# thread creates windows and process all gui events,
+# and the non-gui thread does the long-running 
+# non-gui call and signals completion on exit. 
+# The main thread uses a busy widget.update loop
+# to process events during the wait instead of
+# wait_variable(), because the non-gui thread 
+# can't set tk variables in Windows either.
+#
+# A prior version tried to update the gui during the
+# wait by starting a thread that woke up N time per 
+# sec to call rootWin.update(); this fails badly on 
+# Windows.  Apparently, the rule on Windows is that
+# only the thread that creates a window can handle
+# events for it; hence, new threads can't call for
+# widget.update() to update the gui (or do other GUI
+# work), as that call triggers gui processing in the
+# main thread.  Worse, threads can't set Tk variables
+# reliably either (this goes to the main thread too),
+# so I use simple shared global variables and busy 
+# wait loops here to signal thread exit, rather than
+# Tk vars + widget.wait_variable(); the latter is 
+# easier (the Tk event loop is active during a wait), 
+# but fails with Windows threads.  thread module 
+# locks and threading module conditions/joins may
+# have been used to signal thread exit too. 
+#
+# Note that this is a Windows issue (not Tk), and it
+# is okay to spawn new threads under Tk as long as they
+# are strictly non-gui.  Also note that in principle, 
+# we could run both a load and send thread at the same
+# time (ex: write new email while loading); instead,
+# the main GUI Box is disabled while any load or
+# save threads runs, to avoid more mutex issues.
+# Finally, we can also implement a wait state with
+# the tk widget.after(msec, func) call, scheduling
+# func to check the thread exit var every N msecs
+# (see other examples for use), rather than a local
+# widget.update() event dispatch loop as done here. 
+# func could destroy the popup window on thread exit.
+# That requires some recoding though, as callers now
+# assume that busy states return after thread exit.
+#
+# There is much room for improvement and new features
+# here--left as exercises.  Example extensions: 
+# - Add an automatic spam filter, which matches 
+#   from/to hdrs etc. with a regex and auto deletes
+#   matching messages as they are being downloaded;
+# - Do attachments: auto decoding/unpacking for 
+#   multi-part emails, etc.: see decode*.py here
+#   and module mimetools for attachment hints;
+# - Fields in the main list box could be padded to 
+#   a standard length or put in distinct widgets.
+# - Make me a class to avoid global vars, and make
+#   it easier to attach this GUI to another one;
+#   that would also allow creation of more than one
+#   mail client gui per process, but this won't work
+#   as currently designed (deletes in one gui can
+#   invalidate others, due to new pop msg numbers); 
+# - Inherit from GuiMaker here to get menu/toolbars;
+# - As is, always requests the user's pop account 
+#   password initially, and after load errors; in
+#   principle, this program could instead save the 
+#   user's password in a file on the client machine, 
+#   perhaps encrypted (see PyMailCgi for encryption),
+#   and use the file if present instead of asking.
+#   I decided against this because I wanted to avoid 
+#   security issues completely (on machines shared by
+#   multiple people, anyone can see and decrypt a file) 
+# - Don't delete the edit window if a send fails, 
+#   else all the text is lost [done--4/00].
+# - Write a remote CGI-based file tool, which does
+#   pop/smtp too, but runs on a server and interacts
+#   with users by generating html pages instead of
+#   running a GUI on the local client machine--see 
+#   example PyMailCgi in the CGI section of the book.
+#   This approach is limited in functionality, but 
+#   Python has to be installed on the server only.
+######################################################

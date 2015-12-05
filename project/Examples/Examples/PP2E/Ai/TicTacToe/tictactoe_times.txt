@@ -1,0 +1,73 @@
+[for degree=3, tic-tac-toe]
+[before recoding to only check last mover's win]
+
+[on AC power, 300mhz machine]
+
+[copy.deepcopy() and State objects]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe_sl
+ow.py -mode minimax
+{'mode': 'minimax'}
+Time to move: 35.658978528
+Time to move: 3.90052213413
+Time to move: 0.132097420339
+
+[dict board, with board.copy(), no State]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe.py
+ -mode minimax
+{'mode': 'minimax'}
+Time to move: 1.09293903686
+Time to move: 0.299894399839
+Time to move: 0.00914614727032
+
+[dict board, with set mark, recur, set Empty (not .copy())]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe.py
+ -mode minimax
+{'mode': 'minimax'}
+Time to move: 0.974920799879
+Time to move: 0.287641428787
+Time to move: 0.00874721332909
+
+[lists board, faster checkwin, checking both players and all slots in checkwin]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe_li
+sts.py -mode minimax
+{'mode': 'minimax'}
+Time to move: 0.717418997972
+Time to move: 0.284553043128
+Time to move: 0.0106061113998
+
+
+
+[on DC power --> CPU runs 4 times slower (better timing info, bigger diffs)]
+[occasionally almost as fast as AC on DC, but depends on whther CPU scaled back or not--must powerup each time]
+
+[lists board, faster checkwin, check both players in checkwin]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe_li
+sts.py -mode minimax
+{'mode': 'minimax'}
+Time to move: 2.95783033574
+Time to move: 0.804305301799
+Time to move: 0.0099943009437
+
+[dict board, mark, recur, empty]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe.py
+ -mode minimax
+{'mode': 'minimax'}
+Time to move: 3.98663152249
+Time to move: 1.24256105533
+Time to move: 0.0272398129369
+
+[dict board, board.copy(), not State obj]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe.py
+ -mode minimax
+{'mode': 'minimax'}
+Time to move: 4.47969627382
+Time to move: 1.28549422552
+Time to move: 0.0504056387134
+
+[copy.deepcopy()]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part1\Preview\GUI>python tictactoe_sl
+ow.py -mode minimax
+{'mode': 'minimax'}
+Time to move: 124.417967113
+Time to move: 16.102509261
+Time to move: 0.51567575722

@@ -1,0 +1,10 @@
+hellolib_wrap.c
+
+[ Python Module : hellowrap ]
+
+
+message(char *)
+        [ returns char * ]
+        or: %include "../HelloLib/hellolib.h" or: %include hellolib.h, and
+        use -I arg 
+

@@ -1,0 +1,41 @@
+######################################################################
+# Build all examples in this directory: "make -f makefile.clients"
+######################################################################
+
+PY    = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+PYLIB = $(PY)/libpython1.5.a
+PYINC = -I$(PY)/Include -I$(PY)
+
+APIDIR = ../HighLevelApi
+APILIB = $(APIDIR)/libppembed.a
+
+CLIBS  = -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+CFLAGS = -c -g $(PYINC)
+
+# targets
+EXECS = objects-low objects-err-low objects-api \
+        codestring-low codestring-api 
+
+all: $(EXECS)
+
+# match low-level built-in call clients
+%-low: %-low.o
+	gcc $*-low.o $(PYLIB) $(CLIBS) -g -export-dynamic -o $@
+
+%-low.o: %-low.c
+	gcc $*-low.c $(CFLAGS)
+
+# match high-level ppembed api clients
+%-api: %-api.o $(APILIB)
+	gcc $*-api.o $(APILIB) $(PYLIB) $(CLIBS) -g -export-dynamic -o $@
+
+%-api.o: %-api.c $(APIDIR)/ppembed.h
+	gcc $*-api.c $(CFLAGS) -I$(APIDIR)
+
+# extended api lib
+$(APILIB):
+	cd $(APIDIR); make -f makefile.api
+
+clean: 
+	rm -f *.o *.pyc $(EXECS) core
+

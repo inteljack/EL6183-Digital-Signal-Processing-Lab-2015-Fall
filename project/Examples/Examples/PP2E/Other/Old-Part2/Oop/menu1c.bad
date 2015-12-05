@@ -1,0 +1,41 @@
+>>> m1 = DictMenu()
+>>> m2 = DictMenu() 
+>>> m1 = m1 + dict.d
+>>> m1.run()
+
+        MENU...
+                ham
+                spam
+?<ctrl-d> 
+>>> m2.run()
+
+        MENU...
+                ham
+                spam
+?<ctrl-d> 
+>>> l1 = ListMenu()
+>>> l2 = ListMenu()
+>>> l3 = ListMenu()
+>>> l1 = l1 + dict.l
+>>> l1.run()
+
+        MENU...
+                0) eggs
+                1) toast
+?<ctrl-d> 
+>>> l2.run()
+
+        MENU...
+?<ctrl-d>
+>>> l2.extend(('spam', lambda:1))
+>>> l2.run()
+
+        MENU...
+                0) spam
+?<ctrl-d>
+>>> l3.run()
+
+        MENU...
+                0) spam
+?<ctrl-d> 
+

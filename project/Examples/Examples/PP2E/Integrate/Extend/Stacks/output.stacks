@@ -1,0 +1,386 @@
+###########################
+# test the stack module
+###########################
+
+#
+# Note: the C stack module and type were written for illustration 
+# purposes only; if this were intended as a practical component,
+# they'd probably be better coded to dynamically expand on overflow
+# (do a free/malloc or realloc, rather than using fixed-size stack
+# and string arrays).  They could also be implemented to stack Python 
+# string objects (PyObject*'s) directly, rather than copying text in and
+# out of a C strings array.  In that event, you could stack any kind of 
+# Python object (not just strings) and would need to hold onto reference 
+# counts in C.  On the other hand, it's not clear that such a stack object 
+# would be any more useful than a built-in list object (which really is 
+# a dynamically-expandable C array of PyObject*'s internally).  See the
+# use of lists as stacks in the data structures chapter, and the 
+# language chapter (calculator).
+#
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python
+Python 1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import stackmod
+>>> stackmod.push('new')
+>>> stackmod.dump()
+[Stack:
+0: 'new'
+]
+>>> for c in "SPAM": stackmod.push(c)
+...
+>>> stackmod.dump()
+[Stack:
+4: 'M'
+3: 'A'
+2: 'P'
+1: 'S'
+0: 'new'
+]
+>>> stackmod.len(), stackmod.top()
+(5, 'M')
+>>> x = stackmod.pop()
+>>> x
+'M'
+>>> stackmod.dump()
+[Stack:
+3: 'A'
+2: 'P'
+1: 'S'
+0: 'new'
+]
+>>> stackmod.member('P'),stackmod.member('Q')
+(1, 0)
+>>> stackmod.len(), stackmod.item(1), stackmod.item(-1)
+(4, 'S', 'A')
+>>> for i in range(stackmod.len()): print "%d=%s" % (i, stackmod.item(i)),
+...
+0=new 1=S 2=P 3=A
+>>>
+
+
+
+
+>>> stackmod.push()
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: function requires exactly 1 argument; 0 given
+>>>
+>>> stackmod.push('a', 1)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: function requires exactly 1 argument; 2 given
+>>>
+>>>
+>>> stackmod.push(99)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: argument 1: expected string, int found
+>>>
+>>> stackmod.length()
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+AttributeError: length
+>>>
+>>> dir(stackmod)
+['__doc__', '__file__', '__name__', 'dump', 'empty', 'error', 'item', 'len', 'member', 'pop', 'push', 'top']
+>>>
+>>> stackmod.empty()
+0
+>>> while 1: print stackmod.pop(),
+...
+A P S new
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+stackmod.error: stack underflow
+>>>
+>>> stackmod.top()
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+stackmod.error: stack underflow
+>>>
+>>> stackmod.empty()
+1
+>>>
+>>> for i in range(1000): stackmod.push('hello' + `i`)     # 'hello0', 'hello1'
+...
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+stackmod.error: string-space overflow
+>>>
+>>> stackmod.len()
+239
+>>> stackmod.item(0), stackmod.item(-1), stackmod.item(238)
+('hello0', 'hello238', 'hello238')
+>>>
+>>> stackmod.item(239)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+stackmod.error: index out-of-bounds
+>>>
+>>> n = 0
+>>> for i in range(stackmod.len()): n = n + len(stackmod.item(i)) + 1
+...
+>>> n
+2041
+>>>
+>>> try:
+...     stackmod.push('hello239')
+... except stackmod.error, message:
+...     print message
+...
+string-space overflow
+>>>
+
+
+
+
+###########################
+# test the stack type 
+###########################
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python
+Python 1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import stacktype
+>>> x = stacktype.Stack()
+>>> x.push('new')
+>>> x
+[Stack:
+0: 'new'
+]
+
+>>> x[0]
+'new'
+>>> x[1]
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+IndexError: index out-of-bounds
+>>> x[0:1]
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+stacktype.error: slicing not yet implemented
+>>> x = x + 'd'
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+stacktype.error: '+' requires two stacks
+>>>
+>>> y = stacktype.Stack()
+>>> for c in 'SPAM': y.push(c)
+...
+>>> y
+[Stack:
+3: 'M'
+2: 'A'
+1: 'P'
+0: 'S'
+]
+
+>>> z = x + y
+>>> z
+[Stack:
+4: 'M'
+3: 'A'
+2: 'P'
+1: 'S'
+0: 'new'
+]
+
+>>> len(z), z[0], z[-1]
+(5, 'new', 'M')
+>>> x
+[Stack:
+0: 'new'
+]
+
+>>>          
+
+
+
+
+>>> x.__methods__
+['empty', 'pop', 'push', 'top']
+>>> x.__members__
+['len']
+>>> x.len, z.len
+(4, 12)
+>>> len(x)
+1
+>>> x * 4
+[Stack:
+3: 'new'
+2: 'new'
+1: 'new'
+0: 'new'
+]
+
+>>> for s in z: print s,
+...
+new S P A M
+>>> 'S' in z, 'Q' in z
+(1, 0)
+>>>
+>>> dir(stacktype)
+['Stack', '__doc__', '__file__', '__name__', 'error']
+>>> stacktype.__file__
+'./stacktype.so'
+>>> print y
+[Stack:
+3: 'M'
+2: 'A'
+1: 'P'
+0: 'S'
+]
+
+>>> `y`
+'<stack object at 80f6f90>'
+>>> str(y), repr(y)
+('<stack object at 80f6f90>', '<stack object at 80f6f90>')
+>>>
+
+
+
+
+
+
+
+
+
+
+>>> t = stacktype.Stack()
+>>> for s in y: t.push(s)
+...
+>>> t
+[Stack:
+3: 'M'
+2: 'A'
+1: 'P'
+0: 'S'
+]
+
+>>> t == y, t is y, t > y, t >= y
+(1, 0, 0, 1)
+>>> y.pop()
+'M'
+>>> t == y, t is y, t > y, t >= y
+(0, 0, 1, 1)
+>>> y < y, y < t
+(0, 1)
+>>> t = y
+>>> t.pop()
+'A'
+>>> y
+[Stack:
+1: 'P'
+0: 'S'
+]
+
+>>> t = stacktype.Stack() + y
+>>> t.pop()
+'P'
+>>> t.push('Q')
+>>> t
+[Stack:
+1: 'Q'
+0: 'S'
+]
+
+>>> y
+[Stack:
+1: 'P'
+0: 'S'
+]
+
+>>> t == y, t is y, t <> y, t < y, t > y
+(0, 0, 1, 0, 1)
+>>> cmp(t, y), cmp(y, t)
+(1, -1)
+>>>
+>>> t = y * 1
+>>> t is y, t == y
+(0, 1)
+>>> t
+[Stack:
+1: 'P'
+0: 'S'
+]
+
+>>>
+
+
+
+
+>>> for i in range(1000): y.push('hello' + `i`)
+...
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+stacktype.error: string-space overflow
+>>>
+>>> y.len, y[-2], len(y), y.top()
+(2045, 'hello237', 241, 'hello238')
+>>> t.top()
+'P'
+>>> try:
+...     y = y + y
+... except stacktype.error, message:
+...     print message
+...
+string-space overflow
+>>> y.len
+2045
+
+
+
+
+
+
+
+>>> t
+[Stack:
+1: 'P'
+0: 'S'
+]
+
+>>> t.attr = 4
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: object has read-only attributes
+
+>>> t.nonesuch
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+AttributeError: nonesuch
+
+>>> t()
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: call of non-function (type stack)
+
+>>> hash(t)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: unhashable type
+
+>>> t / 2
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: bad operand type(s) for /
+
+>>> t % 4
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: bad operand type(s) for %
+
+>>> t[1] = 'str'
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: object doesn't support item assignment
+
+>>> t[1:2] = ['str']
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: object doesn't support slice assignment
+>>>
+

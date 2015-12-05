@@ -1,0 +1,44 @@
+#
+# note: this file was made by cut-and-paste off the scrren;
+# else stderr for stack trace may show up before all else
+#
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory]$ python order-func.py
+
+0 (111, 2, 'GRossum')
+errors:   none
+warnings: none
+{111: 8, 222: 5, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall']
+
+1 (222, 5, 'LWall')
+errors:   none
+warnings: reorder-soon:222
+{111: 8, 222: 0, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall']
+
+2 (333, 3, 'JOusterhout')
+errors:   bad-product
+warnings: none
+{111: 8, 222: 0, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall']
+
+3 (222, 1, '4Spam')
+errors:   buyer-name:4 check-quantity
+warnings: new-buyer-added
+{111: 8, 222: 0, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall', '4Spam']
+
+4 (222, 0, 'LTorvalds')
+error in embedded function:
+Traceback (innermost last):
+  File "order-func.py", line 12, in ?
+    (warnings, errors) = apply(validate2.validate, order)
+  File "./validate2.py", line 15, in validate
+    validate_order(product, quantity, errs, msgs)     # mutable list args
+  File "./validate2.py", line 25, in validate_order
+    if inventory.stock(product) / quantity < 2:
+ZeroDivisionError: integer division or modulo
+
+5 (444, 9, 'ERaymond')
+errors:   none
+warnings: new-buyer-added
+{111: 8, 222: 0, 444: 91, 555: 1} ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+

@@ -1,0 +1,275 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>Shelving filters</title><meta name="generator" content="MATLAB 7.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-11-01"><meta name="DC.source" content="demo_shelving.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h1>Shelving filters</h1><!--introduction--><p>Convert a low-pass filter to a shelving filter</p><p>Ivan Selesnick</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">Start with a low-pass filter</a></li><li><a href="#4">The wrong way</a></li><li><a href="#5">Use product filter P(z) = H(z)H(1/z)</a></li><li><a href="#6">Find B2(z) such that B2(z) B2(1/z) = C(z),</a></li><li><a href="#7">Shelving filter</a></li></ul></div><pre class="codeinput">clear <span class="string">all</span>
+<span class="comment">% close all</span>
+</pre><h2>Start with a low-pass filter<a name="2"></a></h2><pre class="codeinput"><span class="comment">% Low-pass Butterworth filter</span>
+[b, a] = butter(4, 0.3);
+
+<span class="comment">% Show pole-zero diagram</span>
+zplane(b,a)
+</pre><img vspace="5" hspace="5" src="demo_shelving_01.png" alt=""> <p>Show frequency response</p><pre class="codeinput">[H, om] = freqz(b, a);
+plot(om, abs(H))
+</pre><img vspace="5" hspace="5" src="demo_shelving_02.png" alt=""> <h2>The wrong way<a name="4"></a></h2><p>How can we 'lift' the frequency response? Can we add identity?</p><pre class="codeinput">Id = ones(size(H));
+
+plot(om, abs( Id + H))
+
+<span class="comment">% No, adding identity does not give a shelving filter.</span>
+<span class="comment">% This is because H is complex-valued. You can not just add</span>
+<span class="comment">% a constant like this. Putting H in parallel with a direct</span>
+<span class="comment">% path will not give a shelving filter because H is complex.</span>
+</pre><img vspace="5" hspace="5" src="demo_shelving_03.png" alt=""> <h2>Use product filter P(z) = H(z)H(1/z)<a name="5"></a></h2><p>We can add a constant to the <tt>H(om)</tt>^2 though, becuase it is real... See class notes..</p><pre class="codeinput">K1 = 0.5; K2 = 0.5;
+
+flip = @(x) x(end:-1:1)
+
+<span class="comment">% C(z) = K1 B(z) B(1/z) + K2 A(z) A(1/z)</span>
+c = K1 * conv( b, flip(b) ) + K2 * conv( a, flip(a) )
+
+<span class="comment">% Notice that c is an odd-length symmetric sequence (Type I FIR filter).</span>
+<span class="comment">% This is also evident in the zero-diagram (the zeros are in reciprocals</span>
+<span class="comment">% sets)</span>
+zplane(c)
+</pre><pre class="codeoutput">
+flip = 
+
+    @(x)x(end:-1:1)
+
+
+c =
+
+    0.0383   -0.3007    1.0716   -2.1046    2.6790   -2.1046    1.0716   -0.3007    0.0383
+
+</pre><img vspace="5" hspace="5" src="demo_shelving_04.png" alt=""> <h2>Find B2(z) such that B2(z) B2(1/z) = C(z),<a name="6"></a></h2><p>i.e., such that conv(b2, flip(b2)) = c</p><pre class="codeinput"><span class="comment">% We can do this by dividing the roots of C into two groups.</span>
+<span class="comment">% For example, (1) the zeros inside the unit circle,</span>
+<span class="comment">% and (2) the zeros outside the unit circle</span>
+
+r = roots(c)  <span class="comment">% roots of C(z)</span>
+
+k = abs(r) &lt; 1 <span class="comment">% Locate the roots of C(z) inside unit circle</span>
+
+r(k)       <span class="comment">% These are the roots of C(z) inside unit cirlce</span>
+
+abs(r(k))  <span class="comment">% Verify that they are inside the unit cirlce abs() should be less than 1</span>
+
+b2 = poly(r(k))   <span class="comment">% Create b2 from these roots</span>
+</pre><pre class="codeoutput">
+r =
+
+   2.4509 + 1.5078i
+   2.4509 - 1.5078i
+   0.7824 + 1.1621i
+   0.7824 - 1.1621i
+   0.3987 + 0.5921i
+   0.3987 - 0.5921i
+   0.2960 + 0.1821i
+   0.2960 - 0.1821i
+
+
+k =
+
+     0
+     0
+     0
+     0
+     1
+     1
+     1
+     1
+
+
+ans =
+
+   0.3987 + 0.5921i
+   0.3987 - 0.5921i
+   0.2960 + 0.1821i
+   0.2960 - 0.1821i
+
+
+ans =
+
+    0.7138
+    0.7138
+    0.3475
+    0.3475
+
+
+b2 =
+
+    1.0000   -1.3893    1.1022   -0.3979    0.0615
+
+</pre><h2>Shelving filter<a name="7"></a></h2><p>Using same denominator as H(z).  Use new numerator B2(z). (Same poles, new zeros).</p><pre class="codeinput">[H2, om] = freqz(b2, a);
+
+plot(om, abs(H2))
+ylim([0 2])
+<span class="comment">% This is a shelving filter.</span>
+<span class="comment">% How are the levels in the two bands related to the</span>
+<span class="comment">% constants K1 and K2 ??</span>
+</pre><img vspace="5" hspace="5" src="demo_shelving_05.png" alt=""> <pre class="codeinput">zplane(b2, a)
+<span class="comment">% The zeros are close to the poles.</span>
+<span class="comment">% It can be expected since the frequency response is mostly</span>
+<span class="comment">% quite flat, so the poles and zeros are close to canceleing.</span>
+</pre><img vspace="5" hspace="5" src="demo_shelving_06.png" alt=""> <p class="footer"><br>
+      Published with MATLAB&reg; 7.12<br></p></div><!--
+##### SOURCE BEGIN #####
+%% Shelving filters
+% Convert a low-pass filter to a shelving filter
+%
+% Ivan Selesnick
+
+%%
+
+clear all
+% close all
+
+%% Start with a low-pass filter
+
+% Low-pass Butterworth filter
+[b, a] = butter(4, 0.3);
+
+% Show pole-zero diagram
+zplane(b,a)
+
+%%
+% Show frequency response
+[H, om] = freqz(b, a);
+plot(om, abs(H))
+
+%% The wrong way
+% How can we 'lift' the frequency response?
+% Can we add identity?
+
+Id = ones(size(H));
+
+plot(om, abs( Id + H))
+
+% No, adding identity does not give a shelving filter.
+% This is because H is complex-valued. You can not just add
+% a constant like this. Putting H in parallel with a direct
+% path will not give a shelving filter because H is complex.
+
+%% Use product filter P(z) = H(z)H(1/z)
+% We can add a constant to the |H(om)|^2 though, becuase it is real...
+% See class notes..
+
+K1 = 0.5; K2 = 0.5;
+
+flip = @(x) x(end:-1:1)
+
+% C(z) = K1 B(z) B(1/z) + K2 A(z) A(1/z)
+c = K1 * conv( b, flip(b) ) + K2 * conv( a, flip(a) )
+
+% Notice that c is an odd-length symmetric sequence (Type I FIR filter).
+% This is also evident in the zero-diagram (the zeros are in reciprocals
+% sets)
+zplane(c)
+
+%% Find B2(z) such that B2(z) B2(1/z) = C(z),
+% i.e., such that conv(b2, flip(b2)) = c
+
+% We can do this by dividing the roots of C into two groups.
+% For example, (1) the zeros inside the unit circle,
+% and (2) the zeros outside the unit circle
+
+r = roots(c)  % roots of C(z)
+
+k = abs(r) < 1 % Locate the roots of C(z) inside unit circle
+
+r(k)       % These are the roots of C(z) inside unit cirlce
+
+abs(r(k))  % Verify that they are inside the unit cirlce abs() should be less than 1
+
+b2 = poly(r(k))   % Create b2 from these roots
+
+%% Shelving filter
+% Using same denominator as H(z).  Use new numerator B2(z).
+% (Same poles, new zeros).
+
+[H2, om] = freqz(b2, a);
+
+plot(om, abs(H2))
+ylim([0 2])
+% This is a shelving filter.
+% How are the levels in the two bands related to the 
+% constants K1 and K2 ??
+
+%%
+
+zplane(b2, a)
+% The zeros are close to the poles. 
+% It can be expected since the frequency response is mostly 
+% quite flat, so the poles and zeros are close to canceleing. 
+
+
+
+
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>

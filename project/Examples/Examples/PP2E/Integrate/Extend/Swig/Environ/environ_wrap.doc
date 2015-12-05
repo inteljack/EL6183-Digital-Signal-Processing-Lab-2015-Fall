@@ -1,0 +1,11 @@
+environ_wrap.c
+
+[ Python Module : environ ]
+
+
+getenv(varname)
+        [ returns char * ]
+
+putenv(assignment)
+        [ returns int  ]
+

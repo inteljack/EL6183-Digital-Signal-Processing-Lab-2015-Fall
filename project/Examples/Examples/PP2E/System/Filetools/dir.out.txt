@@ -1,0 +1,136 @@
+C:\temp>dir
+
+ Volume in drive C has no label
+ Volume Serial Number is 0F4A-1901
+ Directory of C:\temp
+
+.              <DIR>        08-26-00  5:01p .
+..             <DIR>        08-26-00  5:01p ..
+ABOUT-~1 HTM         2,431  08-26-00  5:16p about-pp.html
+PYTHON~1 GZ        212,152  08-26-00  5:33p python1.5.tar.gz
+ABOUT-~2 HTM            43  08-26-00  5:36p about-pp2e.html
+ABOUT-~3 HTM            47  08-26-00  5:36p about-ppr2e.html
+NEWDIR         <DIR>        09-04-00  2:13p newdir
+         4 file(s)        214,673 bytes
+         3 dir(s)        5,799.79 MB free
+
+
+
+C:\temp>dir /B
+about-pp.html
+python1.5.tar.gz
+about-pp2e.html
+about-ppr2e.html
+newdir
+
+C:\temp>ls
+about-pp.html     about-ppr2e.html  python1.5.tar.gz
+about-pp2e.html   newdir
+
+C:\temp>ls newdir
+temp1  temp2  temp3
+
+
+
+>>> import os
+>>> os.popen('dir').read()[:100]
+'\012 Volume in drive C has no label\012 Volume Serial Number is 0F4A-1901\012 D
+irectory of C:\\temp\012\012.        '
+>>>
+>>>
+>>> os.popen('dir /B').readlines()
+['about-pp.html\012', 'python1.5.tar.gz\012', 'about-pp2e.html\012', 'about-ppr2
+e.html\012', 'newdir\012']
+
+
+>>> for line in os.popen('dir /B').readlines():
+...     print line[:-1]
+...
+about-pp.html
+python1.5.tar.gz
+about-pp2e.html
+about-ppr2e.html
+newdir
+
+
+>>> for line in os.popen('dir *.html /B').readlines(): print line,
+...
+about-pp.html
+about-pp2e.html
+about-ppr2e.html
+
+
+>>> os.popen('ls *.html').readlines()
+['about-pp.html\012', 'about-pp2e.html\012', 'about-ppr2e.html\012']
+
+>>> files = os.popen('ls *.html').readlines()
+>>> for file in files: print file,
+...
+about-pp.html
+about-pp2e.html
+about-ppr2e.html
+
+
+>>> import glob
+>>> glob.glob('*.html')
+['about-pp.html', 'about-pp2e.html', 'about-ppr2e.html']
+
+>>> glob.glob('*')
+['about-pp.html', 'python1.5.tar.gz', 'about-pp2e.html', 'about-ppr2e.html', 'ne
+wdir']
+
+>>> os.listdir('.')
+['about-pp.html', 'python1.5.tar.gz', 'about-pp2e.html', 'about-ppr2e.html', 'ne
+wdir']
+>>> os.listdir(os.curdir)
+['about-pp.html', 'python1.5.tar.gz', 'about-pp2e.html', 'about-ppr2e.html', 'ne
+wdir']
+
+
+>>> os.popen('ls newdir').readlines()
+['temp1\012', 'temp2\012', 'temp3\012']
+>>> os.popen('dir newdir /B').readlines()
+['temp1\012', 'temp2\012', 'temp3\012']
+>>> glob.glob('newdir/*')
+['newdir\\temp1', 'newdir\\temp2', 'newdir\\temp3']
+>>> os.listdir('newdir')
+['temp1', 'temp2', 'temp3']
+
+
+>>> os.popen('ls C:\PP2ndEd').readlines()
+['README.txt\012', 'cdrom\012', 'chapters\012', 'etc\012', 'examples\012', 'exam
+ples.tar.gz\012', 'figures\012', 'shots\012']
+>>>
+>>> glob.glob('C:\PP2ndEd\*')
+['C:\\PP2ndEd\\examples.tar.gz', 'C:\\PP2ndEd\\README.txt', 'C:\\PP2ndEd\\shots'
+, 'C:\\PP2ndEd\\figures', 'C:\\PP2ndEd\\examples', 'C:\\PP2ndEd\\etc', 'C:\\PP2n
+dEd\\chapters', 'C:\\PP2ndEd\\cdrom']
+>>>
+>>> os.listdir('C:\PP2ndEd')
+['examples.tar.gz', 'README.txt', 'shots', 'figures', 'examples', 'etc', 'chapte
+rs', 'cdrom']
+
+
+>>> for file in glob.glob('C:\PP2ndEd\*'):
+...     print os.path.split(file)
+...
+('C:\\PP2ndEd', 'examples.tar.gz')
+('C:\\PP2ndEd', 'README.txt')
+('C:\\PP2ndEd', 'shots')
+('C:\\PP2ndEd', 'figures')
+('C:\\PP2ndEd', 'examples')
+('C:\\PP2ndEd', 'etc')
+('C:\\PP2ndEd', 'chapters')
+('C:\\PP2ndEd', 'cdrom')
+>>>
+>>> for file in os.listdir('C:\PP2ndEd'):
+...     print os.path.join('C:\PP2ndEd', file)
+...
+C:\PP2ndEd\examples.tar.gz
+C:\PP2ndEd\README.txt
+C:\PP2ndEd\shots
+C:\PP2ndEd\figures
+C:\PP2ndEd\examples
+C:\PP2ndEd\etc
+C:\PP2ndEd\chapters
+C:\PP2ndEd\cdrom

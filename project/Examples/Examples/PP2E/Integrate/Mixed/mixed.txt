@@ -1,0 +1,11 @@
+
+Exports:  C name access
+    Exporting C names to embedded Python code as object attributes
+        - Embedding to run Python code from C
+        - Extending to allow Python code to access C names
+
+Regist:  callback handlers
+    Exporting C functions to register callable Python objects, to be
+    called in embedded mode from C on events
+        - Embedding to run call Python objects passed in from Python code
+        - Extending to export functions for registration and event triggers

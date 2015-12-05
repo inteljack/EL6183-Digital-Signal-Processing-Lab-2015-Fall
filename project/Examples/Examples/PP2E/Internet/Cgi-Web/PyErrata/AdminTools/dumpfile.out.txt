@@ -1,0 +1,29 @@
+[mark@toy ~/PP2ndEd/examples/Part2/Internet/Cgi-Web/PyErrata/AdminTools]$ python dumpFiles.py
+
+errataDB ============================================================
+
+
+------------------------------------------------------------
+../DbaseFiles/errataDB/937907956.159-5157.data
+{'Page number': '42', 'Type': 'Typo', 'Severity': 'Low', 'Chapter number': '3',
+'Submit date': '1999/09/21, 05:59:16', 'Report state': 'Verified by author', 'Su
+bmitter name': '', 'Submitter email': '', 'Description': "Middle of page: 'aint'
+ aint a real word.\015\012\015\012          ", 'Submit mode': '', 'Part number':
+ '', 'Printing Date': ''}
+
+------------------------------------------------------------
+. . .
+
+commentDB ============================================================
+
+
+------------------------------------------------------------
+../DbaseFiles/commentDB/937908410.203-5352.data
+{'Submit date': '1999/09/21, 06:06:50', 'Submitter email': 'bob@bob.com', 'Repor
+t state': 'Verified by author', 'Description': 'Python rules!\015\012          '
+, 'Submit mode': '', 'Submitter name': 'bob'}
+
+------------------------------------------------------------
+
+. . .
+

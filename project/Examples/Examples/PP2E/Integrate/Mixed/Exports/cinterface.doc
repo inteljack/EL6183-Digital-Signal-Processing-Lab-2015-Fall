@@ -1,0 +1,109 @@
+/**********************************************************
+ * Export C names for use in Python programs.  Defines
+ * a C extension type which maps C variables to Python 
+ * object attributes ('object.attr'), so they can be 
+ * fetched and assigned in Python programs.  Python code 
+ * uses attributes of an instance of the exported Cvar 
+ * extension type to access exported C names.  Define
+ * a name->address mapping table or function externally.
+ *
+ * This is a general, reusable interface: all C names 
+ * to be exported to Python programs, as well as the C 
+ * name->address mapping table or function, are defined 
+ * externally and linked in (to the enclosing C program,
+ * or to cinterface.so as other .o/.so files); both the 
+ * exported names and the name->address mapping logic 
+ * may vary per program that employs the cinterface.so 
+ * type interface.  This interface can be used in 2 modes:
+ * 
+ * 1) Provide your own CnameMapTable:  
+ *    Compile the defaultlookup.c table lookup function, 
+ *    link it into the process (either with the enclosing C
+ *    program, or with cinterface.so), and define C name
+ *    'CnameMapTable' to be a pointer to a name->address
+ *    mapping table. 
+ *
+ * 2) Provide your own CnameMapLookup:
+ *    If your program can't provide a pointer to a table of
+ *    name->address mappings, define your own 'CnameMapLookup'
+ *    function, and link it to the enclosing C program, or
+ *    cinterface.so.  This allows for more dynamic mapping,
+ *    and doesn't require 'CnameMapTable' to be defined.
+ * 
+ * See cinterface.h for type details.  In general:
+ * - cinterface.so always expects CnameMapLookup to be defined 
+ *   externally and linked in, either statically or dynamically.
+ *
+ * - if used, the default CnameMapLookup in defaultlookup.c 
+ *   expects name CnameMapTable to be defined and linked in.
+ *
+ * cinterface.so is a dynamically-loaded module, linked with your
+ * process when first imported (by a Python script or C lib call).
+ * The external names CnameMapLookup or CnameMapTable can either 
+ * come from either the enclosing C program (in which case they  
+ * will be linked with cinterface.so when it's imported), or be 
+ * linked to cinterface.so in your makefile (as a .o or .so).
+ *
+ * Notes:
+ * - If you provide your own CnameMapLookup, it can map 
+ *   names to type/address dynamically and arbitrarily;
+ *   it should return a cnameMap*, or NULL for bad names.
+ * - The CnameMapTable name->address mapping table used by the 
+ *   default defaultlookup.c can also hold any C items with an 
+ *   address (not just global C variables) 
+ * - If used, only items listed in a CnameMapTable are visible 
+ *   to Python code--header files are never inspected
+ * - If used, CnameMapTable is really a pointer to a table: 
+ *   if you need to add names dynamically, expand your program's
+ *   table as needed (e.g., realloc, or free+malloc new), and 
+ *   set CnameMapTable to the result table;
+ * - Also expects a CnameMessage char array to be defined
+ *   in the C program--a simple exported global text area
+ * - The Cvar extension type is accessed by an exported 
+ *   module constructor function; it overloads qualifications
+ *   to allow C variables to be visible as simple attributes
+ * - For the first book example, a CnameMapTable is defined by
+ *   an enclosing C layer, which runs embedded Python code, 
+ *   which uses the exported names interface; cinterface.so
+ *   can be used in other scenarios, as long as you link in 
+ *   a CnameMapTable somehow (e.g., via a makefile step)
+ * - Like all C extensions, cinterface could also be linked 
+ *   statically, rather than compiling to a dynamic .so file;
+ *   for testing, we compile it with and without lookup code;
+ * - The main reason for using a C type here is to intercept
+ *   attribute qualifications in Python code ('object.attr'),
+ *   and route them to the enclosing C layer; classes can 
+ *   catch qualifications too, and the dir ClassAndMod here 
+ *   shows how to reimplement cinterface as a Python code
+ *   class and simple C module, albeit at some speed loss.
+ *
+ * Also see Integrate/Extend/Swig--SWIG can produce a similar 
+ * name interface automatically, but:
+ * - SWIG  only exports C global variables: the table used 
+ *   by the default lookup here can hold arbitrary C addresses
+ * - the type defined here can be reused in any program that 
+ *   exports C names: simply define a CnameMapTable for your 
+ *   names (or a CnameMapLookup function), import module 
+ *   cinterface from Python scripts or C, and make a Cvar()
+ * - if you provide your own CnameMapLookup, you can perform
+ *   arbitrary name->address mapping at run time.
+ *
+ * Caveats: 
+ * - For the default table-based lookup scheme, we 
+ *   could instead pass a mapping table to the Cvar() 
+ *   constructor to allow more than one name set per program, 
+ *   but that may require extra protocol to export mapping 
+ *   tables to Python (where Cvar's may be created).  
+ * - In fact, this C type could be more widely reusable 
+ *   if we could store both a C object pointer and lookup 
+ *   function pointer in Cvar() instances; that way, we might 
+ *   use it to handle arbitrary, nested C/C++ object name 
+ *   qualifications (e.g., for  'a.b.c.d', we would make a 
+ *   new Cvar() at each '.' with a pointer to the derived
+ *   C/C++ object plus a custom lookup routine for that 
+ *   object); as is, this type only allows for 1-level 
+ *   lookups and simple type conversions, but that's as
+ *   much complexity as this example warrants.  Generalizing
+ *   it to handle nested objects is left as an exercise.
+ **********************************************************/
+

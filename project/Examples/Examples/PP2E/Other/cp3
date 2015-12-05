@@ -1,0 +1,4 @@
+#!/usr/local/bin/python
+import sys       
+for line in sys.stdin.readlines():     # load lines into a list
+    print line,

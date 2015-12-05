@@ -1,0 +1,148 @@
+
+??? test shelves/locking
+??? index section jumps not wrking
+
+# more caveats:
+# - could send error message page if form['Description'] is empty
+# - browseComments.cgi -- could customize with class instead of funcs/args
+# - could combine errata/comments for simplicity
+# - maybe add <pre> for 'Description' field display (but oddly sized)
+
+run 'python file.cgi' from cmdlinefirst,
+to catch any syntax errors
+
+stderr=stdout to see python err traceback; 
+ideally, wrap while prog in a try to catch it
+
+this works...
+print "Content-type: text/html\n"
+
+this doesn't...
+html = """Content-type: text/html\n
+<TITLE>Thank you</TITLE>
+<H1>Thank you</H1>
+<P>%s</P>
+<HR>"""
+       
+gave Dbase* directories 777 priv; 775 didn't work
+
+gave browse*cgi exec priv
+
+note: emailed reports have 'Submit mode' field (checkbox)
+and stored reports have 'Report State' (dbcommon store--for
+browsers)
+
+chown dbase files to 666, else owned by 'nobody' with 06444,
+so noone else can write (verify scripts fail on permission,
+for user lutz)
+
+need to obtain shelve lock when reading too--shelve docs say
+if anyone writing, noone else can read or write;
+
+put str() around things passed to cgi.escape--tuple field as
+data and key value
+
+append plat-linux2 path to sys.path, else can't find FCNTL
+('nobody' has diff env settings)
+
+added traceback logic to submitComment, to catch FCNTL bug
+
+make sure 'nobody' owns shelve files, else cgi script
+can't do a chmod 0666 on them (rm and rerun submit page)
+
+---------------------
+
+Actually, I'm not sure locking makes any difference 
+when the gdbm file system is installed: shelve open
+seem to fail if any other process has the shelve (gdbm)
+file open at all.  In fact, the gdbm interface likes to
+throw an exception when the file is locked, rather than
+allowing the caller to block/wait for the lock to be 
+released.  Witness this scenario: I started the Python
+interactive command line, and ran some flock and gdbm
+open calls, to simulate a simultaneously-running cgi 
+script, and then I attempted to submit and browse the
+shelve using the errata-page interface, and my browser:
+
+
+>>> from FCNTL import LOCK_EX, LOCK_UN
+>>> import fcntl, gdbm
+
+>>> file = open('errataDB', 'r')
+>>> fcntl.flock(file.fileno(), LOCK_EX)
+
+    (now browse and submit fail)
+gdbm.error: (11, 'Resource temporarily unavailable')
+
+>>> fcntl.flock(file.fileno(), LOCK_UN)
+
+    (now browse and submit work again)
+
+>>> g = gdbm.open('errataDB', 'r')
+
+    (now browse and submit fail)
+
+>>> g.close()
+
+    (now browse and submit work again)
+
+
+In principle, the shelve.open call could be
+wrapped in a try exception handler; if the open fails 
+due to a resource unavailable error, the caller could
+time.sleep for a second and try again, over and over,
+until the operation works.  Alternatively, we might
+migrate to a server process which accepts and satisfies
+shelve read/write operations from clients over sockets
+or fifos.  Or...
+
+Alas, this is roughly where I lost interest in the shelve
+based approach.  Directories of flat files seem much 
+safer from a multi-process perspective. 
+
+---------------------
+
+#
+# dbfiles.py:
+# use a dictinct flat file per errata or comment report,
+# to finesse locking issues--it's possible that more than
+# one process (user) may be writing a report at the same
+# time, and using a shelve creates a shared file resource;
+# the filename is unique;
+#
+# dbshelve.py:
+# use a shelve with linux file locks when writing
+# note that some dbm flavors support concurrent access,
+# so locking not structly necessary, but provided in case
+# dbm layer underlying shelve does not (e.g., dumbby)
+#
+# dbcommon.py:
+# common logic inherited by dbfiles and dbshelve
+#
+# caveats: 
+# - could use file name as submit time, rather than 
+# storing it explicitly in record 'submitdate' fields;
+# - could merge errata and comment dbases and user 
+# interfaces;
+# - may be easier to manually edit and faster to load
+# and store if store in textual format, instead of
+# pickled dictionaries;
+# - loadIndexedTable alt--scan sorted list, watching
+# for key changes during scan
+#
+# works by loading (and then sorting) the entire table
+# into memory for each browse request; if the database
+# ever grows large, the implementation of these functions
+# should be changed to use distinct index files, a real
+# database (e.g., gadfly), or other fast alternatives;
+# caching isn't an option: cgi scripts aren't persistent;
+# shelve keys must be unique, so we construct a key here
+# by combining surrent time and process id--it's possible
+# that > 1 user may submit at once, but they should be 
+# running in seperate cgi processes on the server;
+# the alternative is bsddb file locking for the shelve;
+# we store raws dictionaries in this version--classes
+# are another option, though their advantage is unclear,
+# since we are mostly mapping strings to fields here;
+#########################################################
+

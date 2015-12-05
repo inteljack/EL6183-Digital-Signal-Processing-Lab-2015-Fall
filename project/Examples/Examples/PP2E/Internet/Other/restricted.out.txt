@@ -1,0 +1,62 @@
+C:\PP2ndEd\examples\Part2\Internet\Cgi-Web>python restricted.py
+Input (ctrl+z=end) => x = 5
+Input (ctrl+z=end) => for i in range(x): print 'hello%d' % i,
+Input (ctrl+z=end) => hello0 hello1 hello2 hello3 hello4
+
+C:\PP2ndEd\examples\Part2\Internet\Cgi-Web>python restricted.py
+Input (ctrl+z=end) =>
+C:\PP2ndEd\examples\Part2\Internet\Cgi-Web>python restricted.py
+Input (ctrl+z=end) => open(r'C:\temp\rexec.txt', 'w').write('Hello rexec\n')
+Input (ctrl+z=end) =>
+
+C:\PP2ndEd\examples\Part2\Internet\Cgi-Web>python restricted.py
+Input (ctrl+z=end) => print open(r'C:\temp\rexec.txt', 'r').read()
+Input (ctrl+z=end) => Hello rexec
+
+C:\PP2ndEd\examples\Part2\Internet\Cgi-Web>python restricted.py
+Input (ctrl+z=end) => open(r'C:\stuff\mark\hack.txt', 'w').write('BadStuff\n')
+Input (ctrl+z=end) => Traceback (innermost last):
+  File "restricted.py", line 41, in ?
+    guard.r_exec(input)      # ask guard to check and do opens
+  File "C:\Program Files\Python\Lib\rexec.py", line 253, in r_exec
+    exec code in m.__dict__
+  File "<string>", line 1, in ?
+  File "restricted.py", line 30, in r_open
+    raise SystemError, 'files outside %s prohibited' % SafeDir
+SystemError: files outside C:\temp prohibited
+
+C:\PP2ndEd\examples\Part2\Internet\Cgi-Web>python restricted.py
+Input (ctrl+z=end) => open(r'C:\stuff\mark\secret.py', 'r').read()
+Input (ctrl+z=end) => Traceback (innermost last):
+  File "restricted.py", line 41, in ?
+    guard.r_exec(input)      # ask guard to check and do opens
+  File "C:\Program Files\Python\Lib\rexec.py", line 253, in r_exec
+    exec code in m.__dict__
+  File "<string>", line 1, in ?
+  File "restricted.py", line 30, in r_open
+    raise SystemError, 'files outside %s prohibited' % SafeDir
+SystemError: files outside C:\temp prohibited
+
+
+C:\PP2ndEd\examples\Part2\Internet\Cgi-Web>python restricted.py
+Input (ctrl+z=end) => from socket import *
+Input (ctrl+z=end) => s = socket(AF_INET, SOCK_STREAM)
+Input (ctrl+z=end) => Traceback (innermost last):
+  File "restricted.py", line 41, in ?
+    guard.r_exec(input)      # ask guard to check and do opens
+  File "C:\Program Files\Python\Lib\rexec.py", line 253, in r_exec
+    exec code in m.__dict__
+  File "<string>", line 1, in ?
+  File "C:\Program Files\Python\Lib\rexec.py", line 264, in r_import
+    return self.importer.import_module(mname, globals, locals, fromlist)
+  File "C:\Program Files\Python\Lib\ihooks.py", line 396, in import_module
+    q, tail = self.find_head_package(parent, name)
+  File "C:\Program Files\Python\Lib\ihooks.py", line 432, in find_head_package
+    q = self.import_it(head, qname, parent)
+  File "C:\Program Files\Python\Lib\ihooks.py", line 484, in import_it
+    m = self.loader.load_module(fqname, stuff)
+  File "C:\Program Files\Python\Lib\ihooks.py", line 324, in load_module
+    exec code in m.__dict__
+  File "C:\Program Files\Python\Lib\plat-win\socket.py", line 17, in ?
+    _realsocketcall = socket
+NameError: socket

@@ -1,0 +1,35 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory]$ order-bytecode
+
+0 (111, 2, 'GRossum')
+errors:   none
+warnings: none
+{111: 8, 222: 5, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall']
+
+1 (222, 5, 'LWall')
+errors:   none
+warnings: reorder-soon:222
+{111: 8, 222: 0, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall']
+
+2 (333, 3, 'JOusterhout')
+errors:   bad-product
+warnings: none
+{111: 8, 222: 0, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall']
+
+3 (222, 1, '4Spam')
+errors:   buyer-name:4 check-quantity
+warnings: new-buyer-added
+{111: 8, 222: 0, 444: 100, 555: 1} ['GRossum', 'JOusterhout', 'LWall', '4Spam']
+
+4 (222, 0, 'LTorvalds')
+Python error during validation.
+type  = 'exceptions.ZeroDivisionError'
+info  = 'integer division or modulo'
+trace = 'Traceback (innermost last):
+  File "<PP_Compile_Codestr>", line 25, in ?
+  File "<PP_Compile_Codestr>", line 16, in validate_order
+'
+5 (444, 9, 'ERaymond')
+errors:   none
+warnings: new-buyer-added
+{111: 8, 222: 0, 444: 91, 555: 1} ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+

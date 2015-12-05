@@ -1,0 +1,63 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python
+Python 1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import oopstack, substack
+>>> x = oopstack.Stack()
+>>> y = oopstack.Stack()
+>>> x.push('class')
+>>> for c in "SPAM": y.push(c)
+...
+>>> x
+[Stack:
+0: 'class'
+]
+
+>>> y[2]
+'A'
+>>> z = x + y
+>>> for s in z: print s,
+...
+class S P A M
+>>> len(z)
+5
+>>> x * 2
+[Stack:
+1: 'class'
+0: 'class'
+]
+
+>>> z.__methods__, z.__members__, z.pop()
+(['empty', 'pop', 'push', 'top'], ['len'], 'M')
+>>> type(z), type(z._base)
+(<type 'instance'>, <type 'stack'>)
+>>>
+>>> a = substack.Substack(x + y)
+>>> a
+[Stack:
+4: 'M'
+3: 'A'
+2: 'P'
+1: 'S'
+0: 'class'
+]
+
+>>> a[3]
+accessing cell 3
+'A'
+>>> a.morestuff()
+more stack stuff
+>>> b = substack.Substack("C" + "++")
+>>> b
+[Stack:
+2: '+'
+1: '+'
+0: 'C'
+]
+
+>>> b.pop(), b.pop()
+('+', '+')
+>>> c = b + substack.Substack(['-', '-'])
+>>> for s in c: print s,
+...
+C - -
+>>>   

@@ -1,0 +1,63 @@
+C:\Stuff\HTMLgen\HTMLgen>python
+>>> from HTMLgen import *
+>>> p = Paragraph("Making pages from objects is easy\n")
+>>> p
+<HTMLgen.Paragraph instance at 7dbb00>
+>>> print p
+<P>Making pages from objects is easy
+</P>
+
+>>> p.append("Special < characters > are & escaped")
+>>> print p
+<P>Making pages from objects is easy
+Special &lt; characters &gt; are &amp; escaped</P>
+
+>>> choices = ['python', 'tcl', 'perl']
+>>> print List(choices)
+<UL>
+<LI>python
+<LI>tcl
+<LI>perl
+</UL>
+
+>>> choices = ['tools', ['python', 'c++'], 'food', ['spam', 'eggs']]
+>>> l = List(choices)
+>>> print l
+<UL>
+<LI>tools
+    <UL>
+    <LI>python
+    <LI>c++
+    </UL>
+<LI>food
+    <UL>
+    <LI>spam
+    <LI>eggs
+    </UL>
+</UL>
+
+>>> h = Href('www.python.org', 'python')
+>>> print h
+<A HREF="www.python.org">python</A>
+
+>>> d = SimpleDocument(title='My doc')
+>>> p = Paragraph('Web pages made easy')
+>>> d.append(p)
+>>> d.append(h)
+>>> print d
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<!-- This file generated using Python HTMLgen module. -->
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="HTMLgen 2.2.2">
+        <TITLE>My doc</TITLE>
+</HEAD>
+<BODY>
+<P>Web pages made easy</P>
+
+<A HREF="www.python.org">python</A>
+
+</BODY> </HTML>
+
+>>>

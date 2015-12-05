@@ -1,0 +1,14 @@
+--how verified against original tar file
+
+C:\PP2ndEd\examples\PP2E\Ai\ExpertSystem>
+python %X%\pytools\cleanpyc-py.py
+
+C:\temp\holmes>
+cp %X%\Ai\expertsystem\holmes.tar .
+tar -xvf holmes.tar
+move holmes\holmes\holmes.doc holmes\holmes\holmes.doc.txt
+move holmes\holmes2\holmes.doc holmes\holmes2\holmes.doc.txt
+move holmes\holmes3\holmes.doc holmes\holmes3\holmes.doc.txt
+python %X%\pytools\fixeoln_all.py todos
+python %X%\pytools\fixeoln_all.py todos *.kb cnv
+python %X%\system\filetools\diffall.py holmes %X%\ai\expertsystem\holmes

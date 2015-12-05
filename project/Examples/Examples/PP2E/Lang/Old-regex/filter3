@@ -1,0 +1,3 @@
+#!/usr/local/bin/python
+import sys, regsub
+sys.stdout.write( regsub.gsub('\t', '.'*4, sys.stdin.read()) )

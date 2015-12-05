@@ -1,0 +1,57 @@
+C:\Stuff\Mark\etc\jobs\test>python ..\decodeall.py t4.eml
+
+['charset']
+writing: t4.eml.part0.txt
+
+['charset']
+writing: t4.eml.part1.html
+
+['name']
+writing: cand.agr10.22.doc
+done: wrote 3 parts
+
+C:\Stuff\Mark\etc\jobs\test>python ..\decodeall.py t5.eml
+
+['charset']
+writing: t5.eml.part0.txt
+
+['name']
+writing: US West Letter.doc
+done: wrote 2 parts
+
+C:\Stuff\Mark\etc\jobs\test>
+
+
+
+[verify base64 and mhlib/mimetools agree]
+
+C:\Stuff\Mark\etc\jobs\test>python ..\decode64.py t4.64 t4.doc
+done
+
+C:\Stuff\Mark\etc\jobs\test>fc /B cand.agr10.22.doc t4.doc
+Comparing files cand.agr10.22.doc and t4.doc
+FC: no differences encountered
+
+
+C:\Stuff\Mark\etc\jobs\test>python ..\decode64_b.py t4.64 t4.doc
+done
+
+C:\Stuff\Mark\etc\jobs\test>fc /B cand.agr10.22.doc t4.doc
+Comparing files cand.agr10.22.doc and t4.doc
+FC: no differences encountered
+
+
+
+[. = python outputs,  temp = Outlook saves]
+
+C:\Stuff\Mark\etc\jobs\test>fc /B "US West Letter".doc temp\"US West Letter".doc
+
+Comparing files US West Letter.doc and temp\US West Letter.doc
+FC: no differences encountered
+
+
+C:\Stuff\Mark\etc\jobs\test>fc /B cand.agr10.22.doc temp\cand.agr10.22.doc
+Comparing files cand.agr10.22.doc and temp\cand.agr10.22.doc
+FC: no differences encountered
+
+

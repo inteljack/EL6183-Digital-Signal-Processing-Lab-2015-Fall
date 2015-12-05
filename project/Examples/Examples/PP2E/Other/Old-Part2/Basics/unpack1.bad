@@ -1,0 +1,10 @@
+#!/usr/local/bin/python
+
+from sys import *
+marker = '::::::'
+
+for line in stdin.readlines():              # for all input lines
+    if line[:6] != marker:
+        print line[:-1]                     # write real lines
+    else:
+        stdout = open(line[6:-1], 'w')      # or make new output file

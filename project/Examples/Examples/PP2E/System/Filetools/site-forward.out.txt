@@ -1,0 +1,82 @@
+C:\stuff\Mark\Website>python site-forward.py
+['GILLIGN2.GIF', 'FUZZY.GIF', 'demo05.gif', 'grail.gif', 'handbook.gif', 'HILLS.
+GIF', 'IMG00001.GIF', 'IMG00002.GIF', 'IMG00003.GIF', 'IMG00004.GIF', 'IMG00005.
+GIF', 'IMG00006.GIF', 'IMG00007.GIF', 'KIDS.GIF', 'pic13.html', 'mel1new-bw-smal
+l.gif', 'MEL4B.GIF', 'Mel5.gif', 'MLUTZ.JPG', 'ora-lp.gif', 'ora-pp.gif', 'ora-p
+pr.gif', 'prico.gif', 'progdiff.tar', 'PythonPoweredAnim.gif', 'Pywin.gif', 'UPD
+ATES', 'SONY_PCG818.jpg', 'talkmore.html', 'about-lp.html', 'about-lp-toc.html',
+ 'about-me.html', 'about-pp.html', 'about-ppr.html', 'about-ppr-toc.html', 'abou
+t-python.html', 'advocacy.html', 'bio.html', 'book.html', 'cdrom.html', 'compser
+.
+.
+.
+creating about-ppr-japan.html as rmi-forward\about-ppr-japan.html
+creating ora-ppr-japan-big.gif as rmi-forward\ora-ppr-japan-big.gif
+creating All-html-011600.tar as rmi-forward\All-html-011600.tar
+creating boulder-classes.html as rmi-forward\boulder-classes.html
+Last file =>
+<HTML><BODY>
+<H1>This page has moved</H1>
+
+<P>This page now lives at this address:
+
+<P><A HREF="http://starship.python.net/~lutz/boulder-classes.html">
+http://starship.python.net/~lutz/boulder-classes.html</A>
+
+<P>Please click on the new address to jump to this page, and
+update any links accordingly.
+</P>
+
+<HR>
+<H3><A HREF="rmimove.html">Why the move? - The RMI story</A></H3>
+
+</BODY></HTML>
+
+Done: 150 forward files created.
+
+
+
+
+
+
+-----------------
+
+
+with homedir = '~lutz/home'...
+
+creating img00005.gif as rmi-forward\img00005.gif
+creating img00007.gif as rmi-forward\img00007.gif
+creating fuzzy.gif as rmi-forward\fuzzy.gif
+creating hills.gif as rmi-forward\hills.gif
+Last file =>
+<HTML><BODY>
+<H1>This page has moved</H1>
+
+<P>This page now lives at this address:
+
+<P><A HREF="http://starship.python.net/~lutz/home/hills.gif">
+http://starship.python.net/~lutz/home/hills.gif</A>
+
+<P>Please click on the new address to jump to this page, and
+update any links accordingly.
+</P>
+
+<HR>
+<H3><A HREF="rmimove.html">Why the move? - The RMI story</A></H3>
+
+</BODY></HTML>
+
+Done: 144 forward files created.
+
+
+------------------
+
+
+Note: most browsers seem to handle html files stored under
+names like xxx.gif correctly (they interpret the html); if
+yours doesn't, you will need to filter out none html files
+when generating forward files:
+
+- with the listdir version -- if name[-4:] != 'html'
+- with the glob version -- use "*.html" as the glob pattern
+

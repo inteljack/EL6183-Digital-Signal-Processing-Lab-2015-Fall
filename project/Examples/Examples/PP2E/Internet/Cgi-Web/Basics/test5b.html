@@ -1,0 +1,43 @@
+<HTML><BODY>
+<TITLE>CGI 101</TITLE>
+<H1>Common input devices: alternative layout</H1>
+<P>Use the same test5.cgi server side script, but change the 
+layout of the form itself.  Notice the separation of user interface
+and processing logic here; the CGI script is independent of the
+HTML used to interact with the user/client.</P><HR>
+
+<FORM method=POST action="test5.cgi">
+  <H3>Please complete the following form and click Submit</H3>
+  <P><TABLE border cellpadding=3>
+    <TR>
+      <TH align=right>Name:
+      <TD><input type=text name=name>
+    <TR>
+      <TH align=right>Shoe size:
+      <TD><input type=radio name=shoesize value=small>Small
+          <input type=radio name=shoesize value=medium>Medium
+          <input type=radio name=shoesize value=large>Large
+    <TR>
+      <TH align=right>Occupation:
+      <TD><select name=job>
+        <option>Developer
+        <option>Manager
+        <option>Student
+        <option>Evangelist
+        <option>Other
+      </select>
+    <TR>
+      <TH align=right>Political affiliations:
+      <TD><P><input type=checkbox name=language value=Python>Pythonista
+          <P><input type=checkbox name=language value=Perl>Perlmonger
+          <P><input type=checkbox name=language value=Tcl>Tcler 
+    <TR>
+      <TH align=right>Comments:
+      <TD><textarea name=comment cols=30 rows=2>Enter spam here</textarea>
+    <TR>
+      <TD colspan=2 align=center>
+      <input type=submit value="Submit">
+      <input type=reset  value="Reset">
+  </TABLE>
+</FORM>
+</BODY></HTML>

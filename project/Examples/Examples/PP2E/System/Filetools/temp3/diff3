@@ -1,0 +1,420 @@
+--------------------
+Comparing examples-0405 to backup\examples-0405
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\PyTools to backup\examples-0405\PyTools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Other to backup\examples-0405\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3 to backup\examples-0405\Part3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai to backup\examples-0405\Part3\Ai
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\ExpertSystem to backup\examples-0405\Part3\Ai\ExpertSystem
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\ExpertSystem\holmes to backup\examples-0405\Part3\Ai\ExpertSystem\holmes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\ExpertSystem\holmes\kbases to backup\examples-0405\Part3\Ai\ExpertSystem\holmes\kbases
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\ExpertSystem\holmes\holmes3 to backup\examples-0405\Part3\Ai\ExpertSystem\holmes\holmes3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\ExpertSystem\holmes\holmes2 to backup\examples-0405\Part3\Ai\ExpertSystem\holmes\holmes2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\ExpertSystem\holmes\holmes to backup\examples-0405\Part3\Ai\ExpertSystem\holmes\holmes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\ExpertSystem\holmes\examples to backup\examples-0405\Part3\Ai\ExpertSystem\holmes\examples
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Ai\TicTacToe to backup\examples-0405\Part3\Ai\TicTacToe
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Dstruct to backup\examples-0405\Part3\Dstruct
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Dstruct\TreeView to backup\examples-0405\Part3\Dstruct\TreeView
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Dstruct\Basic to backup\examples-0405\Part3\Dstruct\Basic
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Dstruct\Classics to backup\examples-0405\Part3\Dstruct\Classics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui to backup\examples-0405\Part3\Gui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\Clock to backup\examples-0405\Part3\Gui\Clock
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\TextEditor to backup\examples-0405\Part3\Gui\TextEditor
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\MovingPics to backup\examples-0405\Part3\Gui\MovingPics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\SlideShow to backup\examples-0405\Part3\Gui\SlideShow
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\ShellGui to backup\examples-0405\Part3\Gui\ShellGui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\gifs to backup\examples-0405\Part3\Gui\gifs
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\gifs\bkp to backup\examples-0405\Part3\Gui\gifs\bkp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Gui\Tools to backup\examples-0405\Part3\Gui\Tools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet to backup\examples-0405\Part3\Internet
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Ftp to backup\examples-0405\Part3\Internet\Ftp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Ftp\test to backup\examples-0405\Part3\Internet\Ftp\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Email to backup\examples-0405\Part3\Internet\Email
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Email\test to backup\examples-0405\Part3\Internet\Email\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Sockets to backup\examples-0405\Part3\Internet\Sockets
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Sockets\testdir to backup\examples-0405\Part3\Internet\Sockets\testdir
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web to backup\examples-0405\Part3\Internet\Cgi-Web
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyMailCgi to backup\examples-0405\Part3\Internet\Cgi-Web\PyMailCgi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\Basics to backup\examples-0405\Part3\Internet\Cgi-Web\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyErrata to backup\examples-0405\Part3\Internet\Cgi-Web\PyErrata
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyErrata\Mutex to backup\examples-0405\Part3\Internet\Cgi-Web\PyErrata\Mutex
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseShelve to backup\examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseShelve
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseFiles to backup\examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseFiles
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseFiles\errataDB to backup\examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseFiles\errataDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseFiles\commentDB to backup\examples-0405\Part3\Internet\Cgi-Web\PyErrata\DbaseFiles\commentDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Cgi-Web\PyErrata\AdminTools to backup\examples-0405\Part3\Internet\Cgi-Web\PyErrata\AdminTools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Internet\Other to backup\examples-0405\Part3\Internet\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System to backup\examples-0405\Part3\System
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Environment to backup\examples-0405\Part3\System\Environment
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Filetools to backup\examples-0405\Part3\System\Filetools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Filetools\temp2 to backup\examples-0405\Part3\System\Filetools\temp2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Filetools\temp2\sub1 to backup\examples-0405\Part3\System\Filetools\temp2\sub1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Filetools\temp1 to backup\examples-0405\Part3\System\Filetools\temp1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Filetools\temp1\sub1 to backup\examples-0405\Part3\System\Filetools\temp1\sub1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Processes to backup\examples-0405\Part3\System\Processes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\System\Threads to backup\examples-0405\Part3\System\Threads
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Lang to backup\examples-0405\Part3\Lang
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Lang\Calculator to backup\examples-0405\Part3\Lang\Calculator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Lang\Parser to backup\examples-0405\Part3\Lang\Parser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Dbase to backup\examples-0405\Part3\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Dbase\data to backup\examples-0405\Part3\Dbase\data
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part3\Dbase\TableBrowser to backup\examples-0405\Part3\Dbase\TableBrowser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4 to backup\examples-0405\Part4
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Mixed to backup\examples-0405\Part4\Mixed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Mixed\Exports to backup\examples-0405\Part4\Mixed\Exports
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Mixed\Exports\ClassAndMod to backup\examples-0405\Part4\Mixed\Exports\ClassAndMod
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Mixed\Regist to backup\examples-0405\Part4\Mixed\Regist
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed to backup\examples-0405\Part4\Embed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\ApiClients to backup\examples-0405\Part4\Embed\ApiClients
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\HighLevelApi to backup\examples-0405\Part4\Embed\HighLevelApi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Inventory to backup\examples-0405\Part4\Embed\Inventory
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Inventory\WithDbase to backup\examples-0405\Part4\Embed\Inventory\WithDbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Inventory\WithDbase\Dbase to backup\examples-0405\Part4\Embed\Inventory\WithDbase\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Inventory\WithDbase\Data to backup\examples-0405\Part4\Embed\Inventory\WithDbase\Data
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Inventory\WithDbase\Output to backup\examples-0405\Part4\Embed\Inventory\WithDbase\Output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Inventory\Output to backup\examples-0405\Part4\Embed\Inventory\Output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Basics to backup\examples-0405\Part4\Embed\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\Basics\Old to backup\examples-0405\Part4\Embed\Basics\Old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\TestApi to backup\examples-0405\Part4\Embed\TestApi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\TestApi\WithPackages to backup\examples-0405\Part4\Embed\TestApi\WithPackages
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Embed\TestApi\WithPackages\pkgdir to backup\examples-0405\Part4\Embed\TestApi\WithPackages\pkgdir
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend to backup\examples-0405\Part4\Extend
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend\Stacks to backup\examples-0405\Part4\Extend\Stacks
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend\HelloLib to backup\examples-0405\Part4\Extend\HelloLib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend\Hello to backup\examples-0405\Part4\Extend\Hello
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend\Swig to backup\examples-0405\Part4\Extend\Swig
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend\Swig\Environ to backup\examples-0405\Part4\Extend\Swig\Environ
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend\Swig\Shadow to backup\examples-0405\Part4\Extend\Swig\Shadow
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part4\Extend\Modulator to backup\examples-0405\Part4\Extend\Modulator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2 to backup\examples-0405\Part2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\Basics to backup\examples-0405\Part2\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\Oop to backup\examples-0405\Part2\Oop
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\App to backup\examples-0405\Part2\App
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\App\Clients to backup\examples-0405\Part2\App\Clients
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\App\Tests to backup\examples-0405\Part2\App\Tests
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\App\Kinds to backup\examples-0405\Part2\App\Kinds
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\App\Bases to backup\examples-0405\Part2\App\Bases
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1 to backup\examples-0405\Part1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview to backup\examples-0405\Part1\Preview
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview\Internet to backup\examples-0405\Part1\Preview\Internet
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview\Shell to backup\examples-0405\Part1\Preview\Shell
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview\Dbase to backup\examples-0405\Part1\Preview\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview\Integrate to backup\examples-0405\Part1\Preview\Integrate
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview\Text to backup\examples-0405\Part1\Preview\Text
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview\Gui to backup\examples-0405\Part1\Preview\Gui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Preview\Dstruct to backup\examples-0405\Part1\Preview\Dstruct
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Pragmatics to backup\examples-0405\Part1\Pragmatics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part1\Tutor to backup\examples-0405\Part1\Tutor
+Directory lists are identical
+Comparing contents

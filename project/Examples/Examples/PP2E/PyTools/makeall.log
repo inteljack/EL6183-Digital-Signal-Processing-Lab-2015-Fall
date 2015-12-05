@@ -1,0 +1,126 @@
+set root = `pwd`
+pwd
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Hello
+make -f makefile.hello
+gcc hello.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o hello.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/HelloLib
+make -f makefile.hellolib-o
+gcc hellolib_wrapper.c -c -g -I. -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 
+gcc hellolib.c -c -g -I. 
+ld -shared hellolib_wrapper.o hellolib.o -o hellowrap.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/HelloLib
+make -f makefile.hellolib-so
+gcc hellolib_wrapper.c \
+            -g -I. -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o hellolib_wrapper.so
+gcc hellolib.c -g -I. -fpic -shared -o hellolib.so
+ld -rpath . -shared hellolib_wrapper.so hellolib.so -o hellowrap.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Stacks
+make -f makefile.stack
+gcc stackmod.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o stackmod.so
+gcc stacktyp.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o stacktype.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Swig
+make -f makefile.hellolib-swig
+gcc hellolib_wrap.c -c -g -I../HelloLib -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 
+ld -shared hellolib_wrap.o ../HelloLib/hellolib.o -o hellowrap.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Swig/Environ
+make -f makefile.environ-swig
+gcc environ_wrap.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -shared -o environ.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow
+make -f makefile.number-swig
+g++ number_wrap.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 
+g++ -c -g number.cxx 
+g++ -shared number_wrap.o number.o -o numberc.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/Basics
+make -f makefile.basics
+gcc embed-simple.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-simple.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-simple
+gcc embed-string.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-string.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-string
+gcc embed-object.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-object.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-object
+gcc embed-dict.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-dict.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-dict
+gcc embed-bytecode.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-bytecode.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-bytecode
+rm embed-dict.o embed-object.o embed-string.o embed-simple.o embed-bytecode.o
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/HighLevelApi
+make -f makefile.api
+gcc ppembed-modules.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-globals.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-strings.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-callables.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-attributes.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-errors.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+ar -crv libppembed.a ppembed-modules.o ppembed-globals.o ppembed-strings.o ppembed-callables.o ppembed-attributes.o ppembed-errors.o
+a - ppembed-modules.o
+a - ppembed-globals.o
+a - ppembed-strings.o
+a - ppembed-callables.o
+a - ppembed-attributes.o
+a - ppembed-errors.o
+rm -f ppembed-modules.o ppembed-globals.o ppembed-strings.o ppembed-callables.o ppembed-attributes.o ppembed-errors.o
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/TestApi
+make -f makefile.testapi
+gcc testapi.c -c -g -I../HighLevelApi -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc testapi.o ../HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o testapi
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/TestApi/WithPackages
+make -f makefile.testapi-pkgs
+gcc testapi.c -c -g -I/home/mark/PP2ndEd/dev/examples/Part3/Embed/HighLevelApi -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc testapi.o /home/mark/PP2ndEd/dev/examples/Part3/Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o testapi
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/ApiClients
+make -f makefile.clients
+gcc objects-low.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc objects-low.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o objects-low
+gcc objects-err-low.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc objects-err-low.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o objects-err-low
+gcc objects-api.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../HighLevelApi
+gcc objects-api.o ../HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o objects-api
+gcc codestring-low.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc codestring-low.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o codestring-low
+gcc codestring-api.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../HighLevelApi
+gcc codestring-api.o ../HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o codestring-api
+rm objects-api.o codestring-api.o objects-low.o codestring-low.o objects-err-low.o
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/Inventory
+make -f makefile.inv
+gcc order-string.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../HighLevelApi
+gcc order-string.o -L../HighLevelApi -lppembed /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o order-string
+gcc order-func.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../HighLevelApi
+gcc order-func.o -L../HighLevelApi -lppembed /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o order-func
+gcc order-bytecode.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../HighLevelApi
+gcc order-bytecode.o -L../HighLevelApi -lppembed /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o order-bytecode
+rm order-bytecode.o order-string.o order-func.o
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase
+make -f makefile.inv-dbase
+gcc order-func.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../../HighLevelApi
+gcc order-func.o -L../../HighLevelApi -lppembed /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o order-func
+rm order-func.o
+cd /home/mark/PP2ndEd/dev/examples/Part3/Mixed/Regist
+make -f makefile.regist
+gcc cregister.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cregister.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Mixed/Exports
+make -f makefile.exports
+gcc main-table.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -o main-table.o
+gcc runpy.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../../Embed/HighLevelApi
+gcc main-table.o runpy.o \
+                    ../../Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog1
+gcc cinterface.c defaultlookup.c \
+                -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cinterface-default.so
+cp cinterface-default.so cinterface.so
+cd /home/mark/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod
+make -f makefile.exports-class
+gcc main-table.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I.. -o main-table.o
+gcc main-table.o ../runpy.o \
+                    ../../../Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog1
+gcc cinterfacemod.c ../defaultlookup.c \
+                -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I.. -fpic -shared -o cinterfacemod.so
+cd /home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate
+make -f makefile.embed2
+gcc embed.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+make -f makefile.cenviron
+make[1]: Entering directory `/home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate'
+gcc cenviron.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cenviron.so
+make[1]: Leaving directory `/home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate'
+gcc embed.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed
+cd /home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate
+make -f makefile.cenviron
+make: `cenviron.so' is up to date.

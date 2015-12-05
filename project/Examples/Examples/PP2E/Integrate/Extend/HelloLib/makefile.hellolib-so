@@ -1,0 +1,23 @@
+############################################################
+# See makefile.hellolib-o: this is the same, but compiles
+# the .c files to .so files, than links into a composite
+# .so file using the -rpath flag (like $LD_RUN_PATH).
+############################################################
+
+PY = $(MYPY)
+
+hellowrap.so: hellolib_wrapper.so hellolib.so
+	ld -rpath . -shared hellolib_wrapper.so hellolib.so -o hellowrap.so
+
+# wrapper module code
+hellolib_wrapper.so: hellolib_wrapper.c hellolib.h
+	gcc hellolib_wrapper.c \
+            -g -I. -I$(PY)/Include -I$(PY) -fpic -shared -o $@
+
+# C library code
+hellolib.so: hellolib.c hellolib.h
+	gcc hellolib.c -g -I. -fpic -shared -o $@
+
+clean:
+	rm -f *.o *.so core
+

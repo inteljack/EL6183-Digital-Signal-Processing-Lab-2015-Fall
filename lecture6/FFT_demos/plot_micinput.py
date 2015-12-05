@@ -17,7 +17,7 @@ WIDTH = 2           # bytes per sample
 CHANNELS = 1        # mono
 RATE = 16000        # Sampling rate (samples/second)
 BLOCKSIZE = 1024
-DURATION = 10  		# Duration in seconds
+DURATION = 100  		# Duration in seconds
 
 NumBlocks = int( DURATION * RATE / BLOCKSIZE )
 

@@ -1,0 +1,178 @@
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\System\Filetools>ls temp*
+template.html
+
+temp1:
+dirdiff.py  sub1
+
+temp2:
+dirdiff.py  sub1
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\System\Filetools>python diffall
+.py temp1 temp2
+--------------------
+Comparing temp1 to temp2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing temp1\sub1 to temp2\sub1
+Directory lists are identical
+Comparing contents
+dirdiff.py DIFFERS
+
+
+
+[verbose on]
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\System\Filetools>python diffall
+.py temp1 temp2
+--------------------
+Comparing temp1 to temp2
+Directory lists are identical
+Comparing contents
+dirdiff.py matches
+--------------------
+Comparing temp1\sub1 to temp2\sub1
+Directory lists are identical
+Comparing contents
+dirdiff.py DIFFERS
+
+
+
+
+C:\Stuff\Mark\Website>python %X%\part3\system\filetools\diffall.py bkp temp-publ
+ic_html | more
+
+--------------------
+Comparing bkp to temp-public_html
+Files unique to bkp
+... All-html-011600.tar
+... FUZZY.GIF
+... GILLIGN2.GIF
+... HILLS.GIF
+... IMG00001.GIF
+... IMG00002.GIF
+... IMG00003.GIF
+... IMG00004.GIF
+... IMG00005.GIF
+... IMG00006.GIF
+... IMG00007.GIF
+... KIDS.GIF
+... MEL4B.GIF
+... MLUTZ.JPG
+.
+.
+.
+... hills.gif
+Comparing contents
+PythonPowered.gif matches
+PythonPoweredAnim.gif matches
+PythonPoweredSmall.gif matches
+Pywin.gif matches
+about-hopl.html matches
+about-lp-toc.html matches
+about-lp.html DIFFERS
+about-me.html DIFFERS
+about-pp-japan.html matches
+about-pp.html DIFFERS
+.
+.
+.
+progdiff.html matches
+progdiff.tar matches
+progdiff.uu matches
+pybooks.html matches
+python_snake_ora.gif matches
+python_woodrat.gif matches
+quotes.html DIFFERS
+resume.html DIFFERS
+shot_pcg8xx.jpg matches
+sig.txt matches
+start-cdsample.html DIFFERS
+talk.html DIFFERS
+talkmore.html matches
+training.html matches
+-- More --
+
+trainingCD-medium.GIF matches
+trainingCD-small.GIF matches
+trainingCD.GIF matches
+whatsnew.html DIFFERS
+whatsold.html matches
+rmimove.html DIFFERS
+starship-index.html DIFFERS
+
+
+
+[verbose off]
+
+.
+.
+.
+calendar.html DIFFERS
+errata-python-changes.html DIFFER
+fruug.html DIFFERS
+index.html DIFFERS
+more-lp.html DIFFERS
+mytrain.html DIFFERS
+pic11.html DIFFERS
+pic12.html DIFFERS
+pic13.html DIFFERS
+pic4.html DIFFERS
+preview.html DIFFERS
+quotes.html DIFFERS
+resume.html DIFFERS
+start-cdsample.html DIFFERS
+talk.html DIFFERS
+whatsnew.html DIFFERS
+rmimove.html DIFFERS
+starship-index.html DIFFERS
+
+
+
+---------------------------------------------------------------------------------------
+
+[to verify backup on a cd]
+
+C:\Stuff\Mark\Training>python %X%\Part2\System\Filetools\diffall.py Ship.cdrom g
+:\Training\Ship.cdrom | more
+
+--------------------
+Comparing Ship.cdrom to g:\Training\Ship.cdrom
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing Ship.cdrom\Html to g:\Training\Ship.cdrom\Html
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing Ship.cdrom\Html\Exercises to g:\Training\Ship.cdrom\Html\Exercises
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing Ship.cdrom\Html\Exercises\lab11 to g:\Training\Ship.cdrom\Html\Exercis
+es\lab11
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing Ship.cdrom\Html\Exercises\lab2 to g:\Training\Ship.cdrom\Html\Exercise
+s\lab2
+Directory lists are identical
+Comparing contents
+
+
+
+C:\Stuff\Mark\Training>python %X%\Part2\System\Filetools\diffall.py Ship.cdrom g
+:\Training\Ship.cdrom > diffs
+
+[and open diffs with editor, look for 'unique' and 'DIFF' => not found]
+
+
+
+[to diff book backups on cd-r]
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev>python %X%\Part2\System\Filetools\diffall.py e
+xamples g:\PP2ndEd\dev\examples > diffs0408
+
+C:\Stuff\Mark\Writing\PP2ndEd>python %X%\Part2\System\Filetools\diffall.py dev g
+:\PP2ndEd\dev > diffs0408

@@ -1,0 +1,12 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Regist]$ python register.py
+
+Test1:
+callback1 => spam number 0
+callback1 => spam number 1
+callback1 => spam number 2
+
+Test2:
+callback2 => spamspamspam
+callback2 => spamspamspamspam
+callback2 => spamspamspamspamspam
+

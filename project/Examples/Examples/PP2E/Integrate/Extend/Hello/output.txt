@@ -1,0 +1,133 @@
+################################################################
+# basic build/use logs
+################################################################
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend]$ make -f makefile.hello
+gcc hello.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o hello.so
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend]$ python
+Python 1.5.2 (#14, Sep 12 1999, 00:55:49)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import hello
+>>> hello.message('world')
+'Hello, world'
+>>> hello.message('extending')
+'Hello, extending'
+>>>
+>>> dir(hello)
+['__doc__', '__file__', '__name__', 'message']
+>>>
+>>> hello.__name__, hello.__file__
+('hello', './hello.so')
+>>>                                                
+
+>>> import hello
+>>> hello.nonesuch()
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+AttributeError: nonesuch
+>>>
+>>> hello.message('a', 'b')
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: 1-sequence, 2-sequence
+>>>
+>>> hello.message(42)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: argument 1: expected string, int found
+>>> hello.message('C')
+'Hello, C'
+>>>                                                
+
+
+
+################################################################
+# run a program which uses the extension 
+################################################################
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend]$ python hellouse.py
+Hello, C
+Hello, module ./hello.so
+Hello, 0
+Hello, 1
+Hello, 2                          
+
+
+
+###############################################################
+# reload() doesn't crash on dynamically-loaded C extension 
+# modules, but resets the module's attributes to their 
+# original values (at the first import); internally, Python
+# saves the modules attribute dictionary after the module 
+# is first imported and initialized, and runs a dict.update()
+# call on the current dictionary with the one saved; note 
+# that Python does not actually reload the module's .so file
+# if it has changed, so reload() is more like a rollback/reset
+# for C extension modules, rather than an actual reload/rerun
+# as it is for Python modules.
+###############################################################
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend]$ python -v
+...
+
+>>> import hello
+import hello # dynamically loaded from ./hello.so
+>>> hello.message('xxx')
+'Hello, xxx'
+>>> hello.message
+<built-in function message>
+>>> hello
+<module 'hello' from './hello.so'> 
+>>>
+>>>
+>>> hello.message = 999
+>>> hello.message
+999
+>>> hello.message('xxx')
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+TypeError: call of non-function (type int)
+>>>
+>>>
+>>> reload(hello)
+import hello # previously loaded (./hello.so)
+<module 'hello' from './hello.so'>
+>>>
+>>> hello.message
+<built-in function message>
+>>> hello.message('xxx')
+'Hello, xxx'
+>>>
+
+
+#
+# try changing and reloading a C extension module
+#
+
+
+[mark@toy ~/test/Hello]$ python
+>>>
+>>> import hello
+>>> hello.message('xxx')
+'Hello, xxx'
+
+... change hello.c and recompile the hello.so file in another window ...
+
+>>> reload(hello)                             # just resets attr dict
+<module 'hello' from './hello.so'>            # does not reload .so
+>>> hello.message('xxx')                      # .so changes not seen
+'Hello, xxx'
+>>>
+
+[mark@toy ~/test/Hello]$ python
+>>> import hello
+>>> hello.message('xxx')            # restarting picks up new .so contents
+'BYE, xxx'
+>>>                                 # reload only reloads python modules;
+                                    # must restart to reload C extension mods
+
+

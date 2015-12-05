@@ -1,0 +1,14 @@
+#!/bin/csh -X
+
+mv exinet.tgz bkp-exinet.tgz
+rm -f exinet*
+rm -rf Internet
+mkdir Internet
+cp -R ../public_html/* Internet
+
+tar -cvf exinet.tar Internet pack.inet unpack.inet
+gzip exinet.tar
+mv exinet.tar.gz exinet.tgz
+
+# ftp exinet.tgz from here
+

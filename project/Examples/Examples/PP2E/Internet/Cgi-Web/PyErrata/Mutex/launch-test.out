@@ -1,0 +1,36 @@
+18543 start writer 938236328.581
+18543 got write lock 938236328.585
+18543 unlocking
+
+18548 start reader 938236329.234
+18548 got read lock 938236331.609
+lines so far:     104 Shared.txt
+18548 unlocking
+
+18545 start reader 938236328.613
+18545 got read lock 938236331.607
+lines so far:     104 Shared.txt
+18545 unlocking
+
+18549 start reader 938236329.048
+18549 got read lock 938236331.608
+lines so far:     104 Shared.txt
+18549 unlocking
+
+18544 start reader 938236328.593
+18544 got read lock 938236331.606
+lines so far:     104 Shared.txt
+18544 unlocking
+
+18550 start writer 938236329.311
+18550 got write lock 938236334.819
+18550 unlocking
+
+18546 start writer 938236328.619
+18546 got write lock 938236337.838
+18546 unlocking
+
+18547 start writer 938236328.924
+18547 got write lock 938236340.859
+18547 unlocking
+

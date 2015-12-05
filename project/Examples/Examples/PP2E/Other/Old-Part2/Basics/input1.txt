@@ -1,0 +1,6 @@
+unpack
+packed1
+pack
+packed2
+*.py
+stop

@@ -1,0 +1,17 @@
+% python
+>>> import anydbm                     # get dbm, gbdm, or ndbm interface
+>>> map = anydbm.open('movie')        # make a dbm file called 'movie'
+>>> map['Batman'] = 'Pow!'            # store a string under key 'Batman'
+>>> map.keys()                        # get the file's key directory
+['Batman']
+>>> map['Batman']                     # fetch value for key 'Batman'
+'Pow!'
+>>> who  = ['Robbin', 'Cat-woman', 'Joker']
+>>> what = ['Bang!', 'Splat!', 'Wham!']
+>>> for i in range(len(who)):
+...     map[who[i]] = what[i]         # add 3 more 'records'
+... 
+>>> map.keys()
+['Joker', 'Robbin', 'Cat-woman', 'Batman']
+>>> len(map), map.has_key('Robbin'), map['Joker']
+(4, 1, 'Wham!')

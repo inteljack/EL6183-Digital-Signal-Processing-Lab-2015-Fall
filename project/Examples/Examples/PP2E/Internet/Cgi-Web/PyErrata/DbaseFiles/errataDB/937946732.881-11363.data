@@ -1,0 +1,47 @@
+(dp0
+S'Page number'
+p1
+S'index'
+p2
+sS'Description'
+p3
+S'Add an entry for "Rebol"\015\012          '
+p4
+sS'Type'
+p5
+S'Suggestion'
+p6
+sS'Chapter number'
+p7
+S''
+p8
+sS'Submit date'
+p9
+S'1999/09/21, 16:45:32'
+p10
+sS'Report state'
+p11
+S'Not yet verified'
+p12
+sS'Submitter name'
+p13
+S'bob'
+p14
+sS'Submitter email'
+p15
+S'sales@rebol.com'
+p16
+sS'Severity'
+p17
+S'Low'
+p18
+sS'Submit mode'
+p19
+g8
+sS'Part number'
+p20
+g8
+sS'Printing Date'
+p21
+g8
+s.

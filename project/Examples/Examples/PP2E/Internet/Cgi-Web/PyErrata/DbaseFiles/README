@@ -1,0 +1,5 @@
+To start from scratch, you need subdirectories
+commentDB and errataDB here; the system will 
+populate them with flat pickle files.  See 
+../dbswitch.py for enabling file mode.
+

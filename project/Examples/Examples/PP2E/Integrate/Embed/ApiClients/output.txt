@@ -1,0 +1,47 @@
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ objects-low
+Built-in exception class not found: EnvironmentError.  Library mismatch?
+Warning!  Falling back to string-based exceptions
+Segmentation fault (core dumped)
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ objects-err-low
+Built-in exception class not found: EnvironmentError.  Library mismatch?
+Warning!  Falling back to string-based exceptions
+Can't load module
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ source $PP2E/setup-pp-embed.csh
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ objects-low
+brave sir robin
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ objects-err-low
+brave sir robin
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ objects-api
+brave sir robin
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ codestring-low
+SPAM!
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ codestring-api
+SPAM!
+
+
+-------------------------------------------------------------------------------
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/ApiClients]$ make -f makefile.clients
+gcc objects-low.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc objects-low.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o objects-low
+gcc objects-err-low.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc objects-err-low.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o objects-err-low
+gcc objects-api.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../HighLevelApi
+gcc objects-api.o ../HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o objects-api
+gcc codestring-low.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc codestring-low.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o codestring-low
+gcc codestring-api.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../HighLevelApi
+gcc codestring-api.o ../HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o codestring-api
+rm objects-api.o codestring-api.o objects-low.o codestring-low.o objects-err-low.o
+
+
+
+

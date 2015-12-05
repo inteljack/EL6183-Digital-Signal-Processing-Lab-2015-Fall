@@ -1,0 +1,223 @@
+C:\PP2ndEd\examples\Part2\Internet\Other>python readnews.py news.rmi.net comp.la
+ng.python 5
+Connecting to news.rmi.net for comp.lang.python
+comp.lang.python has 3375 articles: 30054-33446
+Article 33442 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33443 [Re: PYHTONPATH]
+=> Display?
+
+Article 33444 [Loading new code...]
+=> Display?
+
+Article 33445 [Re: PYHTONPATH]
+=> Display?
+
+Article 33446 [Re: Compile snags on AIX & IRIX]
+=> Display?
+
+205 GoodBye
+
+
+===============================================================================
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python readnews.py news.rmi.net comp.la
+ng.perl.misc 5
+Connecting to news.rmi.net for comp.lang.perl.misc
+comp.lang.perl.misc has 5839 articles: 75543-81512
+Article 81508 [Re: Simple Argument Passing Question]
+=> Display?
+
+Article 81509 [Re: How to Access a hash value?]
+=> Display?
+
+Article 81510 [Re: London =?iso-8859-1?Q?=A330-35K?= Perl Programmers Required]
+=> Display?
+
+Article 81511 [Re: ODBC question]
+=> Display?
+
+Article 81512 [Re: ODBC question]
+=> Display?
+
+205 GoodBye
+
+
+===============================================================================
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python readnews.py news.rmi.net comp.o
+.linux 4
+Connecting to news.rmi.net for comp.os.linux
+comp.os.linux has 526 articles: 9015-9606
+Article 9603 [Re: Simple question about CD-Writing for Linux]
+=> Display?
+
+Article 9604 [Re: How to start the ftp?]
+=> Display?
+
+Article 9605 [Re: large file support]
+=> Display?
+
+Article 9606 [Re: large file support]
+=> Display?y
+From: andy@physast.uga.edu (Andreas Schweitzer)
+Newsgroups: comp.os.linux.questions,comp.os.linux.admin,comp.os.linux
+Subject: Re: large file support
+Date: 11 Aug 2000 18:32:12 GMT
+Lines: 19
+=> Show body?n
+
+205 GoodBye
+
+
+================================================================================
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python readnews.py
+Connecting to news.rmi.net for comp.lang.python
+comp.lang.python has 3376 articles: 30054-33447
+Article 33438 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33439 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33440 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33441 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33442 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33443 [Re: PYHTONPATH]
+=> Display?
+
+Article 33444 [Loading new code...]
+=> Display?
+
+Article 33445 [Re: PYHTONPATH]
+=> Display?
+
+Article 33446 [Re: Compile snags on AIX & IRIX]
+=> Display?
+
+Article 33447 [RE: string.replace() can't replace newline characters???]
+=> Display?
+
+205 GoodBye
+
+
+===============================================================================
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python readnews.py
+Connecting to news.rmi.net for comp.lang.python
+comp.lang.python has 3376 articles: 30054-33447
+Article 33438 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33439 [Embedding? file_input and eval_input]
+=> Display?y
+From: James Spears <jimsp@ichips.intel.com>
+Newsgroups: comp.lang.python
+Subject: Embedding? file_input and eval_input
+Date: Fri, 11 Aug 2000 10:55:39 -0700
+Lines: 34
+=> Show body?
+
+Article 33440 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33441 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33442 [Embedding? file_input and eval_input]
+=> Display?
+
+Article 33443 [Re: PYHTONPATH]
+=> Display?y
+Subject: Re: PYHTONPATH
+Lines: 13
+From: sp00fd <sp00fdNOspSPAM@yahoo.com.invalid>
+Newsgroups: comp.lang.python
+Date: Fri, 11 Aug 2000 11:06:23 -0700
+=> Show body?y
+Is this not what you were looking for?
+
+Add to cgi script:
+import sys
+sys.path.insert(0, "/path/to/dir")
+import yourmodule
+
+-----------------------------------------------------------
+Got questions?  Get answers over the phone at Keen.com.
+Up to 100 minutes free!
+http://www.keen.com
+
+Article 33444 [Loading new code...]
+=> Display?
+
+Article 33445 [Re: PYHTONPATH]
+=> Display?
+
+Article 33446 [Re: Compile snags on AIX & IRIX]
+=> Display?
+
+Article 33447 [RE: string.replace() can't replace newline characters???]
+=> Display?
+
+205 GoodBye
+
+
+================================================================================
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python readnews.py news.rmi.net comp.la
+ng.python 5
+Connecting to news.rmi.net for comp.lang.python
+comp.lang.python has 3374 articles: 30055-33447
+Article 33443 [Re: PYHTONPATH]
+=> Display?n
+
+Article 33444 [Loading new code...]
+=> Display?y
+From: "Olivier Dagenais" <olivierS.dagenaisP@canadaA.comM>
+Newsgroups: comp.lang.python
+Subject: Loading new code...
+Lines: 20
+Date: Fri, 11 Aug 2000 18:14:42 GMT
+=> Show body?n
+
+Article 33445 [Re: PYHTONPATH]
+=> Display?y
+Date: Fri, 11 Aug 2000 13:11:41 -0500
+From: Jeff Bauer <jbauer@rubic.com>
+Subject: Re: PYHTONPATH
+Newsgroups: comp.lang.python
+Lines: 31
+=> Show body?N
+
+Article 33446 [Re: Compile snags on AIX & IRIX]
+=> Display?
+
+Article 33447 [RE: string.replace() can't replace newline characters???]
+=> Display?y
+From: "Tim Peters" <tim_one@email.msn.com>
+Subject: RE: string.replace() can't replace newline characters???
+Date: Fri, 11 Aug 2000 14:30:09 -0400
+Newsgroups: comp.lang.python
+Lines: 32
+=> Show body?
+
+205 GoodBye

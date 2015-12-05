@@ -1,0 +1,43 @@
+[lutz@starship lutz]$ python popmail.py
+Password for pop.rmi.net?
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <34020000c48aa438@chevalier>
+There are 3 mail messages in 5248 bytes
+('+OK 3 messages (5248 octets)', ['1 908', '2 908', '3 3432'], 22)
+--------------------------------------------------------------------------------
+[Press any key]                                                              
+Received: from lutz (dial-216.29.denco.rmi.net [166.93.216.29])
+        by chevalier.rmi.net (8.9.3/8.9.3) with SMTP id OAA06124
+        for <lutz@rmi.net>; Fri, 11 Feb 2000 14:56:36 -0700 (MST)
+From: "Mark Lutz" <lutz@rmi.net>
+To: <lutz@rmi.net>
+Subject: a
+Date: Fri, 11 Feb 2000 14:44:17 -0700
+Message-ID: <000501bf74d9$25627d00$1dd85da6@lutz>
+MIME-Version: 1.0
+Content-Type: text/plain;
+        charset="iso-8859-1"
+Content-Transfer-Encoding: 7bit
+X-Priority: 3 (Normal)
+X-MSMail-Priority: Normal
+X-Mailer: Microsoft Outlook 8.5, Build 4.71.2173.0
+X-MimeOLE: Produced By Microsoft MimeOLE V5.00.2314.1300
+Importance: Normal
+
+a
+
+--Mark Lutz  (http://rmi.net/~lutz)
+
+--------------------------------------------------------------------------------
+[Press any key]
+...
+
+
+_______________________________________________
+Edu-sig mailing list
+Edu-sig@python.org
+http://www.python.org/mailman/listinfo/edu-sig
+
+--------------------------------------------------------------------------------
+Bye.
+

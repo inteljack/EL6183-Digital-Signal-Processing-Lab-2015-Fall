@@ -1,0 +1,46 @@
+
+[lutz@starship uploads]$ python signal-demo.py 10 &
+[1] 11297
+[lutz@starship uploads]$ ps -f
+UID        PID  PPID  C STIME TTY          TIME CMD
+lutz     11089 11088  0 21:13 pts/2    00:00:00 -bash
+lutz     11297 11089  0 21:49 pts/2    00:00:00 python signal-demo.py 10
+lutz     11298 11089  0 21:49 pts/2    00:00:00 ps -f
+[lutz@starship uploads]$ kill -10 11297
+[lutz@starship uploads]$ Got signal 10 at Mon Jun 19 21:49:27 2000
+
+[lutz@starship uploads]$ kill -10 11297
+Got signal 10 at Mon Jun 19 21:49:29 2000
+[lutz@starship uploads]$ kill -10 11297
+Got signal 10 at Mon Jun 19 21:49:32 2000
+[lutz@starship uploads]$ kill -10 11297
+Got signal 10 at Mon Jun 19 21:49:40 2000
+[lutz@starship uploads]$ kill -10 11297
+Got signal 10 at Mon Jun 19 21:49:42 2000
+[lutz@starship uploads]$ kill -9 11297
+[lutz@starship uploads]$
+[1]+  Killed                  python signal-demo.py 10
+
+
+[lutz@starship uploads]$ python signal-demo.py 17 &
+[1] 11320
+[lutz@starship uploads]$ ps -f
+UID        PID  PPID  C STIME TTY          TIME CMD
+lutz     11089 11088  0 21:13 pts/2    00:00:00 -bash
+lutz     11320 11089  0 21:52 pts/2    00:00:00 python signal-demo.py 17
+lutz     11321 11089  0 21:52 pts/2    00:00:00 ps -f
+[lutz@starship uploads]$
+[lutz@starship uploads]$ kill -17 11320
+[lutz@starship uploads]$ Got signal 17 at Mon Jun 19 21:52:24 2000
+sigchld caught
+
+[lutz@starship uploads]$ kill -17 11320
+Got signal 17 at Mon Jun 19 21:52:27 2000
+[lutz@starship uploads]$ sigchld caught
+
+[lutz@starship uploads]$ kill -17 11320
+Got signal 17 at Mon Jun 19 21:52:29 2000
+[lutz@starship uploads]$ sigchld caught
+
+
+

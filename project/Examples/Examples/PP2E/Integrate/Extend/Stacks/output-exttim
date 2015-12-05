@@ -1,0 +1,43 @@
+[mark@toy ~/PP2ndEd/examples/PP2E/Integrate/Extend/Stacks]$ python exttim.py
+reps=200 * [push=200+pop=200+fetch=200]
+Python module: 2.42
+C ext module:  1.1
+
+Python simple Stack: 2.54
+Python tuple  Stack: 19.09
+Python append Stack: 1.54
+C ext type Stack:    0.63
+
+[mark@toy ~/PP2ndEd/examples/PP2E/Integrate/Extend/Stacks]$ python exttim.py 200 200 200 0
+reps=200 * [push=200+pop=200+fetch=0]
+Python module: 2.09
+C ext module:  0.68
+
+Python simple Stack: 2.15
+Python tuple  Stack: 0.68
+Python append Stack: 1.16
+C ext type Stack:    0.5
+
+
+[mark@toy ~/PP2ndEd/examples/PP2E/Integrate/Extend/Stacks]$ python exttim.py 200 200 200 50
+reps=200 * [push=200+pop=200+fetch=50]
+Python module: 2.17
+C ext module:  0.79
+
+Python simple Stack: 2.24
+Python tuple  Stack: 1.94
+Python append Stack: 1.25
+C ext type Stack:    0.52
+
+
+[mark@toy ~/PP2ndEd/examples/PP2E/Integrate/Extend/Stacks]$ python exttim.py 100 300 300 0
+reps=100 * [push=300+pop=300+fetch=0]
+Python module: 1.86
+C ext module:  0.52
+
+Python simple Stack: 1.91
+Python tuple  Stack: 0.51
+Python append Stack: 0.87
+C ext type Stack:    0.38
+
+

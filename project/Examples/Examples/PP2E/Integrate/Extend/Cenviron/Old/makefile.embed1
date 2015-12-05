@@ -1,0 +1,22 @@
+##########################################################
+# A minimal unix makefile for programs that embed Python.
+# Set PY to the Python build tree, type make, run embed.
+# Uses Python lib.a and include files, plus external libs.
+# Need -export-dynamic to load .so modules dynamically;
+# the .so itself must be linked with the -shared flag.
+# To run, PYTHONPATH should include '.' (to find the .so),
+# plus the path to the Python build tree's standard lib if
+# it's in a non-standard place (else it may guess wrong):
+# be sure to source toplevel setup-pp-embed.csh if needed;
+##########################################################
+
+PY = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+
+embed: embed.o
+	cc embed.o $(PY)/libpython1.5.a -g -export-dynamic -lm -ldl -o embed
+
+embed.o: embed.c
+	cc embed.c -c -g -I$(PY)/Include -I$(PY)
+
+clean:
+	rm -f embed embed.o

@@ -1,0 +1,7 @@
+#############################################################
+# to post, say this (but only if you really want to post!):
+# connection = NNTP(servername)
+# localfile = open('filename')     # file has proper headers
+# connection.post(localfile)       # send text to newsgroup
+# connection.quit()
+#############################################################

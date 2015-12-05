@@ -1,0 +1,6 @@
+#!/usr/local/bin/python
+import sys
+while 1:
+    ch = sys.stdin.read(1)     # read character-by-character 
+    if not ch: break 
+    sys.stdout.write(ch)       # print adds a space after

@@ -1,0 +1,25 @@
+<HTML>
+<BODY>
+<H1>Embedded code demo: JavaScript</H1>
+<SCRIPT>
+
+// popup 3 alert boxes while this page is
+// being constructed on client side by IE;
+// JavaScript is the default script language,
+// and alert is an automatically exposed name
+
+function message(i) {
+    if (i == 2) {
+        alert("Finished!");
+    } 
+    else {
+        alert("A JavaScript-generated alert => " + i);
+    }
+}
+
+for (count = 0; count < 3; count += 1) {
+    message(count);
+}
+
+</SCRIPT>
+</BODY></HTML>

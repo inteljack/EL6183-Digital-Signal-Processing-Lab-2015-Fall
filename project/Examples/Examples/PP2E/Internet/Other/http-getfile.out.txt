@@ -1,0 +1,191 @@
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile.py
+starship.python.net /index.html
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="HTMLgen">
+  <TITLE>Starship Python</TITLE>
+  <SCRIPT language="JavaScript">
+<!-- // mask from the infidel
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib1.py
+http://starship.python.net/index.html
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="HTMLgen">
+  <TITLE>Starship Python</TITLE>
+  <SCRIPT language="JavaScript">
+<!-- // mask from the infidel
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py
+http://starship.python.net/index.html index.html
+<HTML>
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="HTMLgen">
+  <TITLE>Starship Python</TITLE>
+  <SCRIPT language="JavaScript">
+<!-- // mask from the infidel
+
+
+
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile.py www.python.org /
+index
+www.python.org /index
+Error sending request 404
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile.py www.python.org /
+index.html
+www.python.org /index.html
+<HTML>
+<!-- THIS PAGE IS AUTOMATICALLY GENERATED.  DO NOT EDIT. -->
+<!-- Wed Aug 23 17:29:24 2000 -->
+<!-- USING HT2HTML 1.1 -->
+<!-- SEE http://www.python.org/~bwarsaw/software/pyware.html -->
+<!-- User-specified headers:
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib1.py www.pyth
+on.org /index
+http://www.python.org/index
+<HTML>
+<!-- THIS PAGE IS AUTOMATICALLY GENERATED.  DO NOT EDIT. -->
+<!-- Fri Mar  3 10:28:30 2000 -->
+<!-- USING HT2HTML 1.1 -->
+<!-- SEE http://www.python.org/~bwarsaw/software/pyware.html -->
+<!-- User-specified headers:
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py www.pyth
+on.org /index.html
+http://www.python.org/index.html index.html
+<HTML>
+<!-- THIS PAGE IS AUTOMATICALLY GENERATED.  DO NOT EDIT. -->
+<!-- Wed Aug 23 17:29:24 2000 -->
+<!-- USING HT2HTML 1.1 -->
+<!-- SEE http://www.python.org/~bwarsaw/software/pyware.html -->
+<!-- User-specified headers:
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py www.pyth
+on.org /index.html python-org-index.html
+http://www.python.org/index.html python-org-index.html
+<HTML>
+<!-- THIS PAGE IS AUTOMATICALLY GENERATED.  DO NOT EDIT. -->
+<!-- Wed Aug 23 17:29:24 2000 -->
+<!-- USING HT2HTML 1.1 -->
+<!-- SEE http://www.python.org/~bwarsaw/software/pyware.html -->
+<!-- User-specified headers:
+
+
+
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile.py starship.python.
+net /~lutz/index.html
+starship.python.net /~lutz/index.html
+<HTML>
+<HEAD><TITLE>Mark Lutz's Starship page</TITLE></HEAD>
+<BODY>
+
+<H1>Greetings</H1>
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib1.py starship
+.python.net /~lutz/index.html
+http://starship.python.net/~lutz/index.html
+<HTML>
+<HEAD><TITLE>Mark Lutz's Starship page</TITLE></HEAD>
+<BODY>
+
+<H1>Greetings</H1>
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py starship
+.python.net /~lutz/home/index.html
+http://starship.python.net/~lutz/home/index.html index.html
+<HTML>
+
+<HEAD>
+<TITLE>Mark Lutz's Home Page</TITLE>
+</HEAD>
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py starship
+.python.net /~lutz/home/about-pp.html
+http://starship.python.net/~lutz/home/about-pp.html about-pp.html
+<HTML>
+
+<HEAD>
+<TITLE>About "Programming Python"</TITLE>
+</HEAD>
+
+
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile.py starship.python.
+net /~lutz/Basics/languages.cgi?language=Python
+starship.python.net /~lutz/Basics/languages.cgi?language=Python
+<TITLE>Languages</TITLE>
+<H1>Syntax</H1><HR>
+<H3>Python</H3><P><PRE>
+ print 'Hello World'
+</PRE></P><BR>
+<HR>
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib1.py starship
+.python.net /~lutz/Basics/languages.cgi?language=Java
+http://starship.python.net/~lutz/Basics/languages.cgi?language=Java
+<TITLE>Languages</TITLE>
+<H1>Syntax</H1><HR>
+<H3>Java</H3><P><PRE>
+ System.out.println("Hello World");
+</PRE></P><BR>
+<HR>
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py starship
+.python.net /~lutz/Basics/languages.cgi?language=Perl
+http://starship.python.net/~lutz/Basics/languages.cgi?language=Perl languages.cg
+i
+<TITLE>Languages</TITLE>
+<H1>Syntax</H1><HR>
+<H3>Perl</H3><P><PRE>
+ print "Hello World\n";
+</PRE></P><BR>
+<HR>
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py starship
+.python.net /~lutz/Basics/languages.cgi?language=C++ CxxSyntax.html
+http://starship.python.net/~lutz/Basics/languages.cgi?language=C++ CxxSyntax.htm
+l
+<TITLE>Languages</TITLE>
+<H1>Syntax</H1><HR>
+<H3>C  </H3><P><PRE>
+Sorry--I don't know that language
+</PRE></P><BR>
+<HR>
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python http-getfile-urllib2.py starship
+.python.net /~lutz/Basics/languages.cgi?language=C%2b%2b CxxSyntax.html
+http://starship.python.net/~lutz/Basics/languages.cgi?language=C%2b%2b CxxSyntax
+.html
+<TITLE>Languages</TITLE>
+<H1>Syntax</H1><HR>
+<H3>C++</H3><P><PRE>
+ cout &lt;&lt; "Hello World" &lt;&lt; endl;
+</PRE></P><BR>
+<HR>
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Other>python
+Python 1.5.2 (#0, Apr 13 1999, 10:51:12) [MSC 32 bit (Intel)] on win32
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import urllib
+>>> urllib.quote('C++')
+'C%2b%2b'
+
+

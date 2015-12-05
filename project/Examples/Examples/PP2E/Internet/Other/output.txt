@@ -1,0 +1,6 @@
+<TITLE>Languages</TITLE>
+<H1>Syntax</H1><HR>
+<H3>Python</H3><P><PRE>
+ print 'Hello World'               
+</PRE></P><BR>
+<HR>

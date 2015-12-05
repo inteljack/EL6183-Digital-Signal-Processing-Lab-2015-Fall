@@ -1,0 +1,63 @@
+##############################################################################
+# Build testapi, a C program that tests basic and enhanced embedding
+# API calls.  This is a typical makefile for programs that embed Python, 
+# with the Tkinter and dbm extensions enabled.  In general, link with:
+#
+# - Python's library (currently, a single .a file) 
+# - Libs for statically-linked extensions outside Python's build tree (if any)
+# - The ppembed extended API library .a file (if used)
+# - Your C "main" function, plus any application modules and libraries.
+#
+# Here, we need Tk and dbm libraries (since these extensions were 
+# enabled in Modules/Setup), plus the "libppembed.a" wrapper library.
+# C files include the Python.h header file (and/or optional ppembed.h).
+# If you're using a standard Python install, compile with a -I flag that
+# lists the single Python include dir (e.g., /usr/include/python1.5).
+# If you have a custom Python build, include both the build tree's Include 
+# and root dirs in -I flags as done here; the root dir contains config.h.
+#
+# We also build (but don't statically link in) the stacktype C extension 
+# we created in the extending chapter here if it doesn't exits--the embedded
+# Python code dynamically imports that extension module when run, so the .so
+# file must be built, and must be located in a dir on PYTHONPATH: make sure 
+# to source the toplevel setup-pp-embed.csh file to add the Extend dir to your 
+# path.  It's possible to add dirs to the path via the C api too, but setting 
+# PYTHONPATH in your shell can be more flexible than hard-coding paths in C.
+#
+# To see which extension libraries must be linked, check the Makefile
+# generated in the "Modules" directory of the Python tree; your lib 
+# settings should match those in Modules/Makefile, in the Python build
+# tree.  Caveat: Your file paths will vary, and there may be more general
+# ways to code this; this is for illustration purposes only.
+##############################################################################
+
+
+PY    = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+PYLIB = $(PY)/libpython1.5.a
+PYINC = -I$(PY)/Include -I$(PY)
+
+LIBS = -L/usr/lib \
+       -L/usr/X11R6/lib \
+       -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+
+APIDIR = ../HighLevelApi
+APILIB = $(APIDIR)/libppembed.a
+
+STACKDIR = ../../Extend/Stacks
+STACKMOD = $(STACKDIR)/stacktype.so
+
+testapi: testapi.o $(APILIB) $(STACKMOD)
+	gcc testapi.o $(APILIB) $(PYLIB) $(LIBS) -g -export-dynamic -o testapi
+
+testapi.o: testapi.c $(APIDIR)/ppembed.h
+	gcc testapi.c -c -g -I$(APIDIR) $(PYINC)
+
+$(APILIB):
+	cd $(APIDIR); make -f makefile.api
+
+$(STACKMOD):
+	cd $(STACKDIR); make -f makefile.stack stacktype.so
+
+clean: 
+	rm -f testapi testapi.o *.pyc core
+

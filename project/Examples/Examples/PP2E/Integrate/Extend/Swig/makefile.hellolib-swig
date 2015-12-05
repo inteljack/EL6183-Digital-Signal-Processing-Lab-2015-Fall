@@ -1,0 +1,29 @@
+###############################################################
+# Use SWIG to integrate hellolib.c for use in Python programs.  
+###############################################################
+
+# unless you've run make install
+SWIG = ./myswig
+
+PY   = $(MYPY)
+LIB  = ../HelloLib
+
+# the library plus its wrapper
+hellowrap.so: hellolib_wrap.o $(LIB)/hellolib.o
+	ld -shared hellolib_wrap.o $(LIB)/hellolib.o -o hellowrap.so
+
+# generated wrapper module code
+hellolib_wrap.o: hellolib_wrap.c $(LIB)/hellolib.h
+	gcc hellolib_wrap.c -c -g -I$(LIB) -I$(PY)/Include -I$(PY) 
+
+hellolib_wrap.c: hellolib.i
+	$(SWIG) -python -I$(LIB) hellolib.i
+
+# C library code (in another directory)
+$(LIB)/hellolib.o: $(LIB)/hellolib.c $(LIB)/hellolib.h
+	gcc $(LIB)/hellolib.c -c -g -I$(LIB) -o $(LIB)/hellolib.o
+
+clean:
+	rm -f *.o *.so core 
+force:
+	rm -f *.o *.so core hellolib_wrap.c hellolib_wrap.doc

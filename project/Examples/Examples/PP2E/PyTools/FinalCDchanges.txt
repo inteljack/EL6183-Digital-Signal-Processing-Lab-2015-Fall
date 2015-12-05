@@ -1,0 +1,1826 @@
+1/31/01 book cd changes
+
+C:\PP2ndEd-etc>
+    python %X%\system\filetools\diffall.py cdrom e: > FinalCDchanges.txt
+
+[also PyDemos.pyw: run PyForm an in-memory dict--can't create shelve on CD]
+
+--------------------
+Comparing cdrom to e:
+Directory lists are identical
+Comparing contents
+README.txt DIFFERS
+--------------------
+Comparing cdrom\Python1.5.2 to e:\Python1.5.2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\WindowsInstall to e:\Python1.5.2\WindowsInstall
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution to e:\Python1.5.2\SourceDistribution
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked to e:\Python1.5.2\SourceDistribution\Unpacked
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\world to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\world
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\webchecker to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\webchecker
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\versioncheck to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\versioncheck
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\scripts to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\scripts
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\pynche to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\pynche
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\pynche\X to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\pynche\X
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\modulator to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\modulator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\modulator\Templates to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\modulator\Templates
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\idle to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\idle
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\freeze to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\freeze
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\faqwiz to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\faqwiz
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\bgen to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\bgen
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\bgen\bgen to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\bgen\bgen
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\audiopy to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Tools\audiopy
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Python to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Python
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PCbuild to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PCbuild
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\wat_os2 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\wat_os2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\wat_dos to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\wat_dos
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\vc15_w31 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\vc15_w31
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\vc15_lib to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\vc15_lib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\utils to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\utils
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\src to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\src
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\os2vacpp to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\os2vacpp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\example_nt to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\PC\example_nt
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Parser to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Parser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Objects to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Objects
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Modules to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Modules
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Misc to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Misc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\test to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\test\output to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\test\output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-win to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-win
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-sunos5 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-sunos5
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-sunos4 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-sunos4
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-next3 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-next3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-netbsd1 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-netbsd1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-linux2 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-linux2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-linux1 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-linux1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-irix6 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-irix6
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-irix5 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-irix5
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-generic to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-generic
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-freebsd3 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-freebsd3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-freebsd2 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-freebsd2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-beos to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-beos
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-aix4 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-aix4
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-aix3 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\plat-aix3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\lib-tk to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\lib-tk
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\lib-stdwin to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\lib-stdwin
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\lib-old to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\lib-old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\dos-8x3 to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Lib\dos-8x3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Include to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Include
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Grammar to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Grammar
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\zlib to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\zlib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter\www to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter\www
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter\matt to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter\matt
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter\guido to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\tkinter\guido
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\threads to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\threads
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\stdwin to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\stdwin
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\stdwin\ibrowse to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\stdwin\ibrowse
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sockets to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sockets
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\video to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\video
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\sv to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\sv
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\gl to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\gl
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\gl\glstdwin to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\gl\glstdwin
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\flp to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\flp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\cd to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\cd
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\audio_stdwin to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\audio_stdwin
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\audio to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\audio
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\al to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\sgi\al
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\scripts to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\scripts
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\rpc to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\rpc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\pysvr to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\pysvr
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\pdist to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\pdist
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\parser to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\parser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\metaclasses to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\metaclasses
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\md5test to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\md5test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\ibrowse to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\ibrowse
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\extend to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\extend
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\embed to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\embed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\dns to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\dns
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\cwilib to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\cwilib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\comparisons to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\comparisons
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\classes to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\Demo\classes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\BeOS to e:\Python1.5.2\SourceDistribution\Unpacked\Python-1.5.2\BeOS
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation to e:\Python1.5.2\Documentation
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto to e:\Python1.5.2\Documentation\howto
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto\xml-ref to e:\Python1.5.2\Documentation\howto\xml-ref
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto\xml-howto to e:\Python1.5.2\Documentation\howto\xml-howto
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto\rexec to e:\Python1.5.2\Documentation\howto\rexec
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto\regex-to-re to e:\Python1.5.2\Documentation\howto\regex-to-re
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto\regex to e:\Python1.5.2\Documentation\howto\regex
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto\qt-examples to e:\Python1.5.2\Documentation\howto\qt-examples
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\howto\curses to e:\Python1.5.2\Documentation\howto\curses
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals to e:\Python1.5.2\Documentation\PythonManuals
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals\tut to e:\Python1.5.2\Documentation\PythonManuals\tut
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals\ref to e:\Python1.5.2\Documentation\PythonManuals\ref
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals\mac to e:\Python1.5.2\Documentation\PythonManuals\mac
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals\lib to e:\Python1.5.2\Documentation\PythonManuals\lib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals\icons to e:\Python1.5.2\Documentation\PythonManuals\icons
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals\ext to e:\Python1.5.2\Documentation\PythonManuals\ext
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python1.5.2\Documentation\PythonManuals\api to e:\Python1.5.2\Documentation\PythonManuals\api
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples to e:\Examples
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E to e:\Examples\PP2E
+Directory lists are identical
+Comparing contents
+README-PP2E.txt DIFFERS
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate to e:\Examples\PP2E\Integrate
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Mixed to e:\Examples\PP2E\Integrate\Mixed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Mixed\Exports to e:\Examples\PP2E\Integrate\Mixed\Exports
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Mixed\Exports\ClassAndMod to e:\Examples\PP2E\Integrate\Mixed\Exports\ClassAndMod
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Mixed\Regist to e:\Examples\PP2E\Integrate\Mixed\Regist
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend to e:\Examples\PP2E\Integrate\Extend
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Cenviron to e:\Examples\PP2E\Integrate\Extend\Cenviron
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Cenviron\Old to e:\Examples\PP2E\Integrate\Extend\Cenviron\Old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Hello to e:\Examples\PP2E\Integrate\Extend\Hello
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\HelloLib to e:\Examples\PP2E\Integrate\Extend\HelloLib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Modulator to e:\Examples\PP2E\Integrate\Extend\Modulator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Stacks to e:\Examples\PP2E\Integrate\Extend\Stacks
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Swig to e:\Examples\PP2E\Integrate\Extend\Swig
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Swig\Environ to e:\Examples\PP2E\Integrate\Extend\Swig\Environ
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Extend\Swig\Shadow to e:\Examples\PP2E\Integrate\Extend\Swig\Shadow
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed to e:\Examples\PP2E\Integrate\Embed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\ApiClients to e:\Examples\PP2E\Integrate\Embed\ApiClients
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Basics to e:\Examples\PP2E\Integrate\Embed\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Basics\Old to e:\Examples\PP2E\Integrate\Embed\Basics\Old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\HighLevelApi to e:\Examples\PP2E\Integrate\Embed\HighLevelApi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Inventory to e:\Examples\PP2E\Integrate\Embed\Inventory
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Inventory\Output to e:\Examples\PP2E\Integrate\Embed\Inventory\Output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Inventory\WithDbase to e:\Examples\PP2E\Integrate\Embed\Inventory\WithDbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Inventory\WithDbase\Data to e:\Examples\PP2E\Integrate\Embed\Inventory\WithDbase\Data
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Inventory\WithDbase\Dbase to e:\Examples\PP2E\Integrate\Embed\Inventory\WithDbase\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\Inventory\WithDbase\Output to e:\Examples\PP2E\Integrate\Embed\Inventory\WithDbase\Output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\TestApi to e:\Examples\PP2E\Integrate\Embed\TestApi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\TestApi\WithPackages to e:\Examples\PP2E\Integrate\Embed\TestApi\WithPackages
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Integrate\Embed\TestApi\WithPackages\pkgdir to e:\Examples\PP2E\Integrate\Embed\TestApi\WithPackages\pkgdir
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Config to e:\Examples\PP2E\Config
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Other to e:\Examples\PP2E\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Other\Old-other to e:\Examples\PP2E\Other\Old-other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Other\Old-Tutor to e:\Examples\PP2E\Other\Old-Tutor
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Other\Old-Part2 to e:\Examples\PP2E\Other\Old-Part2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Other\Old-Part2\Basics to e:\Examples\PP2E\Other\Old-Part2\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Other\Old-Part2\Oop to e:\Examples\PP2E\Other\Old-Part2\Oop
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\PyTools to e:\Examples\PP2E\PyTools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System to e:\Examples\PP2E\System
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Streams to e:\Examples\PP2E\System\Streams
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App to e:\Examples\PP2E\System\App
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App\Bases to e:\Examples\PP2E\System\App\Bases
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App\Clients to e:\Examples\PP2E\System\App\Clients
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App\Clients\test to e:\Examples\PP2E\System\App\Clients\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App\Clients\test\unpackapp to e:\Examples\PP2E\System\App\Clients\test\unpackapp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App\Clients\test\unpack to e:\Examples\PP2E\System\App\Clients\test\unpack
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App\Kinds to e:\Examples\PP2E\System\App\Kinds
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\App\Tests to e:\Examples\PP2E\System\App\Tests
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Exits to e:\Examples\PP2E\System\Exits
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Environment to e:\Examples\PP2E\System\Environment
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools to e:\Examples\PP2E\System\Filetools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools\tempsplit to e:\Examples\PP2E\System\Filetools\tempsplit
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools\Xfer063000 to e:\Examples\PP2E\System\Filetools\Xfer063000
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools\temp1 to e:\Examples\PP2E\System\Filetools\temp1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools\temp1\sub1 to e:\Examples\PP2E\System\Filetools\temp1\sub1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools\temp2 to e:\Examples\PP2E\System\Filetools\temp2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools\temp2\sub1 to e:\Examples\PP2E\System\Filetools\temp2\sub1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Filetools\temp3 to e:\Examples\PP2E\System\Filetools\temp3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Processes to e:\Examples\PP2E\System\Processes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Threads to e:\Examples\PP2E\System\Threads
+Files unique to cdrom\Examples\PP2E\System\Threads
+... race2.py
+... race3.py
+... race.py
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\System\Threads\etc to e:\Examples\PP2E\System\Threads\etc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Lang to e:\Examples\PP2E\Lang
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Lang\Old-regex to e:\Examples\PP2E\Lang\Old-regex
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Lang\Calculator to e:\Examples\PP2E\Lang\Calculator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Lang\Calculator\old to e:\Examples\PP2E\Lang\Calculator\old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Lang\Parser to e:\Examples\PP2E\Lang\Parser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Lang\Old-Intro to e:\Examples\PP2E\Lang\Old-Intro
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai to e:\Examples\PP2E\Ai
+Files unique to cdrom\Examples\PP2E\Ai
+... README.txt
+Files unique to e:\Examples\PP2E\Ai
+... readme.txt
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\ExpertSystem to e:\Examples\PP2E\Ai\ExpertSystem
+Files unique to cdrom\Examples\PP2E\Ai\ExpertSystem
+... verif.txt
+... Todo.txt
+Files unique to e:\Examples\PP2E\Ai\ExpertSystem
+... TODO
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\ExpertSystem\holmes to e:\Examples\PP2E\Ai\ExpertSystem\holmes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\ExpertSystem\holmes\examples to e:\Examples\PP2E\Ai\ExpertSystem\holmes\examples
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\ExpertSystem\holmes\holmes to e:\Examples\PP2E\Ai\ExpertSystem\holmes\holmes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\ExpertSystem\holmes\holmes2 to e:\Examples\PP2E\Ai\ExpertSystem\holmes\holmes2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\ExpertSystem\holmes\holmes3 to e:\Examples\PP2E\Ai\ExpertSystem\holmes\holmes3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\ExpertSystem\holmes\kbases to e:\Examples\PP2E\Ai\ExpertSystem\holmes\kbases
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Ai\TicTacToe to e:\Examples\PP2E\Ai\TicTacToe
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui to e:\Examples\PP2E\Gui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Clock to e:\Examples\PP2E\Gui\Clock
+Directory lists are identical
+Comparing contents
+clockStyles.py DIFFERS
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\gifs to e:\Examples\PP2E\Gui\gifs
+Files unique to cdrom\Examples\PP2E\Gui\gifs
+... ora-pp2e.note
+... ora-pp2e.gif
+... ora-pp1e-s.gif
+... ora-pp1e-s.note
+... hills.gif
+... ora-lp-france.gif
+... ora-ppr-german.gif
+... ora-pp-japan2.gif
+... ora-pp-japan2.note
+... ora-ppr-german.note
+... ora-lp-france.note
+... hills.note
+... README.txt
+Files unique to e:\Examples\PP2E\Gui\gifs
+... gilligan.gif
+... gilligan.note
+... jornada.gif
+... jornada.note
+... mp_lumberjack.gif
+... mp_lumberjack.note
+... mp_marriage.gif
+... mp_marriage.note
+... mp_nudge.gif
+... mp_nudge.note
+... mp_parrot.gif
+... mp_parrot.note
+... mp_sillywalk.gif
+... mp_sillywalk.note
+... ora-japan2.gif
+... ora-japan2.note
+... ora-ppython-s.gif
+... ousterhout-new.gif
+... ousterhout-new.note
+... palmIIIx.gif
+... palmIIIx.note
+... readme.txt
+... sony818.gif
+... sony818.note
+... sonyz505js.gif
+... sonyz505js.note
+... spam.gif
+... spam.note
+Comparing contents
+frank.note DIFFERS
+guido_ddj.note DIFFERS
+guido.note DIFFERS
+LJsuppcover.note DIFFERS
+ousterhout.note DIFFERS
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\MovingPics to e:\Examples\PP2E\Gui\MovingPics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\ShellGui to e:\Examples\PP2E\Gui\ShellGui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\ShellGui\Old to e:\Examples\PP2E\Gui\ShellGui\Old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\ShellGui\test to e:\Examples\PP2E\Gui\ShellGui\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\SlideShow to e:\Examples\PP2E\Gui\SlideShow
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\SlideShow\Experimental to e:\Examples\PP2E\Gui\SlideShow\Experimental
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\TextEditor to e:\Examples\PP2E\Gui\TextEditor
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Tools to e:\Examples\PP2E\Gui\Tools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Tools\Reload to e:\Examples\PP2E\Gui\Tools\Reload
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Tools\BigGui to e:\Examples\PP2E\Gui\Tools\BigGui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Intro to e:\Examples\PP2E\Gui\Intro
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Tour to e:\Examples\PP2E\Gui\Tour
+Directory lists are identical
+Comparing contents
+texttags.py DIFFERS
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Tour\Cut to e:\Examples\PP2E\Gui\Tour\Cut
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Gui\Tour\Grid to e:\Examples\PP2E\Gui\Tour\Grid
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dstruct to e:\Examples\PP2E\Dstruct
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dstruct\OldIntro to e:\Examples\PP2E\Dstruct\OldIntro
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dstruct\Basic to e:\Examples\PP2E\Dstruct\Basic
+Directory lists are identical
+Comparing contents
+set.py DIFFERS
+--------------------
+Comparing cdrom\Examples\PP2E\Dstruct\Classics to e:\Examples\PP2E\Dstruct\Classics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dstruct\Classics\Old to e:\Examples\PP2E\Dstruct\Classics\Old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dstruct\Classics\MoreGraphs to e:\Examples\PP2E\Dstruct\Classics\MoreGraphs
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dstruct\TreeView to e:\Examples\PP2E\Dstruct\TreeView
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dbase to e:\Examples\PP2E\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dbase\old to e:\Examples\PP2E\Dbase\old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dbase\Intro to e:\Examples\PP2E\Dbase\Intro
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dbase\data to e:\Examples\PP2E\Dbase\data
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Dbase\TableBrowser to e:\Examples\PP2E\Dbase\TableBrowser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet to e:\Examples\PP2E\Internet
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web to e:\Examples\PP2E\Internet\Cgi-Web
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\Basics to e:\Examples\PP2E\Internet\Cgi-Web\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\Basics\uploads to e:\Examples\PP2E\Internet\Cgi-Web\Basics\uploads
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\Extern to e:\Examples\PP2E\Internet\Cgi-Web\Extern
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\Extern\Email to e:\Examples\PP2E\Internet\Cgi-Web\Extern\Email
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\commentDB to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\commentDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\errataDB to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\errataDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\temp to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\AdminTools\temp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseFiles to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseFiles
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseFiles\commentDB to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseFiles\commentDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseFiles\errataDB to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseFiles\errataDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseShelve to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\DbaseShelve
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyErrata\Mutex to e:\Examples\PP2E\Internet\Cgi-Web\PyErrata\Mutex
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyMailCgi to e:\Examples\PP2E\Internet\Cgi-Web\PyMailCgi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Cgi-Web\PyMailCgi\temp to e:\Examples\PP2E\Internet\Cgi-Web\PyMailCgi\temp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Email to e:\Examples\PP2E\Internet\Email
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Email\test to e:\Examples\PP2E\Internet\Email\test
+Files unique to cdrom\Examples\PP2E\Internet\Email\test
+... readme.txt
+Files unique to e:\Examples\PP2E\Internet\Email\test
+... cand.agr10.22.doc
+... t4.64
+... t4.doc
+... t4.eml
+... t4.eml.part1.html
+... t4.eml.part0.txt
+... t5.eml
+... t5.eml.part0.txt
+... temp.txt
+... US West Letter.doc
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Ftp to e:\Examples\PP2E\Internet\Ftp
+Directory lists are identical
+Comparing contents
+getfilegui.py DIFFERS
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Ftp\test to e:\Examples\PP2E\Internet\Ftp\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Other to e:\Examples\PP2E\Internet\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Other\Com to e:\Examples\PP2E\Internet\Other\Com
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Sockets to e:\Examples\PP2E\Internet\Sockets
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Sockets\temp to e:\Examples\PP2E\Internet\Sockets\temp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Examples\PP2E\Internet\Sockets\testdir to e:\Examples\PP2E\Internet\Sockets\testdir
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0 to e:\Python2.0
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\WindowsInstall to e:\Python2.0\WindowsInstall
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution to e:\Python2.0\SourceDistribution
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked to e:\Python2.0\SourceDistribution\Unpacked
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\BeOS to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\BeOS
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\md5test to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\md5test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\classes to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\classes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\zlib to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\zlib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\xml to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\xml
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\comparisons to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\comparisons
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\dns to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\dns
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\embed to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\embed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\extend to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\extend
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\imputil to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\imputil
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\tkinter to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\tkinter
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\tkinter\guido to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\tkinter\guido
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\tkinter\matt to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\tkinter\matt
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\metaclasses to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\metaclasses
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\pdist to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\pdist
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\pysvr to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\pysvr
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\rpc to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\rpc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\scripts to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\scripts
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\audio to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\audio
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\al to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\al
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\video to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\video
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\sv to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\sv
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\flp to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\flp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\gl to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\gl
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\cd to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sgi\cd
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sockets to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\sockets
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\threads to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\threads
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\parser to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Demo\parser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\dist to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\dist
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\api to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\api
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\doc to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\doc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\tut to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\tut
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\tools to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\tools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\tools\sgmlconv to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\tools\sgmlconv
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\texinputs to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\texinputs
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\templates to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\templates
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\ref to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\ref
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\perl to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\perl
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\paper-letter to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\paper-letter
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\ext to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\ext
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\html to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\html
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\html\icons to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\html\icons
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\inst to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\inst
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\lib to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\lib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\longhtml to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\longhtml
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\mac to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\mac
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\paper-a4 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\paper-a4
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\info to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Doc\info
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Grammar to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Grammar
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Include to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Include
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd5 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd5
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\curses to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\curses
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\distutils to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\distutils
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\distutils\command to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\distutils\command
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\dos-8x3 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\dos-8x3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\encodings to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\encodings
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\lib-old to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\lib-old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\lib-tk to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\lib-tk
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-aix3 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-aix3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-aix4 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-aix4
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-beos5 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-beos5
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd2 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd3 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd4 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-freebsd4
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-generic to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-generic
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-irix5 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-irix5
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-irix6 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-irix6
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-linux1 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-linux1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-linux2 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-linux2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-netbsd1 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-netbsd1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-next3 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-next3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-sunos4 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-sunos4
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-sunos5 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\plat-sunos5
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\site-packages to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\site-packages
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\test to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\test\output to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\test\output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml\dom to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml\dom
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml\sax to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml\sax
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml\parsers to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Lib\xml\parsers
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\RPM to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\RPM
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\RPM\Tkinter to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\RPM\Tkinter
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\RPM\Tkinter\src to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\RPM\Tkinter\src
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\distutils to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Misc\distutils
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Modules to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Modules
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Objects to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Objects
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\vc15_w31 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\vc15_w31
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\example_nt to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\example_nt
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\wat_dos to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\wat_dos
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\src to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\src
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\vc15_lib to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\vc15_lib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\utils to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\utils
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\os2vacpp to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\os2vacpp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\wat_os2 to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PC\wat_os2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\PCbuild to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\PCbuild
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Parser to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Parser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Python to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Python
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\i18n to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\i18n
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\audiopy to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\audiopy
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\world to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\world
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\bgen to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\bgen
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\bgen\bgen to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\bgen\bgen
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\compiler to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\compiler
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\compiler\compiler to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\compiler\compiler
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\faqwiz to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\faqwiz
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\freeze to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\freeze
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\webchecker to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\webchecker
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\modulator to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\modulator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\modulator\Templates to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\modulator\Templates
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\pynche to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\pynche
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\pynche\X to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\pynche\X
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\scripts to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\scripts
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\unicode to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\unicode
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\versioncheck to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\versioncheck
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\idle to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\idle
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\idle\Icons to e:\Python2.0\SourceDistribution\Unpacked\Python-2.0\Tools\idle\Icons
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Macintosh to e:\Python2.0\Macintosh
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Macintosh\Overview_files to e:\Python2.0\Macintosh\Overview_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\LinuxRpm to e:\Python2.0\LinuxRpm
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation to e:\Python2.0\Documentation
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals to e:\Python2.0\Documentation\PythonManuals
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked to e:\Python2.0\Documentation\PythonManuals\Unpacked
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\api to e:\Python2.0\Documentation\PythonManuals\Unpacked\api
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\dist to e:\Python2.0\Documentation\PythonManuals\Unpacked\dist
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\doc to e:\Python2.0\Documentation\PythonManuals\Unpacked\doc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\ext to e:\Python2.0\Documentation\PythonManuals\Unpacked\ext
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\inst to e:\Python2.0\Documentation\PythonManuals\Unpacked\inst
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\lib to e:\Python2.0\Documentation\PythonManuals\Unpacked\lib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\mac to e:\Python2.0\Documentation\PythonManuals\Unpacked\mac
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\ref to e:\Python2.0\Documentation\PythonManuals\Unpacked\ref
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\tut to e:\Python2.0\Documentation\PythonManuals\Unpacked\tut
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\PythonManuals\Unpacked\icons to e:\Python2.0\Documentation\PythonManuals\Unpacked\icons
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\Overview to e:\Python2.0\Documentation\Overview
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\Overview\What's New in Python 2_0_files to e:\Python2.0\Documentation\Overview\What's New in Python 2_0_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Python2.0\Documentation\Overview\Python 2_0_files to e:\Python2.0\Documentation\Overview\Python 2_0_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages to e:\Packages
+Files unique to cdrom\Packages
+... NumPy
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Swig to e:\Packages\Swig
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Swig\SWIG1.1p5 to e:\Packages\Swig\SWIG1.1p5
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Swig\SWIG1.1p5\Doc to e:\Packages\Swig\SWIG1.1p5\Doc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Swig\SWIG1.1p5\Doc\UserManual to e:\Packages\Swig\SWIG1.1p5\Doc\UserManual
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Swig\SWIG1.1p5\Doc\Reference to e:\Packages\Swig\SWIG1.1p5\Doc\Reference
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\JPython to e:\Packages\JPython
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\JPython\Download JPython_files to e:\Packages\JPython\Download JPython_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\JPython\Overview of JPython documentation_files to e:\Packages\JPython\Overview of JPython documentation_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\JPython\New JPython licenses_files to e:\Packages\JPython\New JPython licenses_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\JPython\LICENSE_files to e:\Packages\JPython\LICENSE_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\JPython\Installing JPython_files to e:\Packages\JPython\Installing JPython_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\OpenSSL to e:\Packages\OpenSSL
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\OpenSSL\OpenSSL The Open Source toolkit for SSL-TLS_files to e:\Packages\OpenSSL\OpenSSL The Open Source toolkit for SSL-TLS_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\PIL to e:\Packages\PIL
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\PIL\Python Imaging Library_files to e:\Packages\PIL\Python Imaging Library_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\HtmlGen to e:\Packages\HtmlGen
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\HtmlGen\HTMLgen to e:\Packages\HtmlGen\HTMLgen
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\HtmlGen\HTMLgen\image to e:\Packages\HtmlGen\HTMLgen\image
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\HtmlGen\HTMLgen\html to e:\Packages\HtmlGen\HTMLgen\html
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\HtmlGen\HTMLgen\data to e:\Packages\HtmlGen\HTMLgen\data
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\TclTk to e:\Packages\TclTk
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\WindowsExt to e:\Packages\WindowsExt
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\WindowsExt\For-Python1.5.2 to e:\Packages\WindowsExt\For-Python1.5.2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\WindowsExt\For-Python-2.0 to e:\Packages\WindowsExt\For-Python-2.0
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\WxPython to e:\Packages\WxPython
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\WxPython\Download_files to e:\Packages\WxPython\Download_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\WxPython\What is wxPython_files to e:\Packages\WxPython\What is wxPython_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Zope to e:\Packages\Zope
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Zope\Zope-download_files to e:\Packages\Zope\Zope-download_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Idle to e:\Packages\Idle
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Pmw to e:\Packages\Pmw
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Pmw\Pmw megawidgets_files to e:\Packages\Pmw\Pmw megawidgets_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Pmw\Getting started with Pmw_files to e:\Packages\Pmw\Getting started with Pmw_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Grail to e:\Packages\Grail
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Grail\Grail Home Page_files to e:\Packages\Grail\Grail Home Page_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Grail\LICENSE_files to e:\Packages\Grail\LICENSE_files
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing cdrom\Packages\Grail\Grail 0_6 Source Access_files to e:\Packages\Grail\Grail 0_6 Source Access_files
+Directory lists are identical
+Comparing contents
+========================================
+Diffs found: 17
+- files differ at cdrom\README.txt - e:\README.txt
+- files differ at cdrom\Examples\PP2E\README-PP2E.txt - e:\Examples\PP2E\README-PP2E.txt
+- unique files at cdrom\Examples\PP2E\System\Threads - e:\Examples\PP2E\System\Threads
+- unique files at cdrom\Examples\PP2E\Ai - e:\Examples\PP2E\Ai
+- unique files at cdrom\Examples\PP2E\Ai\ExpertSystem - e:\Examples\PP2E\Ai\ExpertSystem
+- files differ at cdrom\Examples\PP2E\Gui\Clock\clockStyles.py - e:\Examples\PP2E\Gui\Clock\clockStyles.py
+- unique files at cdrom\Examples\PP2E\Gui\gifs - e:\Examples\PP2E\Gui\gifs
+- files differ at cdrom\Examples\PP2E\Gui\gifs\frank.note - e:\Examples\PP2E\Gui\gifs\frank.note
+- files differ at cdrom\Examples\PP2E\Gui\gifs\guido_ddj.note - e:\Examples\PP2E\Gui\gifs\guido_ddj.note
+- files differ at cdrom\Examples\PP2E\Gui\gifs\guido.note - e:\Examples\PP2E\Gui\gifs\guido.note
+- files differ at cdrom\Examples\PP2E\Gui\gifs\LJsuppcover.note - e:\Examples\PP2E\Gui\gifs\LJsuppcover.note
+- files differ at cdrom\Examples\PP2E\Gui\gifs\ousterhout.note - e:\Examples\PP2E\Gui\gifs\ousterhout.note
+- files differ at cdrom\Examples\PP2E\Gui\Tour\texttags.py - e:\Examples\PP2E\Gui\Tour\texttags.py
+- files differ at cdrom\Examples\PP2E\Dstruct\Basic\set.py - e:\Examples\PP2E\Dstruct\Basic\set.py
+- unique files at cdrom\Examples\PP2E\Internet\Email\test - e:\Examples\PP2E\Internet\Email\test
+- files differ at cdrom\Examples\PP2E\Internet\Ftp\getfilegui.py - e:\Examples\PP2E\Internet\Ftp\getfilegui.py
+- unique files at cdrom\Packages - e:\Packages

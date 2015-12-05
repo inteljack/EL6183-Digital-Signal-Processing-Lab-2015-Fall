@@ -1,0 +1,15 @@
+# a linux makefile that builds a C executable that embeds 
+# Python, assuming no external module libs must be linked in;
+# uses Python header files, links in the Python lib file;
+# both may be in other dirs (e.g., /usr) in your install;
+# set MYPY to your Python install tree, change lib version;
+
+PY    = $(MYPY)
+PYLIB = $(PY)/libpython1.5.a
+PYINC = -I$(PY)/Include -I$(PY)
+
+embed-simple: embed-simple.o
+	gcc embed-simple.o $(PYLIB) -g -export-dynamic -lm -ldl -o embed-simple
+
+embed-simple.o: embed-simple.c
+	gcc embed-simple.c -c -g $(PYINC)

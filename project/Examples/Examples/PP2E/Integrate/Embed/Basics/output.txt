@@ -1,0 +1,93 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ ls
+Old               embed-dict.c    embed-simple.c  makefile.1       output
+embed-bytecode.c  embed-object.c  embed-string.c  makefile.basics  usermod.py
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ python
+Python 1.5.2 (#14, Sep 12 1999, 00:55:49)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import usermod
+>>> usermod.message
+'The meaning of life...'
+>>> usermod.transform(usermod.message)
+'THE MEANING OF PYTHON...'
+>>>
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ make -f makefile.basics
+gcc embed-simple.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-simple.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-simple
+gcc embed-string.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-string.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-string
+gcc embed-object.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-object.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-object
+gcc embed-dict.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-dict.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-dict
+gcc embed-bytecode.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc embed-bytecode.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed-bytecode
+rm embed-dict.o embed-object.o embed-string.o embed-simple.o embed-bytecode.o
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ ls
+Old               embed-dict.c    embed-simple.c  makefile.basics
+embed-bytecode    embed-object    embed-string    output
+embed-bytecode.c  embed-object.c  embed-string.c  usermod.py
+embed-dict        embed-simple    makefile.1      usermod.pyc
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ embed-simple
+embed-simple
+Built-in exception class not found: EnvironmentError.  Library mismatch?
+Warning!  Falling back to string-based exceptions
+Traceback (innermost last):
+  File "<string>", line 1, in ?
+ImportError: No module named usermod
+Traceback (innermost last):
+  File "<string>", line 1, in ?
+NameError: usermod
+Traceback (innermost last):
+  File "<string>", line 1, in ?
+NameError: usermod
+Traceback (innermost last):
+  File "<string>", line 1, in ?
+NameError: usermod
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ source $PP2E/setup-pp-embed.csh
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ embed-simple
+embed-simple
+The meaning of life...
+THE MEANING OF PYTHON...
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ embed-string
+embed-string
+The meaning of life...
+THE MEANING OF PYTHON...
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ embed-object
+embed-object
+The meaning of life...
+THE MEANING OF PYTHON...
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ embed-dict
+embed-dict
+101
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Basics]$ embed-bytecode
+embed-bytecode
+The meaning of life...
+THE MEANING OF PYTHON...
+0:0 1:1 2:4 3:9 4:16 5:25 6:36 7:49 8:64 9:81 10:100
+
+
+

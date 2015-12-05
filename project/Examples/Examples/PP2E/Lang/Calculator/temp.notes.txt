@@ -1,0 +1,97 @@
+***PLEASE IGNORE THIS FILE***
+
+calculator...
+# renamed to calculator[1], from calcgui[12]
+# rand->random
+# () (X) -> get(), set(X)
+# help comes from here now, not guimixin: added about box
+# add PyCalc title in main window and cmdline popup
+# make cmdline popup 40 wide
+# use package imports for outside tools used
+# add color/font config options
+# add 'L' or long key to append L to curr entry
+# add keyboard bindings or set focus on entry
+#     prob with entry focus - '+' expr tyepd out, not eval'd auto
+# add <Return> binding for cmd line popup
+# add select + icursor for cmd line status msg
+# add init cmdline with value in main entry on open (so can copy out)
+# add cmdline result to 'okay' msg in cmd line, selected
+# add Operators, Operands as class attrs for kbd use nd customization
+# change beatsMe to afterMe
+# L just append to text, don't erase (not for '.'-> may start next opnd)
+# cmd line - label and button don't grow in resize now, only entry
+# add 'hist' button and prev calc logs popup
+#
+# show calculator_test.py (embed, subclass)
+# then calculator_plus_ext, calculator_plus_emb
+#  - note that must pack2 subclass labels 1st, else calc buttons
+#    on bottom, not subclass's label (pack order gives attach order)
+#    updated: _test file adds a row of buttons in subclass--exploits fact
+#    that eval/clear will apear at bottom, since packed before new
+#    row, with side=bottom
+#  - note that diff between container and subclass shows in location
+#    of extra row (after for container, inside for subclass), and when
+#    resized up (all gorw at same rate for subclass--one frame, but 
+#    calc part and label and extra row grow proportionally for 
+#    container, since 3 parts share enclosing container);
+#
+# exercise: add support for X ** Y type expressions (update afterMe
+# table, add a button);  to extend Evaluator, could either change in
+# place (sufficient for this app), or create a subclass and pass 
+# instance into CalcGui class; as is, hardcoded in constructor, and
+# must be in same module; could subclass CalcGui too, but more code?
+#
+# exercise: history is a modal popup dialog now; might be better to 
+# make it a stay-up window which is updated while calcs are being
+# performed.  This gets complicated by the fact that calculations 
+# happen in the embedded Evaluator object, which doesn't currently
+# handle any GUI operations.  Poss: hist = new object that wraps a
+# ScrolledText, and packs/unpacks to display/hide itself.  Or, 
+# attach to cal itself, not new toplevel window.
+# should 'clear' button clear history list? (as is, empties list
+# on next clear if it's already over 64 lines long--heuristic to 
+# avoid letting it grow large enough to take significant space)
+#
+# note: could set title/bindings on parent instead of self.master,
+# but may be None = default Tk() root; self.master is parent
+# or Tk() -- whatever Tkinter linked calc gui to as parent
+# could change to avoid self.master:
+#        parent = parent or Tk()
+#        if not isinstance(parent, Frame):
+#            parent.title('PyCalc 2.0')               # title iff owns window
+# same as:
+#        if not parent or not isinstance(parent, Frame):
+#            self.master.title('PyCalc 2.0')          # title iff owns window
+# BUT, then get default empty window in addition to calcgui!
+#
+# ??? bind_all versus bind on toplevel -> movingpics and clock too
+# either one works:
+#           self.master.bind('<KeyPress>', self.onKeyboard)
+#           self.bind_all('<KeyPress>', self.onKeyboard)
+# BUT: if > 1 calculator in priocess, keypress in any winds up
+# going to entry of last calc created!  AND would intercept and
+# press elsewhere in large GUI (ex: presses in toplevel with 'quit'
+# button in _plus2)  AND would override and 'all' bindings created
+# by an enclosing GUI;  
+#       -> use toplevel binding and enable and focus
+# on entry if not a toplevel; ways to work around, but too complex
+# (ex: assoc special tag with all widgets except entry, delete all
+# or toplevel tag for entry, etc., butg typing into entry is odd
+# anyhow--insert pos not auto updated on append--need to do manually
+# in code if desired);
+# 
+# ???calculator_plusplus.py -- cmdline args for plus varients
+#      -> fixed: getCalcArgs used in _plus and _plus2
+#
+# ??? key bindings make typing numbers into entry field directly
+# impossible! - '1' is input to entry AND echoed again by binding;
+# bindings are mutually exclusive with manual input in entry field?
+# unbind for entry?  make entry a label instead?  read only?  
+# keys on/off toggle?  cmd line popup is still available for arb 
+# input lines
+#       -> disabled entry if bind is used (see bind not above)
+#          note: could just use a Label if disabled anyhow, but
+#          linked var and entry lets prog update display by just
+#          changing var (saves a step), and still a enabled entry
+#          if key bindings not applied (not in a toplevel)
+

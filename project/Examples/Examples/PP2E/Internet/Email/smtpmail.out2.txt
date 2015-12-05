@@ -1,0 +1,59 @@
+C:\PP2ndEd\examples\Part2\Internet\Email>python smtpmail-noTo.py
+From? Eric.the.Half.a.Bee@semibee.com
+To?   lutz@starship.python.net
+Subj? a b c d e f g
+Type message text, end with line=(ctrl + D or Z)
+To: nobody.in.particular@marketing.com
+Fiddle de dum, Fiddle de dee,
+Eric the half a bee.
+Connecting...
+No errors.
+Bye.
+
+
+[lutz@starship lutz]$ mail
+Mail version 8.1 6/6/93.  Type ? for help.
+"/home/crew/lutz/Mailbox": 22 messages 12 new 22 unread
+...
+>N 21 Eric.the.Half.a.Bee@  Thu Jul 13 20:22  20/789   "A B C D E F G"
+ N 22 Eric.the.Half.a.Bee@  Thu Jul 13 20:26  19/766   "a b c d e f g"
+
+& 21
+Message 21:
+From Eric.the.Half.a.Bee@semibee.com Thu Jul 13 20:21:18 2000
+Delivered-To: lutz@starship.python.net
+From: Eric.the.Half.a.Bee@semibee.com
+To: lutz@starship.python.net
+Date: Thu Jul 13 14:15:55 2000
+Subject: A B C D E F G
+
+Fiddle de dum, Fiddle de dee,
+Eric the half a bee.
+
+& 22
+Message 22:
+From Eric.the.Half.a.Bee@semibee.com Thu Jul 13 20:26:34 2000
+Delivered-To: lutz@starship.python.net
+From: Eric.the.Half.a.Bee@semibee.com
+Date: Thu Jul 13 14:20:22 2000
+Subject: a b c d e f g
+To: nobody.in.particular@marketing.com
+
+Fiddle de dum, Fiddle de dee,
+Eric the half a bee.
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Email>python smtpmail-noTo.py
+From? Arthur@knights.com
+To?   lutz@rmi.net
+Subj? Killer bunnies
+Type message text, end with line=(ctrl + D or Z)
+To: you@home.com
+Run away!  Run away! ...
+Connecting...
+No errors.
+Bye.
+
+
+

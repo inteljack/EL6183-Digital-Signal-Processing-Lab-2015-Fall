@@ -1,0 +1,25 @@
+commonhtml.txt
+
+
+WRONG initial version (but usually worked anyhow):
+
+def formatlink(cgiurl, parmdict):                   # make "%url?k=v&k=v" link
+    parms = []                                      # convert parmdict to str
+    for (key, value) in parmdict.items():           # escape all parm values
+        key   = cgi.escape(str(key))                # escape keys to be safe
+        key   = string.replace(key, ' ', '+')
+        value = cgi.escape(str(value), quote=1)
+        value = string.replace(value, ' ', '+')
+        parms.append('%s=%s' % (key, value or '?'))
+    return '%s?%s' % (cgiurl, string.join(parms, '&'))
+
+
+FROM urllib:
+
+def urlencode(dict):
+     l = []
+     for k, v in dict.items():
+         k = quote_plus(str(k))
+         v = quote_plus(str(v))
+         l.append(k + '=' + v)
+     return string.join(l, '&')

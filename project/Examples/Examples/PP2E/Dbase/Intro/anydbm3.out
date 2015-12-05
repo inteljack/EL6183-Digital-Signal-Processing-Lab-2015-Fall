@@ -1,0 +1,9 @@
+% python
+>>> import anydbm                     # open dbm file again
+>>> map = anydbm.open('movie')
+>>> for key in map.keys(): print key, map[key]
+... 
+Joker Wham!
+Cat-woman Splat!
+Batman Ka-Boom!
+

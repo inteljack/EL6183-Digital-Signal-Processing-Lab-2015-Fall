@@ -1,0 +1,31 @@
+########################################################
+# store items in a shelve, with file locks on writes;
+# dbcommon assumes items are dictionaries (not here);
+# assumes single external file per shelve (e.g., gdbm);
+# shelve allows simultaneous reads, but if any program
+# is writing, no other reads or writes are allowed,
+# so we obtain the lock before all load/store ops 
+# (though shared locks may work for readers too);
+# need to chown to 0666, else only 'nobody' can write;
+#
+# the shelve is a shared file resource:
+# any number of reader processes can be running
+# simultaneously, but writers must run alone
+# this file doen't know about fcntl, but mutex doesn't
+# know about cgi scripts--one of the 2 needs to add the
+# path to FCNTL for cgi script use only (done here);
+# this circumvents whatever locking mech the underlying
+# dbm system may have, since we aquire alock on our own
+# non-dbm file before attempting any dbm operation;
+#
+# allows multiple simultaneous readers (LOCK_SH), but
+# writers must have exclusive access to the shelve
+# (LOCK_EX); lock calls block is needed-- writers
+# block is there is already a writer or any number 
+# of readers, until can get exclusive lock, and 
+# readers block if a writer; unblock allows waiting
+# processes to get lock and proceed; can also or
+# in LOCK_NB to avoid blocking if can't get lock;
+# uses special ".lck" lock file iunstead of locking
+# the shelve itself, to avoid dbm system diffs;
+########################################################

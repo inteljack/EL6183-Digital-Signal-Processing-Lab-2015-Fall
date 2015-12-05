@@ -1,0 +1,36 @@
+###########################################################################
+# Use SWIG to integrate the number.h C++ class for use in Python programs.
+# Note: name "numberc.so" matters, because shadow class imports numberc. 
+###########################################################################
+
+# unless you've run make install
+SWIG = ../myswig
+PY   = $(MYPY)
+
+all: numberc.so number.py
+
+# wrapper + real class
+numberc.so: number_wrap.o number.o
+	g++ -shared number_wrap.o number.o -o numberc.so
+
+# generated class wrapper module
+number_wrap.o: number_wrap.c number.h
+	g++ number_wrap.c -c -g -I$(PY)/Include -I$(PY) 
+
+number_wrap.c: number.i
+	$(SWIG) -c++ -python -shadow number.i
+
+number.py: number.i
+	$(SWIG) -c++ -python -shadow number.i
+
+# wrapped C++ class code
+number.o: number.cxx number.h
+	g++ -c -g number.cxx 
+
+cxxtest:
+	g++ main.cxx number.cxx 
+
+clean:
+	rm -f *.pyc *.o *.so core a.out 
+force:
+	rm -f *.pyc *.o *.so core a.out number.py number_wrap.c number_wrap.doc

@@ -1,0 +1,59 @@
+set root = `pwd`
+pwd
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Hello
+make -f makefile.hello clean
+rm -f hello.so core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/HelloLib
+make -f makefile.hellolib-o clean
+rm -f *.o *.so core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/HelloLib
+make -f makefile.hellolib-so clean
+rm -f *.o *.so core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Stacks
+make -f makefile.stack clean
+rm -f stackmod.so stacktype.so *.pyc core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Swig
+make -f makefile.hellolib-swig clean
+rm -f *.o *.so core 
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Swig/Environ
+make -f makefile.environ-swig clean
+rm -f *.o *.so core 
+cd /home/mark/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow
+make -f makefile.number-swig clean
+rm -f *.pyc *.o *.so core a.out 
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/Basics
+make -f makefile.basics clean
+rm -f *.o *.pyc embed-simple embed-string embed-object embed-dict embed-bytecode core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/HighLevelApi
+make -f makefile.api clean
+rm -f *.o *.a
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/TestApi
+make -f makefile.testapi clean
+rm -f testapi testapi.o *.pyc core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/TestApi/WithPackages
+make -f makefile.testapi-pkgs clean
+rm -f testapi testapi.o *.pyc pkgdir/*.pyc core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/ApiClients
+make -f makefile.clients clean
+rm -f *.o *.pyc objects-low objects-err-low objects-api codestring-low codestring-api  core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/Inventory
+make -f makefile.inv clean
+rm -f order-string order-func order-bytecode *.o *.pyc core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase
+make -f makefile.inv-dbase clean
+rm -f order-func *.o *.pyc core
+cd /home/mark/PP2ndEd/dev/examples/Part3/Mixed/Regist
+make -f makefile.regist clean
+rm -f *.pyc cregister.so 
+cd /home/mark/PP2ndEd/dev/examples/Part3/Mixed/Exports
+make -f makefile.exports clean
+rm -f *.o *.so *.pyc core prog1 prog2 prog3
+cd /home/mark/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod
+make -f makefile.exports-class clean
+rm -f *.o *.so *.pyc core prog1
+cd /home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate
+make -f makefile.embed2 clean
+rm -f embed *.o *.pyc core
+cd /home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate
+make -f makefile.cenviron clean
+rm -f *.pyc cenviron.so

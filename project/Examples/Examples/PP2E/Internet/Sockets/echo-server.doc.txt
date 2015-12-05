@@ -1,0 +1,25 @@
+#########################################################
+# Server side: open a socket on a port, listen for
+# a message from a client, and send an echo reply; 
+# this is a simple one-shot listen/reply per client, 
+# but it goes into an infinite loop to listen for 
+# more clients as long as this server script runs; 
+# notes:
+# 1) a host name of '' means the machine that this 
+#    server script runs on (any Internet interface);
+# 2) servers bind to port numbers, which can be 0-65535, 
+#    but ports 0-1023 are reserved for common protocols
+#    (ftp, http, smtp, pop, telnet, etc.); clients 
+#    connect to both a server name and port to talk; 
+# 3) python supports both tcp and udp (connectionless,
+#    SOCK_DGRAM) sockets, as well as broadcast mode;
+# 4) accept() waits for client; setblocking(0) sets 
+#    nonblocking mode for send/recv ops (raises error);
+# 5) data is transmitted as strings, but see also the 
+#    network byte order converters in the socket module;
+# 6) sockobj.makefile() wraps a socket in a file object
+# 7) had to ctrl-alt-del to kill the servers on ms-dos,
+#    but a simple ctrl-c kills it on the linux port;
+# 8) most internet protocols (e.g., ftp, pop mail) use
+#    sockets too, but Python libs hide the socket layer;
+#########################################################

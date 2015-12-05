@@ -1,0 +1,50 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ make -f makefile.cenviron clean
+rm -f *.pyc cenviron.so
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ make -f makefile.embed2 clean
+rm -f embed *.o *.pyc core
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ make -f makefile.embed2
+gcc embed.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+make -f makefile.cenviron
+make[1]: Entering directory `/home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate'
+gcc cenviron.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cenviron.so
+make[1]: Leaving directory `/home/mark/PP2ndEd/dev/examples/Part1/Preview/Integrate'
+gcc embed.o /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o embed
+
+
+
+#
+# be sure to source the embedding setup file for std lib and '.'
+#
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ embed
+Hello from C.
+Built-in exception class not found: EnvironmentError.  Library mismatch?
+Warning!  Falling back to string-based exceptions
+Hello from Python!
+linux2
+Traceback (innermost last):
+  File "<string>", line 1, in ?
+ImportError: No module named cenviron
+Traceback (innermost last):
+  File "<string>", line 2, in ?
+NameError: putenv
+Bye from Python!
+Bye from C.
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ source $PP2E/setup-pp-embed.csh
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ embed
+Hello from C.
+Hello from Python!
+linux2
+T.Howle the 0
+T.Howle the 1
+T.Howle the 2
+T.Howle the 3
+T.Howle the 4
+Bye from Python!
+Bye from C.
+
+

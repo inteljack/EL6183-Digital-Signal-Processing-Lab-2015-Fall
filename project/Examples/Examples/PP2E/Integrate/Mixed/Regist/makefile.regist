@@ -1,0 +1,17 @@
+######################################################################
+# Builds cregister.so, a dynamically-loaded C extension  
+# module (shareable), which is imported by register.py
+######################################################################
+
+PY    = $(MYPY)
+PYINC = -I$(PY)/Include -I$(PY)
+
+CMODS = cregister.so 
+
+all: $(CMODS)
+
+cregister.so: cregister.c
+	gcc cregister.c -g $(PYINC) -fpic -shared -o cregister.so
+
+clean: 
+	rm -f *.pyc $(CMODS)

@@ -1,0 +1,218 @@
+I'm sure I've seen factorial algorithms in Python,
+I just can't recall where at the moment.  Why don't
+you try doing a search of past newsgroup archives
+and then the web site for "factorial", at
+www.python.org?  Are you using Python longs for
+the numbers, by the way--if you suffix constants
+with a "L", your integers should be able to grow
+very large without an overflow.  Here's something
+that isn't necessarily optimal or correct, but shows
+longs at work:
+
+
+
+>>> 5 * 4 * 3 * 2 * 1
+120
+>>> fact(5)
+120L
+
+
+>>> range(2, 5+1), range(5, 1, -1)
+([2, 3, 4, 5], [5, 4, 3, 2])
+
+
+-----------------
+
+>>> def fact(N):
+...     res = 1L
+...     for i in range(N, 1, -1):
+...         res = res * i
+...     return res
+...
+>>> fact(0)
+1L
+>>> fact(1)
+1L
+>>> fact(3)
+6L
+>>> fact(4)
+24L
+>>> fact(5)
+120L
+>>> fact(10)
+3628800L
+>>> 10 * 9 * 8 * 7 * 6 * 5 * 4 * 3 * 2
+3628800
+>>> fact(20)
+2432902008176640000L
+>>> fact(40)
+815915283247897734345611269596115894272000000000L
+>>>
+
+
+
+------------------
+
+>>> def fact(N):
+...     res = 1L
+...     for i in range(2, N+1):
+...         res = res * i
+...     return res
+...
+>>> fact(0)
+1L
+>>> fact(1)
+1L
+>>> fact(2)
+2L
+>>> fact(4)
+24L
+>>> fact(5)
+120L
+>>> fact(10)
+3628800L
+>>> fact(20)
+2432902008176640000L
+>>>
+
+
+
+---------------------
+
+
+>>> def fact(N):
+...     if N <= 1:
+...         return 1L
+...     else:
+...         return N * fact(N-1)
+...
+>>> fact(4)
+24L
+>>> fact(5)
+120L
+>>> fact(10)
+3628800L
+>>> fact(20)
+2432902008176640000L 
+
+
+-----------------------------------------------------
+
+
+>>> def fact(N):
+...     res = 1
+...     for i in range(N, 1, -1):
+...         res = res * i
+...     return res
+...
+>>> fact(4)
+24
+>>> fact(5)
+120
+>>> fact(10)
+3628800
+>>> fact(20)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+  File "<stdin>", line 4, in fact
+OverflowError: integer multiplication
+
+
+
+>>> def fact(N):
+...     res = 1L
+...     for i in range(N, 1, -1):
+...         res = res * i
+...     return res
+...
+>>> fact(0)
+1L
+>>> fact(1)
+1L
+>>> fact(4)
+24L
+>>> 4 * 3 * 2
+24
+>>> fact(5)
+120L
+>>> fact(10)
+3628800L
+>>> fact(20)
+2432902008176640000L
+>>> fact(40)
+815915283247897734345611269596115894272000000000L
+>>> range(4, 1, -1)
+[4, 3, 2]
+
+
+
+>>> def fact(N):
+...     res = 1.0
+...     for i in range(N, 1, -1):
+...         res = res * i
+...     return res
+...
+>>> fact(5)
+120.0
+>>> fact(10)
+3628800.0
+>>> fact(20)
+2.43290200818e+018
+>>> fact(40)
+8.15915283248e+047
+>>> fact(0)
+1.0
+
+
+---------------------------------------------
+
+
+>>> def fact(N):
+...     if N <= 1:
+...         return 1
+...     else:
+...         return N * fact(N-1)
+...
+>>> fact(4)
+24
+>>> fact(5)
+120
+>>> fact(10)
+3628800
+>>> fact(20)
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+  File "<stdin>", line 5, in fact
+  File "<stdin>", line 5, in fact
+  File "<stdin>", line 5, in fact
+  File "<stdin>", line 5, in fact
+  File "<stdin>", line 5, in fact
+  File "<stdin>", line 5, in fact
+  File "<stdin>", line 5, in fact
+  File "<stdin>", line 5, in fact
+OverflowError: integer multiplication
+
+
+
+>>> def fact(N):
+...     if N <= 1:
+...         return 1L
+...     else:
+...         return N * fact(N-1)
+...
+>>> fact(0)
+1L
+>>> fact(1)
+1L
+>>> fact(4)
+24L
+>>> fact(5)
+120L
+>>> fact(10)
+3628800L
+>>> fact(20)
+2432902008176640000L
+>>> fact(40)
+815915283247897734345611269596115894272000000000L
+
+  

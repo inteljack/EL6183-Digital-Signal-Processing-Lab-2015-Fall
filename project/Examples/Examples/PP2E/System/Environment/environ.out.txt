@@ -1,0 +1,55 @@
+
+>>> import os
+>>> os.environ.keys()
+['WINBOOTDIR', 'PATH', 'USER', 'PP2EHOME', 'CMDLINE', 'PYTHONPATH', 'BLASTER', 
+'X', 'TEMP', 'COMSPEC', 'PROMPT', 'WINDIR', 'TMP']
+>>> os.environ['TEMP']
+'C:\\windows\\TEMP'
+>>>
+>>> os.environ['TEMP'] = r'c:\temp'
+>>> os.environ['TEMP']
+'c:\\temp'
+
+
+
+
+C:\Part2\System\Environment>set USER=Bob
+
+C:\Part2\System\Environment>python echoenv.py
+echoenv... Hello, Bob
+
+C:\Part2\System\Environment>python setenv.py
+setenv... Bob
+echoenv... Hello, Brian
+echoenv... Hello, Arthur
+?Guido
+echoenv... Hello, Guido
+
+C:\Part2\System\Environment>echo %USER%
+Bob
+
+
+
+
+>>> import os
+>>> os.environ['USER'] = 'Mel'
+>>> os.popen('python echoenv.py').read()
+'echoenv... Hello, Mel\012'
+>>>
+
+C:\Part2\System\Environment>python
+>>> import os
+>>> os.environ['PYTHONPATH']
+'C:\\PP2ndEd\\examples\\Part3;C:\\PP2ndEd\\examples\\Part2;C:\\PP2ndEd\\examples
+\\Part2\\Gui;C:\\PP2ndEd\\examples\\Part1\\Preview\\Gui;C:\\PP2ndEd\\examples'
+>>>
+>>> import string
+>>> for dir in string.split(os.environ['PYTHONPATH'], os.pathsep):
+...   print dir
+...
+C:\PP2ndEd\examples\Part3
+C:\PP2ndEd\examples\Part2
+C:\PP2ndEd\examples\Part2\Gui
+C:\PP2ndEd\examples\Part1\Preview\Gui
+C:\PP2ndEd\examples
+

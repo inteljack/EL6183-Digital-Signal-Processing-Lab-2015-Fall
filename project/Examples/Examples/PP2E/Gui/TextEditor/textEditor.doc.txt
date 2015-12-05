@@ -1,0 +1,120 @@
+# todo:
+# - added RUN option in tools m enu, july 2000
+# - add info/statistics popup in Tools menu - DONE 5/00 (in 15 minutes,
+#   and was immediately inherited by PyView and PyMail -- Python rocks!)
+# - add undo feature
+# - be smarter about when text has changed
+# - remember last open/save directory from tkFileDialog.py
+#   DONE 2/00: make [Open,SaveAs](options...) objects that retain the 
+#   last result dir/file, instead of calling the convenience functions
+#   ask[open,saveas]filename(options...); now only first call starts at '.';
+#   each text editor instance keeps its own dialog objects with memory: this
+#   works well when there is a single TextEdiotr (e.g., multiple stand-alone
+#   editor program instances), but not if you make multiple TextEditor objects
+#   as popup components (each new TextEditor starts at '.').
+#
+# - mention supported image file types: gif,..., others via tk patch
+# - expand guimaker to do new menus too
+# - finish outline
+# - gui examples: code, then shots, then details
+# - grid: small ex in ch2 and 11, plus FormGui grid variation
+#
+# - text: indexes (line.col string, plus offset expressions; first line = 1), 
+#   marks (=named indexes, pos indep, can use anywhere an index is expected, 
+#   some always predefined--'end', 'insert'=where mouse click/insert point is),
+#   tags (=named areas, must convert to use as index, some always predefined--
+#   'sel'=selected text with mouse, etc: delete/set to change selection : 
+#   'sel.first', 'sel.last' return index associates with start/stop tag area);
+#   set tag indexes to mark text, them change tag to set special attrs (bold..)
+# - see tools/idles, demos/www..., lib/lib-tk/ScrolledText
+# - add to slideshow; start with 1-line Entry (in ch2?), then full editor
+# - process: class hdr + init + makeWidgets + empty onXXX for each user op;
+#   then in any order--add real widgets and menus, add onXXX bodies | prints
+# - set label/icon?--but not in class used as an embeddable component!
+# - don't hardcode top-level menu--class used as an embeddable component!
+# - Tkconstants.py (via Tkinter.py): SEL='sel', INSERT='insert', END='end'
+# - can be re-packed from outside container after construction
+# - xplain scroll xlinks; could use ScrolledText, but no hbar; 
+# - xplain tk8.0 fonts; courier,... available on all platforms
+# - suggested exercise: show scrolls iff needed (max line length)
+# - suggested exercise: use subclass to add undo feature (remember last op)
+# - explain primary and clipboard selection model; 'primary' not portable
+#   to non-Tk apps on windows; edit ops use clipboard, kbd+mouse use primary
+#   eidt menu ops work with the clipboard for portability; the mouse
+#   keys can also be used to work with the primary selection
+# - mention: guimaker lets you forget how to make menus--encpsulation
+#   also makes this gui independent of menu style (frame or window top)
+# - START = '1.0' # ???  client mixes in menu class and TextEditor, or flag?
+# - onFind: or stay-up dialog, or regex/up|down/nocase/...??? fwd+exact=default
+# - explain SEL+'.first', END+'-1c', START
+# - ???print '"%s"' % `self.getAllText()`
+# - wrap='none' to avoid line wraps (else horizontal bar is pointless)
+# - exer: don't wrap on find?  allow line nums > maxline (works in tk--to last),
+#   set up key bindings and menu shortcuts for all user ops;  popup listbox
+#   for font/color pick, better-- dialog to allow selection of each component
+# - but note: can click on tear-off line of 'Tools' menu, so font/color menu
+#   entries stay up: can click on quickly to cylce through options
+# - explain text.update: else goto/find popups leave image if goto another
+#   page of text (area not already in window); need to refresh
+# - onChange: lamda args versus self attrs
+#   Button(new, text='Find', 
+#         command=lambda: s = self, s.onFind(e1.get())).grid(row=2, column=0)
+# - onChange: can mix pack an grid in app, but within one Toplevel must be
+#   all pack or all grid (else infinite loop in Tk)--is this true??? (APerl)
+# - onChange with pack:
+# - onChange: popup stays up till wm quit buttn selected (only deletes popup);
+#   can have >1 change box up, but only last up defines search strings (fix me)
+# - note why 'undo' not needed--cut after paste (paste auto selects), 
+#   paste immediately after cut, refind/find-buttona; exer: implement multi
+#   level undo as stack of lambda functions
+# - note that could retain prior inputs in change dialog by prebuilding
+#   and just redisplay (not recreate whole dialog) each time selected,
+#   or setting entry text to saved-away prioir entry explicitly;  but
+#   not celar whether easier for user to re-enter prior inputs to repeart 
+#   prior change, or delete prioir inputs when new change desired;  as is,
+#   comes up empty, but stays up until user closes window; can repeat
+#   prior change by leaving window up for entire edit session, with 
+#   prioir value in it, or close and reselect change to clear its fields.
+#
+# if __name__ == '__main__':
+#     # this makes ask* fail--no default root ???
+#     #root = Tk()
+#     #root.title    = 'PyEdit'      # or set by class???
+#     #root.iconname = 'PyEdit'
+#     #TextEditor(root).pack(expand=YES, fill=BOTH)
+#
+# -suggested exercise: why gumby?;  onChange--use .pack(), not .grid();
+#  only popup 'Disgard text?' box if text has really changed, not if
+#  the text area is non-empty
+# - describe Main/Component mixin classes at end of file; assert in __init__
+# note that assert fails is add another level class (component minimal): isa???
+#
+# -   mixin classes versus menumode flag (used mixins)
+# -   how will this be used ehen a component? (ex: note editor in slideshow)
+#     disable file menu if component?  yes--see client classes at end
+# -   resizing is bad when GuiMaker is mixed in, okay when not (raw Frame);
+#     fixed: pack toolbar before middle, delete expand=YES n menu/toolbar
+# -  menu accelerators (underlines) appear to not work-- 
+#    DO for Tk8.0 munebars, and underlines do show up; some binding not set???
+# -  changed to import/use 2 diff GuiMaker superclasses
+# -  changed to not use an intermediate Frame around text and two scrollbars;
+#    works identically without it for bot menu types, and standalone and
+#    components; strangeness leading to the Frame went away when toolbars
+#    and scrollbars packed in correct order (toolbar first, expand=No+fill=X);
+#    see guimin notes for pack order details--makeWidgets noe done AFTER
+#    both menu and toolbar, so they are always on top/bottom
+# - subtle: classes at end call GuiMaker.__init__, not more specialized
+#   subclass; works because init only at GuiMaker level (not redefd lower)
+# - no need for 'find selection': just do menu find, and paste selection
+#   into find dialog input area (middle mouse button (or both, on windows))
+# - changed:
+#       nsupers = len(self.__class__.__bases__)
+#       assert nsupers >= 2, 'TextEditor needs a GuiMaker mixin'
+#   to
+#       if not isinstance(self, GuiMaker):
+#           raise AssertionError, 'TextEditor needs a GuiMaker mixin'
+#   else further subclassing below mixin level fails
+#
+# note: could add keyoard accelerator keys too, but all menu functions
+# can be had via alt key presses too; ex: alt-f-o invokes the Open
+# option in the File menu;

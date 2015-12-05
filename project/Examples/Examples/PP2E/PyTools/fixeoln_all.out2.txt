@@ -1,0 +1,17 @@
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples>python PyTools/fixeoln_all.py todos | m
+ore
+
+Using Python find
+Changing .\Part2\Internet\Cgi-Web\PyErrata\Mutex\launch-test.out
+Changing .\Part3\Embed\Inventory\Output\order-bytecode-py.out
+Changing .\Part3\Embed\Inventory\Output\order-bytecode.out
+Changing .\Part3\Embed\Inventory\Output\order-func-py.out
+Changing .\Part3\Embed\Inventory\Output\order-func.out
+Changing .\Part3\Embed\Inventory\Output\order-string-py.out
+Changing .\Part3\Embed\Inventory\Output\order-string.out
+Changing .\Part3\Embed\Inventory\WithDbase\Output\order-func-c.out
+Changing .\Part3\Embed\Inventory\WithDbase\Output\order-func-py.out
+Not a text file .\Part3\Embed\Inventory\Output
+Not a text file .\Part3\Embed\Inventory\WithDbase\Output
+Visited 833 files
+

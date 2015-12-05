@@ -1,0 +1,38 @@
+Content-type: text/html
+
+<TITLE>Languages</TITLE>
+<H1>Syntax</H1><HR>
+<H3>Perl</H3><P><PRE>
+ print "Hello World\n";            
+</PRE></P><BR>
+<H3>SmallTalk</H3><P><PRE>
+ 'Hello World' print.              
+</PRE></P><BR>
+<H3>Basic</H3><P><PRE>
+ 10 PRINT "Hello World"            
+</PRE></P><BR>
+<H3>Scheme</H3><P><PRE>
+ (display "Hello World") (newline) 
+</PRE></P><BR>
+<H3>Python</H3><P><PRE>
+ print 'Hello World'               
+</PRE></P><BR>
+<H3>C++</H3><P><PRE>
+ cout &lt;&lt; "Hello World" &lt;&lt; endl;    
+</PRE></P><BR>
+<H3>Pascal</H3><P><PRE>
+ WriteLn('Hello World');            
+</PRE></P><BR>
+<H3>Java</H3><P><PRE>
+ System.out.println("Hello World"); 
+</PRE></P><BR>
+<H3>C</H3><P><PRE>
+ printf("Hello World\n");          
+</PRE></P><BR>
+<H3>Tcl</H3><P><PRE>
+ puts "Hello World"                
+</PRE></P><BR>
+<H3>Fortran</H3><P><PRE>
+ print *, 'Hello World'             
+</PRE></P><BR>
+<HR>

@@ -1,0 +1,73 @@
+<html><body bgcolor="#FFFFFF">
+<title>PP2E Submit Errata</title>
+<h1>PP2E Submit Errata Report</h1>
+
+<p>Please fill out the form below and press the submit button to 
+send your information.  By default, your report will be automatically
+entered in a publically browsable database, where it will eventually 
+be reviewed and verified by the author.  If you prefer to send your 
+comments to the author by private email instead, click the "Email" 
+button before you submit.  
+
+<p>All the fields except the description text are optional;
+for instance, if your note applies to the entire book, you can leave
+the page, chapter, and part numbers blank.  For the printing date, see
+the lower left corner of one of the first few pages; enter a string of
+the form mm/dd/yy.  Thank you for your report.
+</p>
+
+<hr>
+<form method=POST action="submitErrata.cgi">
+  <table>
+    <tr>
+      <th align=right>Problem type: 
+      <td><select name="Type">
+          <option>Typo
+          <option>Grammar
+          <option>Program bug
+          <option>Suggestion
+          <option>Other
+      </select>
+    <tr>
+      <th align=right>Problem severity: 
+      <td><select name="Severity">
+          <option>Low
+          <option>Medium
+          <option>High
+          <option>Unknown
+      </select>
+    <tr>
+      <th align=right>Page number: 
+      <td><input type=text name="Page number">
+    <tr>
+      <th align=right>Chapter number: 
+      <td><input type=text name="Chapter number">
+    <tr>
+      <th align=right>Part number: 
+      <td><input type=text name="Part number">
+    <tr>
+      <th align=right>Printing date: 
+      <td><input type=text name="Printing date">
+    <tr>
+      <th align=right>Description:
+      <td><textarea name="Description" cols=60 rows=10>Type a description here
+          </textarea>
+    <tr>
+      <th align=right>Your name: 
+      <td><input type=text size=40 name="Submitter name">
+    <tr>
+      <th align=right>Your email, webpage:
+      <td><input type=text size=40 name="Submitter email">
+    <tr>
+      <th align=right>Email report privately?: 
+      <td><input type=checkbox name="Submit mode" value="email">
+    <tr>
+      <th></th>
+      <td><input type=submit value="Submit Report">
+          <input type=reset  value="Reset Form">
+  </table>
+</form>
+
+<hr>
+<A href="pyerrata.html">Back to errata page</A>
+</body></html>

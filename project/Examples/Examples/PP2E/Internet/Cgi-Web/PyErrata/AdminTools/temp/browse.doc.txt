@@ -1,0 +1,18 @@
+###########################################################
+# on browse requests: fetch and display data in new page;
+# report data is stored in dictionaries on the database;
+# caveat: the '#Si' section links generated for top of page
+# indexes work on a recent Internet Explorer, but have been 
+# seen to fail on an older Netscape--section links in cgi
+# generated files may be a non-standard html feature; if 
+# they fail, try using 'index only' mode, which uses url 
+# links to encode information for creating a new page;
+# url links must be encoded with urllib, not cgi.escape 
+# (which encodes text embedded in the html reply stream);
+# for an older netscape, had to replace blanks with '+'
+# in the generated url link in indexonly mode (the url 
+# escape for a space, %20, works too)--Internet Explorer 
+# automatically changes a space to %20 when the url is 
+# invoked/clicked/submitted, so this replacement step isn't
+# always needed; urllib.quote_plus does it automatically;
+###########################################################

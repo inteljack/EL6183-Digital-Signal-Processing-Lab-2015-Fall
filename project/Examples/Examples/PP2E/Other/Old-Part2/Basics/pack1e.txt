@@ -1,0 +1,4 @@
+for i in range(len(argv)-1):       # for (i=0; i < argc-1; i++)
+    input = open(argv[i+1], 'r')
+    print marker + argv[i+1]
+    print input.read(),

@@ -1,0 +1,89 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ python dbasetools.py
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ order-func
+Stock => { 444=>100  222=>5  555=>1  111=>10 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+0 ('111', 2, 'GRossum')
+errors:   none
+warnings: none
+Stock => { 444=>100  222=>5  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+1 ('222', 5, 'LWall')
+errors:   none
+warnings: reorder-soon:'222'
+Stock => { 444=>100  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+2 ('333', 3, 'JOusterhout')
+errors:   bad-product
+warnings: none
+Stock => { 444=>100  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+3 ('222', 1, '4Spam')
+errors:   buyer-name:4 check-quantity
+warnings: new-buyer-added
+Stock => { 444=>100  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam']
+
+4 ('222', 0, 'LTorvalds')
+Python error during validation.
+Traceback (innermost last):
+  File "../validate2.py", line 15, in validate
+    validate_order(product, quantity, errs, msgs)     # mutable list args     
+  File "../validate2.py", line 25, in validate_order
+    if inventory.stock(product) / quantity < 2:
+ZeroDivisionError: integer division or modulo
+
+5 ('444', 9, 'ERaymond')
+errors:   none
+warnings: new-buyer-added
+Stock => { 444=>91  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+
+
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ order-func ordersfile2.data
+Stock => { 444=>91  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+0 ('111', 4, 'GRossum')
+errors:   none
+warnings: reorder-soon:'111'
+Stock => { 444=>91  222=>0  555=>1  111=>4 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+1 ('444', 5, 'LWall')
+errors:   none
+warnings: none
+Stock => { 444=>86  222=>0  555=>1  111=>4 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ order-func ordersfile2.data
+Stock => { 444=>86  222=>0  555=>1  111=>4 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+0 ('111', 4, 'GRossum')
+errors:   none
+warnings: reorder-soon:'111'
+Stock => { 444=>86  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+1 ('444', 5, 'LWall')
+errors:   none
+warnings: none
+Stock => { 444=>81  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+

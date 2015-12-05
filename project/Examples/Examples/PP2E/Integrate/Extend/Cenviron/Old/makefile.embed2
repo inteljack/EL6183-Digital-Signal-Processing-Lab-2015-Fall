@@ -1,0 +1,51 @@
+####################################################
+# A more sophisticated embedded Python makefile.
+# Add libs that are linked into Python: Tk, etc.
+# The libs setting must match the Modules/makefile
+# settings (in the Python build tree); it includes 
+# all libs statically linked into Python for modules.
+# See also: Demo/embed/makefile for more options.
+#
+# Note that if you're using an installed Python
+# rather than one you've built, Python include 
+# and header files may instead be in /usr/local/,
+# /usr/lib and /usr/include, or a similar place.
+#
+# This makefile works on Linux, with the standard
+# 1.5.2 source distribution which I copied off  
+# the Dr. Dobbs Python CD, and links a custom
+# built Python and stock/installed Tcl/Tk libs;
+# tweak as needed.
+####################################################
+
+CC = gcc
+PY = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+
+PY_LIBDIR  = $(PY)
+PY_INCDIR  = $(PY)
+PY_VERSION = 1.5
+
+PYLIB = $(PY_LIBDIR)/libpython$(PY_VERSION).a
+PYINC = -I$(PY_INCDIR)/Include -I$(PY_INCDIR)
+
+MODLIBS = -L/usr/lib \
+          -L/usr/X11R6/lib \
+          -lgdbm -ltk8.0 -ltcl8.0 -lX11
+
+LIBS = $(MODLIBS) -lm -ldl
+
+embed:	embed.o cenviron.so
+	$(CC) embed.o $(PYLIB) $(LIBS) -g -export-dynamic -o embed
+
+embed.o: embed.c
+	$(CC) embed.c -g -c $(PYINC)
+
+# used by embedded Python code
+cenviron.so:
+	make -f makefile.cenviron
+
+test: embed
+	./embed
+
+clean:
+	rm -f embed *.o *.pyc core

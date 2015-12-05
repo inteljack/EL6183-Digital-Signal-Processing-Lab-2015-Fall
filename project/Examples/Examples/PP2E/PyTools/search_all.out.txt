@@ -1,0 +1,31 @@
+C:\PP2ndEd\examples>python PyTools\search_all.py xxx
+1 => .\setup-pp.bat
+2 => .\Launcher.py
+3 => .\autoexec.bat
+4 => .\makeall.csh
+5 => .\__init__.py
+.\__init__.py has xxx
+.
+.
+.
+498 => .\Part2\Internet\Email\pymail.py
+499 => .\Part2\Internet\Email\mailconfig.py
+500 => .\Part2\Internet\Email\decode64.py
+501 => .\Part2\Internet\Email\decodeAll.py
+502 => .\Part2\Internet\Email\decode64_b.py
+503 => .\Part2\Internet\Email\popmail.py
+504 => .\Part2\Internet\Email\mailconfig.pyc
+Skipping .\Part2\Internet\Email\mailconfig.pyc
+505 => .\Part2\Internet\Email\popmail.out.txt
+506 => .\Part2\Internet\Email\smtpmail.out.txt
+.\Part2\Internet\Email\smtpmail.out.txt has xxx
+.
+.
+.
+1147 => .\old-Part2\Basics\textpk5b.py
+1148 => .\old-Part2\Basics\umap.py
+1149 => .\old-Part2\Basics\unpack1.py
+1150 => .\old-Part2\Basics\unpack2.bad
+1151 => .\old-Part2\Basics\unpack2b.py
+Found in 17 files, visited 1151
+

@@ -1,0 +1,38 @@
+#################################################################
+# To build the stack module and type into dynamically-loaded 
+# shareable object files on Linux, type 'make -f makefile.stack'
+#
+# To add them statically instead, modify Modules/Setup in the 
+# Python build tree, to include lines like:
+#     stackmod  <path to stackmod.c>
+#     stacktype <path to stacktype.c>
+# and run a 'make' at the top of the build tree to remake
+# Python itself; static linking is more portable, but it
+# requires access to Python's build/source tree (dynamic
+# loading of .so's does not--you need only a python lib
+# or executable for embedded and standalone programs). 
+#
+# If you use dynamic loading (and this makefile), be sure 
+# to put this directory on PYTHONPATH (or copy the .so's 
+# to a dir already on the path or to the Python build 
+# tree), and add the build tree's Lib directory too to 
+# get the correct standard libs (Python may guess the wrong
+# standard libs, when the executable isn't python itself).
+# The .so's name must match module init function's name
+# (xxx.so and initxxx()), as well as the name passed to the
+# Py_InitModule() function; the .c file name is arbitrary.
+#################################################################
+
+PY = $(MYPY)
+
+all: stackmod.so stacktype.so
+
+stackmod.so: stackmod.c
+	gcc stackmod.c -g -I$(PY)/Include -I$(PY) -fpic -shared -o stackmod.so
+
+stacktype.so: stacktyp.c
+	gcc stacktyp.c -g -I$(PY)/Include -I$(PY) -fpic -shared -o stacktype.so
+
+clean:
+	rm -f stackmod.so stacktype.so *.pyc core
+

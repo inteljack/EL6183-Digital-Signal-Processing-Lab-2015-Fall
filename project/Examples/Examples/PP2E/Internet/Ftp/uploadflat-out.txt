@@ -1,0 +1,52 @@
+[lutz@starship home]$ python uploadflat.py
+Please enter password for home.rmi.net:
+Clean remote directory first? y
+connecting...
+deleting remote uploadflat.py
+deleting remote PythonPowered.gif
+deleting remote Pywin.gif
+deleting remote PythonPoweredAnim.gif
+deleting remote PythonPoweredSmall.gif
+deleting remote about-hopl.html
+deleting remote about-lp-toc.html
+deleting remote about-lp.html
+deleting remote about-me.html
+deleting remote about-pp-japan.html
+deleting remote about-pp.html
+.
+.
+.
+deleting remote trainingCD.GIF
+deleting remote uk-1.jpg
+deleting remote uk-2.jpg
+deleting remote uk-3.jpg
+deleting remote whatsnew.html
+deleting remote whatsold.html
+uploading ./UPDATES to UPDATES
+uploading ./PythonPowered.gif to PythonPowered.gif
+uploading ./PythonPoweredAnim.gif to PythonPoweredAnim.gif
+uploading ./PythonPoweredSmall.gif to PythonPoweredSmall.gif
+uploading ./Pywin.gif to Pywin.gif
+uploading ./about-hopl.html to about-hopl.html
+uploading ./about-lp-toc.html to about-lp-toc.html
+uploading ./about-lp.html to about-lp.html
+uploading ./about-me.html to about-me.html
+uploading ./about-pp-japan.html to about-pp-japan.html
+uploading ./about-pp.html to about-pp.html
+uploading ./about-ppr-germany.html to about-ppr-germany.html
+uploading ./about-ppr-japan.html to about-ppr-japan.html
+.
+.
+.
+uploading ./trainingCD.GIF to trainingCD.GIF
+uploading ./uk-1.jpg to uk-1.jpg
+uploading ./uk-2.jpg to uk-2.jpg
+uploading ./uk-3.jpg to uk-3.jpg
+uploading ./whatsnew.html to whatsnew.html
+uploading ./whatsold.html to whatsold.html
+uploading ./xlate-lp.html to xlate-lp.html
+uploading ./uploadflat.py to uploadflat.py
+Done: 129 files uploaded.
+[lutz@starship home]$
+[lutz@starship home]$ ls | wc -l
+    129

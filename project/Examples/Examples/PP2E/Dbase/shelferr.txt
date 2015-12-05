@@ -1,0 +1,28 @@
+% python
+>>> from person import Person
+>>> bob = Person('bob')
+>>> emily = Person('emily')
+>>> bob.spouse = emily; emily.spouse = bob    # circular 
+>>> bob.spouse.name
+'emily'
+>>> import shelve        
+>>> file = shelve.open('cast')
+>>> file['star']   = bob
+>>> file['costar'] = emily
+>>> x = file['star']               # fetch bob
+>>> x.spouse.name
+'emily'
+>>> x.spouse.name = 'carol'        # change embedded emily
+>>> file['star'] = x               # store bob
+
+
+% python
+>>> import shelve
+>>> file  = shelve.open('cast')
+>>> bob   = file['star']           # fetch top-level objects
+>>> emily = file['costar']         # each key is a distinct tree
+>>> bob.spouse.name
+'carol'
+>>> emily.name                     # two versions of emily!
+'emily'
+

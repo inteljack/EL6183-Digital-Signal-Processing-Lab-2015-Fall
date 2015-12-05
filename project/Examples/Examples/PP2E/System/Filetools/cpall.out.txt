@@ -1,0 +1,106 @@
+C:\temp>rm -r backup\*
+
+C:\temp>python %X%\Part2\System\Filetools\cpall.py examples-0405 backup
+Copied 1052 files, 104 directories
+
+C:\temp>python %X%\Part2\System\Filetools\diffall.py examples-0405 backup > diff1
+
+
+C:\temp>rm -r backup\*
+
+C:\temp>python %X%\Part2\System\Filetools\cpall-cwd.py examples-0405 backup
+Copied 1052 files, 104 directories
+
+C:\temp>python %X%\Part2\System\Filetools\diffall.py examples-0405 backup > diff2
+
+
+C:\temp>rm -r backup\*
+
+C:\temp>python %X%\Part2\System\Filetools\cpall-alt.py examples-0405 backup
+Copied 1052 files, 105 directories
+
+C:\temp>python %X%\Part2\System\Filetools\diffall.py examples-0405 backup\exampl
+es-0405 > diff3
+
+
+C:\temp>fc diff1 diff2
+Comparing files diff1 and diff2
+FC: no differences encountered
+
+
+C:\temp>fc diff1 diff3 | more                      # extra dir level in diff3
+
+Comparing files diff1 and diff3
+****** diff1
+--------------------
+Comparing examples-0405 to backup
+Directory lists are identical
+****** diff3
+--------------------
+Comparing examples-0405 to backup\examples-0405
+Directory lists are identical
+******
+
+****** diff1
+--------------------
+Comparing examples-0405\PyTools to backup\PyTools
+Directory lists are identical
+****** diff3
+--------------------
+Comparing examples-0405\PyTools to backup\examples-0405\PyTools
+Directory lists are identical
+******
+
+
+[diff1]
+--------------------
+Comparing examples-0405 to backup
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\PyTools to backup\PyTools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Other to backup\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2 to backup\Part2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\Ai to backup\Part2\Ai
+Directory lists are identical
+Comparing contents
+
+
+
+[diff3]
+--------------------
+Comparing examples-0405 to backup\examples-0405
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\PyTools to backup\examples-0405\PyTools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Other to backup\examples-0405\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2 to backup\examples-0405\Part2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples-0405\Part2\Ai to backup\examples-0405\Part2\Ai
+Directory lists are identical
+Comparing contents
+
+
+
+(and search for DIFF in diff1, diff2, diff3 => not found)
+
+(both cpall programs usually take about 3-6 seconds on 300mhz Win98 box,
+ but can take twice as long at times--seems to depend on file caching)

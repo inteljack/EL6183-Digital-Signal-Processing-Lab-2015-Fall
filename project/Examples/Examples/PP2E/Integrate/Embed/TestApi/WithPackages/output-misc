@@ -1,0 +1,108 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/TestApi/WithPackages]$ python
+>>> import pkgdir.testapi
+>>> pkgdir.testapi.func('a', 'b')
+'ab'
+
+>>> import sys
+>>> sys.modules['pkgdir.testapi']
+<module 'pkgdir.testapi' from 'pkgdir/testapi.py'>
+
+>>> pkgdir
+<module 'pkgdir' from 'pkgdir/__init__.pyc'>
+>>> testapi
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+NameError: testapi
+>>> pkgdir.testapi
+<module 'pkgdir.testapi' from 'pkgdir/testapi.py'>
+>>> pkgdir.testapi.func
+<function func at 80ea370>
+>>> pkgdir.testapi.func([1], [2])
+[1, 2]
+
+>>> reload(pkgdir.testapi)
+<module 'pkgdir.testapi' from 'pkgdir/testapi.pyc'>
+>>> reload(sys.modules['pkgdir.testapi'])
+<module 'pkgdir.testapi' from 'pkgdir/testapi.pyc'>
+>>> pkgdir.testapi.func(1, 2)
+3
+>>> reload(pkgdir.testapi)
+<module 'pkgdir.testapi' from 'pkgdir/testapi.py'>
+>>> pkgdir.testapi.func(1, 2)
+2
+
+>>> from pkgdir.testapi import func
+>>> func(1, 2)
+2
+>>> reload(pkgdir.testapi)
+<module 'pkgdir.testapi' from 'pkgdir/testapi.py'>
+>>> pkgdir.testapi.func(1, 2)
+3
+>>> func(1, 2)
+2
+>>> from pkgdir.testapi import func
+>>> func(1, 2)
+3
+
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/TestApi/WithPackages]$ python testapi_c.py
+12
+change pkgdir/testapi.py now...
+32
+change pkgdir/testapi.py now...
+error
+Traceback (innermost last):
+  File "testapi_c.py", line 8, in ?
+    reload(pkgdir.testapi)
+  File "pkgdir/testapi.py", line 15
+     return x \ y             # change me
+                                          ^
+ SyntaxError: invalid token
+change pkgdir/testapi.py now...
+error
+Traceback (innermost last):
+  File "testapi_c.py", line 9, in ?
+    res = pkgdir.testapi.func(4, 8)
+  File "pkgdir/testapi.py", line 15, in func
+    return x / 0             # change me
+ZeroDivisionError: integer division or modulo
+change pkgdir/testapi.py now...
+65536
+
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/TestApi/WithPackages]$ python testapi_c_from.py
+12
+change pkgdir/testapi.py now...
+32
+change pkgdir/testapi.py now...
+error
+Traceback (innermost last):
+  File "testapi_c_from.py", line 8, in ?
+    reload(pkgdir.testapi)                   # still need to reload
+  File "pkgdir/testapi.py", line 15
+     return x \ y             # change me
+                                          ^
+ SyntaxError: invalid token
+change pkgdir/testapi.py now...
+error
+Traceback (innermost last):
+  File "testapi_c_from.py", line 10, in ?
+    res = func(4, 8)
+  File "pkgdir/testapi.py", line 15, in func
+    return x / 0             # change me
+ZeroDivisionError: integer division or modulo
+change pkgdir/testapi.py now...
+65536
+
+
+
+
+
+
+

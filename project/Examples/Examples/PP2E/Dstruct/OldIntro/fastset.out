@@ -1,0 +1,18 @@
+% python
+>>> from fastset import Set
+>>> users1 = Set(['Bob', 'Emily', 'Howard'])
+>>> users2 = Set(['Jerry', 'Howard', 'Carol'])
+>>> allow = {'read': users1 | users2,  'write': users1 & users2}
+>>> print allow['read']
+<Set:['Jerry', 'Carol', 'Howard', 'Emily', 'Bob']>
+>>> print allow['write']
+<Set:['Howard']>
+>>> users1 | Set(['Bob', 'Bob', 'Bob'])
+<Set:['Howard', 'Emily', 'Bob']>
+>>> users1 & Set(['Bob', 'Bob', 'Bob'])
+<Set:['Bob']>
+>>> users1.concat(['Bob', 'Bob', 'Bob'])
+>>> users1
+<Set:['Howard', 'Emily', 'Bob']>
+>>> users1.data
+{'Howard': None, 'Emily': None, 'Bob': None}

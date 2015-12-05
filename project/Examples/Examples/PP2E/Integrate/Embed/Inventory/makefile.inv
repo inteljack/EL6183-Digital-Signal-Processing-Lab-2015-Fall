@@ -1,0 +1,36 @@
+########################################################
+# Build inventory order simulation executables.
+# Link in my main .o, single Python lib, any external
+# libs bound into Python, plus the high-level api lib.
+# Libs should match Modules/Makefile.  Don't forget to
+# source toplevel setup-pp-embed.csh if you see errors.
+########################################################
+
+PY    = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+PYLIB = $(PY)/libpython1.5.a
+PYINC = -I$(PY)/Include -I$(PY)
+
+LIBS  = -L/usr/lib \
+	-L/usr/X11R6/lib \
+ 	-lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+
+APIDIR  = ../HighLevelApi
+APILIB  = $(APIDIR)/libppembed.a
+APILIBS = -L$(APIDIR) -lppembed
+
+PROGS = order-string order-func order-bytecode
+
+all:	$(PROGS)
+
+order%: order%.o $(APILIB)
+	gcc order$*.o $(APILIBS) $(PYLIB) $(LIBS) -g -export-dynamic -o order$*
+
+order%.o: order%.c ordersfile.h $(APIDIR)/ppembed.h
+	gcc order$*.c -g -c $(PYINC) -I$(APIDIR)
+
+$(APILIB):
+	cd $(APIDIR); make -f makefile.api
+
+clean:
+	rm -f $(PROGS) *.o *.pyc core
+

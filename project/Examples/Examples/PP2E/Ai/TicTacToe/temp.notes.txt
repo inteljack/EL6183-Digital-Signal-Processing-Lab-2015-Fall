@@ -1,0 +1,763 @@
+***PLEASE IGNORE THIS FILE***
+
+
+_grid...
+
+# Intro: Of course, you can get a lot of work done without
+# Canvases too.  In fact, the ideas of packing frames and
+# using grids are often suffiecient for contructing complex
+# GUI layouts.  Our next example demonstrate this idea: it
+# uses a simple grid of labels to build a game board.
+# Tic-tac-toe, naughts-and-crosses, N-across
+# by default, 3-across=ttt, but can vary Degree to change 
+# board size (the number of row and column)
+#
+# - this is an application of grids, but too complex
+#   to show where grids introduced--new case study at end
+#   of gui chapter (?)
+# - probs: pack mixed with grid if GuiMaker is used 
+# - squares = {}   # or append cell to row, row to cols
+# - cells and board share same State objects--changes to 
+#   one auto noticed by other ref--ex of where shared objs
+#   are a Good Thing  (could use lists instead of State attrs);
+#
+# add GuiMaker menus - quit, help=about box
+#   from guimaker import GuiMakerWindow 
+#
+# alt in CountAcrossDown:
+#   countRows = []
+#   for row in range(self.degree):
+#       countRows.append(tally.copy())
+#       for col in range(self.degree):
+#           mark = board[(row, col)]
+#           countRows[row][mark] = countRows[row][mark] + 1
+#
+# ??? Degree chould probably be a self.attr so can vary per 
+# instance in process (as is, can change module-level var
+# from outside, but effects all games created before or after)
+#    -> fixed, but mention diff in text
+#
+# mention uses dicts for oard/counts; alt = [[0]*Degree]*Degree
+# simulates a 2D matrix with a 1D hashtable, where keys=row,col 
+# tuples;  (hash + tuple-compare) versus (offset + offset) -> faster?
+#
+# - mention minimax move lookahead search, versus heuristics only (see sbar)
+# - mention tuple unpacking assigment in heuristic header
+# - mention: originally had all moves selection logic in one
+# big/long method; much more readable when split out into 
+# separate methods--rule of thumb: keep methods short!
+# if you find yourself adding comments before a big block of
+# code because you can't understand what it does, it's probably
+# time to move that block into a named method of its own.
+# - mention that could use frames and pack here too--1 per row,
+# but since I"m goin gto show you how to do this to build a
+# calculator in the text processing chapter, I'll use grid here;
+#
+# ??? test degree = 4, 5, 2;  dumb mode
+# ??? expand or change heuristic score logic?
+# ??? GuiMaker not set up for grid() completely--makeWidgets, framemenus
+# ??? resizing doesnt work
+# ??? smart mode not working
+# --- self.quit fails; Frame.quit(self) works; why???
+#    NO->Frame.quit fails too; need sys.exit()
+#        depends on what is next after test end call;
+#        exits if nothing, else returns (quit doesn't end process)
+#
+#####################################################################
+# Sidebar: Is PyToe artificially intelligent?  (end of chapter)
+# Well, maybe, but it depends on what you call intelligent.
+# PyToe is smart enough to notice imminent wins and losses,
+# and to reasonably select from a set of alternative moves.
+# When a win or loss isn't imminent, it uses a scoring scheme,
+# sometimes called a _heuristic_, to rank the "goodness" of 
+# alternative moves.
+# 
+# But PyToe's view is limited to the next move; it's unable to
+# look ahead through a series of moves and countermoves to
+# analyse the consequences of a given move.  Especially for
+# more complex two-player games such as chess, it's more 
+# traditional to search through all possible moves and 
+# countermoves, and pick moves that maximize the chances of
+# reaching a win, and minimize moves that can lead to a loss.
+# In fact, there's a name for this technique: _minimax_ search.
+# (VERIFY NAME)
+# 
+# Minimax game search is described fully in most AI texts.  But 
+# roughly, such a search generates new boards ("states") for each
+# possible move, with the candidate move made.  For each new board,
+# it then generates boards with all possible countermoves, and so 
+# on, generating all possible moves at each level, and detecting
+# wins and loses along the way.  Such a search lets the program 
+# look ahead in the game to be more informed about the consequences
+# of its actions.  In practice, the search may stop after so many
+# levels of lookahead, and apply a heuristic to score the resulting
+# board state; especially for complex games or large boards, it's 
+# not practical to explore all possible moves and countermoves 
+# to end game states (you'd run out of time and memory).  PyToe
+# picks moves with some intelligence, but has no notion of lookahead;
+# that may be okay for this simple game, but may hurt in others.
+# 
+# But can PyToe be called an "expert system"--a system that encodes 
+# and applies expert-level knowledge?  Again, maybe.  In some sense, 
+# its move selection logic can be viewed as domain knowledge, encoded 
+# in the Python language.  In fact, selects moves more or less the 
+# way I would (though I usually look ahead to possible countermoves
+# too).  General expert systems, though, usually encode domain 
+# knowledge rules in a more symbolic form, and apply it using
+# more general-purpose algorithms called "inference engines".
+# We'll see such a system in the last chapter in this part of
+# the book--the PyExpert expert system shell.
+# 
+# All of which doesn't quite answer the question this sidebar
+# raises.  If pressed, I'd say you could call PyToe intelligent 
+# if you can't tell it's a machine, and if it's smart enough 
+# to beat you on a regular basis.  For me, that's a positive.
+####################################################################
+
+
+
+_dict...
+
+# poss opts:
+#    x make board just marks (not State), use board.copy() (not deepcopy) [this]
+#    - don't board.copy(): make move, recur, unmake move (ok, since depth-1st)
+#    - use arrays for board, indexing (not hash + compare)
+#    - use scoreMove at cutoff depth
+#
+# see tictactoe_times.txt
+#
+# Poss: entire part3 chapter on AI:
+#    - functional programming tools
+#    - gaming
+#    - holmes
+# Intro: Of course, you can get a lot of work done without
+# Canvases too.  In fact, the ideas of packing frames and
+# using grids are often sufficient for contructing complex
+# GUI layouts.  Our next example demonstrate this idea: it
+# uses a simple grid of labels to build a game board.
+# Tic-tac-toe, naughts-and-crosses, N-across
+# by default, 3-across=ttt, but can vary Degree to change 
+# board size (the number of row and column)
+#
+# - this is an application of grids, but too complex
+#   to show where grids introduced--new case study at end
+#   of gui chapter (?)
+# - probs: pack mixed with grid if GuiMaker is used 
+# - squares = {}   # or append cell to row, row to cols
+# - cells and board share same State objects--changes to 
+#   one auto noticed by other ref--ex of where shared objs
+#   are a Good Thing  (could use lists instead of State attrs);
+#
+# add GuiMaker menus - quit, help=about box
+#   from Gui.Tools.guimaker import GuiMakerWindow 
+#
+# alt in CountAcrossDown:
+#   countRows = []
+#   for row in range(self.degree):
+#       countRows.append(tally.copy())
+#       for col in range(self.degree):
+#           mark = board[(row, col)]
+#           countRows[row][mark] = countRows[row][mark] + 1
+#
+# --- Degree csould probably be a self.attr so can vary per 
+# instance in process (as is, can change module-level var
+# from outside, but effects all games created before or after)
+#    -> fixed, but mention diff in text
+#
+# mention uses dicts for oard/counts; alt = [[0]*Degree]*Degree
+# simulates a 2D matrix with a 1D hashtable, where keys=row,col 
+# tuples;  (hash + tuple-compare) versus (offset + offset) -> faster?
+#
+# - mention minimax move lookahead search, versus heuristics only (see sbar)
+# - mention tuple unpacking assigment in heuristic header
+# - mention: originally had all moves selection logic in one
+# big/long method; much more readable when split out into 
+# separate methods--rule of thumb: keep methods short!
+# if you find yourself adding comments before a big block of
+# code because you can't understand what it does, it's probably
+# time to move that block into a named method of its own.
+# - mention that could use frames and pack here too--1 per row,
+# but since I"m goin gto show you how to do this to build a
+# calculator in the text processing chapter, I'll use grid here;
+#
+# grid resolution--use pack instead; to much of a hack to call
+# makeWidgets outside of guimaker classes (need to avoid toplevel
+# frame completely, else won't resize correctly--need grids within 
+# grids, not frames)
+#
+# --- test degree = 4, 5, 2;  naive/dumb mode
+# --- expand or change heuristic score logic?
+# ??? GuiMaker not set up for grid() completely--makeWidgets, framemenus
+# --- resizing doesnt work (does for frames)
+# --- smart mode not working
+# --- self.quit fails; Frame.quit(self) works; why?
+#    NO->Frame.quit fails too; need sys.exit()
+#        depends on what is next after test end call;
+#        exits if nothing, else returns (quit doesn't end process)
+# ---show cmdline exs: 
+#    TicTacToe.py -degree 5 -mode naive -bg blue -fg white -fontsz 30
+#    TicTacToe.py -degree 10 -fontsz 30
+# ---mention precount so each test is a single hash op, not array scan
+#
+# ---isWinFor could reuse checkWin logic; move, ckeck, undo
+#    changed -> now does
+#
+# coding alt: 
+# Notice how the smart mode's move selection logic detects 
+# imminent wins and losses: it mark a candidate move on 
+# the board, rune the end-game win detector, and then unmarks
+# the candidate move.  It plays a sort of 'what if' experiment.
+# I originally coded smart mode's isWin/isLoss tests
+# to use the count arrays rather than the end-game win check, 
+# because I thought it would be faster (hashing versus multiple
+# table scans).  As it turned out, pickMove was fast enough to 
+# appear instantaneous, so I used the end-game chack instead.
+# In fact, move selection is so fast, that I decide to add a 
+# 2-secnd delay (time.sleep(2)), to make it easier for the user
+# to notice which move hte machine picked.  (Years of using 
+# slower AI languages have made me paranoid).
+#               
+#   def isWinFor(self, playerMark, 
+#                (row, col), 
+#                ((countRows, countCols), (countDiag1, countDiag2)) ):
+#       return (
+#           (countCols.get((col, playerMark), 0) == self.degree-1)
+#            or
+#           (countRows.get((row, playerMark), 0) == self.degree-1)
+#            or
+#           (row == col and 
+#            countDiag1[playerMark] == self.degree-1)
+#            or
+#           (row + col == self.degree-1 and 
+#            countDiag2[playerMark] == self.degree-1) )
+#
+#   def isWin(self, move, countMarks): 
+#       return self.isWinFor(self.machineMark, move, countMarks)
+#   def isBlock(self, move, countMarks): 
+#       return self.isWinFor(self.userMark, move, countMarks)
+#
+#--nasty mode seems to lose for -degree 10 -- misses block!
+#     FIXED: wasusing Degree, not self.degree, and need to divide
+#            simplr score by board size, else gets larger than 
+#            moves where patterns kicked in
+#--center not used in nasty
+#     OK! -> the diagonals don't intersect in an even-degree
+#            board (e.g., 10x10), but do if odd (9x9)
+#--remove trace calls
+#
+#???--can be beaten if pick corners 
+#???--write grid/loop versionsas subclasses
+#
+#--alt: empties = filter((lambda coord, b=board: b[coord].mark == Empty), 
+#                         board.keys())
+# ???apply static score at cutoff levels
+# ???verify minimax working: maxdepth correct?  values propogating ok?
+#
+# ??? minimax can still be beaten, if top row picked (lists) or
+# left col picked (dict)
+#
+#####################################################################
+####################################################################
+
+
+
+_lists...
+
+# poss opts:
+#    x make board just marks (not State), use board.copy() (not deepcopy)
+#    x use arrays for board, indexing (not hash + compare) [this]
+#      also speeds draw and checkWin - use 'in' and list.count on entire row
+#    - don't board.copy-- just set mark, recure, set Empty  [has little effect]
+#    - use scoreMove at cutoff depth
+#    - checkFinish should only look for wins at move just made, not all r,c
+#
+# Record class replaces record dictionary
+#
+# see tictactoe_times.txt:
+#
+#   4 times slower on DC power (better diffs, == slower machine)
+#   (occasionally almost as fast on DC, iff CPU not scaled back when starts)
+#
+#   2D lists with row,col,player in checkWin???
+#   2D lists are faster than dict board (1 sec at slow CPU)
+#   mark/reur/empty not much faster than board.copy()
+#   board.copy() much faster than copy.deepcopy()
+#
+# with lists, sometimes delays win, if can make a move that leads to
+# a win 2 ways; depends on order of empties on board
+#
+# note that order of move picks varies between list and dict alts,
+# because list alt checks empties by row and col, and dict alt
+# checks empties by order in dict--board.keys(), which is random, 
+# diff from fixed row/col scan; dict and list versions pick moves
+# identically if dict version uses board.sort() to get fixed order:
+# in findMin and findMax:
+#
+#      b = board.keys()
+#      b.sort()              # order search by (row, col) tuples
+#      for move in b:
+#      #for move in board.keys():
+#
+# enable commented-out traces to see boards
+#
+# note that could also implement board as Button widgets, with 'command'
+# callbacks (se calculator gui in lang chapter); here, coded as labels
+# with mouse buttin press bind callbacks; effect is similar (but no
+# depress effect on push like you get with buttons);
+#
+# Poss: entire part3 chapter on AI:
+#    - functional programming tools
+#    - gaming
+#    - holmes
+# Intro: Of course, you can get a lot of work done without
+# Canvases too.  In fact, the ideas of packing frames and
+# using grids are often sufficient for contructing complex
+# GUI layouts.  Our next example demonstrate this idea: it
+# uses a simple grid of labels to build a game board.
+# Tic-tac-toe, naughts-and-crosses, N-across
+# by default, 3-across=ttt, but can vary Degree to change 
+# board size (the number of row and column)
+#
+# - this is an application of grids, but too complex
+#   to show where grids introduced--new case study at end
+#   of gui chapter (?)
+# - probs: pack mixed with grid if GuiMaker is used 
+# - squares = {}   # or append cell to row, row to cols
+# - cells and board share same State objects--changes to 
+#   one auto noticed by other ref--ex of where shared objs
+#   are a Good Thing  (could use lists instead of State attrs);
+#
+# add GuiMaker menus - quit, help=about box
+#   from guimaker import GuiMakerWindow 
+#
+# alt in CountAcrossDown:
+#   countRows = []
+#   for row in range(self.degree):
+#       countRows.append(tally.copy())
+#       for col in range(self.degree):
+#           mark = board[(row, col)]
+#           countRows[row][mark] = countRows[row][mark] + 1
+#
+# --- Degree csould probably be a self.attr so can vary per 
+# instance in process (as is, can change module-level var
+# from outside, but effects all games created before or after)
+#    -> fixed, but mention diff in text
+#
+# mention uses dicts for oard/counts; alt = [[0]*Degree]*Degree
+# simulates a 2D matrix with a 1D hashtable, where keys=row,col 
+# tuples;  (hash + tuple-compare) versus (offset + offset) -> faster?
+#
+# - mention minimax move lookahead search, versus heuristics only (see sbar)
+# - mention tuple unpacking assigment in heuristic header
+# - mention: originally had all moves selection logic in one
+# big/long method; much more readable when split out into 
+# separate methods--rule of thumb: keep methods short!
+# if you find yourself adding comments before a big block of
+# code because you can't understand what it does, it's probably
+# time to move that block into a named method of its own.
+# - mention that could use frames and pack here too--1 per row,
+# but since I"m goin gto show you how to do this to build a
+# calculator in the text processing chapter, I'll use grid here;
+#
+# grid resolution--use pack instead; to much of a hack to call
+# makeWidgets outside of guimaker classes (need to avoid toplevel
+# frame completely, else won't resize correctly--need grids within 
+# grids, not frames)
+#
+# --- test degree = 4, 5, 2;  naive/dumb mode
+# --- expand or change heuristic score logic?
+# ??? GuiMaker not set up for grid() completely--makeWidgets, framemenus
+# --- resizing doesnt work (does for frames)
+# --- smart mode not working
+# --- self.quit fails; Frame.quit(self) works; why?
+#    NO->Frame.quit fails too; need sys.exit()
+#        depends on what is next after test end call;
+#        exits if nothing, else returns (quit doesn't end process)
+# ---show cmdline exs: 
+#    TicTacToe.py -degree 5 -mode naive -bg blue -fg white -fontsz 30
+#    TicTacToe.py -degree 10 -fontsz 30
+# ---mention precount so each test is a single hash op, not array scan
+#
+# ---isWinFor could reuse checkWin logic; move, ckeck, undo
+#    changed -> now does
+#
+# coding alt: 
+# Notice how the smart mode's move selection logic detects 
+# imminent wins and losses: it mark a candidate move on 
+# the board, rune the end-game win detector, and then unmarks
+# the candidate move.  It plays a sort of 'what if' experiment.
+# I originally coded smart mode's isWin/isLoss tests
+# to use the count arrays rather than the end-game win check, 
+# because I thought it would be faster (hashing versus multiple
+# table scans).  As it turned out, pickMove was fast enough to 
+# appear instantaneous, so I used the end-game chack instead.
+# In fact, move selection is so fast, that I decide to add a 
+# 2-secnd delay (time.sleep(2)), to make it easier for the user
+# to notice which move hte machine picked.  (Years of using 
+# slower AI languages have made me paranoid).
+#               
+#   def isWinFor(self, playerMark, 
+#                (row, col), 
+#                ((countRows, countCols), (countDiag1, countDiag2)) ):
+#       return (
+#           (countCols.get((col, playerMark), 0) == self.degree-1)
+#            or
+#           (countRows.get((row, playerMark), 0) == self.degree-1)
+#            or
+#           (row == col and 
+#            countDiag1[playerMark] == self.degree-1)
+#            or
+#           (row + col == self.degree-1 and 
+#            countDiag2[playerMark] == self.degree-1) )
+#
+#   def isWin(self, move, countMarks): 
+#       return self.isWinFor(self.machineMark, move, countMarks)
+#   def isBlock(self, move, countMarks): 
+#       return self.isWinFor(self.userMark, move, countMarks)
+#
+#--nasty mode seems to lose for -degree 10 -- misses block!
+#     FIXED: wasusing Degree, not self.degree, and need to divide
+#            simplr score by board size, else gets larger than 
+#            moves where patterns kicked in
+#--center not used in nasty
+#     OK! -> the diagonals don't intersect in an even-degree
+#            board (e.g., 10x10), but do if odd (9x9)
+#--remove trace calls
+#
+#???--can be beaten if pick corners 
+#     - too pesimistic; if all look like min can win (-1),
+#       use static eval at top;
+#           => DONE, 11/11 (can still beat, but not by 
+#              picking all in top row, r-to-l)
+#???--write grid/loop version as subclasses
+#???--add text mode as subclass; loop version?
+#???--recode to only check win for last mover (or exercise)
+#
+#--alt: empties = filter((lambda coord, b=board: b[coord].mark == Empty), 
+#                         board.keys())
+#--this fails:  self.board = [[0] * self.degree] * self.degree              
+#--note 3L formula in expert2; else overflows normal int
+#
+# ???apply static score at cutoff levels
+# ???verify minimax working: maxdepth correct?  values propogating ok?
+#
+#####################################################################
+#
+# exponential nature of gaem tree searches
+# minimax not practical for larger boards
+# as is, at degree=5, after opening move by user, there are:
+#     24 * 23 * 22 * 21 * 20 = 5,100, 480 board states to analyse
+#       - 25 slots - 1 taken = 24 possible moves
+#       - for each othe 24 possible moves, there are 23 countermoves (2 taken)
+#       - for each of the 23 countermoves, 22 possible next moves (3 taken)
+#       - maxDepth will be 1 (numer marks) + 4 = 5 levels deep
+# work totally pointless on larger boards, since neither player will 
+#   reach a win after just 5 moves
+# need to stop and statically score board a some fixed depth
+# alpha-beta cutoff helps trim search space
+#
+# self.after_idle(self.machineMove)
+#  doe not work to keep gui active while piccking move; 
+#  no widget updates while 'thinking'; could code move
+#  picker as a thread, call self.update before start a
+#  new search node, etc.
+#
+#show 3 alts: all poss dueto fact that classes are rt objs, not decls
+#
+#def TicTacToe(mode=Mode, **args):
+#    try:
+#        classname = 'TicTacToe' + mode            # e.g., -mode Minimax
+#        classobj  = eval(classname)               # get class by string name
+#    except:
+#        print 'Bad -mode flag value:', mode
+#    return apply(eval(classname), (), args)       # run class constructor
+#
+#
+#    classes = {'random':  TicTacToeRandom,
+#               'smart':   TicTacToeSmart,
+#               'expert1': TicTacToeExpert1,
+#               'expert2': TicTacToeExpert2,
+#               'minimax': TicTacToeMinimax}
+#    try: 
+#        return apply(classes[mode], (), args)
+#    except KeyError:
+#        print 'Bad -mode flag value:', mode
+#
+#
+#    if mode == 'random':
+#        return apply(TicTacToeRandom,  (), args)
+#    if mode == 'smart':
+#        return apply(TicTacToeSmart, (), args)
+#    if mode == 'expert1':
+#        return apply(TicTacToeExpert1, (), args)
+#    if mode == 'expert2':
+#        return apply(TicTacToeExpert2, (), args)
+#    if mode == 'minimax':
+#        return apply(TicTacToeMinimax, (), args)
+#    assert 0, 'Bad mode argument'
+#####################################################################
+# Sidebar: Is PyToe artificially intelligent?  (end of chapter)
+# Well, maybe, but it depends on what you call intelligent.
+# PyToe is smart enough to notice imminent wins and losses,
+# and to reasonably select from a set of alternative moves.
+# When a win or loss isn't imminent, it uses a scoring scheme,
+# sometimes called a _heuristic_, to rank the "goodness" of 
+# alternative moves.
+# 
+# But PyToe's view is limited to the next move; it's unable to
+# look ahead through a series of moves and countermoves to
+# analyse the consequences of a given move.  Especially for
+# more complex two-player games such as chess, it's more 
+# traditional to search through all possible moves and 
+# countermoves, and pick moves that maximize the chances of
+# reaching a win, and minimize moves that can lead to a loss.
+# In fact, there's a name for this technique: _minimax_ search.
+# (VERIFY NAME)
+# 
+# Minimax game search is described fully in most AI texts.  But 
+# roughly, such a search generates new boards ("states") for each
+# possible move, with the candidate move made.  For each new board,
+# it then generates boards with all possible countermoves, and so 
+# on, generating all possible moves at each level, and detecting
+# wins and loses along the way.  Such a search lets the program 
+# look ahead in the game to be more informed about the consequences
+# of its actions.  In practice, the search may stop after so many
+# levels of lookahead, and apply a heuristic to score the resulting
+# board state; especially for complex games or large boards, it's 
+# not practical to explore all possible moves and countermoves 
+# to end game states (you'd run out of time and memory).  PyToe
+# picks moves with some intelligence, but has no notion of lookahead;
+# that may be okay for this simple game, but may hurt in others.
+# (Acutally, the 'nasty' mode's scoring system accounts for wins
+# and losses 2 moves away; but to look further ahead, we'd need
+# to kepp adding hard-coded rules, and this is less than a general
+# algorithm solution).
+# 
+# But can PyToe be called an "expert system"--a system that encodes 
+# and applies expert-level knowledge?  Again, maybe.  In some sense, 
+# its move selection logic can be viewed as domain knowledge, encoded 
+# in the Python language.  In fact, selects moves more or less the 
+# way I would (though I usually look ahead to possible countermoves
+# too).  General expert systems, though, usually encode domain 
+# knowledge rules in a more symbolic form, and apply it using
+# more general-purpose algorithms called "inference engines".
+# We'll see such a system in the last chapter in this part of
+# the book--the PyExpert expert system shell.
+####################################################################
+
+
+
+
+_loop...
+
+# Intro: Of course, you can get a lot of work done without
+# Canvases too.  In fact, the ideas of packing frames and
+# using grids are often suffiecient for contructing complex
+# GUI layouts.  Our next example demonstrate this idea: it
+# uses a simple grid of labels to build a game board.
+# Tic-tac-toe, naughts-and-crosses, N-across
+# by default, 3-across=ttt, but can vary Degree to change 
+# board size (the number of row and column)
+#
+# - this is an application of grids, but too complex
+#   to show where grids introduced--new case study at end
+#   of gui chapter (?)
+# - probs: pack mixed with grid if GuiMaker is used 
+# - squares = {}   # or append cell to row, row to cols
+# - cells and board share same State objects--changes to 
+#   one auto noticed by other ref--ex of where shared objs
+#   are a Good Thing  (could use lists instead of State attrs);
+#
+# add GuiMaker menus - quit, help=about box
+#   from guimaker import GuiMakerWindow 
+#
+# alt in CountAcrossDown:
+#   countRows = []
+#   for row in range(self.degree):
+#       countRows.append(tally.copy())
+#       for col in range(self.degree):
+#           mark = board[(row, col)]
+#           countRows[row][mark] = countRows[row][mark] + 1
+#
+# ??? Degree chould probably be a self.attr so can vary per 
+# instance in process (as is, can change module-level var
+# from outside, but effects all games created before or after)
+#    -> fixed, but mention diff in text
+#
+# mention uses dicts for oard/counts; alt = [[0]*Degree]*Degree
+# simulates a 2D matrix with a 1D hashtable, where keys=row,col 
+# tuples;  (hash + tuple-compare) versus (offset + offset) -> faster?
+#
+# - mention minimax move lookahead search, versus heuristics only (see sbar)
+# - mention tuple unpacking assigment in heuristic header
+# - mention: originally had all moves selection logic in one
+# big/long method; much more readable when split out into 
+# separate methods--rule of thumb: keep methods short!
+# if you find yourself adding comments before a big block of
+# code because you can't understand what it does, it's probably
+# time to move that block into a named method of its own.
+# - mention that could use frames and pack here too--1 per row,
+# but since I"m goin gto show you how to do this to build a
+# calculator in the text processing chapter, I'll use grid here;
+#
+# ??? test degree = 4, 5, 2;  dumb mode
+# ??? expand or change heuristic score logic?
+# ??? GuiMaker not set up for grid() completely--makeWidgets, framemenus
+# ??? resizing doesnt work
+# ??? smart mode not working
+# --- self.quit fails; Frame.quit(self) works; why???
+#    NO->Frame.quit fails too; need sys.exit()
+#        depends on what is next after test end call;
+#        exits if nothing, else returns (quit doesn't end process)
+#
+# ??? recoded with explicit play() loop, not sys.exit();
+# explain wait_variable(var): puases caller until the 
+# variable (a Tkinter variable, not plain Python var) has
+# changed value; set in button-press handler; other GUI 
+# actions and events are processed during wait, so screen
+# will redraw, File/Quit ends program/gui, etc.; Tkinter
+# vars are global in scope, but Tkinter auto generates 
+# and uses unique Tk var names behind the scenes--treat
+# like normal Python objects;
+# show older version as alt coding:
+#    ???  (is the alt more event driven?)
+#        What if they click mouse before loop gets back to wait?
+#
+#####################################################################
+###################################################################
+
+
+
+
+_slow...
+
+# Poss: entire part3 chapter on AI:
+#    - functional programming tools
+#    - gaming
+#    - holmes
+# Intro: Of course, you can get a lot of work done without
+# Canvases too.  In fact, the ideas of packing frames and
+# using grids are often sufficient for contructing complex
+# GUI layouts.  Our next example demonstrate this idea: it
+# uses a simple grid of labels to build a game board.
+# Tic-tac-toe, naughts-and-crosses, N-across
+# by default, 3-across=ttt, but can vary Degree to change 
+# board size (the number of row and column)
+#
+# - this is an application of grids, but too complex
+#   to show where grids introduced--new case study at end
+#   of gui chapter (?)
+# - probs: pack mixed with grid if GuiMaker is used 
+# - squares = {}   # or append cell to row, row to cols
+# - cells and board share same State objects--changes to 
+#   one auto noticed by other ref--ex of where shared objs
+#   are a Good Thing  (could use lists instead of State attrs);
+#
+# add GuiMaker menus - quit, help=about box
+#   from guimaker import GuiMakerWindow 
+#
+# alt in CountAcrossDown:
+#   countRows = []
+#   for row in range(self.degree):
+#       countRows.append(tally.copy())
+#       for col in range(self.degree):
+#           mark = board[(row, col)]
+#           countRows[row][mark] = countRows[row][mark] + 1
+#
+# --- Degree csould probably be a self.attr so can vary per 
+# instance in process (as is, can change module-level var
+# from outside, but effects all games created before or after)
+#    -> fixed, but mention diff in text
+#
+# mention uses dicts for oard/counts; alt = [[0]*Degree]*Degree
+# simulates a 2D matrix with a 1D hashtable, where keys=row,col 
+# tuples;  (hash + tuple-compare) versus (offset + offset) -> faster?
+#
+# - mention minimax move lookahead search, versus heuristics only (see sbar)
+# - mention tuple unpacking assigment in heuristic header
+# - mention: originally had all moves selection logic in one
+# big/long method; much more readable when split out into 
+# separate methods--rule of thumb: keep methods short!
+# if you find yourself adding comments before a big block of
+# code because you can't understand what it does, it's probably
+# time to move that block into a named method of its own.
+# - mention that could use frames and pack here too--1 per row,
+# but since I"m goin gto show you how to do this to build a
+# calculator in the text processing chapter, I'll use grid here;
+#
+# grid resolution--use pack instead; to much of a hack to call
+# makeWidgets outside of guimaker classes (need to avoid toplevel
+# frame completely, else won't resize correctly--need grids within 
+# grids, not frames)
+#
+# --- test degree = 4, 5, 2;  naive/dumb mode
+# --- expand or change heuristic score logic?
+# ??? GuiMaker not set up for grid() completely--makeWidgets, framemenus
+# --- resizing doesnt work (does for frames)
+# --- smart mode not working
+# --- self.quit fails; Frame.quit(self) works; why?
+#    NO->Frame.quit fails too; need sys.exit()
+#        depends on what is next after test end call;
+#        exits if nothing, else returns (quit doesn't end process)
+# ---show cmdline exs: 
+#    TicTacToe.py -degree 5 -mode naive -bg blue -fg white -fontsz 30
+#    TicTacToe.py -degree 10 -fontsz 30
+# ---mention precount so each test is a single hash op, not array scan
+#
+# ---isWinFor could reuse checkWin logic; move, ckeck, undo
+#    changed -> now does
+#
+# coding alt: 
+# Notice how the smart mode's move selection logic detects 
+# imminent wins and losses: it mark a candidate move on 
+# the board, rune the end-game win detector, and then unmarks
+# the candidate move.  It plays a sort of 'what if' experiment.
+# I originally coded smart mode's isWin/isLoss tests
+# to use the count arrays rather than the end-game win check, 
+# because I thought it would be faster (hashing versus multiple
+# table scans).  As it turned out, pickMove was fast enough to 
+# appear instantaneous, so I used the end-game chack instead.
+# In fact, move selection is so fast, that I decide to add a 
+# 2-secnd delay (time.sleep(2)), to make it easier for the user
+# to notice which move hte machine picked.  (Years of using 
+# slower AI languages have made me paranoid).
+#               
+#   def isWinFor(self, playerMark, 
+#                (row, col), 
+#                ((countRows, countCols), (countDiag1, countDiag2)) ):
+#       return (
+#           (countCols.get((col, playerMark), 0) == self.degree-1)
+#            or
+#           (countRows.get((row, playerMark), 0) == self.degree-1)
+#            or
+#           (row == col and 
+#            countDiag1[playerMark] == self.degree-1)
+#            or
+#           (row + col == self.degree-1 and 
+#            countDiag2[playerMark] == self.degree-1) )
+#
+#   def isWin(self, move, countMarks): 
+#       return self.isWinFor(self.machineMark, move, countMarks)
+#   def isBlock(self, move, countMarks): 
+#       return self.isWinFor(self.userMark, move, countMarks)
+#
+#--nasty mode seems to lose for -degree 10 -- misses block!
+#     FIXED: wasusing Degree, not self.degree, and need to divide
+#            simplr score by board size, else gets larger than 
+#            moves where patterns kicked in
+#--center not used in nasty
+#     OK! -> the diagonals don't intersect in an even-degree
+#            board (e.g., 10x10), but do if odd (9x9)
+#--remove trace calls
+#
+#???--can be beaten if pick corners 
+#???--write grid/loop versionsas subclasses
+#
+#       empties = filter((lambda coord, b=board: b[coord].mark == Empty), 
+#                         board.keys())
+#
+#####################################################################
+#####################################################################
+
+
+

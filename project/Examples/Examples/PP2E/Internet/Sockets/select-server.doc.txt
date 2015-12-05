@@ -1,0 +1,175 @@
+#################################################################
+# Server: handle multiple clients in parallel with select.
+# use the select module to multiplex among a set of sockets:
+# main sockets which accept new client connections, and 
+# input sockets connected to accepted clients; the select
+# call can either poll or wait for a set of input and output
+# streams to be ready for reading and writing (and exceptions), 
+# such that socket calls like accept and recv will not block;
+# it works only on sockets under Windows, but also on things 
+# like pipes on Unix anc Macs.  select is an alternative to 
+# spawning threads and processes and provides good performance 
+# for short transactions (but is still open to blocking in some 
+# cases; also see asyncore.py in the Python standard library: a
+# class based callback model dispatched by a select event loop;
+# select takes 3 lists of selectable objects (input, output, 
+# exceptions), plus a timeout; timeout may be a wait expiration
+# in seconds, zero to mean poll and return immediately, or 
+# ommitted to mean wait until at least one object is ready; 
+# returns triple of ready objects--a subset of 1st 3 args,
+# any or all of which may be empty if timeout expired; note
+# that a time.sleep call to simulate long-running task doesn't
+# make sense here--all clients handled on same, single loop; 
+#################################################################
+
+ALSO: MAKING SOCKETS NON-BLOCKING:
+
+setblocking (flag) 
+  Set blocking or non-blocking mode of the socket: if flag is 0, the 
+  socket is set to non-blocking, else to blocking mode. Initially all 
+  sockets are in blocking mode. In non-blocking mode, if a recv() call 
+  doesn't find any data, or if a send call can't immediately dispose of
+  the data, a error exception is raised; in blocking mode, the calls 
+  block until they can proceed. 
+
+
+--------------------------------------------------------------------------
+
+[client window 1]
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python echo-client.py
+Client received: 'Echo=>Hello network world at Sun Aug 13 22:52:01 2000'
+
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python echo-client.py
+Client received: 'Echo=>Hello network world at Sun Aug 13 22:52:03 2000'
+
+
+[client window 2]
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python echo-client-50008.py localhost
+ Bigus Dikkus
+Client received: 'Echo=>Bigus at Sun Aug 13 22:52:57 2000'
+Client received: 'Echo=>Dikkus at Sun Aug 13 22:52:57 2000'
+
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python testecho.py
+...
+
+
+
+
+[server window]
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python select-server.py
+select-server loop starting
+Connect: ('127.0.0.1', 1175) 7965520
+        got Hello network world on 7965520
+        got  on 7965520
+Connect: ('127.0.0.1', 1176) 7964288
+        got Hello network world on 7964288
+        got  on 7964288
+Connect: ('127.0.0.1', 1177) 7963920
+        got Bigus on 7963920
+        got Dikkus on 7963920
+        got  on 7963920
+---
+Connect: ('127.0.0.1', 1178) 7965216
+        got Hello network world on 7965216
+        got  on 7965216
+Connect: ('127.0.0.1', 1179) 7963968
+Connect: ('127.0.0.1', 1180) 7965424
+        got Hello network world on 7963968
+Connect: ('127.0.0.1', 1181) 7962976
+        got Hello network world on 7965424
+        got  on 7963968
+        got Hello network world on 7962976
+        got  on 7965424
+        got  on 7962976
+Connect: ('127.0.0.1', 1182) 7963648
+        got Hello network world on 7963648
+        got  on 7963648
+Connect: ('127.0.0.1', 1183) 7966640
+        got Hello network world on 7966640
+        got  on 7966640
+Connect: ('127.0.0.1', 1184) 7966496
+        got Hello network world on 7966496
+        got  on 7966496
+Connect: ('127.0.0.1', 1185) 7965888
+        got Hello network world on 7965888
+        got  on 7965888
+---
+Connect: ('127.0.0.1', 1186) 7965536
+Connect: ('127.0.0.1', 1187) 7966224
+        got Hello network world on 7965536
+Connect: ('127.0.0.1', 1188) 7964080
+        got Hello network world on 7966224
+Connect: ('127.0.0.1', 1189) 7963552
+        got  on 7965536
+        got Hello network world on 7964080
+Connect: ('127.0.0.1', 1190) 7963872
+        got  on 7966224
+        got Hello network world on 7963552
+Connect: ('127.0.0.1', 1191) 7965056
+        got  on 7964080
+        got Hello network world on 7963872
+Connect: ('127.0.0.1', 1192) 7965104
+        got  on 7963552
+        got Hello network world on 7965056
+Connect: ('127.0.0.1', 1193) 7965472
+        got  on 7963872
+        got Hello network world on 7965104
+        got  on 7965056
+        got  on 7965104
+        got Hello network world on 7965472
+        got  on 7965472
+---
+Connect: ('127.0.0.1', 1202) 7966176
+Connect: ('127.0.0.1', 1203) 7963024
+        got Hello network world on 7966176
+Connect: ('127.0.0.1', 1204) 7965712
+        got Hello network world on 7963024
+        got  on 7966176
+        got Hello network world on 7965712
+        got  on 7963024
+        got  on 7965712
+Connect: ('127.0.0.1', 1205) 7966176
+        got Hello network world on 7966176
+        got  on 7966176
+Connect: ('127.0.0.1', 1206) 7965712
+        got Hello network world on 7965712
+        got  on 7965712
+Connect: ('127.0.0.1', 1207) 7965424
+Connect: ('127.0.0.1', 1208) 7966128
+        got Hello network world on 7965424
+        got Hello network world on 7966128
+        got  on 7965424
+        got  on 7966128
+Connect: ('127.0.0.1', 1209) 7965216
+        got Hello network world on 7965216
+        got  on 7965216
+---
+Connect: ('127.0.0.1', 1218) 7965056
+        got Hello network world on 7965056
+Connect: ('127.0.0.1', 1219) 7966688
+Connect: ('127.0.0.1', 1220) 7963920
+        got  on 7965056
+        got Hello network world on 7966688
+Connect: ('127.0.0.1', 1221) 7963552
+        got Hello network world on 7963920
+Connect: ('127.0.0.1', 1222) 7965904
+        got  on 7966688
+        got Hello network world on 7963552
+Connect: ('127.0.0.1', 1223) 7966288
+        got  on 7963920
+        got Hello network world on 7965904
+        got  on 7963552
+        got Hello network world on 7966288
+        got  on 7965904
+        got  on 7966288
+Connect: ('127.0.0.1', 1224) 7963552
+        got Hello network world on 7963552
+        got  on 7963552
+Connect: ('127.0.0.1', 1225) 7966640
+        got Hello network world on 7966640
+        got  on 7966640
+
+
+
+
+

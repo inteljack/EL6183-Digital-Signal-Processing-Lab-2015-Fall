@@ -1,0 +1,24 @@
+# build all 5 basic embedding examples 
+# with external module libs linked in;
+# source setup-pp-embed.csh if needed
+
+PY    = $(MYPY)
+PYLIB = $(PY)/libpython1.5.a
+PYINC = -I$(PY)/Include -I$(PY)
+
+LIBS = -L/usr/lib \
+       -L/usr/X11R6/lib \
+       -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+
+BASICS = embed-simple embed-string embed-object embed-dict embed-bytecode
+
+all:	$(BASICS)
+
+embed%: embed%.o
+	gcc embed$*.o $(PYLIB) $(LIBS) -g -export-dynamic -o embed$*
+
+embed%.o: embed%.c
+	gcc embed$*.c -c -g $(PYINC)
+
+clean:
+	rm -f *.o *.pyc $(BASICS) core

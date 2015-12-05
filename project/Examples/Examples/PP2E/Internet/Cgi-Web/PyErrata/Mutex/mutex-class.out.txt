@@ -1,0 +1,76 @@
+[mark@toy ...Internet/Cgi-Web/PyErrata/Mutex]$ python launch-mutex.py
+1035 start mutex writer
+1035 got write lock
+1037 start mutex reader
+1040 start mutex reader
+1038 start mutex writer
+1041 start mutex reader
+1039 start mutex writer
+1036 start mutex reader
+1042 start mutex writer
+1035 unlocking
+
+1037 got read lock
+1041 got read lock
+1040 got read lock
+1036 got read lock
+lines so far:     137 Shared.txt
+1036 unlocking
+
+lines so far:     137 Shared.txt
+1041 unlocking
+
+lines so far:     137 Shared.txt
+1040 unlocking
+
+lines so far:     137 Shared.txt
+1037 unlocking
+
+1038 got write lock
+1038 unlocking
+
+1039 got write lock
+1039 unlocking
+
+1042 got write lock
+1042 unlocking
+
+
+[mark@toy ...Internet/Cgi-Web/PyErrata/Mutex]$ cat test.log
+960920109.518   Requested: 1035, writer
+960920109.518   Aquired: 1035
+960920109.626   Requested: 1040, reader
+960920109.646   Requested: 1038, writer
+960920109.647   Requested: 1037, reader
+960920109.661   Requested: 1041, reader
+960920109.674   Requested: 1039, writer
+960920109.69    Requested: 1036, reader
+960920109.701   Requested: 1042, writer
+960920112.535   Released: 1035
+960920112.542   Aquired: 1037
+960920112.55    Aquired: 1041
+960920112.557   Aquired: 1040
+960920112.564   Aquired: 1036
+960920115.601   Released: 1036
+960920115.63    Released: 1041
+960920115.657   Released: 1040
+960920115.681   Released: 1037
+960920115.681   Aquired: 1038
+960920118.689   Released: 1038
+960920118.696   Aquired: 1039
+960920121.709   Released: 1039
+960920121.716   Aquired: 1042
+960920124.728   Released: 1042
+
+
+[mark@toy ...Internet/Cgi-Web/PyErrata/Mutex]$ cat Shared.txt
+1010 Hello
+1016 Hello
+1019 Hello
+1020 Hello
+1023 Hello
+1035 Hello
+1038 Hello
+1039 Hello
+1042 Hello
+

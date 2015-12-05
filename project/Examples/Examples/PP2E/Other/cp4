@@ -1,0 +1,3 @@
+#!/usr/local/bin/python
+import sys       
+map(sys.stdout.write, sys.stdin.readlines() )   # apply method

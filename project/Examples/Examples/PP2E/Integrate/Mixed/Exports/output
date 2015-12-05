@@ -1,0 +1,360 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ make -f makefile.exports
+clean
+rm -f *.o *.so *.pyc core prog1 prog2 prog3
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ ls
+ClassAndMod     cinterface.h     makefile.exports  runpy.h     scripttools.py
+README          defaultlookup.c  output            script1.py
+cinterface.c    main-function.c  output.prog1      script2.py
+cinterface.doc  main-table.c     runpy.c           script3.py
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ make -f makefile.exports
+gcc main-table.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/ho
+me/mark/python1.5.2-ddjcd/Python-1.5.2 -o main-table.o
+gcc runpy.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/ma
+rk/python1.5.2-ddjcd/Python-1.5.2 -I../../Embed/HighLevelApi
+gcc main-table.o runpy.o \
+                    ../../Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2
+-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0
+-ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog1
+gcc cinterface.c defaultlookup.c \
+                -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/m
+ark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cinterface-default.so
+cp cinterface-default.so cinterface.so
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ ls
+ClassAndMod            cinterface.so     output        script1.py
+README                 defaultlookup.c   output.prog1  script2.py
+cinterface-default.so  main-function.c   prog1         script3.py
+cinterface.c           main-table.c      runpy.c       scripttools.py
+cinterface.doc         main-table.o      runpy.h
+cinterface.h           makefile.exports  runpy.o
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ make -f makefile.exports
+gcc main-table.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -o main-table.o
+gcc runpy.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I../../Embed/HighLevelApi
+cd ../../Embed/HighLevelApi; make -f makefile.api
+make[1]: Entering directory `/home/mark/PP2ndEd/dev/examples/Part3/Embed/HighLevelApi'
+gcc ppembed-modules.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-globals.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-strings.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-callables.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-attributes.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+gcc ppembed-errors.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+ar -crv libppembed.a ppembed-modules.o ppembed-globals.o ppembed-strings.o ppembed-callables.o ppembed-attributes.o ppembed-errors.o
+a - ppembed-modules.o
+a - ppembed-globals.o
+a - ppembed-strings.o
+a - ppembed-callables.o
+a - ppembed-attributes.o
+a - ppembed-errors.o
+rm -f ppembed-modules.o ppembed-globals.o ppembed-strings.o ppembed-callables.o ppembed-attributes.o ppembed-errors.o
+make[1]: Leaving directory `/home/mark/PP2ndEd/dev/examples/Part3/Embed/HighLevelApi'
+gcc main-table.o runpy.o \
+                    ../../Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog1
+gcc cinterface.c defaultlookup.c \
+                -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cinterface-default.so
+cp cinterface-default.so cinterface.so
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ prog1
+Built-in exception class not found: EnvironmentError.  Library mismatch?
+Warning!  Falling back to string-based exceptions
+Can't import module cinterface
+Exception type:  ImportError
+Exception data:  No module named cinterface
+Exception trace: <unknown exception traceback>
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+                                                             
+Starting script1.py
+Can't run code string
+Exception type:  ImportError
+Exception data:  No module named runpy
+Exception trace: <unknown exception traceback>
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting script2.py
+Can't run code string
+Exception type:  ImportError
+Exception data:  No module named runpy
+Exception trace: <unknown exception traceback>
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting script3.py
+Can't run code string
+Exception type:  ImportError
+Exception data:  No module named runpy
+Exception trace: <unknown exception traceback>
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ source $PP2E/setup-pp-embed.csh
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ prog1
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting script1.py
+in script1...
+vars in Python: aa=0 bb=42 cc= dd=Cspam ee=3.14159011841
+cvar.stats = (6, 0)
+cvar.stats = (11, 5)
+vars in Python: aa=42 bb=1764 cc=spam dd=eggs ee=8.0
+vars in C:      aa=42 bb=1764 cc=spam dd=eggs ee=8.000000
+
+Starting script2.py
+in script2...
+vars in Python: aa=42 bb=1764 cc=spam dd=eggs ee=8.0
+spam
+eggs
+s
+p
+a
+m
+vars in Python: aa=42 bb=1764 cc=spam dd=eggsspam ee=8.0
+vars in C:      aa=42 bb=1764 cc=spam dd=eggsspam ee=8.000000
+
+Starting script3.py
+in script3...
+aa = 42
+bb = 1764
+cc = spam
+dd = eggsspam
+ee = 8.0
+cvar.stats  = (39, 10)
+exceptions.AttributeError xx
+cinterface.error Cvar name not found
+exceptions.TypeError illegal argument type for built-in operation
+exceptions.AttributeError xx
+dir(cvar)   = ['stats']
+cvar.stats  = (44, 12)
+sys.modules = ['os.path', 'os', 'exceptions', '__main__', 'posix', 'runpy', 'sys', '__builtin__', 'site', 'scripttools', 'signal', 'UserDict', 'cinterface', 'posixpath', 'stat']
+cvar.aa, the hard way: 42
+vars in Python: aa=42 bb=1764 cc=Bye dd=eggsspam ee=8.0
+vars in C:      aa=42 bb=1764 cc=Bye dd=eggsspam ee=8.000000
+Finished.
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ make -f makefile.exports test1
+cp cinterface-default.so cinterface.so
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ prog1 > ttt
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ diff ttt output.prog1
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ make -f makefile.exports test2
+gcc main-function.o runpy.o \
+                    ../../Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog2
+gcc cinterface.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -fpic -shared -o cinterface-custom.so
+cp cinterface-custom.so cinterface.so
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ prog2 > ttt
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ diff ttt output.prog1
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ make -f makefile.exports test3
+gcc -c defaultlookup.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -o defaultlookup.o
+gcc main-table.o runpy.o defaultlookup.o \
+                    ../../Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog3
+cp cinterface-custom.so cinterface.so
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ prog3 > ttt
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ diff ttt output.prog1
+
+
+
+===============================================================================
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ cd ClassAndMod/
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ make -f makef
+ile.exports-class clean
+rm -f *.o *.so *.pyc core prog1
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ ls
+cinterface.py    main-table.c            output.prog1
+cinterfacemod.c  makefile.exports-class  setup-class.csh
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ make -f makef
+ile.exports-class
+gcc main-table.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/ho
+me/mark/python1.5.2-ddjcd/Python-1.5.2 -I.. -o main-table.o
+cd ..; make -f makefile.exports runpy.o
+make[1]: Entering directory `/home/mark/PP2ndEd/dev/examples/Part3/Mixed/Exports
+'
+gcc runpy.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/ma
+rk/python1.5.2-ddjcd/Python-1.5.2 -I../../Embed/HighLevelApi
+make[1]: Leaving directory `/home/mark/PP2ndEd/dev/examples/Part3/Mixed/Exports'
+gcc main-table.o ../runpy.o \
+                    ../../../Embed/HighLevelApi/libppembed.a /home/mark/python1.
+5.2-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8
+.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog1
+gcc cinterfacemod.c ../defaultlookup.c \
+                -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/m
+ark/python1.5.2-ddjcd/Python-1.5.2 -I.. -fpic -shared -o cinterfacemod.so
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ ls
+cinterface.py     main-table.c            output.prog1
+cinterfacemod.c   main-table.o            prog1
+cinterfacemod.so  makefile.exports-class  setup-class.csh
+
+
+[after prog1]
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ ls
+cinterface.py    cinterfacemod.so  makefile.exports-class  setup-class.csh
+cinterface.pyc   main-table.c      output.prog1
+cinterfacemod.c  main-table.o      prog1                                     
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ make -f makefile.exports-class
+gcc main-table.c -g -c -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I.. -o main-table.o
+gcc main-table.o ../runpy.o \
+                    ../../../Embed/HighLevelApi/libppembed.a /home/mark/python1.5.2-ddjcd/Python-1.5.2/libpython1.5.a   -L/usr/lib -L/usr/X11R6/lib -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl -g -export-dynamic -o prog1
+gcc cinterfacemod.c ../defaultlookup.c \
+                -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -I.. -fpic -shared -o cinterfacemod.so
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ prog1
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting ../script1.py
+in script1...
+Can't run code object
+Exception type:  exceptions.ImportError
+Exception data:  No module named scripttools
+Exception trace: Traceback (innermost last):
+  File "<PP_Compile_Codestr>", line 8, in ?
+
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting ../script2.py
+in script2...
+Can't run code object
+Exception type:  exceptions.ImportError
+Exception data:  No module named scripttools
+Exception trace: Traceback (innermost last):
+  File "<PP_Compile_Codestr>", line 2, in ?
+
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting ../script3.py
+in script3...
+Can't run code object
+Exception type:  exceptions.ImportError
+Exception data:  No module named scripttools
+Exception trace: Traceback (innermost last):
+  File "<PP_Compile_Codestr>", line 3, in ?
+
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ source setup-class.csh 
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ prog1
+vars in C:      aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting ../script1.py
+in script1...
+vars in Python: aa=0 bb=42 cc= dd=Cspam ee=3.14159011841
+cvar.stats = (6, 0)
+cvar.stats = (11, 5)
+vars in Python: aa=42 bb=1764 cc=spam dd=eggs ee=8.0
+vars in C:      aa=42 bb=1764 cc=spam dd=eggs ee=8.000000
+
+Starting ../script2.py
+in script2...
+vars in Python: aa=42 bb=1764 cc=spam dd=eggs ee=8.0
+spam
+eggs
+s
+p
+a
+m
+vars in Python: aa=42 bb=1764 cc=spam dd=eggsspam ee=8.0
+vars in C:      aa=42 bb=1764 cc=spam dd=eggsspam ee=8.000000
+
+Starting ../script3.py
+in script3...
+aa = 42
+bb = 1764
+cc = spam
+dd = eggsspam
+ee = 8.0
+cvar.stats  = (39, 10)
+cinterfacemod.error Cvar name not found
+cinterfacemod.error Cvar name not found
+exceptions.TypeError Cvar type conversion                   
+exceptions.AttributeError xx
+dir(cvar)   = ['count']
+cvar.stats  = (43, 12)
+sys.modules = ['os.path', 'os', 'exceptions', '__main__', 'cinterfacemod', 'posix', 'runpy', 'sys', '__builtin__', 'site', 'scripttools', 'signal', 'UserDict', 'cinterface', 'posixpath', 'stat']
+cvar.aa, the hard way: 42
+vars in Python: aa=42 bb=1764 cc=Bye dd=eggsspam ee=8.0
+vars in C:      aa=42 bb=1764 cc=Bye dd=eggsspam ee=8.000000
+Finished.
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports/ClassAndMod]$ diff output.prog1 ../output.prog1
+3c3
+< Starting ../script1.py
+---
+> Starting script1.py
+11c11
+< Starting ../script2.py
+---
+> Starting script2.py
+23c23
+< Starting ../script3.py
+---
+> Starting script3.py
+31,33d30
+< cinterfacemod.error Cvar name not found
+< cinterfacemod.error Cvar name not found
+< exceptions.TypeError Cvar type conversion
+35,37c32,37
+< dir(cvar)   = ['count']
+< cvar.stats  = (43, 12)
+< sys.modules = ['os.path', 'os', 'exceptions', '__main__', 'cinterfacemod', 'posix', 'runpy', 'sys', '__builtin__', 'site', 'scripttools', 'signal', 'UserDict', 'cinterface', 'posixpath', 'stat']
+---
+> cinterface.error Cvar name not found
+> exceptions.TypeError illegal argument type for built-in operation
+> exceptions.AttributeError xx
+> dir(cvar)   = ['stats']
+> cvar.stats  = (44, 12)
+> sys.modules = ['os.path', 'os', 'exceptions', '__main__', 'posix', 'runpy', 'sys', '__builtin__', 'site', 'scripttools', 'signal', 'UserDict', 'cinterface', 'posixpath', 'stat']
+
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ make -f makefile.exports
+cp cinterface-default.so cinterface.so
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Mixed/Exports]$ prog1 | diff - output.prog1
+
+
+

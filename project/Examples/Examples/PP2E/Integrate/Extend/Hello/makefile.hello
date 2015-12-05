@@ -1,0 +1,13 @@
+#############################################################
+# Compile hello.c into a shareable object file on Linux,
+# to be loaded dynamically when first imported by Python.
+# MYPY is the directory where your Python header files live.
+#############################################################
+
+PY = $(MYPY)
+
+hello.so: hello.c
+	gcc hello.c -g -I$(PY)/Include -I$(PY) -fpic -shared -o hello.so
+
+clean:
+	rm -f hello.so core

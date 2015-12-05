@@ -1,0 +1,54 @@
+typedef struct {
+        PyObject_HEAD    /* an integer instance object */
+        long ob_ival;    /* shared/reused when possible */
+} intobject;
+
+static int int_nonzero(intobject *v);                               /*inquiry*/
+static PyObject *int_neg(intobject *v);                             /*unary*/
+static PyObject *int_add(intobject *v, intobject *w);               /*binary*/
+static PyObject *int_pow(intobject *v, intobject *w, intobject *z); /*ternary*/
+
+
+static PyNumberMethods int_as_number = {  /* number type supplement */
+        (binaryfunc)  int_add,            /* nb_add        'x + y'        */
+        (binaryfunc)  int_sub,            /* nb_subtract   'x - y'        */
+        (binaryfunc)  int_mul,            /* nb_multiply   'x * y'        */
+        (binaryfunc)  int_div,            /* nb_divide     'x / y'        */
+        (binaryfunc)  int_mod,            /* nb_remainder  'x % y'        */
+        (binaryfunc)  int_divmod,         /* nb_divmod     'divmod(x, y)' */
+        (ternaryfunc) int_pow,            /* nb_power      'pow(x, y)'    */
+        (unaryfunc)   int_neg,            /* nb_negative   '-x'           */
+        (unaryfunc)   int_pos,            /* nb_positive   '+x'           */
+        (unaryfunc)   int_abs,            /* nb_absolute   'abs(x)'       */
+        (inquiry)     int_nonzero,        /* nb_nonzero    'if x'         */
+        (unaryfunc)   int_invert,         /* nb_invert     '~x'           */
+        (binaryfunc)  int_lshift,         /* nb_lshift     'x << y'       */
+        (binaryfunc)  int_rshift,         /* nb_rshift     'x >> y'       */
+        (binaryfunc)  int_and,            /* nb_and        'x & y'        */
+        (binaryfunc)  int_xor,            /* nb_xor        'x ^ y'        */
+        (binaryfunc)  int_or,             /* nb_or         'x | y'        */
+        0,                                /* nb_coerce     (n/a)          */
+        (unaryfunc)   int_int,            /* nb_int        'int(x)'       */
+        (unaryfunc)   int_long,           /* nb_long       'long(x)'      */
+        (unaryfunc)   int_float,          /* nb_float      'float(x)'     */
+        (unaryfunc)   int_oct,            /* nb_oct        'oct(x)'       */
+        (unaryfunc)   int_hex,            /* nb_hex        'hex(x)'       */
+};
+
+PyTypeObject Inttype = {
+        PyObject_HEAD_INIT(&PyType_Type)
+        0,
+        "int",
+        sizeof(intobject),
+        0,
+        (destructor)int_dealloc,  /* tp_dealloc */
+        (printfunc)int_print,     /* tp_print */
+        0,                        /* tp_getattr */
+        0,                        /* tp_setattr */
+        (cmpfunc)int_compare,     /* tp_compare */
+        (reprfunc)int_repr,       /* tp_repr */
+        &int_as_number,           /* tp_as_number: the link */
+        0,                        /* tp_as_sequence */
+        0,                        /* tp_as_mapping */
+        (hashfunc)int_hash,       /* tp_hash */
+};                                /* rest are zero */

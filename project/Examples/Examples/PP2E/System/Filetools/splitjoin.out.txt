@@ -1,0 +1,308 @@
+Newest version:
+
+
+C:\temp>ls -l py152.exe
+-rwxrwxrwa   1 0        0        5028339 Apr 16  1999 py152.exe
+
+C:\temp>python %X%\Part2\System\Filetools\split.py -help
+Use: split.py [file-to-split target-dir [chunksize]]
+
+C:\temp>python %X%\Part2\System\Filetools\split.py py152.exe pysplit
+Splitting C:\temp\py152.exe to C:\temp\pysplit by 1433600
+Split finished: 4 parts are in C:\temp\pysplit
+
+C:\temp>ls -l pysplit
+total 9821
+-rwxrwxrwa   1 0        0        1433600 Sep 12 06:03 part0001
+-rwxrwxrwa   1 0        0        1433600 Sep 12 06:03 part0002
+-rwxrwxrwa   1 0        0        1433600 Sep 12 06:03 part0003
+-rwxrwxrwa   1 0        0         727539 Sep 12 06:03 part0004
+
+
+
+
+C:\temp>python %X%\Part2\System\Filetools\join.py -help
+Use: join.py [from-dir-name to-file-name]
+
+C:\temp>python %X%\Part2\System\Filetools\join.py pysplit mypy152.exe
+Joining C:\temp\pysplit to make C:\temp\mypy152.exe
+Join complete: see C:\temp\mypy152.exe
+
+C:\temp>ls -l mypy152.exe py152.exe
+-rwxrwxrwa   1 0        0        5028339 Sep 12 06:05 mypy152.exe
+-rwxrwxrwa   1 0        0        5028339 Apr 16  1999 py152.exe
+
+C:\temp>fc /b mypy152.exe py152.exe
+Comparing files mypy152.exe and py152.exe
+FC: no differences encountered
+
+C:\temp>cmp mypy152.exe py152.exe
+
+
+
+
+
+C:\temp>python %X%\Part2\System\Filetools\split.py
+File to be split? py152.exe
+Directory to store part files? splitout
+Splitting C:\temp\py152.exe to C:\temp\splitout by 1433600
+Split finished: 4 parts are in C:\temp\splitout
+Press Enter key
+
+C:\temp>python %X%\Part2\System\Filetools\join.py
+Directory containing part files? splitout
+Name of file to be recreated? newpy152.exe
+Joining C:\temp\splitout to make C:\temp\newpy152.exe
+Join complete: see C:\temp\newpy152.exe
+Press Enter key
+
+C:\temp>fc /B mypy152.exe py152.exe
+Comparing files mypy152.exe and py152.exe
+FC: no differences encountered
+
+
+
+
+[when clicked]
+
+File to be split? c:\temp\py152.exe
+Directory to store part files? tempsplit
+Splitting c:\temp\py152.exe to C:\PP2ndEd\examples\Part2\System\Filetools\tempsp
+lit by 1433600
+Split finished: 4 parts are in C:\PP2ndEd\examples\Part2\System\Filetools\tempsp
+lit
+Press Enter key
+
+
+Directory containing part files? tempsplit
+Name of file to be recreated? c:\temp\morepy152.exe
+Joining C:\PP2ndEd\examples\Part2\System\Filetools\tempsplit to make c:\temp\mor
+epy152.exe
+Join complete: see c:\temp\morepy152.exe
+Press Enter key
+
+
+
+
+
+
+
+C:\temp>python %X%\Part2\System\Filetools\split.py py152.exe tempsplit 500000
+Splitting C:\temp\py152.exe to C:\temp\tempsplit by 500000
+Split finished: 11 parts are in C:\temp\tempsplit
+
+C:\temp>ls -l tempsplit
+total 9826
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0001
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0002
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0003
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0004
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0005
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0006
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0007
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0008
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0009
+-rwxrwxrwa   1 0        0         500000 Sep 12 06:29 part0010
+-rwxrwxrwa   1 0        0          28339 Sep 12 06:29 part0011
+
+
+
+C:\temp>python %X%\Part2\System\Filetools\split.py py152.exe tempsplit 5000
+Splitting C:\temp\py152.exe to C:\temp\tempsplit by 5000
+Split finished: 1006 parts are in C:\temp\tempsplit
+
+C:\temp>python %X%\Part2\System\Filetools\join.py tempsplit py152.exe
+Joining C:\temp\tempsplit to make C:\temp\py152.exe
+Join complete: see C:\temp\py152.exe
+
+C:\temp>fc /B py152.exe mypy152.exe
+Comparing files py152.exe and mypy152.exe
+FC: no differences encountered
+
+
+
+
+
+C:\temp>ls -l tempsplit
+...
+-rwxrwxrwa   1 0        0           5000 Sep 12 06:30 part1000
+-rwxrwxrwa   1 0        0           5000 Sep 12 06:30 part1001
+-rwxrwxrwa   1 0        0           5000 Sep 12 06:30 part1002
+-rwxrwxrwa   1 0        0           5000 Sep 12 06:30 part1003
+-rwxrwxrwa   1 0        0           5000 Sep 12 06:30 part1004
+-rwxrwxrwa   1 0        0           5000 Sep 12 06:30 part1005
+-rwxrwxrwa   1 0        0           3339 Sep 12 06:30 part1006
+
+
+C:\temp>python %X%\Part2\System\Filetools\split.py py152.exe tempsplit 700000
+Splitting C:\temp\py152.exe to C:\temp\tempsplit by 700000
+Split finished: 8 parts are in C:\temp\tempsplit
+
+C:\temp>ls -l tempsplit
+total 9827
+-rwxrwxrwa   1 0        0         700000 Sep 12 06:32 part0001
+-rwxrwxrwa   1 0        0         700000 Sep 12 06:32 part0002
+-rwxrwxrwa   1 0        0         700000 Sep 12 06:32 part0003
+-rwxrwxrwa   1 0        0         700000 Sep 12 06:32 part0004
+-rwxrwxrwa   1 0        0         700000 Sep 12 06:32 part0005
+-rwxrwxrwa   1 0        0         700000 Sep 12 06:32 part0006
+-rwxrwxrwa   1 0        0         700000 Sep 12 06:32 part0007
+-rwxrwxrwa   1 0        0         128339 Sep 12 06:32 part0008
+
+
+
+
+-------------------------------------------------------------------------------
+
+
+
+C:\...\Part2\System\Filetools>python split.py c:\PP2ndEd\examples.tar.gz temp
+Splitting c:\PP2ndEd\examples.tar.gz to temp by 1433600
+Split finished: 2 parts are in temp
+
+C:\...\Part2\System\Filetools>ls -l temp
+total 4553
+-rwxrwxrwa   1 0        0        1433600 Aug 12 13:23 part0001
+-rwxrwxrwa   1 0        0         897040 Aug 12 13:23 part0002
+
+C:\...\Part2\System\Filetools>python join.py temp myexamples.tar.gz
+Joining temp to make myexamples.tar.gz
+Join complete: see myexamples.tar.gz
+
+
+C:\...\Part2\System\Filetools>ls -l c:\PP2ndEd\examples.tar.gz myexamples.tar.gz
+-rwxrwxrwx   1 0        0        2330640 Jun 14 09:26 c:\PP2ndEd\examples.tar.gz
+-rwxrwxrwa   1 0        0        2330640 Aug 12 13:23 myexamples.tar.gz
+
+C:\...\Part2\System\Filetools>fc /B c:\PP2ndEd\examples.tar.gz myexamples.tar.gz
+Comparing files c:\PP2ndEd\examples.tar.gz and myexamples.tar.gz
+FC: no differences encountered
+
+
+C:\PP2ndEd\examples\Part2\System\Filetools>python split.py -help
+Use: split.py [file-to-split target-dir [chunksize]]
+
+C:\PP2ndEd\examples\Part2\System\Filetools>python join.py -help
+Use: join.py [from-dir-name to-file-name]
+
+
+[when double-clicked in explorer or run with no cmd-line args]
+
+
+[in popup msdos console box]
+
+File to be split? c:\PP2ndEd\examples.tar.gz
+Directory to store part files? temp
+Splitting c:\PP2ndEd\examples.tar.gz to temp by 1433600
+Split finished: 2 parts are in temp
+Press Enter key
+
+
+[in popup msdos console box]
+
+Directory containing part files? temp
+Name of file to be recreated? myexamples.tar.gz
+Joining temp to make myexamples.tar.gz
+Join complete: see myexamples.tar.gz
+Press Enter key
+
+-----------------------------------------------------------------------------
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+(both split and join take roughly 1 second on a 300hz win98 box
+for a 5.6M file in general; they take a bit longer only if the 
+chunksize is small enough to generate thousands of part files)
+
+C:\temp>ls -l examples0405.tar
+-rwxrwxrwa   1 0        0        5632000 Apr  6 13:10 examples0405.tar
+
+C:\temp>python %X%\Part2\System\Filetools\split.py examples0405.tar splitex
+Splitting examples0405.tar to splitex by 1433600
+Split finished: 4 parts are in splitex
+
+C:\temp>ls -l splitex
+total 11000
+-rwxrwxrwa   1 0        0        1433600 Apr  6 13:38 part0001
+-rwxrwxrwa   1 0        0        1433600 Apr  6 13:38 part0002
+-rwxrwxrwa   1 0        0        1433600 Apr  6 13:38 part0003
+-rwxrwxrwa   1 0        0        1331200 Apr  6 13:38 part0004
+
+C:\temp>python %X%\Part2\System\Filetools\join.py splitex joinexamples0405.tar
+Joining splitex to make joinexamples0405.tar
+Join complete: see joinexamples0405.tar
+
+C:\temp>ls -l examples0405.tar joinexamples0405.tar
+-rwxrwxrwa   1 0        0        5632000 Apr  6 13:10 examples0405.tar
+-rwxrwxrwa   1 0        0        5632000 Apr  6 13:41 joinexamples0405.tar
+
+C:\temp>fc /B examples0405.tar joinexamples0405.tar
+Comparing files examples0405.tar and joinexamples0405.tar
+FC: no differences encountered
+
+
+-------------------------------------------------------------------------------
+
+C:\temp>rm -r splitex
+
+C:\temp>python %X%\Part2\System\Filetools\split.py examples0405.tar splitex 
+250000
+Splitting examples0405.tar to splitex by 250000
+Split finished: 23 parts are in splitex
+
+C:\temp>ls -l splitex
+. . .
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0015
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0016
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0017
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0018
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0019
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0020
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0021
+-rwxrwxrwa   1 0        0         250000 Apr  6 13:45 part0022
+-rwxrwxrwa   1 0        0         132000 Apr  6 13:45 part0023
+
+C:\temp>rm joinexamples0405.tar
+
+C:\temp>python %X%\Part2\System\Filetools\join.py splitex joinexamples0405.tar
+Joining splitex to make joinexamples0405.tar
+Join complete: see joinexamples0405.tar
+
+C:\temp>fc /B examples0405.tar joinexamples0405.tar
+Comparing files examples0405.tar and joinexamples0405.tar
+FC: no differences encountered
+
+
+--------------------------------------------------------------------------------
+
+
+C:\temp>rm -r splitex
+
+C:\temp>rm joinexamples0405.tar
+
+C:\temp>python %X%\Part2\System\Filetools\split.py examples0405.tar splitex 2500
+0
+Splitting examples0405.tar to splitex by 25000
+Split finished: 226 parts are in splitex
+
+C:\temp>python %X%\Part2\System\Filetools\join.py splitex joinexamples0405.tar
+Joining splitex to make joinexamples0405.tar
+Join complete: see joinexamples0405.tar
+
+C:\temp>fc /B examples0405.tar joinexamples0405.tar
+Comparing files examples0405.tar and joinexamples0405.tar
+FC: no differences encountered
+
+

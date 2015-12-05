@@ -1,0 +1,63 @@
+# Coding styles...
+
+from Tkinter import *
+def cb(): print 'Hello'              
+
+Button(None, {'text':'press', 'command':cb, Pack:{'side':'left'}}).mainloop()
+
+Button(None, {Pack:{'side':LEFT}}, text='press', command=cb).mainloop()
+
+widget = Button(None, text='press', command=cb)
+widget.pack(side=LEFT)
+widget.mainloop()
+
+Button(None, text='press', command=cb).pack(side=LEFT)
+mainloop()
+
+root = Tk()
+Button(root, text='press', command=cb).pack(side=LEFT)
+root.mainloop() 
+
+# Setting config options...
+
+widget = Button()
+widget.config(text='press', command=cb) 
+widget.pack(side=LEFT)
+widget.mainloop()
+
+widget = Button()
+widget['text'] = 'press' 
+widget['command'] = cb
+widget.pack(side=LEFT)
+widget.mainloop()
+
+
+#snip...
+#
+#FAILS ->
+#   Label(None, Pack={}, text='Hello').mainloop()
+# 	Pack is passed as a "-Pack" option name to Tk 'config'
+#	Keyword arg names not evaluated => string keys in passed dict
+#	only config values are eval'd (and are def'd in Tkconstants.py)
+#
+#FAILS ->
+#   Label(None, {Pack:{}}, 'text'='hello').mainloop()
+#   	syntax error: keyword can't be an expression 
+#
+#FAILS ->
+#   Label(None, text='Hello', {Pack:{}}).mainloop()
+#	syntax error: non-keyword arg after keyword arg
+#
+#FAILS ->
+#   Label(None, text='Hello').pack().mainloop()
+#	pack doesn't return the widget (None)
+#
+#FAILS ->
+#   widget = Label(None, text='Hello')
+#   widget.mainloop()
+#	must be packed before it shows up: get an empty box
+#
+#   widget = Label(None, text='Hello')                 - kw's, pack called
+#   widget.pack()
+#	must call mainloop() to make widgets appear
+#

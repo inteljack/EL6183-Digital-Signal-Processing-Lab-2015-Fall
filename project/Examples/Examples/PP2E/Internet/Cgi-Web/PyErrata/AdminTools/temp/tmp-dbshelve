@@ -1,0 +1,64 @@
+# works by loading (and then sorting) the entire table
+# into memory for each browse request; if the database
+# ever grows large, the implementation of these functions
+# should be changed to use distinct index files, a real
+# database (e.g., gadfly), or other fast alternatives;
+# caching isn't an option: cgi scripts aren't persistent;
+# shelve keys must be unique, so we construct a key here
+# by combining surrent time and process id--it's possible
+# that > 1 user may submit at once, but they should be 
+# running in seperate cgi processes on the server;
+# the alternative is bsddb file locking for the shelve;
+# we store raws dictionaries in this version--classes
+# are another option, though their advantage is unclear,
+# since we are mostly mapping strings to fields here;
+#########################################################
+
+
+
+
+
+import shelve, time, os
+errataFname, commentFname = 'Dbase/errataDB.shelve', 'Dbase/commentDB.shelve'
+
+#
+# store item
+#
+
+def makeKey():
+   return "%s-%s" % (time.time(), os.getpid())    
+
+def storeTable(newdata, filename):
+    secsSinceEpoch        = time.time()
+    timeTuple             = time.localtime(secsSinceEpoch)
+    y_m_d_h_m_s           = timeTuple[:6]      
+    newdata['submitdate'] = y_m_d_h_m_s
+    newdata['state']      = 'Unverified'
+    dbase = shelve.open(filename)
+    dbase[makeKey()] = newdata
+    dbase.close()
+
+def storeErrata(newdata):  storeTable(newdata, errataFname)
+def storeComment(newdata): storeTable(newdata, commentFname)
+
+#
+# load items
+#
+
+def loadTable(filename):
+    reports = []
+    dbase = shelve.open(filename)
+    for key in dbase.keys():
+        reports.append(dbase[key])
+    dbase.close()
+    return reports
+
+# reuse dbfile's sorters, but with my loadTable
+from dbfiles import loadSortedTable, loadIndexedTable
+
+def sortedErratas(field=None):  return loadSortedTable(field, errataFname, loadTable)
+def sortedComments(field=None): return loadSortedTable(field, commentFname, loadTable)
+
+def indexedErratas(field=None):  return loadIndexedTable(field, errataFname, loadTable)
+def indexedComments(field=None): return loadIndexedTable(field, commentFname, loadTable)
+

@@ -1,0 +1,10 @@
+#!/bin/csh -X
+
+# ftp exinet.tgz to here
+
+gzip -d exinet.tgz
+tar -xvf exinet.tar
+cp *.py ../public_html
+cd Internet
+cp -R * ../../public_html
+

@@ -1,0 +1,32 @@
+
+[mark@toy ~/tmp]$ python pipe1.py
+Parent 1292 got "Spam 000" at 968370008.322
+Parent 1292 got "Spam 001" at 968370009.319
+Parent 1292 got "Spam 002" at 968370011.319
+Parent 1292 got "Spam 003" at 968370014.319
+Parent 1292 got "Spam 004Spam 000" at 968370018.319
+Parent 1292 got "Spam 001" at 968370019.319
+Parent 1292 got "Spam 002" at 968370021.319
+Parent 1292 got "Spam 003" at 968370024.319
+Parent 1292 got "Spam 004Spam 000" at 968370028.319
+Parent 1292 got "Spam 001" at 968370029.319
+Parent 1292 got "Spam 002" at 968370031.319
+Parent 1292 got "Spam 003" at 968370034.319     
+
+
+
+[mark@toy ~/tmp]$ python pipe2.py
+Parent 1296 got "Spam 000" at 968370066.162
+Parent 1296 got "Spam 001" at 968370067.159
+Parent 1296 got "Spam 002" at 968370069.159
+Parent 1296 got "Spam 003" at 968370072.159
+Parent 1296 got "Spam 004" at 968370076.159
+Parent 1296 got "Spam 000" at 968370076.161
+Parent 1296 got "Spam 001" at 968370077.159
+Parent 1296 got "Spam 002" at 968370079.159
+Parent 1296 got "Spam 003" at 968370082.159
+Parent 1296 got "Spam 004" at 968370086.159
+Parent 1296 got "Spam 000" at 968370086.161
+Parent 1296 got "Spam 001" at 968370087.159
+Parent 1296 got "Spam 002" at 968370089.159
+

@@ -1,0 +1,46 @@
+C:\Stuff\Mark\Website\public_html>python %X%\part3\internet\ftp\mirrorflat.py
+Please enter password for home.rmi.net:
+Clean local directory first?
+connecting...
+Traceback (innermost last):
+  File "C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\part3\internet\ftp\mirrorflat
+.py", line 31, in ?
+    connection.login(remoteuser, remotepass)            # login as user/password
+
+  File "C:\Program Files\Python\Lib\ftplib.py", line 316, in login
+    if resp[0] == '3': resp = self.sendcmd('PASS ' + passwd)
+  File "C:\Program Files\Python\Lib\ftplib.py", line 228, in sendcmd
+    return self.getresp()
+  File "C:\Program Files\Python\Lib\ftplib.py", line 201, in getresp
+    raise error_perm, resp
+ftplib.error_perm: 530 Login incorrect.
+
+C:\Stuff\Mark\Website\public_html>python %X%\part3\internet\ftp\mirrorflat.py
+Please enter password for home.rmi.net:
+Clean local directory first?
+connecting...
+copying UPDATES to .\UPDATES
+copying PythonPowered.gif to .\PythonPowered.gif
+copying Pywin.gif to .\Pywin.gif
+copying PythonPoweredAnim.gif to .\PythonPoweredAnim.gif
+copying PythonPoweredSmall.gif to .\PythonPoweredSmall.gif
+copying about-hopl.html to .\about-hopl.html
+copying about-lp-toc.html to .\about-lp-toc.html
+copying about-lp.html to .\about-lp.html
+.
+.
+.
+copying training.html to .\training.html
+copying trainingCD-medium.GIF to .\trainingCD-medium.GIF
+copying trainingCD-small.GIF to .\trainingCD-small.GIF
+copying trainingCD.GIF to .\trainingCD.GIF
+copying uk-1.jpg to .\uk-1.jpg
+copying uk-2.jpg to .\uk-2.jpg
+copying uk-3.jpg to .\uk-3.jpg
+copying whatsnew.html to .\whatsnew.html
+copying whatsold.html to .\whatsold.html
+copying xlate-lp.html to .\xlate-lp.html
+copying uploadflat.py to .\uploadflat.py
+copying ora-lp-france.gif to .\ora-lp-france.gif
+Done: 130 files downloaded.
+

@@ -1,0 +1,6 @@
+INTERFACE pythonExPC;
+
+TYPE consumer = OBJECT
+  METHODS
+    ASYNCHRONOUS fromProducer (producerID : ilu.CString, data : ilu.CString)
+  END;

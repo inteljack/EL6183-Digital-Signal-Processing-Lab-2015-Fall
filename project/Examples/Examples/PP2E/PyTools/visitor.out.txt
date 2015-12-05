@@ -1,0 +1,70 @@
+listonly=1 means print names only; testmask gives traverslas to run
+
+% python PyTools\visitor.py 3 key 
+            (runs list then search for key: 1 | 2)
+% python PyTools\visitor.py 2 key 
+            (runs search traversal only, for key: 1 | 2)
+% python PyTools\visitor.py 5
+            (runs list then rename traversals, no search)
+% python PyTools\visitor.py 7 key 
+            (runs all three traversals, with search for key: 1 | 2)
+
+
+python PyTools\fixnames_all2.py   ==   python PyTools\visitor.py 4
+python PyTools\search_all.py xxx  ==   python PyTools\visitor.py 2 xxx
+
+
+C:\PP2ndEd\examples>python PyTools\visitor.py 1 | more
+
+. ...
+1 => .\setup-pp.bat
+2 => .\Launcher.py
+3 => .\autoexec.bat
+4 => .\makeall.csh
+5 => .\__init__.py
+6 => .\package.csh
+7 => .\pyformData
+8 => .\cleanall.csh
+9 => .\xferall.linux.csh
+10 => .\PyDemos.pyw
+11 => .\Launcher.pyc
+12 => .\.cshrc
+13 => .\PyGadgets.py
+.
+.
+.
+321 => .\Part2\System\Filetools\temp1\sub1\dirdiff.py
+.\Part2\System\Filetools\temp2 ...
+322 => .\Part2\System\Filetools\temp2\dirdiff.py
+.\Part2\System\Filetools\temp2\sub1 ...
+323 => .\Part2\System\Filetools\temp2\sub1\dirdiff.py
+.\Part2\System\Filetools\temp3 ...
+324 => .\Part2\System\Filetools\temp3\diff1
+325 => .\Part2\System\Filetools\temp3\diff2
+326 => .\Part2\System\Filetools\temp3\diff3
+.\Part2\System\Environment ...
+327 => .\Part2\System\Environment\README.txt
+.\Part2\Internet ...
+328 => .\Part2\Internet\__init__.py
+329 => .\Part2\Internet\__init__.pyc
+330 => .\Part2\Internet\Internet.txt
+331 => .\Part2\Internet\Cgi-Web.tar.gz
+.\Part2\Internet\Other ...
+332 => .\Part2\Internet\Other\README.txt
+333 => .\Part2\Internet\Other\grail.html
+334 => .\Part2\Internet\Other\jpython.py
+335 => .\Part2\Internet\Other\Question.py
+336 => .\Part2\Internet\Other\restricted.out.txt
+337 => .\Part2\Internet\Other\restricted.py
+.
+.
+.
+1148 => .\old-Part2\Basics\textpak5.dif
+1149 => .\old-Part2\Basics\textpk5b.py
+1150 => .\old-Part2\Basics\umap.py
+1151 => .\old-Part2\Basics\unpack1.py
+1152 => .\old-Part2\Basics\unpack2.bad
+1153 => .\old-Part2\Basics\unpack2b.py
+Visited 1153 files and 109 dirs
+
+

@@ -1,0 +1,46 @@
+(dp0
+S'Page number'
+p1
+S'12'
+p2
+sS'Description'
+p3
+S'1 + 1 = 2, not 3...\015\012          '
+p4
+sS'Type'
+p5
+S'Program bug'
+p6
+sS'Chapter number'
+p7
+S''
+p8
+sS'Submit date'
+p9
+S'1999/09/21, 06:17:13'
+p10
+sS'Report state'
+p11
+S'Not yet verified'
+p12
+sS'Submitter name'
+p13
+S'Lisa Lutz'
+p14
+sS'Submitter email'
+p15
+g8
+sS'Severity'
+p16
+S'High'
+p17
+sS'Submit mode'
+p18
+g8
+sS'Part number'
+p19
+g8
+sS'Printing Date'
+p20
+g8
+s.

@@ -1,0 +1,50 @@
+#########################################################
+# Use: "python fixeoln_one.py [tounix|todos] filename".
+# convert end-lines in the single text file whose name 
+# is passed in on the command line, to the target form
+# (unix or dos).  The _one, _dir, and _all converters 
+# resuse the convert function here; we could implement 
+# this by inspecting command-line argument patterns 
+# instead of writing 3 separate scripts, but that can 
+# become complex for the user.  convertEndlines changes 
+# endlines only if necessary--lines that are already in
+# the target format are left unchanged, so it's okay to 
+# convert a file > once in any of the 3 fixeoln scripts.
+# Warning: must use binary mode read/write for this to 
+# work on windows, else default text mode auto deletes
+# the \r on read, and auto writes an extra \r for \n,
+# such that text mode may yield one extra \r per line:
+#
+# C:\...>python
+# >>> open('ttt1.txt', 'w').writelines(['a\n', 'b\n'])
+# >>> open('ttt2.txt', 'wb').writelines(['a\n', 'b\n'])
+# >>>
+# C:\...>python
+# >>> open('ttt1.txt', 'rb').read() # \r added on write
+# 'a\015\012b\015\012'              
+# >>> open('ttt1.txt', 'r').read()  # \r dropped on read 
+# 'a\012b\012'
+# >>> open('ttt2.txt', 'rb').read() # no \r auto added 
+# 'a\012b\012'                      # still in unix form
+#
+# >>> open('ttt.txt', 'wb').writelines(['a\r\n', 'b\r\n'])
+# >>> open('ttt.txt', 'rb').read()
+# 'a\015\012b\015\012'              # no mapping if all b
+# >>> open('ttt.txt', 'r').read()
+# 'a\012b\012'
+#
+# >>> open('ttt.txt', 'w').writelines(['a\r\n', 'b\r\n'])
+# >>> open('ttt.txt', 'rb').read()
+# 'a\015\015\012b\015\015\012'      # one extra \r here
+# >>> open('ttt.txt', 'r').read()
+# 'a\015\012b\015\012'              # really are 2 \r's!
+#
+# Because of this behaviour, we might only need to read 
+# and write files in text mode to perform the todos eoln
+# mapping on dos (it will auto add the \r if missing); 
+# but that won't work for the tounix mode when running 
+# on Windows (we get the \r) or the todos mode on Unix.
+# This was a bug in a prior version; fixed in loop with:
+#        if string.find(line, '\r\r') != -1:
+#            line = string.replace(line, '\r\r', '\r')
+#########################################################

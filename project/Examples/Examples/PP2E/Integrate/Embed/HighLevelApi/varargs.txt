@@ -1,0 +1,30 @@
+Varargs portability note:
+
+The .a library file should work as is on Linux systems,
+but if you have trouble recompiling it from scratch due
+to vararg differences, here is the code structure you may
+need to use in all the vararg-style API functions to get 
+this to work; HAVE_STDARG_PROTOTYPES is something you need 
+to set to say whether you have standard or old-style vararg
+support.  This wasn't done in the example code because it
+is complex enough to obscure the Python-specific logic.
+
+-----------------------------------------------------------
+
+#ifdef HAVE_STDARG_PROTOTYPES
+int somefunc(char *realarg, ...)           <= this is the version used
+#else
+int somefunc(realarg, va_alist)            <= change to this if needed
+        char *realarg;
+        va_dcl
+#endif 
+{
+        va_list vargs;
+
+#ifdef HAVE_STDARG_PROTOTYPES
+        va_start(vargs, realarg);
+#else
+        va_start(vargs);
+#endif
+        ...rest of function...
+

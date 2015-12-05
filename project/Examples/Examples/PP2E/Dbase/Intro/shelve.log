@@ -1,0 +1,31 @@
+% cp person1.py person.py
+% python session1.py
+<Person instance at e0bb0>
+('bob', 'psychologist', 70000, 17500.0)
+(35, 40) 10000.0
+('howard', '', 0, 0.0)
+
+% python session2.py
+['emily', 'bob', 'jerry']
+<Person instance at e08d0>
+howard ('howard', '', 0, 0.0)
+peeper ('peeper', '', 0, 0.0)
+('bob', 'psychologist', 70000, 17500.0)
+('emily', 'teacher', 40000, 10000.0)
+emily 10000.0
+bob 17500.0
+jerry 12500.0
+
+cp person2.py person.py
+% python session3.py
+['emily', 'bob', 'jerry']
+Person=>bob
+Person=>howard (('howard', '', 0, 0.0), [])
+Person=>peeper (('peeper', '', 0, 0.0), [])
+(('bob', 'psychologist', 70000, 21000.0), [('friends', [Person=>howard, 
+Person=>peeper])])
+(('emily', 'teacher', 40000, 12000.0), [('age', (35, 40))])
+Person=>emily 12000.0
+Person=>bob 21000.0
+Person=>jerry 15000.0
+

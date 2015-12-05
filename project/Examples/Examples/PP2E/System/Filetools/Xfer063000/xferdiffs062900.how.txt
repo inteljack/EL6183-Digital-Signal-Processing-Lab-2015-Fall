@@ -1,0 +1,27 @@
+on old machine after cd write...
+
+C:\>python %X%\Part2\system\filetools\diffall.py c:\PP2ndEd d:\PP2ndEd > xferdif
+fs062900
+
+C:\>python %X%\Part2\system\filetools\diffall.py c:\Stuff\Mark\Training d:\Train
+ing > xferdiffs062900-training
+
+C:\>python %X%\Part2\system\filetools\diffall.py c:\Stuff\Mark\Website d:\Websit
+e > xferdiffs062900-website
+
+
+on new machine after copy off cd...
+
+C:\>python %X%\Part2\system\filetools\diffall.py c:\PP2ndEd g:\PP2ndEd > xferdif
+fs063000
+
+C:\>python %X%\Part2\system\filetools\diffall.py c:\stuff\training g:\training >
+ xferdiffs063000-training
+
+C:\>python %X%\Part2\system\filetools\diffall.py c:\stuff\website g:\website > x
+ferdiffs063000-website
+
+
+and search all for "DIFF" and "unique"
+
+

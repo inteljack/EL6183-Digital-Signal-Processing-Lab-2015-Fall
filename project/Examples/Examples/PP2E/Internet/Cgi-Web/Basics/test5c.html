@@ -1,0 +1,33 @@
+<HTML><BODY>
+<TITLE>CGI 101</TITLE>
+<H1>Common input devices: URL parameters</H1>
+
+<P>This demo invokes the test5.cgi server-side script again,
+but hardcodes input data to the end of the script's URL, 
+within a simple hyperlink (instead of packaging up a form's
+inputs).  Click your browser's "show page source" button 
+to view the links associated with each list item below.
+
+<P>This is really more about CGI than Python, but notice that 
+Python's cgi module handles both this form of input (which is
+also produced by GET form actions), as well as POST-ed forms; 
+they look the same to the Python CGI script.  In other words, 
+cgi module users are independent of the method used to submit 
+data.
+
+<P>Also notice that URLs with appended input values like this
+can be generated as part of the page output by another CGI script, 
+to direct a next user click to the right place and context; together 
+with type 'hidden' input fields, they provide one way to 
+save state between clicks.
+</P><HR>
+
+<UL>
+<LI><A href="test5.cgi?name=Bob&shoesize=small">Send Bob, small</A>
+<LI><A href="test5.cgi?name=Tom&language=Python">Send Tom, Python</A>
+<LI><A href=
+"http://starship.python.net/~lutz/Basics/test5.cgi?job=Evangelist&comment=spam">
+Send Evangelist, spam</A>
+</UL>
+
+<HR></BODY></HTML>

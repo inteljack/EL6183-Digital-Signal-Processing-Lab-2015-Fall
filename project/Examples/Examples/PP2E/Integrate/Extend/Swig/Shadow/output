@@ -1,0 +1,225 @@
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ g++ main.cxx number.cxx
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ a.out
+Number: 1
+add 4
+Number = 5
+sub 2
+Number = 3
+99
+Number = 99
+~Number: 99
+
+
+-------------------------------------------------------------------------------
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ ls
+main.cxx  main_low.py       makefile.number-swig  number.h  output
+main.py   main_subclass.py  number.cxx            number.i
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ source ../setup-swig.csh 
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ swig -c++ -python -shadow number.i
+Generating wrappers for Python
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ ls
+main.cxx     main_subclass.py      number.h   number_wrap.c
+main.py      makefile.number-swig  number.i   number_wrap.doc
+main_low.py  number.cxx            number.py  output
+
+
+-------------------------------------------------------------------------------
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ make -f makefile.number-swig force
+rm -f *.pyc *.o *.so core a.out number.py number_wrap.c number_wrap.doc
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ make -f makefile.number-swig
+/home/mark/PP2ndEd/dev/examples/SWIG/SWIG1.1p5/swig -c++ -python -shadow number.i
+Generating wrappers for Python
+g++ number_wrap.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+g++ -c -g number.cxx
+g++ -shared number_wrap.o number.o -o numberc.so
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ make -f makefile.number-swig cxxtest
+g++ main.cxx number.cxx
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ a.out
+Number: 1
+add 4
+Number = 5
+sub 2
+Number = 3
+99
+Number = 99
+~Number: 99
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ python main.py
+Number: 1
+add 4
+Number = 5
+sub 2
+Number = 3
+99
+Number = 99
+~Number: 99
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ python main_low.py
+Number: 1
+add 4
+Number = 5
+sub 2
+Number = 3
+99
+Number = 99
+~Number: 99
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ python main_subclass.py
+Number: 1
+in Python add...
+add 4
+Number = 5
+sub 2
+Number = 3
+99
+Number = 99
+in Python mul...
+Number = 198
+~Number: 198
+
+
+-------------------------------------------------------------------------------
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ python
+Python 1.5.2 (#14, Sep 12 1999, 00:55:49)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import numberc
+>>> numberc.__file__
+'./numberc.so'
+>>> import number
+>>> number.__file__
+'number.pyc'
+>>>
+>>>
+>>> x = number.Number(2)
+Number: 2
+>>> y = number.Number(4)
+Number: 4
+>>> x, y
+(<C Number instance>, <C Number instance>)
+>>>
+>>> x.display()
+Number = 2
+>>> x.add(y.data)
+add 4
+>>> x.display()
+Number = 6
+>>>                                                           
+>>> y.data = x.data + y.data + 36
+>>> y.display()
+Number = 46
+>>>
+>>>
+>>> x.add('abc')
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+  File "number.py", line 11, in add
+    val = numberc.Number_add(self.this,arg0)
+TypeError: illegal argument type for built-in operation
+>>>
+>>> x.data = 'abc'
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+  File "number.py", line 21, in __setattr__
+    numberc.Number_data_set(self.this,value)
+TypeError: illegal argument type for built-in operation
+>>> del x; del y
+>>> x
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+NameError: x
+>>>
+~Number: 46
+~Number: 6
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ python
+Python 1.5.2 (#14, Sep 12 1999, 00:55:49)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> from number import Number
+>>> a, b, c, d = Number(1), Number(2), Number(3), Number(4)
+Number: 1
+Number: 2
+Number: 3
+Number: 4
+>>>
+>>>
+>>> a = 0
+~Number: 1
+>>> del b
+~Number: 2
+>>>
+>>> c.data = None
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+  File "number.py", line 21, in __setattr__
+    numberc.Number_data_set(self.this,value)
+TypeError: illegal argument type for built-in operation
+>>> d.inc()
+Traceback (innermost last):
+  File "<stdin>", line 1, in ?
+  File "number.py", line 27, in __getattr__
+    raise AttributeError,name
+AttributeError: inc
+>>> del c
+~Number: 3
+>>> del d
+>>>
+~Number: 4
+
+
+-------------------------------------------------------------------------------
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ make -f makefile.number-swig force
+rm -f *.pyc *.o *.so core a.out number.py number_wrap.c number_wrap.doc
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ ls
+main.cxx  main_low.py       makefile.number-swig  number.h  output
+main.py   main_subclass.py  number.cxx            number.i
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ make -f makefile.number-swig
+../myswig -c++ -python -shadow number.i
+Generating wrappers for Python
+g++ number_wrap.c -c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2
+g++ -c -g number.cxx
+g++ -shared number_wrap.o number.o -o numberc.so
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ ls
+main.cxx     main_subclass.py      number.h  number.py        number_wrap.o
+main.py      makefile.number-swig  number.i  number_wrap.c    numberc.so
+main_low.py  number.cxx            number.o  number_wrap.doc  output
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ make -f makefile.number-swig clean
+rm -f *.pyc *.o *.so core a.out
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Shadow]$ ls
+main.cxx     main_subclass.py      number.h   number_wrap.c
+main.py      makefile.number-swig  number.i   number_wrap.doc
+main_low.py  number.cxx            number.py  output
+
+
+------------------------------------------------------------------------------
+

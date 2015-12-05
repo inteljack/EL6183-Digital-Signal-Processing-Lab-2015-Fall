@@ -1,0 +1,56 @@
+[mark@toy ~/tmp]$ python fork1.py
+Hello from parent 671 672
+Hello from child 672
+
+Hello from parent 671 673
+Hello from child 673
+
+Hello from parent 671 674
+Hello from child 674
+q
+
+
+
+
+
+[mark@toy ~/tmp]$ python fork-count.py
+Process 846 spawned
+Process 847 spawned
+Process 848 spawned
+Process 849 spawned
+Process 850 spawned
+Process 851 spawned
+Process 852 spawned
+Process 853 spawned
+Process 854 spawned
+Process 855 spawned
+Main process exiting.
+[mark@toy ~/tmp]$ 
+[846] => 0
+[847] => 0
+[848] => 0
+[849] => 0
+[850] => 0
+[851] => 0
+[852] => 0
+[853] => 0
+[854] => 0
+[855] => 0
+[847] => 1
+[846] => 1                                 
+...
+
+
+
+[mark@toy ~/tmp]$ python fork-exec.py
+Child is 1094
+Hello from child 1094 1
+
+Child is 1095
+Hello from child 1095 2
+
+Child is 1096
+Hello from child 1096 3
+q
+
+

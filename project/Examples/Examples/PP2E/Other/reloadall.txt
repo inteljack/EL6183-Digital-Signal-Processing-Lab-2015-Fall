@@ -1,0 +1,249 @@
+You're clearly on the right path; the crux of the 
+matter is type-testing everything in a module's
+attribute dictionary.  But this is a difficult 
+exercise, and is more subtle than it may appear.
+A few pointers:
+
+1) Note that the result of calling a __dict__.keys()
+method is a list of string names, not actual objects;
+that is, your type() tests will always fail because 
+the thing you're testing is still a string, as returned
+by keys().  The reload calls would fail too, since they
+need a module object, not a string name.  
+
+To go from the name back to the object, you need to either
+index the __dict__ on the name:
+   anon_obj = arg.__dict__[anon_obj]
+
+or use a getattr call which is roughly equivalent: 
+   getattr(arg, anon_obj)).  
+
+If that doesn't make sense, try adding print statements
+to trace the type() of variables in your code along the way.
+
+2) Your solution won't reload a module passed in as a top
+level argument, and will only reload 2 levels deep below
+the argument.  To support arbitrarily deep import paths,
+you need to use a recursive call.
+
+3) There is a built-in library module in Python called
+"types" which predefines names for all possible type()
+return values; you can use that instead of importing to
+get a module type constant.  See the reference manual
+for more details.
+
+4) You can also say "dir(module)" instead of 
+"module.__dict__.keys()".  These are equivalent when sorted.
+
+5) If you don't want to deal with the __dict__.keys()
+string-to-object business, you could instead just say
+module.__dict__.values() in the for loop header, to get 
+a list of values (the actual objects) in the attribute
+dictionary, instead of string keys.  This won't let you
+do filtering by name easily, but you may not need to.
+
+6) The most subtle thing is that you need to avoid 
+recuring to reload a module if it's already been reloaded.
+Otherwise, you can get stuck in an infinite loop when 
+there are recursive imports between files (module A imports
+module B which eventually imports A again -- your code may
+wind up going back and forth forever).  The easiest way to
+avoid cycles is to keep track of already-reloaded modules
+in a dictionary (recall that keys can be immutable objects
+like modules).  I didn't realize this myself until I tried
+reloading some big system modules like os.  
+
+7) There's also no point in reloading a module more than once 
+if it can be reached more that once by following import paths,
+even if there is no import cycle (e.g., A imports B and C, 
+and B and C both import D); once a module is reloaded once,
+you've got its new code everywhere it is used.  The dictionary
+trick to trap cycles will avoid this case as well. 
+
+Again, this is actually a fairly hard problem, even for a 
+Python expert.  Here is how I'd code the solution with the 
+changes above; this may or may not be optimal, but it may 
+give you some ideas.  You may have to view this email in 
+simple text mode to make sense of this.
+
+
+file: reloadall.py
+------------------
+
+import types
+
+def status(module):
+    print 'reloading', module.__name__
+
+def transitive_reload(module, visited):
+    if not visited.has_key(module):              # trap cycles, dups
+        status(module)                           # reload this module
+        reload(module)                           # and visit children
+        visited[module] = None
+        for attrobj in module.__dict__.values():    # for all attrs
+            if type(attrobj) == types.ModuleType:   # recur if module
+                transitive_reload(attrobj, visited)
+        
+def reload_all(*args):
+    visited = {}
+    for arg in args:
+        if type(arg) == types.ModuleType:
+            transitive_reload(arg, visited)
+
+if __name__ == '__main__':
+    import reloadall                # test code: reload myself
+    reload_all(reloadall)           # should reload this, types
+
+
+
+file: reloadall_test.py
+-----------------------
+
+import reloadall
+import string, os, Tkinter    # get some larger modules
+
+
+
+Expected output
+---------------
+
+% python reloadall.py
+reloading reloadall
+reloading types
+
+% python
+Python 1.5.2 (#0, Apr 13 1999, 10:51:12) ... on win32
+>>> import reloadall_test
+>>> from reloadall import reload_all
+>>> reload_all(reloadall_test)
+reloading reloadall_test
+reloading os
+reloading sys
+reloading UserDict
+reloading string
+reloading ntpath
+reloading stat
+reloading reloadall
+reloading types
+reloading Tkinter
+reloading _tkinter
+reloading FixTk
+>>>
+
+
+
+Simple import chain test
+------------------------
+% cat t1.py
+import t2
+
+% cat t2.py
+import t3
+
+% cat t3.py
+import t4
+
+% cat t4.py
+print 'in t1.t2.t3.t4'
+
+% python
+>>> import t1
+in t1.t2.t3.t4
+>>>
+>>> reload(t1)
+<module 't1' from 't1.pyc'>
+>>>
+>>> from reloadall import reload_all
+>>> reload_all(t1)
+reloading t1
+reloading t2
+reloading t3
+reloading t4
+in t1.t2.t3.t4
+
+
+
+Simple duplicate module test
+----------------------------
+% cat ta.py
+import tb, tc
+
+% cat tb.py
+import td
+
+% cat tc.py
+import td
+
+% cat td.py
+print 'in ta.tb.td, ta.tc.td'
+
+% python
+>>> import ta
+in ta.tb.td, ta.tc.td
+>>> from reloadall import reload_all
+>>> reload_all(ta)
+reloading ta
+reloading tb
+reloading td
+in ta.tb.td, ta.tc.td
+reloading tc
+
+
+
+Simple import cycle test
+------------------------
+% cat tx.py
+import ty
+
+% cat ty.py
+import tx
+
+% python
+>>> import tx
+>>> from reloadall import reload_all
+>>> reload_all(tx)
+reloading tx
+reloading ty
+>>> import ty
+>>> reload_all(ty)
+reloading ty
+reloading tx
+
+
+
+You wrote:
+> ---MOQ94577029475bb1ac28c488d1cb0a0f6c7fc076f29
+> Content-Type: text/plain
+> Content-Transfer-Encoding: 8bit
+> 
+> The two modules necessary are attached. If they are
+> right, please tell me. If they are wrong, tell me what
+> I did wrong.
+> 
+> ---MOQ94577029475bb1ac28c488d1cb0a0f6c7fc076f29
+> Content-Type: text/plain; name="transmod.py"
+> Content-Transfer-Encoding: 8bit
+> Content-Disposition: inline; filename="transmod.py"
+> 
+> 
+> def transitive_module_loader(*args):
+>     import test2
+>     for arg in args:
+>         for anon_obj in arg.__dict__.keys():
+>             if type(anon_obj) == type(test2):
+>                 reload(anon_obj)
+>                 for module in anon_obj.__dict__.keys():
+>                     if type(module) ==  type(anon_obj):
+>                         reload(module)
+> 
+> 
+> 
+> ---MOQ94577029475bb1ac28c488d1cb0a0f6c7fc076f29
+> Content-Type: text/plain; name="test2.py"
+> Content-Transfer-Encoding: 8bit
+> Content-Disposition: inline; filename="test2.py"
+> 
+> def re(mod):
+>     reload(mod)
+> 
+> ---MOQ94577029475bb1ac28c488d1cb0a0f6c7fc076f29--           

@@ -1,0 +1,9 @@
+#!/usr/local/bin/python
+
+import sys	
+marker = '::::::'
+
+for name in sys.argv[1:]:              # for all command-line args
+    input = open(name, 'r')            
+    print marker + name                # write separator line
+    print input.read()                 # write file contents

@@ -1,0 +1,162 @@
+#
+# note: these tests were run on Linux; 
+#
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py
+reps=200 * [push=200 pop=200 fetch=200]
+Python module: 2.36786401272
+C ext module:  1.09771203995
+
+Python Stack:     2.50571703911
+Python FastStack: 19.1344579458
+C Stack exttype:  0.635800004005
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py 50 50 50 50
+reps=50 * [push=50 pop=50 fetch=50]
+Python module: 0.10965192318
+C ext module:  0.0701370239258
+
+Python Stack:     0.119439005852
+Python FastStack: 0.357308983803
+C Stack exttype:  0.0414110422134
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py 100 100 100 100
+reps=100 * [push=100 pop=100 fetch=100]
+Python module: 0.486595034599
+C ext module:  0.28164100647
+
+Python Stack:     0.520062923431
+Python FastStack: 2.53007996082
+C Stack exttype:  0.162822961807
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py 200 40 40 20
+reps=200 * [push=40 pop=40 fetch=20]
+Python module: 0.308257937431
+C ext module:  0.185660004616
+
+Python Stack:     0.337957024574
+Python FastStack: 0.385974049568
+C Stack exttype:  0.119729995728
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py 500 40 40 10
+reps=500 * [push=40 pop=40 fetch=10]
+Python module: 0.728783011436
+C ext module:  0.411130070686
+
+Python Stack:     0.7943379879
+Python FastStack: 0.564090967178
+C Stack exttype:  0.280983924866
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py 10 200 200 40
+reps=10 * [push=200 pop=200 fetch=40]
+Python module: 0.107692956924
+C ext module:  0.039234995842
+
+Python Stack:     0.110571980476
+Python FastStack: 0.0759129524231
+C Stack exttype:  0.026566028595
+
+
+
+
+#
+# note the files that are active on an exception: package imports
+#
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py 10 200 200 400
+reps=10 * [push=200 pop=200 fetch=400]
+Python module:
+Traceback (innermost last):
+  File "exttim.py", line 31, in ?
+    print "Python module:", test(rep, lambda i: doit_module(stack1))
+  File "/home/mark/PP2ndEd/dev/examples/Part2/Dstruct/Basic/timer.py", line 5, in test
+    x = func(i)                # call it 'reps' times
+  File "exttim.py", line 31, in <lambda>
+    print "Python module:", test(rep, lambda i: doit_module(stack1))
+  File "exttim.py", line 21, in doit_module
+    for i in range(items):  t = mod.item(i)
+  File "/home/mark/PP2ndEd/dev/examples/Part2/Dstruct/Basic/stack1.py", line 22, in item
+    def item(offset): return stack[offset]       # index the stack
+IndexError: list index out of range
+
+
+
+
+#
+# with timer2 (time.clock())
+#
+
+#
+# while running no other substantial processes
+#
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ vi exttim.py
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py
+reps=200 * [push=200 pop=200 fetch=200]
+Python module: {'cpu': 2.38, 'wall': 2.38359296322}
+C ext module:  {'cpu': 1.09, 'wall': 1.0957660675}
+
+Python Stack:     {'cpu': 2.51, 'wall': 2.50272297859}
+Python FastStack: {'cpu': 19.11, 'wall': 19.1076430082}
+C Stack exttype:  {'cpu': 0.65, 'wall': 0.648849964142}
+
+
+# while running a process monitor
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ vi exttim.py
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py
+reps=200 * [push=200 pop=200 fetch=200]
+Python module: 2.76350700855
+C ext module:  1.09829294682
+
+Python Stack:     2.50552499294
+Python FastStack: 19.3619680405
+C Stack exttype:  0.636141061783
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ vi exttim.py
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py
+reps=200 * [push=200 pop=200 fetch=200]
+Python module: {'cpu': 2.42, 'wall': 2.58659791946}
+C ext module:  {'cpu': 1.15, 'wall': 1.22346198559}
+
+Python Stack:     {'cpu': 2.51, 'wall': 2.57387900352}
+Python FastStack: {'cpu': 19.2, 'wall': 19.4153419733}
+C Stack exttype:  {'cpu': 0.66, 'wall': 0.712216973305}
+
+
+#
+# while running the part3 slideshow demo with delay=250msec to stress
+# the cpu; this test was given much more cpu time than the slideshow
+#
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py
+reps=200 * [push=200 pop=200 fetch=200]
+Python module: {'cpu': 2.5, 'wall': 3.81606197357}
+C ext module:  {'cpu': 1.13, 'wall': 1.77724897861}
+
+Python Stack:     {'cpu': 2.6, 'wall': 3.97338998318}
+Python FastStack: {'cpu': 19.69, 'wall': 27.4133239985}
+C Stack exttype:  {'cpu': 0.68, 'wall': 0.879637002945}
+
+
+#
+# while running the part3 slideshow demo with delay=0 to stress
+# the cpu; this test essentially shared the cpu with the slideshow process,
+# which accounts for the essentially doubled wall time versus cpu time
+#
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Stacks]$ python exttim.py
+reps=200 * [push=200 pop=200 fetch=200]
+Python module: {'cpu': 2.49, 'wall': 6.28882408142}
+C ext module:  {'cpu': 1.19, 'wall': 2.86052799225}
+
+Python Stack:     {'cpu': 2.59, 'wall': 6.59433805943}
+Python FastStack: {'cpu': 23.1, 'wall': 58.8224700689}
+C Stack exttype:  {'cpu': 0.98, 'wall': 2.70849001408}
+

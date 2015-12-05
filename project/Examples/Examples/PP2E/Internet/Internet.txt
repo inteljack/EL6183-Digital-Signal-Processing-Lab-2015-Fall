@@ -1,0 +1,9 @@
+Internet examples.  See the README files in the subdirectories
+here for details on a particular group of examples.  
+
+The script LaunchBrowser.py in the examples root directory 
+attempts to spawn a browser on a given example page; it can
+be used to bring up pages in the Cgi-Web directory, whether 
+you have an Internet feed or not.   Cgi-Web/PyInternetDemos.html
+has links to all the major browser-based examples.
+ 

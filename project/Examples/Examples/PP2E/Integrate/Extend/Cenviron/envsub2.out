@@ -1,0 +1,23 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part1/Preview/Integrate]$ python
+>>> import os
+>>> from envsub2 import Env
+>>> os.environ['USER']
+'mark'
+>>> Env.get('USER')
+'mark'
+>>> Env.put('USER', 'professor')
+>>> os.environ['USER']
+'professor'
+>>> Env.get('USER')
+'professor'
+
+# cenviron names don't work
+
+>>> Env.getenv('USER')
+'professor'
+>>> Env.putenv('USER', 'skipper')
+>>> Env.getenv('USER')
+'skipper'
+>>> os.environ['USER']
+'professor'
+

@@ -1,0 +1,31 @@
+C:\Stuff\Mark\Website\bkp>python %X%\Part2\Internet\Ftp\uploadflat.py
+Please enter password for starship.python.net:
+Clean remote directory first?
+connecting...
+uploading .\LJsuppcover.jpg to LJsuppcover.jpg
+uploading .\PythonPowered.gif to PythonPowered.gif
+uploading .\PythonPoweredAnim.gif to PythonPoweredAnim.gif
+uploading .\PythonPoweredSmall.gif to PythonPoweredSmall.gif
+uploading .\Pywin.gif to Pywin.gif
+uploading .\UPDATES to UPDATES
+uploading .\about-hopl.html to about-hopl.html
+uploading .\about-lp-toc.html to about-lp-toc.html
+uploading .\about-lp.html to about-lp.html
+uploading .\about-me.html to about-me.html
+uploading .\about-pp-japan.html to about-pp-japan.html
+uploading .\about-pp.html to about-pp.html
+.
+.
+.
+uploading .\trainingCD-medium.GIF to trainingCD-medium.GIF
+uploading .\trainingCD-small.GIF to trainingCD-small.GIF
+uploading .\trainingCD.GIF to trainingCD.GIF
+uploading .\uk-1.jpg to uk-1.jpg
+uploading .\uk-2.jpg to uk-2.jpg
+uploading .\uk-3.jpg to uk-3.jpg
+uploading .\uploadflat.py to uploadflat.py
+uploading .\whatsnew.html to whatsnew.html
+uploading .\whatsold.html to whatsold.html
+uploading .\xlate-lp.html to xlate-lp.html
+Done: 131 files uploaded.
+

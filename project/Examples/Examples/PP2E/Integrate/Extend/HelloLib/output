@@ -1,0 +1,28 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/HelloLib]$ python
+
+>>> import hellowrap
+>>> hellowrap.message('lib world')
+'Hello, lib world'
+>>> hellowrap.__file__
+'./hellowrap.so'           
+
+
+>>> for name in dir(hellowrap):
+...     print name, '=', getattr(hellowrap, name)
+...
+__doc__ = None
+__file__ = ./hellowrap.so
+__name__ = hellowrap
+message = <built-in function message>
+
+>>> for name in dir(hellowrap):
+...      print name, '\t=', getattr(hellowrap, name)
+...
+__doc__         = None
+__file__        = ./hellowrap.so
+__name__        = hellowrap
+message         = <built-in function message>
+
+>>> from hellowrap import message
+>>> message('externals')
+'Hello, externals'           

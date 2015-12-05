@@ -1,0 +1,6 @@
+This directory contains operating system interface examples.
+
+Many of the examples in this unit appear elsewhere in the examples
+distribution tree, because they are actually used to manage other
+programs.  See the README.txt files in the subdirectories here 
+for pointers.

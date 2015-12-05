@@ -1,0 +1,100 @@
+C:\...\PP2E\Dbase\TableBrowser>python formgui.py
+alan {'job': 'comedian', 'name': ('Alan', 'B')}
+sally {'job': 'writer', 'name': ('Sally', 'R')}
+rob {'spouse': 'Laura', 'job': 'writer', 'name': ('Rob', 'P')}
+mel {'job': 'producer', 'name': ('Mel', 'C')}
+milly {'spouse': 'Jerry', 'name': ('Milly', '?'), 'kids': 2}
+buddy {'spouse': 'Pickles', 'job': 'writer', 'name': ('Buddy', 'S')}
+laura {'spouse': 'Rob', 'name': ('Laura', 'P'), 'kids': 1}
+
+alan {'job': 'comedian', 'name': ('Alan', 'B')}
+jerry {'spouse': 'Milly', 'name': 'Jerry', 'kids': 0}
+sally {'job': 'writer', 'name': ('Sally', 'R')}
+rob {'spouse': 'Laura', 'job': 'writer', 'name': ('Rob', 'P')}
+mel {'job': 'producer', 'name': ('Mel', 'C')}
+milly {'spouse': 'Jerry', 'name': ('Milly', '?'), 'kids': 2}
+buddy {'spouse': 'Pickles', 'job': 'writer', 'name': ('Buddy', 'S')}
+laura {'name': ('Laura', 'P'), 'kids': 3, 'spouse': 'bob'}
+
+
+
+------------------------------------------------------------------------------
+
+
+C:\...\PP2E\Dbase\TableBrowser>python dbinit1.py
+
+C:\...\PP2E\Dbase\TableBrowser>python dbview.py
+
+
+C:\...\PP2E\Dbase\TableBrowser>python dbinit2.py ../data/mydbase-dict dict
+
+C:\...\PP2E\Dbase\TableBrowser>python dbview.py ../data/mydbase-dict dict
+
+
+C:\...\PP2E\Dbase\data>ls
+mydbase-class  mydbase-dict   myfile         shelve1
+
+C:\...\PP2E\Dbase\data>python
+>>> import shelve
+>>> db = shelve.open('mydbase-class')
+>>> db.keys()
+['emily', 'jerry', '?empty?', 'bob', 'howard']
+>>> db['bob']
+<PP2E.Dbase.person.Person instance at 798d70>
+>>> db['emily'].job
+'teacher'
+>>> db['bob'].tax
+30000.0
+
+>>> db = shelve.open('mydbase-dict')
+>>> db.keys()
+['tom', 'guido', '?empty?', 'larry', 'randal', 'mel']
+>>> db['guido']
+{'shoesize': 42, 'name': 'benevolent dictator', 'language': 'Python'}
+>>> db['mel']['shoesize']
+{'left': 7.5, 'right': 7L}
+
+
+-------------------------------------------------------------------------------
+
+
+C:\PP2ndEd\examples\PP2E\Dbase\TableBrowser>python formtable.py dbm 1 ..\data\db
+m1
+dbm-of-dictstring test
+alan {'job': 'comedian', 'name': ('Alan', 'B')}
+mel {'job': 'producer', 'name': ('Mel', 'C')}
+buddy {'spouse': 'Pickles', 'job': 'writer', 'name': ('Buddy', 'S')}
+sally {'job': 'writer', 'name': ('Sally', 'R')}
+rob {'spouse': 'Laura', 'job': 'writer', 'name': ('Rob', 'P')}
+milly {'spouse': 'Jerry', 'name': ('Milly', '?'), 'kids': 2}
+laura {'kids': 2, 'name': ('Laura', 'P'), 'spouse': 'Rob'}
+
+C:\PP2ndEd\examples\PP2E\Dbase\TableBrowser>python formtable.py dbm 0 ..\data\db
+m1
+dbm-of-dictstring test
+alan {'job': 'comedian', 'name': ('Alan', 'B')}
+mel {'job': 'producer', 'name': ('Mel', 'C')}
+buddy {'spouse': 'Pickles', 'job': 'writer', 'name': ('Buddy', 'S')}
+sally {'job': 'writer', 'name': ('Sally', 'R')}
+rob {'spouse': 'Laura', 'job': 'writer', 'name': ('Rob', 'P')}
+milly {'spouse': 'Jerry', 'name': ('Milly', '?'), 'kids': 2}
+laura {'kids': 2, 'name': ('Laura', 'P'), 'spouse': 'Rob'}
+
+C:\PP2ndEd\examples\PP2E\Dbase\data>ls
+dbm1           mydbase-class  mydbase-dict   myfile         shelve1
+
+C:\PP2ndEd\examples\PP2E\Dbase\data>python
+Python 1.5.2 (#0, Apr 13 1999, 10:51:12) [MSC 32 bit (Intel)] on win32
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import shelve
+>>> db = shelve.open('shelve1')
+>>> db.keys()
+['alan', 'buddy', 'sally', 'rob', 'milly', 'laura', 'mel']
+>>> db['laura']
+<PP2E.Dbase.testdata.Actor instance at 799850>
+>>> import anydbm
+>>> db = anydbm.open('dbm1')
+>>> db.keys()
+['alan', 'mel', 'buddy', 'sally', 'rob', 'milly', 'laura']
+>>> db['laura']
+"{'name': ('Laura', 'P'), 'kids': 2, 'spouse': 'Rob'}"

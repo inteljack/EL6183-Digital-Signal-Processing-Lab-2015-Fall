@@ -1,0 +1,34 @@
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python form.py
+Job     =>      educator, entertainer
+Age     =>      38
+Name    =>      Bob
+
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python form.py -
+Enter field names: Name Email Web Locale
+Email   =>      lutz@rmi.net
+Locale  =>      Colorado
+Web     =>      http:\\rmi.net\~lutz
+Name    =>      Your author
+Press return key at console
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python getfilegui.py
+Port Number     =>      50001
+Server Name     =>      localhost
+File Name       =>      testdir\python15.lib
+Local Dir       =>      temp
+Client got testdir\python15.lib at Tue Aug 15 22:32:34 2000
+
+
+
+[lutz@starship lutz]$ /usr/bin/python getfile.py -mode server -port 51234
+Server connected by ('38.28.130.229', 1111) at Tue Aug 15 21:48:13 2000
+
+C:\PP2ndEd\examples\Part2\Internet\Sockets>python getfilegui.py
+Port Number     =>      51234
+Server Name     =>      starship.python.net
+File Name       =>      public_html/index.html
+Local Dir       =>      temp
+Client got public_html/index.html at Tue Aug 15 22:42:06 2000
+

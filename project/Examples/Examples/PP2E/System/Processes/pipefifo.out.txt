@@ -1,0 +1,11 @@
+[mark@toy ~/tmp]$ python pipefifo.py
+Parent 657 got "Spam 000" at 968390065.865
+Parent 657 got "Spam 001" at 968390066.865
+Parent 657 got "Spam 002" at 968390068.865
+Parent 657 got "Spam 003" at 968390071.865
+Parent 657 got "Spam 004" at 968390075.865
+Parent 657 got "Spam 000" at 968390075.867
+Parent 657 got "Spam 001" at 968390076.865
+Parent 657 got "Spam 002" at 968390078.865
+
+[mark@toy ~/tmp]$ python pipefifo.py -child

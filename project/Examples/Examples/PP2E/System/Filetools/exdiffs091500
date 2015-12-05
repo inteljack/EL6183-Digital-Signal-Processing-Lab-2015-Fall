@@ -1,0 +1,581 @@
+--------------------
+Comparing examples to g:\PP2ndEd\examples
+Files unique to examples
+... .cshrc
+Comparing contents
+tounix.py DIFFERS
+--------------------
+Comparing examples\old_Part2 to g:\PP2ndEd\examples\old_Part2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\old_Part2\Basics to g:\PP2ndEd\examples\old_Part2\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\old_Part2\Oop to g:\PP2ndEd\examples\old_Part2\Oop
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Other to g:\PP2ndEd\examples\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1 to g:\PP2ndEd\examples\Part1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Pragmatics to g:\PP2ndEd\examples\Part1\Pragmatics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview to g:\PP2ndEd\examples\Part1\Preview
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview\Dbase to g:\PP2ndEd\examples\Part1\Preview\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview\Dstruct to g:\PP2ndEd\examples\Part1\Preview\Dstruct
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview\Gui to g:\PP2ndEd\examples\Part1\Preview\Gui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview\Integrate to g:\PP2ndEd\examples\Part1\Preview\Integrate
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview\Internet to g:\PP2ndEd\examples\Part1\Preview\Internet
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview\Shell to g:\PP2ndEd\examples\Part1\Preview\Shell
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Preview\Text to g:\PP2ndEd\examples\Part1\Preview\Text
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part1\Tutor to g:\PP2ndEd\examples\Part1\Tutor
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2 to g:\PP2ndEd\examples\Part2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai to g:\PP2ndEd\examples\Part2\Ai
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\ExpertSystem to g:\PP2ndEd\examples\Part2\Ai\ExpertSystem
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\ExpertSystem\holmes to g:\PP2ndEd\examples\Part2\Ai\ExpertSystem\holmes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\ExpertSystem\holmes\examples to g:\PP2ndEd\examples\Part2\Ai\ExpertSystem\holmes\examples
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\ExpertSystem\holmes\holmes to g:\PP2ndEd\examples\Part2\Ai\ExpertSystem\holmes\holmes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\ExpertSystem\holmes\holmes2 to g:\PP2ndEd\examples\Part2\Ai\ExpertSystem\holmes\holmes2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\ExpertSystem\holmes\holmes3 to g:\PP2ndEd\examples\Part2\Ai\ExpertSystem\holmes\holmes3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\ExpertSystem\holmes\kbases to g:\PP2ndEd\examples\Part2\Ai\ExpertSystem\holmes\kbases
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Ai\TicTacToe to g:\PP2ndEd\examples\Part2\Ai\TicTacToe
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Dbase to g:\PP2ndEd\examples\Part2\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Dbase\data to g:\PP2ndEd\examples\Part2\Dbase\data
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Dbase\TableBrowser to g:\PP2ndEd\examples\Part2\Dbase\TableBrowser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Dstruct to g:\PP2ndEd\examples\Part2\Dstruct
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Dstruct\Basic to g:\PP2ndEd\examples\Part2\Dstruct\Basic
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Dstruct\Classics to g:\PP2ndEd\examples\Part2\Dstruct\Classics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Dstruct\TreeView to g:\PP2ndEd\examples\Part2\Dstruct\TreeView
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui to g:\PP2ndEd\examples\Part2\Gui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\Clock to g:\PP2ndEd\examples\Part2\Gui\Clock
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\gifs to g:\PP2ndEd\examples\Part2\Gui\gifs
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\gifs\bkp to g:\PP2ndEd\examples\Part2\Gui\gifs\bkp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\MovingPics to g:\PP2ndEd\examples\Part2\Gui\MovingPics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\ShellGui to g:\PP2ndEd\examples\Part2\Gui\ShellGui
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\SlideShow to g:\PP2ndEd\examples\Part2\Gui\SlideShow
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\TextEditor to g:\PP2ndEd\examples\Part2\Gui\TextEditor
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Gui\Tools to g:\PP2ndEd\examples\Part2\Gui\Tools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet to g:\PP2ndEd\examples\Part2\Internet
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\Basics to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\Basics\uploads to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\Basics\uploads
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\Extern to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\Extern
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\Extern\Email to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\Extern\Email
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\commentDB to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\commentDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\errataDB to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\DbaseFilesIndexed\errataDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\temp to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\AdminTools\temp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\DbaseFiles to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\DbaseFiles
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\DbaseFiles\commentDB to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\DbaseFiles\commentDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\DbaseFiles\errataDB to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\DbaseFiles\errataDB
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\DbaseShelve to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\DbaseShelve
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyErrata\Mutex to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyErrata\Mutex
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyMailCgi to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyMailCgi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Cgi-Web\PyMailCgi\temp to g:\PP2ndEd\examples\Part2\Internet\Cgi-Web\PyMailCgi\temp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Email to g:\PP2ndEd\examples\Part2\Internet\Email
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Email\test to g:\PP2ndEd\examples\Part2\Internet\Email\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Ftp to g:\PP2ndEd\examples\Part2\Internet\Ftp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Ftp\test to g:\PP2ndEd\examples\Part2\Internet\Ftp\test
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Other to g:\PP2ndEd\examples\Part2\Internet\Other
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Other\Com to g:\PP2ndEd\examples\Part2\Internet\Other\Com
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Sockets to g:\PP2ndEd\examples\Part2\Internet\Sockets
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Sockets\temp to g:\PP2ndEd\examples\Part2\Internet\Sockets\temp
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Internet\Sockets\testdir to g:\PP2ndEd\examples\Part2\Internet\Sockets\testdir
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Lang to g:\PP2ndEd\examples\Part2\Lang
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Lang\Calculator to g:\PP2ndEd\examples\Part2\Lang\Calculator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\Lang\Parser to g:\PP2ndEd\examples\Part2\Lang\Parser
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System to g:\PP2ndEd\examples\Part2\System
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\App to g:\PP2ndEd\examples\Part2\System\App
+Files unique to examples\Part2\System\App
+... __init__.pyc
+... apptools.pyc
+Comparing contents
+apptools.py DIFFERS
+--------------------
+Comparing examples\Part2\System\App\Bases to g:\PP2ndEd\examples\Part2\System\App\Bases
+Files unique to examples\Part2\System\App\Bases
+... __init__.pyc
+... app.pyc
+Comparing contents
+--------------------
+Comparing examples\Part2\System\App\Clients to g:\PP2ndEd\examples\Part2\System\App\Clients
+Files unique to examples\Part2\System\App\Clients
+... packapp.pyc
+... textpack.pyc
+... unpkapp.pyc
+... mtool3.pyc
+... test
+Files unique to g:\PP2ndEd\examples\Part2\System\App\Clients
+... packed1
+Comparing contents
+mtool3.py DIFFERS
+mtoolapp.py DIFFERS
+myapp.py DIFFERS
+myapp2.py DIFFERS
+myapp4.py DIFFERS
+packapp.py DIFFERS
+tools.py DIFFERS
+tools2.py DIFFERS
+unpkapp.py DIFFERS
+unpkapp2.py DIFFERS
+textpack.py DIFFERS
+--------------------
+Comparing examples\Part2\System\App\Kinds to g:\PP2ndEd\examples\Part2\System\App\Kinds
+Files unique to examples\Part2\System\App\Kinds
+... __init__.pyc
+... redirect.pyc
+... interact.pyc
+... internal.pyc
+... fakefile.pyc
+Comparing contents
+fakefile.py DIFFERS
+interact.py DIFFERS
+internal.py DIFFERS
+redirect.py DIFFERS
+--------------------
+Comparing examples\Part2\System\App\Tests to g:\PP2ndEd\examples\Part2\System\App\Tests
+Directory lists are identical
+Comparing contents
+apptest.py DIFFERS
+--------------------
+Comparing examples\Part2\System\Environment to g:\PP2ndEd\examples\Part2\System\Environment
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Filetools to g:\PP2ndEd\examples\Part2\System\Filetools
+Files unique to examples\Part2\System\Filetools
+... split.pyc
+... join.pyc
+... cpall_visitor.py
+Comparing contents
+cpall.py DIFFERS
+cpall.pyc DIFFERS
+diffall.py DIFFERS
+dirdiff.py DIFFERS
+dirdiff.pyc DIFFERS
+--------------------
+Comparing examples\Part2\System\Filetools\tempsplit to g:\PP2ndEd\examples\Part2\System\Filetools\tempsplit
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Filetools\Xfer063000 to g:\PP2ndEd\examples\Part2\System\Filetools\Xfer063000
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Filetools\temp1 to g:\PP2ndEd\examples\Part2\System\Filetools\temp1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Filetools\temp1\sub1 to g:\PP2ndEd\examples\Part2\System\Filetools\temp1\sub1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Filetools\temp2 to g:\PP2ndEd\examples\Part2\System\Filetools\temp2
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Filetools\temp2\sub1 to g:\PP2ndEd\examples\Part2\System\Filetools\temp2\sub1
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Filetools\temp3 to g:\PP2ndEd\examples\Part2\System\Filetools\temp3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Processes to g:\PP2ndEd\examples\Part2\System\Processes
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Threads to g:\PP2ndEd\examples\Part2\System\Threads
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part2\System\Threads\etc to g:\PP2ndEd\examples\Part2\System\Threads\etc
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3 to g:\PP2ndEd\examples\Part3
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed to g:\PP2ndEd\examples\Part3\Embed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\ApiClients to g:\PP2ndEd\examples\Part3\Embed\ApiClients
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Basics to g:\PP2ndEd\examples\Part3\Embed\Basics
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Basics\Old to g:\PP2ndEd\examples\Part3\Embed\Basics\Old
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\HighLevelApi to g:\PP2ndEd\examples\Part3\Embed\HighLevelApi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Inventory to g:\PP2ndEd\examples\Part3\Embed\Inventory
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Inventory\Output to g:\PP2ndEd\examples\Part3\Embed\Inventory\Output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Inventory\WithDbase to g:\PP2ndEd\examples\Part3\Embed\Inventory\WithDbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Inventory\WithDbase\Data to g:\PP2ndEd\examples\Part3\Embed\Inventory\WithDbase\Data
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Inventory\WithDbase\Dbase to g:\PP2ndEd\examples\Part3\Embed\Inventory\WithDbase\Dbase
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\Inventory\WithDbase\Output to g:\PP2ndEd\examples\Part3\Embed\Inventory\WithDbase\Output
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\TestApi to g:\PP2ndEd\examples\Part3\Embed\TestApi
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\TestApi\WithPackages to g:\PP2ndEd\examples\Part3\Embed\TestApi\WithPackages
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Embed\TestApi\WithPackages\pkgdir to g:\PP2ndEd\examples\Part3\Embed\TestApi\WithPackages\pkgdir
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend to g:\PP2ndEd\examples\Part3\Extend
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend\Hello to g:\PP2ndEd\examples\Part3\Extend\Hello
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend\HelloLib to g:\PP2ndEd\examples\Part3\Extend\HelloLib
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend\Modulator to g:\PP2ndEd\examples\Part3\Extend\Modulator
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend\Stacks to g:\PP2ndEd\examples\Part3\Extend\Stacks
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend\Swig to g:\PP2ndEd\examples\Part3\Extend\Swig
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend\Swig\Environ to g:\PP2ndEd\examples\Part3\Extend\Swig\Environ
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Extend\Swig\Shadow to g:\PP2ndEd\examples\Part3\Extend\Swig\Shadow
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Mixed to g:\PP2ndEd\examples\Part3\Mixed
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Mixed\Exports to g:\PP2ndEd\examples\Part3\Mixed\Exports
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Mixed\Exports\ClassAndMod to g:\PP2ndEd\examples\Part3\Mixed\Exports\ClassAndMod
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\Part3\Mixed\Regist to g:\PP2ndEd\examples\Part3\Mixed\Regist
+Directory lists are identical
+Comparing contents
+--------------------
+Comparing examples\PyTools to g:\PP2ndEd\examples\PyTools
+Files unique to examples\PyTools
+... old-todos.py
+... old-tounix.py
+... old_toboth.py
+... fixeoln_one.doc.txt
+Files unique to g:\PP2ndEd\examples\PyTools
+... toboth.py
+... todos.py
+... tounix.py
+Comparing contents
+cleanpyc.py DIFFERS
+fixeoln_all.py DIFFERS
+fixeoln_all.pyc DIFFERS
+fixeoln_one.py DIFFERS
+fixeoln_one.pyc DIFFERS
+fixnames_all.py DIFFERS
+fixnames_all.pyc DIFFERS
+fixnames_all2.py DIFFERS
+visitor_replace.py DIFFERS
+visitor_fixeoln.py DIFFERS
+visitor_fixnames.py DIFFERS
+========================================
+Diffs found: 41
+- unique files at examples - g:\PP2ndEd\examples
+- files differ at examples\tounix.py - g:\PP2ndEd\examples\tounix.py
+- unique files at examples\Part2\System\App - g:\PP2ndEd\examples\Part2\System\App
+- files differ at examples\Part2\System\App\apptools.py - g:\PP2ndEd\examples\Part2\System\App\apptools.py
+- unique files at examples\Part2\System\App\Bases - g:\PP2ndEd\examples\Part2\System\App\Bases
+- unique files at examples\Part2\System\App\Clients - g:\PP2ndEd\examples\Part2\System\App\Clients
+- files differ at examples\Part2\System\App\Clients\mtool3.py - g:\PP2ndEd\examples\Part2\System\App\Clients\mtool3.py
+- files differ at examples\Part2\System\App\Clients\mtoolapp.py - g:\PP2ndEd\examples\Part2\System\App\Clients\mtoolapp.py
+- files differ at examples\Part2\System\App\Clients\myapp.py - g:\PP2ndEd\examples\Part2\System\App\Clients\myapp.py
+- files differ at examples\Part2\System\App\Clients\myapp2.py - g:\PP2ndEd\examples\Part2\System\App\Clients\myapp2.py
+- files differ at examples\Part2\System\App\Clients\myapp4.py - g:\PP2ndEd\examples\Part2\System\App\Clients\myapp4.py
+- files differ at examples\Part2\System\App\Clients\packapp.py - g:\PP2ndEd\examples\Part2\System\App\Clients\packapp.py
+- files differ at examples\Part2\System\App\Clients\tools.py - g:\PP2ndEd\examples\Part2\System\App\Clients\tools.py
+- files differ at examples\Part2\System\App\Clients\tools2.py - g:\PP2ndEd\examples\Part2\System\App\Clients\tools2.py
+- files differ at examples\Part2\System\App\Clients\unpkapp.py - g:\PP2ndEd\examples\Part2\System\App\Clients\unpkapp.py
+- files differ at examples\Part2\System\App\Clients\unpkapp2.py - g:\PP2ndEd\examples\Part2\System\App\Clients\unpkapp2.py
+- files differ at examples\Part2\System\App\Clients\textpack.py - g:\PP2ndEd\examples\Part2\System\App\Clients\textpack.py
+- unique files at examples\Part2\System\App\Kinds - g:\PP2ndEd\examples\Part2\System\App\Kinds
+- files differ at examples\Part2\System\App\Kinds\fakefile.py - g:\PP2ndEd\examples\Part2\System\App\Kinds\fakefile.py
+- files differ at examples\Part2\System\App\Kinds\interact.py - g:\PP2ndEd\examples\Part2\System\App\Kinds\interact.py
+- files differ at examples\Part2\System\App\Kinds\internal.py - g:\PP2ndEd\examples\Part2\System\App\Kinds\internal.py
+- files differ at examples\Part2\System\App\Kinds\redirect.py - g:\PP2ndEd\examples\Part2\System\App\Kinds\redirect.py
+- files differ at examples\Part2\System\App\Tests\apptest.py - g:\PP2ndEd\examples\Part2\System\App\Tests\apptest.py
+- unique files at examples\Part2\System\Filetools - g:\PP2ndEd\examples\Part2\System\Filetools
+- files differ at examples\Part2\System\Filetools\cpall.py - g:\PP2ndEd\examples\Part2\System\Filetools\cpall.py
+- files differ at examples\Part2\System\Filetools\cpall.pyc - g:\PP2ndEd\examples\Part2\System\Filetools\cpall.pyc
+- files differ at examples\Part2\System\Filetools\diffall.py - g:\PP2ndEd\examples\Part2\System\Filetools\diffall.py
+- files differ at examples\Part2\System\Filetools\dirdiff.py - g:\PP2ndEd\examples\Part2\System\Filetools\dirdiff.py
+- files differ at examples\Part2\System\Filetools\dirdiff.pyc - g:\PP2ndEd\examples\Part2\System\Filetools\dirdiff.pyc
+- unique files at examples\PyTools - g:\PP2ndEd\examples\PyTools
+- files differ at examples\PyTools\cleanpyc.py - g:\PP2ndEd\examples\PyTools\cleanpyc.py
+- files differ at examples\PyTools\fixeoln_all.py - g:\PP2ndEd\examples\PyTools\fixeoln_all.py
+- files differ at examples\PyTools\fixeoln_all.pyc - g:\PP2ndEd\examples\PyTools\fixeoln_all.pyc
+- files differ at examples\PyTools\fixeoln_one.py - g:\PP2ndEd\examples\PyTools\fixeoln_one.py
+- files differ at examples\PyTools\fixeoln_one.pyc - g:\PP2ndEd\examples\PyTools\fixeoln_one.pyc
+- files differ at examples\PyTools\fixnames_all.py - g:\PP2ndEd\examples\PyTools\fixnames_all.py
+- files differ at examples\PyTools\fixnames_all.pyc - g:\PP2ndEd\examples\PyTools\fixnames_all.pyc
+- files differ at examples\PyTools\fixnames_all2.py - g:\PP2ndEd\examples\PyTools\fixnames_all2.py
+- files differ at examples\PyTools\visitor_replace.py - g:\PP2ndEd\examples\PyTools\visitor_replace.py
+- files differ at examples\PyTools\visitor_fixeoln.py - g:\PP2ndEd\examples\PyTools\visitor_fixeoln.py
+- files differ at examples\PyTools\visitor_fixnames.py - g:\PP2ndEd\examples\PyTools\visitor_fixnames.py

@@ -1,0 +1,29 @@
+11a12,24
+> def get_option():
+>     for (name, func) in menu:                  # show menu items
+>         print '\t%s)%s' % (upper(name[0]), name[1:])
+>     return lower(raw_input('?'))
+>  
+> def run_option(tool):
+>     for (name, func) in menu:
+>         if tool == name[0] or tool == name:    # matches menu key?
+>             return func()                      # run function
+>             break                              # exit for (not while)
+>     else:
+>         print 'what? - try again'              # not found: return None
+> 
+14,24c27,28
+<         for name, func in menu:                    # show menu items
+<             print '\t' + upper(name[0]) + ')' + name[1:]  
+<         tool = lower(raw_input('?'))
+<         for name, func in menu:
+<             if tool == name[0] or tool == name:    # matches menu key?
+<                 exitflag = func()                  # run function
+<                 break                              # exit for, not while
+<         else:
+<             print 'what? - try again'              # didn't break: not found
+<             continue                               # goto top of while
+<         if exitflag: break                         # exit while if 'true'
+---
+>         tool = get_option()
+>         if run_option(tool): break             # func returned 'true'?

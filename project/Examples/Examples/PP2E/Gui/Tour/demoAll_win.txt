@@ -1,0 +1,29 @@
+# 4 demo classes in independent top-level windows (not processes)
+
+from Tkinter import *
+demoModules = ['demoDlg', 'demoRadio', 'demoCheck', 'demoScale']
+
+for demo in demoModules:
+    module = __import__(demo)             # import by name string
+    window = Toplevel()                   # make a new window
+    module.Demo(window)                   # parent is the new window
+
+Label(text='Multiple Toplevel window demo', bg='white').pack()
+mainloop()
+
+
+#from Tkinter import *
+#import demoDlg, demoRadio, demoCheck, demoScale
+#demoDlg.Demo(Toplevel())
+#demoRadio.Demo(Toplevel())
+#demoCheck.Demo(Toplevel())
+#demoScale.Demo(Toplevel())
+#Label(text='Multiple window demo').pack()
+#mainloop()
+
+
+#for demo in demoModules:
+#    exec 'from %s import Demo' % demo
+#    window = Toplevel()
+#    Demo(window)           # or eval('Demo')(window)
+

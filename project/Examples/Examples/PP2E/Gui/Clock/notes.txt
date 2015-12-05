@@ -1,0 +1,150 @@
+***IGNORE THIS FILE***
+
+
+
+clock.py...
+# show print version, then da optimization, then canvas version, then clock
+# explain formula = int( round( radius * math.sin(angle * (math.pi/180)) ))
+# composition at work: controller Clock makes and embeds both digital and 
+# anolog display objects, and forgets one and packs other on mouse click;
+# Clock itself can be embedded in (attached to) a larger gui's frame 
+# this works too: y, m, d, h, m, s, wd, jd, dst = timeTuple
+#
+#       # --or tag all hands for 1-step delete--
+#       self.delete('hands')
+#       self.hourHand = self.create_line(originX, originY, 
+#                                        hx + originX, hy + originY, 
+#                                       arrow=???, width=10, fg=FG, tag='hands')
+#
+#       # --or only redraw what has changed--
+#             NO -> no flicker at all
+#       originX = originY = SIZE/2
+#       if hour != self.hour:
+#           self.delete(self.hourHand)
+#           plotHour = self.point(hour, 12, SIZE-30)
+#           self.hourHand = self.create_line(...
+#       if min != self.mins: 
+#           self.delete(self.minsHand)
+#           plotMins = self.point(min,  60, SIZE-20)
+#           self.minsHand = self.create_line(...
+#       self.delete(self.secsHand)
+#       plotSecs = self.point(hour, 60, SIZE-10)
+#       self.secsHand = self.create_line(...
+#       self.hour, self.mins, self.secs = hour, min, sec
+#
+# things resolved...
+# --- redraw all 3 hands each time?   [yes - no flicker]
+# --- make width/height/bg/fg/picture configurable per instance [self.cfg]
+# --- min and/or hour hand advance in analog fashion (not in 1-step incs)?
+#     [yes - hour hand scaled for mins now, min not scaled - see below]
+#     just map to range=60, and value=(hour*5 + (min / 12)); 
+#     xclock scales hour hand, but min hand jumps are min boundary only; 
+#     sgi clock advances minute hand with secs too;
+# --- originX/Y offset valid  [see plotterGui.py]
+# --- just draw a dash for minute hand? (xclock)  [no; -: sec line not smooth]
+# --- arrowhead styles?  capstyle?  stipple?
+#
+# --- bindings not working  [bind all to toplevel]
+#        ==> see bind_all note in calculator.py
+# --- picture not centered  [x,y swapped]
+# --- resizes handle|disable
+#     catch <Configure> event binding (see below)
+# --- rectangles off/clipped [see plotterGui.py]
+# --- hands moving backwards, hour/min in opposite quadrant s.b in 
+#     lower right quadrant is where unit 1's angle is drawn; see
+#     'slow' mode in plotterGui.py -> draws counterclockwise from
+#     the bottom    [see plotterGui.py]
+# --- make size/picture/etc? configurable per instance [self.cfg]
+# --- stippple photo, or make dimmer ones to demo?
+#       -gamma X>1  to lighten, but not done auto [user can do to gifs]
+#       self.image = PhotoImage(file=cfg.picture, gamma=2.0)
+# ??? use new point formula?
+#
+#       #for i in range(4):
+#       #    x, y = self.point(i, 4, radius, originX, originY)
+#       #    self.create_oval(     x, y, x+8, y+8, fill=FG)         # quarters
+#
+# note ClockConfig trick/embedding/composition -- versus globals
+# (can't vary per clock instance, if > 1 in same process; e.g: resizing--
+# self.cfg.size = min(newWidth, newHeight) changes this clock's cfg only,
+# as long as a new ClockConfig instance object is passed in--changes all
+# in process if pass in ClockConfig class instead);
+# Clock owns config object, and passes to display object methods (vs
+# saving in display objects too--only one owner is easier to manage)
+#
+# hour now advances a little each minute, rather than staying in place 
+# for entire hour: 
+#       hour = hour + (mins / 60.0)
+# note on point fine tuning--to shift down and right 1 pixel:
+#       return (pointX + originX+1), (originY+1 - pointY)
+# note that sometimes skips a second, since after() is not 
+# guaranteed to be 100% real-time accurate; when event loop only; 
+#   FIXED--now checks for second change 10 times/sec to avoid skips
+#
+# explain <Configure> binding -> window resizes 
+# (not a master.protocol('WM_RESIZE_WINDOW', cmd) call, unlike delete;
+# delete is both a entire-window protocol and a widget binding);   
+# note: <Configure> calledforresizes and MOVES--don't redraw if size
+# has not changed, else face blanks when moved;
+# explain EVENT parms for binding callback handlers;
+# explain that Configure catches everything, routed to each widget
+# fails:  self.master.protocol('WM_RESIZE', self.onResize)
+#
+# ??? rectangles and arrowheads should scale
+# ??? some resizes odd--catching too many events via <Configure>, leads
+#     to blip in upper left when go from digital to analog without 
+#     resizing window at all
+#
+# --- check time > once per sec, to avoid skipping 2 seconds ahead
+#     If sleep 1 sec, do something to redraw hands, sleep 1 sec,...
+#     eventually the time spent redrawing hands will add up to 
+#     enough time for the clock to miss a second; will skip ahead 
+#     2 seconds.  Need to check > once/sec.
+#     Also: only call for screen update when sec has really changed
+#     (self.lastSec), else ties up cpu too much (100% use on my machine);
+#     minimal cpu impact if only update on real sec change; negligable:
+#     can run clock as a standard desktop device without draining cpu;
+#     checking 10 times/sec (and only updating display on sec rollover)
+#     adds no additional cpu load over cheking 1 time/sec, at least
+#     on my laptop, using the system monitor tool to watch cpu usage;
+#
+# --- wm-delete-window protocol: do self.quit, else errors if > 1
+#     window on a toplevel in process, because update() tries to delete
+#     cog on non-existant clock (only 1 destroyed on toplevel close)
+#
+# --- note: this could be a bit faster if we only redraw minutes hand
+#     when seconds roll over, and hours hand when minute changes (i.e.,
+#     minutes and hours redraw once a minute, not every second as done
+#     now); would need to force a full update on resize though, since
+#     resize redraws circles and assumes a secind update will redra
+#     hands right away (else no hour/min hand for up to 1 minute after
+#     a redraw);
+
+
+
+plottergui.py...
+# see print version, then canvas version, then clock
+# explain formula = int( round( radius * math.sin(angle * (math.pi/180)) ))
+# common mistakes/errors I made:
+#
+# fixed:
+#   angle = tick * (360 / range)
+# to
+#   angle = tick * (360.0 / range)
+# else angles were off or sections were missing for numbers 
+# where 360 % range != 0 (ex: 100) 
+#
+# fixed:
+#    scaledY must be (200 - y), not (y + 200)
+#    since 0 on Y axis in canvas is top of screen
+#    else 1:00 in lower right quadrant, and draws counterclockwise
+#    scaledX = (x + 200) ok because just moving right (lower x's
+#       closer to true 0, unlike lower y's farther away)
+# 
+# fixed:
+#    rectangles at scaledX-2,scaledY-2, scaledX+2,scaledY+2
+#           not at scaledX,scaledY,     scaledX+5,scaledY+5
+#    and calc points to radius-4, not radius
+#           else off at edges of screen
+#    -2-2 only works with SCALED coords (else -2+2)
+#

@@ -1,0 +1,20 @@
+######################################################
+# use the Python SMTP mail interface module to send
+# email messages; this is just a simple one-shot 
+# send script--see pymail.py for a client with more
+# user interaction features, and popmail.py for a
+# script which retrieves mail; smtp is used to 
+# send mail, and runs on a socket using port 
+# number 25 on the server machine, but Python's 
+# smtplib hides all protocol details; to fetch 
+# mail, use the poplib or imaplib modules instead;
+# on some systems, you can also send email with: 
+# os.popen('mail -s "xxx" a@b.c', 'w').write(text), 
+# but smtp is more portable/powerful (see PyErrata);
+# notes: could escape '\nFrom' in the body with '>'
+# so as not to terminate the email, but this is
+# probably superfluous here--servers do this too;
+# smtplib raises an exception if nobody got the
+# mail, else returns a dictionary containing any
+# recipients that failed (empty if no errors);
+######################################################

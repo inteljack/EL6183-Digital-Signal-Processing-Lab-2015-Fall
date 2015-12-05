@@ -1,0 +1,21 @@
+<HTML>
+<BODY>
+<H1>Embedded code demo: Python</H1>
+<SCRIPT Language=Python>
+
+# do the same but with python, if configured;
+# embedded python code shows three alert boxes
+# as page is loaded; any Python code works here,
+# and uses auto-imported global funcs and objects
+
+def message(i):
+    if i == 2:
+        alert("Finished!")
+    else:
+        alert("A Python-generated alert => %d" % i)
+
+for count in range(3): message(count)
+
+</SCRIPT>
+</BODY></HTML>
+

@@ -1,0 +1,333 @@
+C:\PP2ndEd\examples\Part2\Internet\Email>python popmail.py
+Password for pop.rmi.net?
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <4860000073ed6c39@chevalier>
+There are 2 mail messages in 1386 bytes
+('+OK 2 messages (1386 octets)', ['1 744', '2 642'], 14)
+--------------------------------------------------------------------------------
+
+
+[Press Enter key]
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:13:33 2000)
+X-From_: lumber.jack@TheLarch.com  Wed Jul 12 16:10:28 2000
+Return-Path: <lumber.jack@TheLarch.com>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA21434
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:10:27 -0600 (MDT)
+From: lumber.jack@TheLarch.com
+Message-Id: <200007122210.QAA21434@chevalier.rmi.net>
+To: lutz@rmi.net
+Date: Wed Jul 12 16:03:59 2000
+Subject: I'm a Lumberjack, and I'm okay
+X-Mailer: PyMailGui Version 1.0 (Python)
+
+I cut down trees, I skip and jump,
+I like to press wild flowers...
+
+--------------------------------------------------------------------------------
+
+[Press Enter key]
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:13:54 2000)
+X-From_: lutz@rmi.net  Wed Jul 12 16:12:42 2000
+Return-Path: <lutz@chevalier.rmi.net>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA24093
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:12:37 -0600 (MDT)
+Message-Id: <200007122212.QAA24093@chevalier.rmi.net>
+From: lutz@rmi.net
+To: lutz@rmi.net
+Date: Wed Jul 12 16:06:12 2000
+Subject: testing
+X-Mailer: PyMailGui Version 1.0 (Python)
+
+Testing Python mail tools.
+
+--------------------------------------------------------------------------------
+
+Bye.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Email>python smtpmail.py
+From? Eric.the.Half.a.Bee@semibee.com
+To?   lutz@rmi.net
+Subj? A B C D E F G
+Type message text, end with line=(ctrl + D or Z)
+Fiddle de dum, Fiddle de dee,
+Eric the half a bee.
+
+Connecting...
+No errors.
+Bye.
+
+C:\PP2ndEd\examples\Part2\Internet\Email>python smtpmail.py
+From? lutz@rmi.net
+To?   lutz@rmi.net
+Subj? testing smtpmail
+Type message text, end with line=(ctrl + D or Z)
+Lovely Spam! Wonderful Spam!
+Connecting...
+No errors.
+Bye.
+
+
+C:\PP2ndEd\examples\Part2\Internet\Email>python popmail.py
+Password for pop.rmi.net?
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <c4050000b6ee6c39@chevalier>
+There are 6 mail messages in 10941 bytes
+('+OK 6 messages (10941 octets)', ['1 744', '2 642', '3 4456', '4 697', '5 3791'
+, '6 611'], 44)
+--------------------------------------------------------------------------------
+
+
+[Press Enter key]
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:19:20 2000)
+X-From_: Eric.the.Half.a.Bee@semibee.com  Wed Jul 12 16:16:31 2000
+Return-Path: <Eric.the.Half.a.Bee@semibee.com>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA28647
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:16:30 -0600 (MDT)
+From: Eric.the.Half.a.Bee@semibee.com
+Message-Id: <200007122216.QAA28647@chevalier.rmi.net>
+To: lutz@rmi.net
+Date: Wed Jul 12 16:09:21 2000
+Subject: A B C D E F G
+
+Fiddle de dum, Fiddle de dee,
+Eric the half a bee.
+
+--------------------------------------------------------------------------------
+
+[Press Enter key]
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:19:51 2000)
+X-From_: lutz@rmi.net  Wed Jul 12 16:17:58 2000
+Return-Path: <lutz@chevalier.rmi.net>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA00415
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:17:57 -0600 (MDT)
+Message-Id: <200007122217.QAA00415@chevalier.rmi.net>
+From: lutz@rmi.net
+To: lutz@rmi.net
+Date: Wed Jul 12 16:10:55 2000
+Subject: testing smtpmail
+
+Lovely Spam! Wonderful Spam!
+
+--------------------------------------------------------------------------------
+
+Bye.
+
+
+
+
+
+
+
+
+
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Email>python pymail.py
+Password for pop.rmi.net?
+
+[Pymail email client]
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <870f000002f56c39@chevalier>
+('+OK 5 messages (7150 octets)', ['1 744', '2 642', '3 4456', '4 697', '5 611'],
+ 36)
+There are 5 mail messages in 7150 bytes
+Retrieving: 1 2 3 4 5
+There are 5 mail messages in 7150 bytes
+Retrieving: 1 2 3 4 5
+1:      676 bytes
+        From=>lumber.jack@TheLarch.com
+        Date=>Wed Jul 12 16:03:59 2000
+        Subject=>I'm a Lumberjack, and I'm okay
+2:      587 bytes
+        From=>lutz@rmi.net
+        Date=>Wed Jul 12 16:06:12 2000
+        Subject=>testing
+3:      4307 bytes
+        From=>"Mark Hammond" <MarkH@ActiveState.com>
+        Date=>Wed, 12 Jul 2000 18:11:58 -0400
+        Subject=>[Python-Dev] Python .NET (was Preventing 1.5 extensions crashin
+g under 1.6/2.0 Python)
+4:      623 bytes
+        From=>Eric.the.Half.a.Bee@semibee.com
+        Date=>Wed Jul 12 16:09:21 2000
+        Subject=>A B C D E F G
+5:      557 bytes
+        From=>lutz@rmi.net
+        Date=>Wed Jul 12 16:10:55 2000
+        Subject=>testing smtpmail
+[Press Enter key]
+[Pymail] Action? (i, l, d, s, m, q, ?) l 5
+--------------------------------------------------------------------------------
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:45:38 2000)
+X-From_: lutz@rmi.net  Wed Jul 12 16:17:58 2000
+Return-Path: <lutz@chevalier.rmi.net>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA00415
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:17:57 -0600 (MDT)
+Message-Id: <200007122217.QAA00415@chevalier.rmi.net>
+From: lutz@rmi.net
+To: lutz@rmi.net
+Date: Wed Jul 12 16:10:55 2000
+Subject: testing smtpmail
+
+Lovely Spam! Wonderful Spam!
+
+--------------------------------------------------------------------------------
+
+[Pymail] Action? (i, l, d, s, m, q, ?) l 4
+--------------------------------------------------------------------------------
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:45:38 2000)
+X-From_: Eric.the.Half.a.Bee@semibee.com  Wed Jul 12 16:16:31 2000
+Return-Path: <Eric.the.Half.a.Bee@semibee.com>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA28647
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:16:30 -0600 (MDT)
+From: Eric.the.Half.a.Bee@semibee.com
+Message-Id: <200007122216.QAA28647@chevalier.rmi.net>
+To: lutz@rmi.net
+Date: Wed Jul 12 16:09:21 2000
+Subject: A B C D E F G
+
+Fiddle de dum, Fiddle de dee,
+Eric the half a bee.
+
+--------------------------------------------------------------------------------
+
+[Pymail] Action? (i, l, d, s, m, q, ?) ?
+
+Available commands:
+i     - index display
+l n?  - list all messages (or just message n)
+d n?  - mark all messages for deletion (or just message n)
+s n?  - save all messages to a file (or just message n)
+m     - compose and send a new mail message
+q     - quit pymail
+?     - display this help text
+
+[Pymail] Action? (i, l, d, s, m, q, ?) d 1
+[Pymail] Action? (i, l, d, s, m, q, ?) s 4
+[Pymail] Action? (i, l, d, s, m, q, ?) m
+From? Cardinal@nice.red.suits.com
+To?   lutz@rmi.net
+Subj? Among our weapons are these:
+Type message text, end with line=(ctrl + D or Z)
+Nobody Expects the Spanish Inquisition!
+Connecting...
+No errors.
+Bye.
+[Pymail] Action? (i, l, d, s, m, q, ?) q
+To be deleted: [1]
+Delete?y
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <8e2e0000aff66c39@chevalier>
+Deleting messages from server.
+Bye.
+
+C:\PP2ndEd\examples\Part2\Internet\Email>python pymail.py
+Password for pop.rmi.net?
+
+[Pymail email client]
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <40310000d5f66c39@chevalier>
+...
+There are 5 mail messages in 7090 bytes
+Retrieving: 1 2 3 4 5
+1:      587 bytes
+        From=>lutz@rmi.net
+        Date=>Wed Jul 12 16:06:12 2000
+        Subject=>testing
+2:      4307 bytes
+        From=>"Mark Hammond" <MarkH@ActiveState.com>
+        Date=>Wed, 12 Jul 2000 18:11:58 -0400
+        Subject=>[Python-Dev] Python .NET (was Preventing 1.5 extensions crashin
+g under 1.6/2.0 Python)
+3:      623 bytes
+        From=>Eric.the.Half.a.Bee@semibee.com
+        Date=>Wed Jul 12 16:09:21 2000
+        Subject=>A B C D E F G
+4:      557 bytes
+        From=>lutz@rmi.net
+        Date=>Wed Jul 12 16:10:55 2000
+        Subject=>testing smtpmail
+5:      615 bytes
+        From=>Cardinal@nice.red.suits.com
+        Date=>Wed Jul 12 16:44:58 2000
+        Subject=>Among our weapons are these:
+[Press Enter key]
+[Pymail] Action? (i, l, d, s, m, q, ?) l 5
+--------------------------------------------------------------------------------
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:53:24 2000)
+X-From_: Cardinal@nice.red.suits.com  Wed Jul 12 16:51:53 2000
+Return-Path: <Cardinal@nice.red.suits.com>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA11127
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:51:52 -0600 (MDT)
+From: Cardinal@nice.red.suits.com
+Message-Id: <200007122251.QAA11127@chevalier.rmi.net>
+To: lutz@rmi.net
+Date: Wed Jul 12 16:44:58 2000
+Subject: Among our weapons are these:
+
+Nobody Expects the Spanish Inquisition!
+
+--------------------------------------------------------------------------------
+
+[Pymail] Action? (i, l, d, s, m, q, ?) q
+Bye.
+
+
+
+
+C:\PP2ndEd\examples\Part2\Internet\Email>type c:\stuff\etc\savemail.txt
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Wed Jul 12 16:45:38 2000)
+X-From_: Eric.the.Half.a.Bee@semibee.com  Wed Jul 12 16:16:31 2000
+Return-Path: <Eric.the.Half.a.Bee@semibee.com>
+Received: from VAIO (dial-218.101.denco.rmi.net [166.93.218.101])
+        by chevalier.rmi.net (8.9.3/8.9.3) with ESMTP id QAA28647
+        for <lutz@rmi.net>; Wed, 12 Jul 2000 16:16:30 -0600 (MDT)
+From: Eric.the.Half.a.Bee@semibee.com
+Message-Id: <200007122216.QAA28647@chevalier.rmi.net>
+To: lutz@rmi.net
+Date: Wed Jul 12 16:09:21 2000
+Subject: A B C D E F G
+
+Fiddle de dum, Fiddle de dee,
+Eric the half a bee.
+--------------------------------------------------------------------------------
+

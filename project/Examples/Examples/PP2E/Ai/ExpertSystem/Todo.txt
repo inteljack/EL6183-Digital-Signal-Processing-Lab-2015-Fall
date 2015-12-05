@@ -1,0 +1,6 @@
+-- use new dict.copy to copy bindings
+-- use class constructors (added after holmes coded)
+-- cnv script could use PyTools/fixeoln_all.py
+-- text/gui modes
+-- uses classes for rules, etc, not dicts
+-- there's too much whitespace in these files

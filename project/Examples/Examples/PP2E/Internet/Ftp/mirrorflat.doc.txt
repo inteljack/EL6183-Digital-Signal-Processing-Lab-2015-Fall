@@ -1,0 +1,17 @@
+#############################################################################
+# use ftp to copy (download) all files from a remote site/directory to a 
+# local dir; e.g., run me periodically from a unix cron job to mirror an ftp
+# site; script assumes this is a flat directory--see the mirror program in 
+# Python's Tools directory for a version that handles subdirectories;
+# see uploadflat.py--use storbinary to upload, retrlines for text, etc.;
+# could use binary xfer always, but doesn't map dos/unix line feeds;
+# for gifs, etc., local file mode must be 'wb' (binary) not 'w' on Win98;
+# the retrlines method strips crlf's on lines sent to the data callback,
+# and a mode of 'w' maps the \n added here to \r\n on Win98 (not Unix);
+# transfer block size defaults to 8K bytes if ommitted for retrbinary;
+# getpass.getpass is like raw_input, but doesn't show input as typed;
+# to mirror with subdirectories, parse the result of the FTP().dir()
+# method to detect remote directories, use os.mkdir(path) to create
+# local directories of same name, and recursion to download subdirs:
+# see Tools/scripts/ftpmirror.py in the Python source distribution.
+#############################################################################

@@ -1,0 +1,11 @@
+% python
+>>> from stack2 import Stack
+>>> x = Stack()
+>>> x.push('string')
+>>> x.push(123)
+>>> x.stack
+[123, 'string']
+>>> y = Stack()
+>>> y.push(x.pop())
+>>> x.stack, y.stack
+(['string'], [123])

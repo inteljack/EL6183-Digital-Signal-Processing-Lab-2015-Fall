@@ -1,0 +1,15 @@
+$[
+# Generate a simple message page with the client's IP address
+]$
+<HTML><HEAD>
+<TITLE>Hello PSP World</TITLE>
+</HEAD>
+<BODY>
+$[include banner.psp]$
+<H1>Hello PSP World</H1>
+<BR>
+$[
+Response.write("Hello from PSP, %s." % (Request.server["REMOTE_ADDR"]) )
+]$
+<BR>
+</BODY></HTML>

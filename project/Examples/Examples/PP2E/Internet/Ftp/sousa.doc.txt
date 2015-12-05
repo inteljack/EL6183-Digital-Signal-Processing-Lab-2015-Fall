@@ -1,0 +1,45 @@
+############################################### 
+# Usage: % python sousa.py
+# sousa.py uses getfile.py and playfile.py:
+# was split into parts for reusability.
+#
+# getfile fetches (only) the Monty Python 
+# theme song and saves the audio file,
+# so it works anywhere you have an Internet 
+# connection.  I've even used it from a DOS 
+# box command line on Windows98, by dialing 
+# in to an ISP via modem--it automatically 
+# dials out if necessary.  
+# 
+# playfile uses the windows filename association
+# for .au file (by running a start command), which
+# usually brings up your default audio player (perhaps
+# a web browser if nothing else is associated); on 
+# UNIX it tries to run an audio filter instead;
+
+# we could also use the top-level LaunchBrowser
+# script to pass the .au file to a browser 
+# portably (on Windows, the browser will in turn
+# download the file and start your audio player); 
+# for instance, the following is equivalent to 
+# running sousa.py:
+#
+# C:\Stuff\Mark>python %X%\LaunchBrowser.py 
+#                          -live ftp/python/misc/sousa.au www.python.org
+#
+# Looking for IEXPLORE.EXE on ['C:\\WINDOWS', 'C:\\WINDOWS', 'C:\\WINDOWS\\COMMAND
+# ', 'C:\\STUFF\\MARK\\BIN.MKS', 'C:\\PROGRAM FILES\\PYTHON']
+# Not at C:\WINDOWS\IEXPLORE.EXE
+# Not at C:\WINDOWS\IEXPLORE.EXE
+# Not at C:\WINDOWS\COMMAND\IEXPLORE.EXE
+# Not at C:\STUFF\MARK\BIN.MKS\IEXPLORE.EXE
+# Not at C:\PROGRAM FILES\PYTHON\IEXPLORE.EXE
+# IEXPLORE.EXE not on system path
+# Searching for IEXPLORE.EXE in C:\Program Files\Python
+# Searching for IEXPLORE.EXE in C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\I
+# nternet\Ftp
+# Searching for IEXPLORE.EXE in C:\Program Files
+# Using browser C:\Program Files\Internet Explorer\IEXPLORE.EXE
+# Opening page  ftp/python/misc/sousa.au
+# Acessing site www.python.org
+###############################################

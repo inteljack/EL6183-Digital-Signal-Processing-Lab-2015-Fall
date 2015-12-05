@@ -1,0 +1,8 @@
+% python
+>>> from replace import replace
+>>> replace("A B C D", " ", "..")
+'A..B..C..D'
+>>> replace("C++", "+", "-")
+'C--'
+>>> replace("foo = foo+1", "foo", "spam")
+'spam = spam+1'

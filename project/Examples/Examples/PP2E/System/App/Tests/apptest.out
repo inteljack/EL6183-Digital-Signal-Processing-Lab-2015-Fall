@@ -1,0 +1,55 @@
+% python apptools.py
+here we go => 111
+111
+welcome back => 222
+got it => 222
+testfunc output =>
+Enter? Spam!
+Spam!
+Spam!
+Spam!
+Spam!
+A shrubbery...Ni!Ni!Ni!Ni!Ni!
+
+tee output =>
+spam
+Spam
+SPAM!
+
+tee2 output =>
+['spam\012', 'Spam\012', 'SPAM!']
+> spam
+> Spam
+> SPAM!
+EchoApp output =>
+?got this -> GUIDO
+?got this -> IS
+?got this -> GOD
+?
+DemoApp output =>
+
+        MENU...
+                bye
+                hello
+                play
+==>Hello world!
+
+        MENU...
+                bye
+                hello
+                play
+==>what? "spam"?
+try again...
+
+        MENU...
+                bye
+                hello
+                play
+==>NiNiNiNi
+
+        MENU...
+                bye
+                hello
+                play
+==>
+%

@@ -1,0 +1,3 @@
+#!/usr/local/bin/python
+import sys       
+print sys.stdin.read(),              # print sends to stdout

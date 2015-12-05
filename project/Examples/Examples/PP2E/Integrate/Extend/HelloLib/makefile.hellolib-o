@@ -1,0 +1,53 @@
+############################################################
+# Compile hellolib_wrapper.c into a shareable object file
+# on Linux, to be loaded dynamically when first imported.
+#
+# Note that Python programs import "hellowrap", which
+# is (1) the name given to the module by the C init function 
+# in hellolib_wrapper.c, (2) the suffix of the module init 
+# function in hellolib_wrapper.c, and (3) the name of the .so 
+# file which combines hellolib.c (the wrapped C library 
+# file) with hellolib_wrapper.c (the C extension module).
+#
+# Since hellolib_wrapper.c uses a function in hellolib.c,
+# we have to make sure that hellolib.c is also linked in 
+# when Python code loads hellolib_wrapper.  The search for
+# the wrapper module's .so uses the $PYTHONPATH var as usual, 
+# but the wrapped library's file must be linked to the wrapper
+# (and the Python process) using C linking techniques.
+#
+# This typically involves listing hellolib in a linker step
+# of the makefile, to associate it with the wrapper.  For 
+# instance, on Linux we might put hellolib.so in a dir listed
+# on $LD_RUN_PATH ($LD_LIBRARY_PATH on Solaris), and link 
+# hellolib.so with hellolib_wrapper in a ld (gcc) step in the
+# makefile.  If dynamic loading isn't an option, we can also 
+# statically link hellolib_wrapper to Python, via the 
+# Modules/Setup file and re-make Python.
+#
+# In this Linux gcc makefile, the wrapped and wrapping files 
+# are compiled to .o files and linked into a single composite
+# .so, which Python loads when imported.  The alternative
+# "makefile.hellolib-so" file instead compiles the wrapped
+# and wrapping code to .so files, and links them into a
+# single .so with the gcc '-rpath' flag (which works like 
+# setting the $LD_RUN_PATH directory list env variable).
+# On other platforms, see your compiler and linker docs.
+############################################################
+
+PY = $(MYPY)
+
+hellowrap.so: hellolib_wrapper.o hellolib.o
+	ld -shared hellolib_wrapper.o hellolib.o -o hellowrap.so
+
+# wrapper module code
+hellolib_wrapper.o: hellolib_wrapper.c hellolib.h
+	gcc hellolib_wrapper.c -c -g -I. -I$(PY)/Include -I$(PY) 
+
+# C library code
+hellolib.o: hellolib.c hellolib.h
+	gcc hellolib.c -c -g -I. 
+
+clean:
+	rm -f *.o *.so core
+

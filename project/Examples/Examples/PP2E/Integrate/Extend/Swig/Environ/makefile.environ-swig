@@ -1,0 +1,16 @@
+# build environ.so extension from SWIG generated code 
+
+# unless you've run make install
+SWIG = ../myswig
+PY   = $(MYPY)
+
+environ.so: environ_wrap.c
+	gcc environ_wrap.c -g -I$(PY)/Include -I$(PY) -shared -o environ.so
+
+environ_wrap.c: environ.i
+	$(SWIG) -python environ.i
+
+clean:
+	rm -f *.o *.so core 
+force:
+	rm -f *.o *.so core environ_wrap.c environ_wrap.doc

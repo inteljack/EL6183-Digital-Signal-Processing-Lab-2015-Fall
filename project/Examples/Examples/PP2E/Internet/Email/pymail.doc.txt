@@ -1,0 +1,19 @@
+######################################################
+# use the Python POP3 mail interface module to view
+# your pop email account messages; runs on top of 
+# sockets (the mail server may be a remote machine),
+# and uses the rfc822 module to extract mail header 
+# information; this is a very simple command-line 
+# browsing interface, but is a start at a scriptable
+# replacement for things like MS-Outlook (I wrote
+# this right after my ISP took away telnet access);
+# also see the library manual for modules multifile
+# and mimetools to handle multi-part messages and 
+# decoding, and the imaplib module for IMAP4 servers; 
+# uses StringIO to make msg text a file-like object;
+# retrieving messages does not delete them--keeps a
+# list of messages to delete and reconnects on exit;
+# it would be easy to throw the index in a Tkinter
+# ilstbox and display messages in a scrolled text 
+# box, as a GUI mail interface--see PyMailGui.py.    
+######################################################

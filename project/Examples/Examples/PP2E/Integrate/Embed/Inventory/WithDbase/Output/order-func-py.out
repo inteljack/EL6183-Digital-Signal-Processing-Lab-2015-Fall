@@ -1,0 +1,121 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ python dbasetools.py
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ python order-func.py
+[('111', 2, 'GRossum'), ('222', 5, 'LWall'), ('333', 3, 'JOusterhout'), ('222', 1, '4Spam'), ('222', 0, 'LTorvalds'), ('444', 9, 'ERaymond')]
+Stock => { 444=>100  222=>5  555=>1  111=>10 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+0 ('111', 2, 'GRossum')
+errors:   none
+warnings: none
+Stock => { 444=>100  222=>5  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+1 ('222', 5, 'LWall')
+errors:   none
+warnings: reorder-soon:'222'
+Stock => { 444=>100  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+2 ('333', 3, 'JOusterhout')
+errors:   bad-product
+warnings: none                                                             
+Stock => { 444=>100  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall']
+
+3 ('222', 1, '4Spam')
+errors:   buyer-name:4 check-quantity
+warnings: new-buyer-added
+Stock => { 444=>100  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam']
+
+4 ('222', 0, 'LTorvalds')
+error in embedded function:
+Traceback (innermost last):
+  File "order-func.py", line 22, in ?
+    (warnings, errors) = apply(validate2.validate, order)
+  File "../validate2.py", line 15, in validate
+    validate_order(product, quantity, errs, msgs)     # mutable list args
+  File "../validate2.py", line 25, in validate_order
+    if inventory.stock(product) / quantity < 2:
+ZeroDivisionError: integer division or modulo
+
+5 ('444', 9, 'ERaymond')
+errors:   none
+warnings: new-buyer-added
+Stock => { 444=>91  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ python order-func.py ordersfile2.data
+[('111', 4, 'GRossum'), ('444', 5, 'LWall')]
+Stock => { 444=>91  222=>0  555=>1  111=>8 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+0 ('111', 4, 'GRossum')
+errors:   none
+warnings: reorder-soon:'111'
+Stock => { 444=>91  222=>0  555=>1  111=>4 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+1 ('444', 5, 'LWall')                                                       errors:   none
+warnings: none
+Stock => { 444=>86  222=>0  555=>1  111=>4 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ python order-func.py ordersfile2.data
+[('111', 4, 'GRossum'), ('444', 5, 'LWall')]
+Stock => { 444=>86  222=>0  555=>1  111=>4 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+0 ('111', 4, 'GRossum')
+errors:   none
+warnings: reorder-soon:'111'
+Stock => { 444=>86  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+1 ('444', 5, 'LWall')
+errors:   none
+warnings: none
+Stock => { 444=>81  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ python order-func.py ordersfile2.data
+[('111', 4, 'GRossum'), ('444', 5, 'LWall')]
+Stock => { 444=>81  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+0 ('111', 4, 'GRossum')
+errors:   check-quantity
+warnings: none
+Stock => { 444=>81  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+1 ('444', 5, 'LWall')
+errors:   none
+warnings: none                                        
+Stock => { 444=>76  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/Inventory/WithDbase]$ python
+Python 1.5.2 (#14, Sep 12 1999, 00:55:49)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> from inventory import print_files
+>>> print_files()
+Stock => { 444=>76  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+>>> from inventory import reduce
+>>> reduce('444', 10)
+>>> print_files()
+Stock => { 444=>66  222=>0  555=>1  111=>0 }
+Buyer => ['GRossum', 'JOusterhout', 'LWall', '4Spam', 'LTorvalds', 'ERaymond']
+>>>
+

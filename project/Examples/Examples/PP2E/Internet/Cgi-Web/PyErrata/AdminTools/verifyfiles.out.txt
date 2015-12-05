@@ -1,0 +1,20 @@
+[mark@toy ...Internet/Cgi-Web/PyErrata/AdminTools]$ python verifyFiles.py
+Errata...
+{'Page number': '12', 'Type': 'Program bug', 'Printing Date': '', 'Chapter numbe
+r': '', 'Submit date': '1999/09/21, 06:17:13', 'Report state': 'Not yet verified
+', 'Submitter name': 'Lisa Lutz', 'Submitter email': '', 'Description': '1 + 1 =
+ 2, not 3...\015\012          ', 'Submit mode': '', 'Part number': '', 'Severity
+': 'High'}
+Verify?n
+Reject?n
+Delete?n
+{'Page number': '', 'Type': 'Program bug', 'Printing Date': '', 'Chapter number'
+: '16', 'Submit date': '1999/09/21, 06:20:22', 'Report state': 'Not yet verified
+', 'Submitter name': 'jerry', 'Submitter email': 'http://www.jerry.com', 'Descri
+ption': 'Help! I just spilled coffee all over my\015\012computer...\015\012     
+     ', 'Submit mode': '', 'Part number': '', 'Severity': 'Unknown'}
+Verify?n
+Reject?y
+reason>It's not Python's fault
+reason>(ctrl-d)
+...

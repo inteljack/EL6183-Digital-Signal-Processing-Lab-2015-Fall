@@ -1,0 +1,534 @@
+
+<!DOCTYPE html
+  PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN">
+<html><head>
+      <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+   <!--
+This HTML was auto-generated from MATLAB code.
+To make changes, update the MATLAB code and republish this document.
+      --><title>All-pass system demo</title><meta name="generator" content="MATLAB 7.12"><link rel="schema.DC" href="http://purl.org/dc/elements/1.1/"><meta name="DC.date" content="2015-11-01"><meta name="DC.source" content="demo_allpass.m"><style type="text/css">
+
+body {
+  background-color: white;
+  margin:10px;
+}
+
+h1 {
+  color: #990000; 
+  font-size: x-large;
+}
+
+h2 {
+  color: #990000;
+  font-size: medium;
+}
+
+/* Make the text shrink to fit narrow windows, but not stretch too far in 
+wide windows. */ 
+p,h1,h2,div.content div {
+  max-width: 600px;
+  /* Hack for IE6 */
+  width: auto !important; width: 600px;
+}
+
+pre.codeinput {
+  background: #EEEEEE;
+  padding: 10px;
+}
+@media print {
+  pre.codeinput {word-wrap:break-word; width:100%;}
+} 
+
+span.keyword {color: #0000FF}
+span.comment {color: #228B22}
+span.string {color: #A020F0}
+span.untermstring {color: #B20000}
+span.syscmd {color: #B28C00}
+
+pre.codeoutput {
+  color: #666666;
+  padding: 10px;
+}
+
+pre.error {
+  color: red;
+}
+
+p.footer {
+  text-align: right;
+  font-size: xx-small;
+  font-weight: lighter;
+  font-style: italic;
+  color: gray;
+}
+
+  </style></head><body><div class="content"><h1>All-pass system demo</h1><!--introduction--><p>Demonstration of all-pass systems and using all-pass system to make a notch filter by placing it in parallel with a direct path.</p><p>Ivan Selesnick</p><!--/introduction--><h2>Contents</h2><div><ul><li><a href="#2">All-pass system transfer function</a></li><li><a href="#5">Pole-zero plot</a></li><li><a href="#6">2nd-order all-pass</a></li><li><a href="#10">Order-3 all-pass system</a></li><li><a href="#12">Order-4 all-pass system</a></li><li><a href="#13">All-pass + Direct path</a></li><li><a href="#14">Order-2 example</a></li><li><a href="#16">Order-3 example</a></li><li><a href="#18">Order-4 example</a></li><li><a href="#19">Delay + all-pass system.</a></li></ul></div><pre class="codeinput">flip = @(x) x(end:-1:1)
+</pre><pre class="codeoutput">
+flip = 
+
+    @(x)x(end:-1:1)
+
+</pre><h2>All-pass system transfer function<a name="2"></a></h2><p>H(z) = B(z)/A(z) is allpass if coefficients of B(z) are the reverse-ordered coefficients of A(z)</p><pre class="codeinput"><span class="comment">% This is a first-order allpass system</span>
+
+a = [5 -4]
+
+b = flip(a)
+
+[H, om] = freqz(b, a);
+
+<span class="comment">% See that |H(om)| = 1</span>
+
+figure(1)
+clf
+plot(om, abs(H))
+</pre><pre class="codeoutput">
+a =
+
+     5    -4
+
+
+b =
+
+    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_01.png" alt=""> <p>The phase response (radians)</p><pre class="codeinput">figure(1)
+clf
+plot(om, angle(H))
+</pre><img vspace="5" hspace="5" src="demo_allpass_02.png" alt=""> <p>The phase response (radians/pi)</p><pre class="codeinput">figure(1)
+clf
+plot(om, angle(H)/pi)
+
+<span class="comment">% See that at om = pi, angle(H) = -pi.</span>
+<span class="comment">% That makes sense because H(-1) must be a real number.</span>
+<span class="comment">% Since H is allpass, H(-1) must be 1 or -1.</span>
+<span class="comment">% Here H(-1) = -1 since angle(H) = -pi.</span>
+</pre><img vspace="5" hspace="5" src="demo_allpass_03.png" alt=""> <h2>Pole-zero plot<a name="5"></a></h2><p>The zeros are the reciprocals of the poles</p><pre class="codeinput">zplane(b,a)
+
+roots(b)
+roots(a)
+<span class="comment">% reciprocals!</span>
+</pre><pre class="codeoutput">
+ans =
+
+    1.2500
+
+
+ans =
+
+    0.8000
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_04.png" alt=""> <h2>2nd-order all-pass<a name="6"></a></h2><pre class="codeinput">a = [5 -4 3]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+
+plot(om, abs(H))  <span class="comment">% Verify that |H(om)| = 1</span>
+</pre><pre class="codeoutput">
+a =
+
+     5    -4     3
+
+
+b =
+
+     3    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_05.png" alt=""> <p>A jump in the phase by 2pi is not a true discontinuity</p><pre class="codeinput">plot(om, angle(H)/pi)
+</pre><img vspace="5" hspace="5" src="demo_allpass_06.png" alt=""> <p>Remove jumps by 2pi using the 'unwrap' function. (Unwrap the phase)</p><pre class="codeinput">plot(om, unwrap(angle(H))/pi)
+
+<span class="comment">% Notice now that at om = pi the angle is -2pi,</span>
+<span class="comment">% so H(-1) = 1.</span>
+<span class="comment">% Also note that the angle is -pi at some frequency</span>
+<span class="comment">% between 0 and pi. So H(-1) = -1 at that frequency.</span>
+<span class="comment">% At that frequency, an input sine wave will be negated.</span>
+</pre><img vspace="5" hspace="5" src="demo_allpass_07.png" alt=""> <p>pole-zero diagram - complex poles and zeros. Observe reciprocal property (zeros are the reciprocals of the poles)</p><pre class="codeinput">zplane(b,a)
+</pre><img vspace="5" hspace="5" src="demo_allpass_08.png" alt=""> <h2>Order-3 all-pass system<a name="10"></a></h2><pre class="codeinput">a = [5 -4 3 -2]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+plot(om, abs(H))   <span class="comment">% Observe |H(om)| = 1</span>
+</pre><pre class="codeoutput">
+a =
+
+     5    -4     3    -2
+
+
+b =
+
+    -2     3    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_09.png" alt=""> <pre class="codeinput">plot(om, unwrap(angle(H))/pi)
+<span class="comment">% Notice now that at om = pi the angle is -3pi,</span>
+<span class="comment">% therefore H(-1) = -1.</span>
+<span class="comment">% Also note that the angle is -pi and -2pi at two frequencies</span>
+<span class="comment">% between 0 and pi. So H(-1) = -1 and H(-1) = 1 at those frequency.</span>
+
+<span class="comment">% Note that the phase is monotonically decreasing!</span>
+</pre><img vspace="5" hspace="5" src="demo_allpass_10.png" alt=""> <h2>Order-4 all-pass system<a name="12"></a></h2><pre class="codeinput">a = [5 -4 3 -2 1]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+plot(om, unwrap(angle(H))/pi)
+
+<span class="comment">% Notice now that at om = pi the angle is -4pi,</span>
+<span class="comment">% therefore H(-1) = 1.</span>
+<span class="comment">% Since the phase is monotonically decreasing,</span>
+<span class="comment">% It passes through -pi, -2pi, -3pi at three</span>
+<span class="comment">% frequencies between om = 0 and om = pi.</span>
+</pre><pre class="codeoutput">
+a =
+
+     5    -4     3    -2     1
+
+
+b =
+
+     1    -2     3    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_11.png" alt=""> <h2>All-pass + Direct path<a name="13"></a></h2><p>Consider a system composed of an all-pass system and a direct path (in parrallel). The total transfer function is G(z) = H(z) + 1 = B(z)/A(z) + 1 where B(z)/A(z) is the all-pass system. What does the freuqency response H look like and why?</p><pre class="codeinput">Id = ones(size(H));   <span class="comment">% Frequency response of direct path</span>
+
+<span class="comment">% Order-1 example</span>
+a = [5 -4]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+
+plot(om, abs( Id + H ) );
+<span class="comment">% The frequency response is a low-pass filter</span>
+<span class="comment">% with a null at om = pi.</span>
+<span class="comment">% That can be predicted since the all-pass filter</span>
+<span class="comment">% is -1 at om = pi. They add to zero.</span>
+</pre><pre class="codeoutput">
+a =
+
+     5    -4
+
+
+b =
+
+    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_12.png" alt=""> <h2>Order-2 example<a name="14"></a></h2><pre class="codeinput">a = [5 -4 3]
+b = flip(a)
+[H, om] = freqz(b, a);
+plot(om, abs( Id + H ) );
+<span class="comment">% Now the total system is a notch filter with a null.</span>
+<span class="comment">% Where is the null?</span>
+<span class="comment">% It is at the frequency where the all-pass filter is -1.</span>
+<span class="comment">% At om = pi, the frequency response of the total system</span>
+<span class="comment">% is 2 because the all-pass system is 1 at that frequency</span>
+<span class="comment">% so it adds to the direct path.</span>
+</pre><pre class="codeoutput">
+a =
+
+     5    -4     3
+
+
+b =
+
+     3    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_13.png" alt=""> <pre class="codeinput">plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+grid
+<span class="comment">% Note that the null in the frequency response is</span>
+<span class="comment">% at the frequency where the phase of the all-pass</span>
+<span class="comment">% system is -pi.</span>
+</pre><img vspace="5" hspace="5" src="demo_allpass_14.png" alt=""> <h2>Order-3 example<a name="16"></a></h2><pre class="codeinput">a = [5 -4 3 -2]
+b = flip(a)
+[H, om] = freqz(b, a);
+plot(om, abs( Id + H ) );
+<span class="comment">% Now the frequency response of the total system</span>
+<span class="comment">% has a null and a gain of 2 at two different frequencies.</span>
+<span class="comment">% It also has a null at om = pi. What are these frequencies?</span>
+</pre><pre class="codeoutput">
+a =
+
+     5    -4     3    -2
+
+
+b =
+
+    -2     3    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_15.png" alt=""> <pre class="codeinput">plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+grid
+<span class="comment">% The two nulls are where the phase of the all-pass</span>
+<span class="comment">% system are equal to -pi and -3pi (ODD multiplies of pi).</span>
+<span class="comment">% At those frequencies the all-pass filter is -1</span>
+<span class="comment">% so it cancels the direct path.</span>
+<span class="comment">% The point where the total frequency response has a gain of 1</span>
+<span class="comment">% is where the phase of the all-pass filter is -2pi (EVEN multiples</span>
+<span class="comment">% of pi). At these frequencies, the all-pass system is +1</span>
+<span class="comment">% so it adds to the direct path.</span>
+</pre><img vspace="5" hspace="5" src="demo_allpass_16.png" alt=""> <h2>Order-4 example<a name="18"></a></h2><pre class="codeinput">a = [5 -4 3 -2 1]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+grid
+<span class="comment">% There are two nulls; they are where the all-pass</span>
+<span class="comment">% system is -1, which is where the phase of the all-pass</span>
+<span class="comment">% system is an ODD multiple of pi.</span>
+<span class="comment">% Where the phase of the all-pass system is an EVEN</span>
+<span class="comment">% mulitple of pi, the all-pass frequency response is +1,</span>
+<span class="comment">% so it ADDS to the direct path, and the total gain is 2.</span>
+</pre><pre class="codeoutput">
+a =
+
+     5    -4     3    -2     1
+
+
+b =
+
+     1    -2     3    -4     5
+
+</pre><img vspace="5" hspace="5" src="demo_allpass_17.png" alt=""> <h2>Delay + all-pass system.<a name="19"></a></h2><p>A delay is a special case of an all-pass system. If the all-pass system is a delay, i.e., H(z) = B(z)/A(z) = z^(-10), then what do you get when you put it in parallel with a direct path? Lets see the frequency response of G(z) = H(z) + 1 = z^(-10) + 1</p><pre class="codeinput">H = exp( - 1j * 10 * om);  <span class="comment">% frequency response of delay system</span>
+plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+
+<span class="comment">% The frequency response has equally space nulls. Why?</span>
+<span class="comment">% Because the phase of the delay is a straight line -- it pass through</span>
+<span class="comment">% ODD multipleis of pi at equally spaced points.</span>
+</pre><img vspace="5" hspace="5" src="demo_allpass_18.png" alt=""> <p class="footer"><br>
+      Published with MATLAB&reg; 7.12<br></p></div><!--
+##### SOURCE BEGIN #####
+%% All-pass system demo
+% Demonstration of all-pass systems
+% and using all-pass system to make a notch filter
+% by placing it in parallel with a direct path.
+%
+% Ivan Selesnick
+
+%%
+
+flip = @(x) x(end:-1:1)
+
+%% All-pass system transfer function
+% H(z) = B(z)/A(z)
+% is allpass if coefficients of B(z) are 
+% the reverse-ordered coefficients of A(z)
+
+% This is a first-order allpass system
+
+a = [5 -4]
+
+b = flip(a)
+
+[H, om] = freqz(b, a);
+
+% See that |H(om)| = 1
+
+figure(1)
+clf
+plot(om, abs(H))
+
+%%
+% The phase response (radians)
+
+figure(1)
+clf
+plot(om, angle(H))
+
+%%
+% The phase response (radians/pi)
+
+figure(1)
+clf
+plot(om, angle(H)/pi)
+
+% See that at om = pi, angle(H) = -pi.
+% That makes sense because H(-1) must be a real number.
+% Since H is allpass, H(-1) must be 1 or -1.
+% Here H(-1) = -1 since angle(H) = -pi.
+
+%% Pole-zero plot
+% The zeros are the reciprocals of the poles
+
+zplane(b,a)
+
+roots(b)
+roots(a)
+% reciprocals!
+
+%% 2nd-order all-pass
+
+a = [5 -4 3]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+
+plot(om, abs(H))  % Verify that |H(om)| = 1
+
+%%
+% A jump in the phase by 2pi is not a true discontinuity
+
+plot(om, angle(H)/pi) 
+
+%%
+% Remove jumps by 2pi using the 'unwrap' function.
+% (Unwrap the phase)
+
+plot(om, unwrap(angle(H))/pi)
+
+% Notice now that at om = pi the angle is -2pi, 
+% so H(-1) = 1.
+% Also note that the angle is -pi at some frequency
+% between 0 and pi. So H(-1) = -1 at that frequency.
+% At that frequency, an input sine wave will be negated.
+
+%%
+% pole-zero diagram - complex poles and zeros. 
+% Observe reciprocal property (zeros are the reciprocals
+% of the poles)
+
+zplane(b,a)
+
+
+%% Order-3 all-pass system
+
+a = [5 -4 3 -2]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+plot(om, abs(H))   % Observe |H(om)| = 1
+
+%%
+
+plot(om, unwrap(angle(H))/pi)
+% Notice now that at om = pi the angle is -3pi, 
+% therefore H(-1) = -1.
+% Also note that the angle is -pi and -2pi at two frequencies
+% between 0 and pi. So H(-1) = -1 and H(-1) = 1 at those frequency.
+
+% Note that the phase is monotonically decreasing!
+
+%% Order-4 all-pass system
+
+a = [5 -4 3 -2 1]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+plot(om, unwrap(angle(H))/pi)
+
+% Notice now that at om = pi the angle is -4pi, 
+% therefore H(-1) = 1.
+% Since the phase is monotonically decreasing, 
+% It passes through -pi, -2pi, -3pi at three
+% frequencies between om = 0 and om = pi.
+
+%% All-pass + Direct path
+% Consider a system composed of an all-pass system
+% and a direct path (in parrallel).
+% The total transfer function is
+% G(z) = H(z) + 1 = B(z)/A(z) + 1
+% where B(z)/A(z) is the all-pass system.
+% What does the freuqency response H look like and why?
+
+Id = ones(size(H));   % Frequency response of direct path
+
+% Order-1 example
+a = [5 -4]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+
+plot(om, abs( Id + H ) );
+% The frequency response is a low-pass filter
+% with a null at om = pi.
+% That can be predicted since the all-pass filter
+% is -1 at om = pi. They add to zero.
+
+%% Order-2 example
+
+a = [5 -4 3]
+b = flip(a)
+[H, om] = freqz(b, a);
+plot(om, abs( Id + H ) );
+% Now the total system is a notch filter with a null.
+% Where is the null?
+% It is at the frequency where the all-pass filter is -1.
+% At om = pi, the frequency response of the total system
+% is 2 because the all-pass system is 1 at that frequency
+% so it adds to the direct path.
+
+%%
+
+plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+grid
+% Note that the null in the frequency response is
+% at the frequency where the phase of the all-pass
+% system is -pi.
+
+%% Order-3 example
+
+a = [5 -4 3 -2]
+b = flip(a)
+[H, om] = freqz(b, a);
+plot(om, abs( Id + H ) );
+% Now the frequency response of the total system
+% has a null and a gain of 2 at two different frequencies.
+% It also has a null at om = pi. What are these frequencies?
+
+%%
+plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+grid
+% The two nulls are where the phase of the all-pass
+% system are equal to -pi and -3pi (ODD multiplies of pi).
+% At those frequencies the all-pass filter is -1 
+% so it cancels the direct path.
+% The point where the total frequency response has a gain of 1
+% is where the phase of the all-pass filter is -2pi (EVEN multiples
+% of pi). At these frequencies, the all-pass system is +1
+% so it adds to the direct path. 
+
+
+%% Order-4 example
+
+a = [5 -4 3 -2 1]
+b = flip(a)
+
+[H, om] = freqz(b, a);
+plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+grid
+% There are two nulls; they are where the all-pass
+% system is -1, which is where the phase of the all-pass
+% system is an ODD multiple of pi. 
+% Where the phase of the all-pass system is an EVEN
+% mulitple of pi, the all-pass frequency response is +1,
+% so it ADDS to the direct path, and the total gain is 2.
+
+%% Delay + all-pass system.
+% A delay is a special case of an all-pass system.
+% If the all-pass system is a delay, i.e.,
+% H(z) = B(z)/A(z) = z^(-10), 
+% then what do you get when you put it in parallel with a direct path?
+% Lets see the frequency response of G(z) = H(z) + 1 = z^(-10) + 1
+
+H = exp( - 1j * 10 * om);  % frequency response of delay system
+plot(om, unwrap(angle(H))/pi, om, abs(Id + H))
+
+% The frequency response has equally space nulls. Why?
+% Because the phase of the delay is a straight line REPLACE_WITH_DASH_DASH it pass through
+% ODD multipleis of pi at equally spaced points.
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+##### SOURCE END #####
+--></body></html>

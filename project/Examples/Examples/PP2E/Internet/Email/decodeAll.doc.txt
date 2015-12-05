@@ -1,0 +1,22 @@
+#####################################################
+# Decode mail attachments sent in base64 encoded
+# form (and others). Rather than editing by hand,
+# this version reads the entire mail message
+# and fetches, decodes and writes each individual
+# part to its own file.  It doesn't assume that
+# the base64 encoded data has been extracted into
+# a separate file.  Decodes uuencoded attachments 
+# too.  mhlib uses mimetools.Message, multifile,
+# and mimetools.decode.
+#
+# To use, copy mail message to mailfile and run:
+#    % python ..\decodeAll.py mailfile
+# which makes one or more mailfile.part* outputs.
+# Also supports nested multipart encoding (parts
+# within parts, e.g., text and html alternatives).
+# On some platforms you can also simply point an 
+# email client like Outlook at the file (e,g., on
+# Windows, give the file a .eml extension and click)
+# but this script is more portable, and may be more
+# convenient especially if there are many parts.
+#####################################################

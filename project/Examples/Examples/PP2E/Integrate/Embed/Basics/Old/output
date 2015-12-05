@@ -1,0 +1,39 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ basic1
+basic1
+Built-in exception class not found: EnvironmentError.  Library mismatch?
+Warning!  Falling back to string-based exceptions
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ source ../../../setup.csh
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ source setup.csh
+
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ basic1
+basic1
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ basic2
+basic2
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ basic3
+basic3
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ basic4
+basic4
+101
+
+[mark@toy ~/PP2ndEd/dev/examples/Part4/Embed]$ basic5
+basic5
+ABCDEFGHIJKLMNOPQRSTUVWXYZ
+abcdefghijklmnopqrstuvwxyz
+0:0 1:1 2:4 3:9 4:16 5:25 6:36 7:49 8:64 9:81 10:100
+
+
+

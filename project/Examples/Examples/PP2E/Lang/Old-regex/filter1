@@ -1,0 +1,10 @@
+#!/usr/local/bin/python
+from sys import *
+while 1:
+      c = stdin.read(1)              # read one character at a time
+      if c == '':                    # change all tabs to 4 '.'s
+            break
+      elif c == '\t':
+            stdout.write('.'*4)
+      else:
+            stdout.write(c)

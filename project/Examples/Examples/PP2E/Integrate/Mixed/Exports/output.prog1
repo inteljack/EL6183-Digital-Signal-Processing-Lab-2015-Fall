@@ -1,0 +1,41 @@
+vars in C:	aa=0 bb=42 cc= dd=Cspam ee=3.141590
+
+Starting script1.py
+in script1...
+vars in Python:	aa=0 bb=42 cc= dd=Cspam ee=3.14159011841
+cvar.stats = (6, 0)
+cvar.stats = (11, 5)
+vars in Python:	aa=42 bb=1764 cc=spam dd=eggs ee=8.0
+vars in C:	aa=42 bb=1764 cc=spam dd=eggs ee=8.000000
+
+Starting script2.py
+in script2...
+vars in Python:	aa=42 bb=1764 cc=spam dd=eggs ee=8.0
+spam
+eggs
+s
+p
+a
+m
+vars in Python:	aa=42 bb=1764 cc=spam dd=eggsspam ee=8.0
+vars in C:	aa=42 bb=1764 cc=spam dd=eggsspam ee=8.000000
+
+Starting script3.py
+in script3...
+aa = 42
+bb = 1764
+cc = spam
+dd = eggsspam
+ee = 8.0
+cvar.stats  = (39, 10)
+exceptions.AttributeError xx
+cinterface.error Cvar name not found
+exceptions.TypeError illegal argument type for built-in operation
+exceptions.AttributeError xx
+dir(cvar)   = ['stats']
+cvar.stats  = (44, 12)
+sys.modules = ['os.path', 'os', 'exceptions', '__main__', 'posix', 'runpy', 'sys', '__builtin__', 'site', 'scripttools', 'signal', 'UserDict', 'cinterface', 'posixpath', 'stat']
+cvar.aa, the hard way: 42
+vars in Python:	aa=42 bb=1764 cc=Bye dd=eggsspam ee=8.0
+vars in C:	aa=42 bb=1764 cc=Bye dd=eggsspam ee=8.000000
+Finished.

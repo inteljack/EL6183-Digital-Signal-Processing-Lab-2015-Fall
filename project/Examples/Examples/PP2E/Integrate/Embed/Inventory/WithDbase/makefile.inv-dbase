@@ -1,0 +1,30 @@
+# Build the inventory example with real data persistence
+
+PY    = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+PYLIB = $(PY)/libpython1.5.a
+PYINC = -I$(PY)/Include -I$(PY)
+
+LIBS  = -L/usr/lib \
+	-L/usr/X11R6/lib \
+ 	-lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+
+APIDIR  = ../../HighLevelApi
+APILIB  = $(APIDIR)/libppembed.a
+APILIBS = -L$(APIDIR) -lppembed
+
+PROGS = order-func
+
+all:	$(PROGS)
+
+order%: order%.o $(APILIB)
+	gcc order$*.o $(APILIBS) $(PYLIB) $(LIBS) -g -export-dynamic -o order$*
+
+order%.o: order%.c $(APIDIR)/ppembed.h
+	gcc order$*.c -g -c $(PYINC) -I$(APIDIR)
+
+$(APILIB):
+	cd $(APIDIR); make -f makefile.api
+
+clean:
+	rm -f $(PROGS) *.o *.pyc core
+

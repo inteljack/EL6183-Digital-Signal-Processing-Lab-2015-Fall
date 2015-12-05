@@ -1,0 +1,79 @@
+***PLEASE IGNORE THIS FILE***
+
+
+subclass notes...
+# make me a frame/component, so can use in other guis; coding alts:
+#    def _makeWidgets(self):
+#        self.canvas = Canvas(self, bg=bg)
+#        vbar = Scrollbar(self)
+#        hbar = Scrollbar(self, orient='horizontal')
+#        self.canvas.grid(row=0, column=0)   #.pack(side=TOP,...)
+#        vbar.grid(row=0, column=1)   #.pack(side=RIGHT,expand,fill
+#        hbar.grid(row=1, colunm=0)   #.pack(side=BOTTOM,...
+#
+# alt coding:
+#   def _drawLevels(self, levels):
+#       for i in range(len(levels)):
+#           nitems = len(levels[i])
+#           for j in range(nitems):
+#               node = levels[i][j]
+#               if node != None:
+#                   rowpos = i * Rowsz
+#                   colpos = j * Colsz
+# alt coding:
+#     addparent = (lambda x, n=node: (x, n))
+#     children = map(addparent, children)
+#     nextlevel = nextlevel + children
+#
+# - note that levels is 1 2d array, but only stores _references_
+# to parents and children on each level, not copies (== pointers);
+# - note that names not startng with '_' are for cient use (convention)
+# - note subclassing and wrapper alternatives; subclassing retricts tree
+# viewer to one tree type, wrappers don't; embedding/composition;
+# wrapper classes abstract interface to a specific kind of tree--
+# child lists, labels/vaues, node clicks vary per tree type;
+# note that onClick prints more info about node (may not fit in 
+# label), and calls wrapper to add more text--parser uses to eval
+# subtrees; could also subclass treeviewer to specialize clicks;
+# - this fails to define name at end: 
+#   import Part2.Lang.parser2
+# and package imports require __init__.py at each dir level, even
+# last one that contains the .py file (Lang); this works:
+#   from Part2.Lang import parser2
+# PYTHONPATH must include examples/ dir (contains Part2)
+######################################################################
+
+
+
+#########################################################################
+#??? inheritance vs composition;
+# only need  1 viewer for many trees (usually; should allow 1-to-1 too)
+# how to make btree in other module use versions here???
+#
+# ???as is, can't reuse same window for > 1 tree type, since subclass
+# viewer itself to spec tree parms; alt: embed a tree interface in
+# the viewer instead
+#
+# class TreeViewEmpty:
+#     def children(self):
+#         return None
+# 
+# class TreeViewNode:
+#     def label(self):
+#         return None
+#     def value(self):
+#         return None
+#     def children(self):
+#         assert(0, 'TreeView trees must provide a children() method')
+#
+# 
+#     class BinaryNode(btree.BinaryNode, TreeViewNode):
+#         def children(self):
+#             return [self.left, self.right]
+#         def label(self):
+#             return self.data
+# 
+#     class EmptyNode(btree.EmptyNode, TreeViewEmpty): pass
+
+
+

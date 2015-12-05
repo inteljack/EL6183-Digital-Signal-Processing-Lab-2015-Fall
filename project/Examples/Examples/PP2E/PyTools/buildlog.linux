@@ -1,0 +1,63 @@
+OR: use version shipped with linux install (but usually out of date)
+
+cd python1.5.2-ddjcd/
+rm -rf Python-1.5.2
+
+gzip -d python152.tar.gz
+tar -xvf python152.tar
+cd Python-1.5.2/
+./configure
+make
+make test 
+
+--optional
+su - root
+make install
+
+vi Modules/Setup
+--uncomment gdbm and Tcl/Tk lines
+
+# else anydbm uses dumbdbm by default
+gdbm gdbmmodule.c -I/usr/include -L/usr/lib -lgdbm
+ 
+# The _tkinter module.
+...
+
+# *** Always uncomment this (leave the leading underscore in!):
+_tkinter _tkinter.c tkappinit.c -DWITH_APPINIT \
+# *** Uncomment and edit to reflect where your Tcl/Tk headers are:
+        -I/usr/include \
+# *** Uncomment and edit to reflect where your X11 header files are:
+        -I/usr/X11R6/include \
+# *** Uncomment and edit to reflect where your Tcl/Tk libraries are:
+        -L/usr/lib \
+# *** Uncomment and edit to reflect your Tcl/Tk versions:
+        -ltk8.0 -ltcl8.0 \
+# *** Uncomment and edit to reflect where your X11 libraries are:
+        -L/usr/X11R6/lib \
+# *** Always uncomment this; X11 libraries to link with:
+        -lX11
+
+
+make
+
+
+[mark@toy ~/python1.5.2-ddjcd/Python-1.5.2]$ unsetenv PYTHONPATH
+[mark@toy ~/python1.5.2-ddjcd/Python-1.5.2]$ python
+Python 1.5.2 (#1, Sep  6 1999, 10:46:04)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import sys
+>>> sys.path
+['', './Lib/', './Lib/plat-linux2', './Lib/lib-tk', './Modules']
+
+[mark@toy ~/bin]$ unsetenv PYTHONPATH
+[mark@toy ~/bin]$ py152
+Python 1.5.2 (#1, Sep  6 1999, 10:46:04)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import sys
+>>> sys.path
+['', '/home/mark/python1.5.2-ddjcd/Python-1.5.2/Lib/', '/home/mark/python1.5.2-ddjcd/Python-1.5.2/Lib/plat-linux2', '/home/mark/python1.5.2-ddjcd/Python-1.5.2/Lib/lib-tk', '/home/mark/python1.5.2-ddjcd/Python-1.5.2/Modules']
+>>>
+[mark@toy ~/bin]$ pwd
+/home/mark/bin
+

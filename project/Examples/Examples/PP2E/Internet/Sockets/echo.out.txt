@@ -1,0 +1,275 @@
+[window 1: start server first, on local or remote machine, accept clients]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-se
+rver.py
+Server connected by ('127.0.0.1', 1101)
+Server connected by ('127.0.0.1', 1102)
+Server connected by ('127.0.0.1', 1103)
+Server connected by ('127.0.0.1', 1104)
+
+
+[window 2: run clients while server is running]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py
+Client received: 'Echo=>Hello, world'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py
+Client received: 'Echo=>Hello, world'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py "Every sperm is sacred"
+Client received: 'Echo=>Every sperm is sacred'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py It's Christmas in heaven
+Client received: "Echo=>It's"
+Client received: 'Echo=>Christmas'
+Client received: 'Echo=>in'
+Client received: 'Echo=>heaven'
+
+
+[window 2: spawn 10 clients]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python testech
+o.py
+<no output here under Windows>
+
+
+[window 1: process 10 more connection requests]
+Server connected by ('127.0.0.1', 1105)
+Server connected by ('127.0.0.1', 1106)
+Server connected by ('127.0.0.1', 1107)
+Server connected by ('127.0.0.1', 1108)
+Server connected by ('127.0.0.1', 1109)
+Server connected by ('127.0.0.1', 1110)
+Server connected by ('127.0.0.1', 1111)
+Server connected by ('127.0.0.1', 1112)
+Server connected by ('127.0.0.1', 1113)
+Server connected by ('127.0.0.1', 1114)
+
+
+--------------------------------------------------------
+
+
+[window 1: thread-based server process, server keeps accepting 
+client connections while threads are servicing prior requests]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python thread-
+server.py
+Server connected by ('127.0.0.1', 1257) at Wed Mar 15 15:31:26 2000
+Server connected by ('127.0.0.1', 1258) at Wed Mar 15 15:31:27 2000
+Server connected by ('127.0.0.1', 1259) at Wed Mar 15 15:31:29 2000
+
+
+[window 2: client]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM at Wed Mar 15 15:31:31 2000'
+
+[window 3: client]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py niNIniNI
+Client received: 'Echo=>niNIniNI at Wed Mar 15 15:31:32 2000'
+
+[window 4: client]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py shrubbery
+Client received: 'Echo=>shrubbery at Wed Mar 15 15:31:34 2000'
+
+
+-----------------------------------------------------------------------
+
+
+[server telnet window]
+
+[lutz@starship lutz]$ python fork-server.py
+Server connected by ('166.93.218.100', 1296) at Wed Mar 15 18:09:34 2000
+Server connected by ('166.93.218.100', 1300) at Wed Mar 15 18:10:00 2000
+Server connected by ('166.93.218.100', 1298) at Wed Mar 15 18:10:00 2000
+Server connected by ('166.93.218.100', 1302) at Wed Mar 15 18:10:02 2000
+
+
+[changed serverHost to be 'starship.python.net' in echo-client.py]
+
+[window 1, pc]
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM at Wed Mar 15 18:09:39 2000'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM at Wed Mar 15 18:10:05 2000'
+
+[window 2, pc]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-
+ient.py niNIniNI
+Client received: 'Echo=>niNIniNI at Wed Mar 15 18:10:05 2000'
+
+[window 3, pc]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-
+ient.py shrubbery
+Client received: 'Echo=>shrubbery at Wed Mar 15 18:10:07 2000'
+
+
+
+[run testecho.py on pc]
+[lutz@starship lutz]$ python fork-server.py
+Server connected by ('166.93.218.100', 1339) at Wed Mar 15 18:19:55 2000
+Server connected by ('166.93.218.100', 1340) at Wed Mar 15 18:19:55 2000
+Server connected by ('166.93.218.100', 1349) at Wed Mar 15 18:19:56 2000
+Server connected by ('166.93.218.100', 1350) at Wed Mar 15 18:19:56 2000
+Server connected by ('166.93.218.100', 1351) at Wed Mar 15 18:19:56 2000
+Server connected by ('166.93.218.100', 1352) at Wed Mar 15 18:19:56 2000
+Server connected by ('166.93.218.100', 1353) at Wed Mar 15 18:19:56 2000
+Server connected by ('166.93.218.100', 1354) at Wed Mar 15 18:19:56 2000
+Server connected by ('166.93.218.100', 1348) at Wed Mar 15 18:19:58 2000
+Server connected by ('166.93.218.100', 1337) at Wed Mar 15 18:20:03 2000
+
+[lutz@starship lutz]$ python fork-server.py
+Server connected by ('166.93.218.100', 1465) at Wed Mar 15 18:34:01 2000
+Server connected by ('166.93.218.100', 1471) at Wed Mar 15 18:34:02 2000
+Server connected by ('166.93.218.100', 1473) at Wed Mar 15 18:34:02 2000
+Server connected by ('166.93.218.100', 1474) at Wed Mar 15 18:34:02 2000
+Server connected by ('166.93.218.100', 1476) at Wed Mar 15 18:34:02 2000
+Server connected by ('166.93.218.100', 1478) at Wed Mar 15 18:34:02 2000
+Server connected by ('166.93.218.100', 1481) at Wed Mar 15 18:34:02 2000
+Server connected by ('166.93.218.100', 1479) at Wed Mar 15 18:34:05 2000
+Server connected by ('166.93.218.100', 1480) at Wed Mar 15 18:34:05 2000
+Server connected by ('166.93.218.100', 1482) at Wed Mar 15 18:34:05 2000
+
+
+[lutz@starship lutz]$ python thread-server.py
+Server connected by ('166.93.218.100', 1357) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1363) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1364) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1367) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1369) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1370) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1371) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1372) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1373) at Wed Mar 15 18:21:30 2000
+Server connected by ('166.93.218.100', 1374) at Wed Mar 15 18:21:32 2000
+
+[lutz@starship lutz]$ python thread-server.py
+Server connected by ('166.93.218.100', 1446) at Wed Mar 15 18:32:47 2000
+Server connected by ('166.93.218.100', 1447) at Wed Mar 15 18:32:47 2000
+Server connected by ('166.93.218.100', 1452) at Wed Mar 15 18:32:47 2000
+Server connected by ('166.93.218.100', 1453) at Wed Mar 15 18:32:47 2000
+Server connected by ('166.93.218.100', 1454) at Wed Mar 15 18:32:48 2000
+Server connected by ('166.93.218.100', 1458) at Wed Mar 15 18:32:48 2000
+Server connected by ('166.93.218.100', 1460) at Wed Mar 15 18:32:48 2000
+Server connected by ('166.93.218.100', 1461) at Wed Mar 15 18:32:48 2000
+Server connected by ('166.93.218.100', 1462) at Wed Mar 15 18:32:48 2000
+Server connected by ('166.93.218.100', 1448) at Wed Mar 15 18:32:50 2000
+
+
+
+
+
+[lutz@starship lutz]$ uname -a
+Linux starship.python.net 2.0.36 #1 Tue Dec 29 13:11:13 EST 1998 i586 unknown
+[lutz@starship lutz]$ python thread-server.py
+Server connected by ('166.93.218.100', 1382) at Wed Mar 15 18:23:07 2000
+Server connected by ('166.93.218.100', 1384) at Wed Mar 15 18:23:09 2000
+Server connected by ('166.93.218.100', 1386) at Wed Mar 15 18:23:14 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM at Wed Mar 15 18:23:12 2000'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-
+ient.py niNIniNI
+Client received: 'Echo=>niNIniNI at Wed Mar 15 18:23:14 2000'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python
+ient.py shrubbery
+Client received: 'Echo=>shrubbery at Wed Mar 15 18:23:19 2000'
+
+
+[lutz@starship lutz]$ python fork-server.py
+Server connected by ('166.93.218.100', 1406) at Wed Mar 15 18:27:17 2000
+Server connected by ('166.93.218.100', 1408) at Wed Mar 15 18:27:19 2000
+Server connected by ('166.93.218.100', 1410) at Wed Mar 15 18:27:22 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM at Wed Mar 15 18:27:22 2000'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-
+ient.py niNIniNI
+Client received: 'Echo=>niNIniNI at Wed Mar 15 18:27:24 2000'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python
+ient.py shrubbery
+Client received: 'Echo=>shrubbery at Wed Mar 15 18:27:27 2000'
+
+
+
+[lutz@starship lutz]$ python echo-server.py
+Server connected by ('166.93.218.100', 1412)
+Server connected by ('166.93.218.100', 1414)
+Server connected by ('166.93.218.100', 1416)
+Server connected by ('166.93.218.100', 1418)
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spamSPAM
+Client received: 'Echo=>spamSPAM'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py Life of Brian
+Client received: 'Echo=>Life'
+Client received: 'Echo=>of'
+Client received: 'Echo=>Brian'
+
+
+
+-------------------------------------------------------------------------------
+
+
+[window1: server, serverHost='localhost' in echo-client.py]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python class-s
+erver.py
+('127.0.0.1', 1064) Thu Mar 16 11:20:01 2000
+('127.0.0.1', 1065) Thu Mar 16 11:20:03 2000
+('127.0.0.1', 1066) Thu Mar 16 11:20:04 2000
+('127.0.0.1', 1067) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1068) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1069) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1070) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1071) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1072) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1073) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1074) Thu Mar 16 11:20:44 2000
+('127.0.0.1', 1075) Thu Mar 16 11:20:45 2000
+('127.0.0.1', 1076) Thu Mar 16 11:20:45 2000
+
+
+[window2: client]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py
+Client received: 'Echo=>Hello, world at Thu Mar 16 11:20:06 2000'
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python testech
+o.py
+
+
+[window3: client]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py spam
+Client received: 'Echo=>spam at Thu Mar 16 11:20:08 2000'
+
+
+[window4: client]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python echo-cl
+ient.py ni ni ni
+Client received: 'Echo=>ni at Thu Mar 16 11:20:09 2000'
+Client received: 'Echo=>ni at Thu Mar 16 11:20:09 2000'
+Client received: 'Echo=>ni at Thu Mar 16 11:20:09 2000'
+

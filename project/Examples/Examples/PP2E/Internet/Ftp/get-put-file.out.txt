@@ -1,0 +1,22 @@
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Ftp>python sousa.py
+Downloading sousa.au
+Download done.
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Ftp>python putfile.py
+sousa.au
+starship.python.net pswd?
+Uploading sousa.au
+Upload done.
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Ftp>move sousa.au ttt
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Ftp>python
+Python 1.5.2 (#0, Apr 13 1999, 10:51:12) [MSC 32 bit (Intel)] on win32
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> from getfile import getfile
+>>> getfile(file='sousa.au', site='starship.python.net', dir='upload',
+...                         user=('lutz', '****'))
+Downloading sousa.au
+Download done.
+>>> from playfile import playfile
+>>> playfile('sousa.au')

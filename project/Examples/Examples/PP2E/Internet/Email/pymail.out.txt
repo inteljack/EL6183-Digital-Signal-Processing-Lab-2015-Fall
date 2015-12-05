@@ -1,0 +1,280 @@
+C:\examples\Part2\Internet\Email>python smtpmail.py
+From? lutz@rmi.net
+To?   lutz@rmi.net
+Subj? testing 1 2 3
+Type message text, end with line=(ctrl + D or Z)
+words
+Connecting...
+No errors.
+Bye.
+
+C:\examples\Part2\Internet\Email>python popmail.py
+Password for pop.rmi.net?
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <475a0000721aa738@chevalier>
+There are 1 mail messages in 780 bytes
+('+OK 1 messages (780 octets)', ['1 780'], 7)
+--------------------------------------------------------------------------------
+
+
+[Press Enter key]
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Sun Feb 13 13:56:44 2000)
+X-From_: lutz@rmi.net  Sun Feb 13 13:43:01 2000
+Return-Path: <lutz@chevalier.rmi.net>
+Received: from server.python.net (server.python.net [209.50.192.113])
+        by chevalier.rmi.net (8.9.3/8.9.3) with SMTP id NAA16859
+        for <lutz@rmi.net>; Sun, 13 Feb 2000 13:43:00 -0700 (MST)
+Message-Id: <200002132043.NAA16859@chevalier.rmi.net>
+Received: (qmail 31944 invoked from network); 13 Feb 2000 20:43:22 -0000
+Received: from dial-67.73.denco.rmi.net (166.93.67.73)
+  by server.python.net with SMTP; 13 Feb 2000 20:43:22 -0000
+From: lutz@rmi.net
+To: lutz@rmi.net
+Date: Sun Feb 13 13:44:16 2000
+Subject: testing 1 2 3
+
+words
+
+--------------------------------------------------------------------------------
+
+Bye.
+
+
+
+
+
+
+
+C:\examples\Part2\Internet\Email>python pymail.py
+
+Password for pop.rmi.net?
+
+[Pymail email client]
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <725f00001f1ba738@chevalier>
+('+OK 1 messages (780 octets)', ['1 780'], 7)
+There are 1 mail messages in 780 bytes
+Retrieving: 0
+1:      723 bytes
+        From=>lutz@rmi.net
+        Date=>Sun Feb 13 13:44:16 2000
+        Subject=>testing 1 2 3
+[Pymail] Action? (i, l, d, s, m, q, ?) l 1
+--------------------------------------------------------------------------------
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Sun Feb 13 13:59:12 2000)
+X-From_: lutz@rmi.net  Sun Feb 13 13:43:01 2000
+Return-Path: <lutz@chevalier.rmi.net>
+Received: from server.python.net (server.python.net [209.50.192.113])
+        by chevalier.rmi.net (8.9.3/8.9.3) with SMTP id NAA16859
+        for <lutz@rmi.net>; Sun, 13 Feb 2000 13:43:00 -0700 (MST)
+Message-Id: <200002132043.NAA16859@chevalier.rmi.net>
+Received: (qmail 31944 invoked from network); 13 Feb 2000 20:43:22 -0000
+Received: from dial-67.73.denco.rmi.net (166.93.67.73)
+  by server.python.net with SMTP; 13 Feb 2000 20:43:22 -0000
+From: lutz@rmi.net
+To: lutz@rmi.net
+Date: Sun Feb 13 13:44:16 2000
+Subject: testing 1 2 3
+
+words
+
+--------------------------------------------------------------------------------
+
+[Pymail] Action? (i, l, d, s, m, q, ?) d
+[Pymail] Action? (i, l, d, s, m, q, ?) i
+1:      723 bytes
+        From=>lutz@rmi.net
+        Date=>Sun Feb 13 13:44:16 2000
+        Subject=>testing 1 2 3
+[Pymail] Action? (i, l, d, s, m, q, ?) q
+To be deleted: [1]
+Delete?y
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <ad640000c11ba738@chevalier>
+Deleting messages from server.
+Bye.
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Email>python pymail.py
+
+Password for pop.rmi.net?
+
+[Pymail email client]
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <1f660000ee1ba738@chevalier>
+('+OK 0 messages (0 octets)', [], 0)
+There are 0 mail messages in 0 bytes
+Retrieving:
+[Pymail] Action? (i, l, d, s, m, q, ?) m
+From? lutz@starship.python.net
+To?   lutz@rmi.net
+Subj? test 1
+Type message text, end with line=(ctrl + D or Z)
+spam
+Connecting...
+No errors.
+Bye.
+[Pymail] Action? (i, l, d, s, m, q, ?) m
+From? lutz@starship.python.net
+To?   lutz@rmi.net
+Subj? test 2
+Type message text, end with line=(ctrl + D or Z)
+ni
+Connecting...
+No errors.
+Bye.
+[Pymail] Action? (i, l, d, s, m, q, ?) q
+Bye.
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Email>python pymail.py
+
+Password for pop.rmi.net?
+
+[Pymail email client]
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <5f6a0000761ca738@chevalier>
+('+OK 2 messages (1602 octets)', ['1 802', '2 800'], 14)
+There are 2 mail messages in 1602 bytes
+Retrieving: 0 1
+1:      735 bytes
+        From=>lutz@server.python.net
+        Date=>Sun Feb 13 14:04:22 2000
+        Subject=>test 1
+2:      733 bytes
+        From=>lutz@server.python.net
+        Date=>Sun Feb 13 14:05:10 2000
+        Subject=>test 2
+[Pymail] Action? (i, l, d, s, m, q, ?) l 2
+--------------------------------------------------------------------------------
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Sun Feb 13 14:05:00 2000)
+X-From_: lutz@server.python.net  Sun Feb 13 14:03:52 2000
+Return-Path: <lutz@server.python.net>
+Received: from server.python.net (server.python.net [209.50.192.113])
+        by chevalier.rmi.net (8.9.3/8.9.3) with SMTP id OAA26727
+        for <lutz@rmi.net>; Sun, 13 Feb 2000 14:03:52 -0700 (MST)
+Message-Id: <200002132103.OAA26727@chevalier.rmi.net>
+Received: (qmail 32106 invoked from network); 13 Feb 2000 21:04:14 -0000
+Received: from dial-67.73.denco.rmi.net (166.93.67.73)
+  by server.python.net with SMTP; 13 Feb 2000 21:04:14 -0000
+From: lutz@server.python.net
+To: lutz@rmi.net
+Date: Sun Feb 13 14:05:10 2000
+Subject: test 2
+
+ni
+
+--------------------------------------------------------------------------------
+
+[Pymail] Action? (i, l, d, s, m, q, ?) d 2
+[Pymail] Action? (i, l, d, s, m, q, ?) q
+To be deleted: [2]
+Delete?y
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <4a6c0000b81ca738@chevalier>
+Deleting messages from server.
+Bye.
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Email>python pymail.py
+
+Password for pop.rmi.net?
+
+[Pymail email client]
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <626d0000d51ca738@chevalier>
+('+OK 1 messages (802 octets)', ['1 802'], 7)
+There are 1 mail messages in 802 bytes
+Retrieving: 0
+1:      735 bytes
+        From=>lutz@server.python.net
+        Date=>Sun Feb 13 14:04:22 2000
+        Subject=>test 1
+[Pymail] Action? (i, l, d, s, m, q, ?) s 1
+[Pymail] Action? (i, l, d, s, m, q, ?) q
+Bye.
+
+
+
+vi...
+.
+.
+.
+_______________________________________________
+Edu-sig mailing list
+Edu-sig@python.org
+http://www.python.org/mailman/listinfo/edu-sig
+--------------------------------------------------------------------------------
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Sun Feb 13 14:06:30 2000)
+X-From_: lutz@server.python.net  Sun Feb 13 14:03:05 2000
+Return-Path: <lutz@server.python.net>
+Received: from server.python.net (server.python.net [209.50.192.113])
+        by chevalier.rmi.net (8.9.3/8.9.3) with SMTP id OAA26360
+        for <lutz@rmi.net>; Sun, 13 Feb 2000 14:03:04 -0700 (MST)
+Message-Id: <200002132103.OAA26360@chevalier.rmi.net>
+Received: (qmail 32103 invoked from network); 13 Feb 2000 21:03:27 -0000
+Received: from dial-67.73.denco.rmi.net (166.93.67.73)
+  by server.python.net with SMTP; 13 Feb 2000 21:03:27 -0000
+From: lutz@server.python.net
+To: lutz@rmi.net
+Date: Sun Feb 13 14:04:22 2000
+Subject: test 1
+
+spam
+--------------------------------------------------------------------------------
+"c:\stuff\mark\etc\savemail.txt" line 124 of 145 --85%--
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Email>python pymail.py
+
+Password for pop.rmi.net?
+
+[Pymail email client]
+Connecting...
++OK Cubic Circle's v1.31 1998/05/13 POP3 ready <f7070000b81ea738@chevalier>
+('+OK 2 messages (4262 octets)', ['1 802', '2 3460'], 15)
+There are 2 mail messages in 4262 bytes
+Retrieving: 0 1
+1:      735 bytes
+        From=>lutz@server.python.net
+        Date=>Sun Feb 13 14:04:22 2000
+        Subject=>test 1
+2:      3315 bytes
+        From=>jean glasser <jean.glasser@wanadoo.fr>
+        Date=>Sun, 13 Feb 2000 22:06:13 +0100
+        Subject=>[Python-Help] Re: IDLE malfunctioning
+[Pymail] Action? (i, l, d, s, m, q, ?) s 1
+[Pymail] Action? (i, l, d, s, m, q, ?) s 1
+[Pymail] Action? (i, l, d, s, m, q, ?) q
+Bye.
+
+
+vi . . .
+Date: Sun Feb 13 14:04:22 2000
+Subject: test 1
+
+spam
+--------------------------------------------------------------------------------
+
+Received: by chevalier (mbox lutz)
+ (with Cubic Circle's cucipop (v1.31 1998/05/13) Sun Feb 13 14:14:33 2000)
+X-From_: lutz@server.python.net  Sun Feb 13 14:03:05 2000
+Return-Path: <lutz@server.python.net>
+Received: from server.python.net (server.python.net [209.50.192.113])
+        by chevalier.rmi.net (8.9.3/8.9.3) with SMTP id OAA26360
+        for <lutz@rmi.net>; Sun, 13 Feb 2000 14:03:04 -0700 (MST)
+Message-Id: <200002132103.OAA26360@chevalier.rmi.net>
+Received: (qmail 32103 invoked from network); 13 Feb 2000 21:03:27 -0000
+Received: from dial-67.73.denco.rmi.net (166.93.67.73)
+  by server.python.net with SMTP; 13 Feb 2000 21:03:27 -0000
+From: lutz@server.python.net
+To: lutz@rmi.net
+Date: Sun Feb 13 14:04:22 2000
+Subject: test 1
+
+spam
+--------------------------------------------------------------------------------

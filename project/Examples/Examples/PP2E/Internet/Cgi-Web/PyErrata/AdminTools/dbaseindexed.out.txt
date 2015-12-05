@@ -1,0 +1,69 @@
+[mark@toy ...Internet/Cgi-Web/PyErrata/AdminTools]$ python dbaseindexed.py
+--------------------------------------------------------------------------------
+old stuff
+--------------------------------------------------------------------------------
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 38, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Bob'}
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 42, 'Submit mode': 'email', 'Rep
+ort state': 'Not yet verified', 'Submitter name': 'Bob'}
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 40, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Brian'}
+--------------------------------------------------------------------------------
+['Bob', 'Brian']
+{'Bob': [{'Submit date': '2000/06/13, 11:45:01', 'Page': 38, 'Submit mode': '',
+'Report state': 'Not yet verified', 'Submitter name': 'Bob'}, {'Submit date': '2
+000/06/13, 11:45:01', 'Page': 42, 'Submit mode': 'email', 'Report state': 'Not y
+et verified', 'Submitter name': 'Bob'}], 'Brian': [{'Submit date': '2000/06/13, 
+11:45:01', 'Page': 40, 'Submit mode': '', 'Report state': 'Not yet verified', 'S
+ubmitter name': 'Brian'}]}
+--------------------------------------------------------------------------------
+new stuff
+--------------------------------------------------------------------------------
+['Bob', 'Brian']
+--------------------------------------------------------------------------------
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 38, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Bob'}
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 42, 'Submit mode': 'email', 'Rep
+ort state': 'Not yet verified', 'Submitter name': 'Bob'}
+--------------------------------------------------------------------------------
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 40, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Brian'}
+--------------------------------------------------------------------------------
+['Not yet verified']
+--------------------------------------------------------------------------------
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 38, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Bob'}
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 40, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Brian'}
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 42, 'Submit mode': 'email', 'Rep
+ort state': 'Not yet verified', 'Submitter name': 'Bob'}
+--------------------------------------------------------------------------------
+boundary cases
+--------------------------------------------------------------------------------
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 38, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Bob'}
+{'Submit date': '2000/06/13, 11:45:01', 'Page': 40, 'Submit mode': '', 'Report s
+tate': 'Not yet verified', 'Submitter name': 'Brian'}
+--------------------------------------------------------------------------------
+[]
+Nonesuch failed
+
+
+[mark@toy ...Cgi-Web/PyErrata/AdminTools]$ ls DbaseFilesIndexed/commentDB/
+960918301.263-895.data  960918301.506-895.data  Submitter-name  indexes.log
+960918301.42-895.data   Report-state            indexes.lck
+
+
+[mark@toy ...PyErrata/AdminTools]$ more DbaseFilesIndexed/commentDB/indexes.log
+960918301.266   Requested: 895, writer
+960918301.266   Aquired: 895
+960918301.36    Released: 895
+960918301.36    Requested: 895, writer
+960918301.361   Aquired: 895
+960918301.419   Released: 895
+960918301.422   Requested: 895, writer
+960918301.422   Aquired: 895
+960918301.46    Released: 895
+.
+.
+.

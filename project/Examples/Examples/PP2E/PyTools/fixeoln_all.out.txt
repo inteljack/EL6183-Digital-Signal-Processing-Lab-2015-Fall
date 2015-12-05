@@ -1,0 +1,14 @@
+[after tounix 5 times]
+
+>>> open('basics/test0.html', 'rb').read()
+'<HTML><BODY>\012<TITLE>HTML 101</TITLE>\012<H1>A First HTML page</H1>\012<P>Hel
+lo, HTML World!</P>\012</BODY></HTML>\012\012'
+
+
+[after todos 5 times]
+
+>>> open('basics/test0.html', 'rb').read()
+'<HTML><BODY>\015\012<TITLE>HTML 101</TITLE>\015\012<H1>A First HTML page</H1>\0
+15\012<P>Hello, HTML World!</P>\015\012</BODY></HTML>\015\012\015\012'
+
+

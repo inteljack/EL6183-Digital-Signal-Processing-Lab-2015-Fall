@@ -1,0 +1,91 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/TestApi/WithPackages]$ testapi
+Hello from C.
+Hello api world
+
+DYNAMIC RELOADING
+result => 12
+change pkgdir/testapi.py now...
+result => 32
+change pkgdir/testapi.py now...
+Error running func
+  File "./pkgdir/testapi.py", line 15
+    return x \ y             # change me
+                                        ^
+SyntaxError: invalid token
+change pkgdir/testapi.py now...
+Error running func
+Traceback (innermost last):
+  File "./pkgdir/testapi.py", line 15, in func
+    return x / 0             # change me
+ZeroDivisionError: integer division or modulo
+change pkgdir/testapi.py now...
+result => 65536
+
+DYNAMIC DEBUGGING
+Debug code string--type s to step...
+> <string>(0)?()
+(Pdb) s
+> ./pkgdir/testapi.py(14)func()
+-> def func(x, y):              # called by C
+(Pdb) s
+> ./pkgdir/testapi.py(15)func()
+-> return pow(x, y)         # change me
+(Pdb) c                                                       
+--Return--
+> <string>(0)?()->65536
+(Pdb) c
+C status, result => 0, 65536
+
+Debug module function call--type s to step...
+> ./pkgdir/testapi.py(14)func()
+-> def func(x, y):              # called by C
+(Pdb) c
+> ./pkgdir/testapi.py(15)func()
+-> return pow(x, y)         # change me
+(Pdb) c
+--Return--
+> ./pkgdir/testapi.py(15)func()->65536
+-> return pow(x, y)         # change me
+(Pdb) c
+C status, result => 0, 65536
+
+Debug compiled bytecode--type s to step...
+> <PP_Compile_Codestr>(0)?()
+(Pdb) s
+> ./pkgdir/testapi.py(14)func()
+-> def func(x, y):              # called by C
+(Pdb) c
+--Return--
+> <PP_Compile_Codestr>(0)?()->65536
+(Pdb) c
+C status, result => 0, 65536
+
+Debug direct object call--type s to step...
+> ./pkgdir/testapi.py(14)func()
+-> def func(x, y):              # called by C                        
+(Pdb) c
+> ./pkgdir/testapi.py(15)func()
+-> return pow(x, y)         # change me
+(Pdb) c
+--Return--
+> ./pkgdir/testapi.py(15)func()->65536
+-> return pow(x, y)         # change me
+(Pdb) c
+C status, result => 0, 65536
+
+
+OBJECT ATTRIBUTES
+[check sys.version <ctrl-d exits>]
+>>> dir()
+['__builtins__', '__doc__', '__name__', 'sys']
+>>> sys.version
+'1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91.66 19990314/Linux (egcs-'
+>>>
+fetched sys.version => 1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91...
+changed sys.version => 2.0 (2001?)
+sys.modules.has_key('pkgdir.testapi') result => 1
+sys.modules.has_key('nonesuch') result => 0
+Sending text to sys.stdout.write...<stdout text>
+Bye from C.                              
+
+

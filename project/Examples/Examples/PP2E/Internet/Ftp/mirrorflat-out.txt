@@ -1,0 +1,30 @@
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\test>python ..\mirrorflat.py
+Please enter password: ******
+connecting...
+copying sig.txt to .\sig.txt
+copying bio.html to .\bio.html
+copying cdrom.html to .\cdrom.html
+copying extra.html to .\extra.html
+copying quotes.html to .\quotes.html
+copying fuzzy.gif to .\fuzzy.gif
+copying book.html to .\book.html
+.
+.
+.
+copying python_snake_ora.gif to .\python_snake_ora.gif
+copying python_woodrat.gif to .\python_woodrat.gif
+copying ppr-small.gif to .\ppr-small.gif
+copying lp-small.gif to .\lp-small.gif
+copying start-cdsample.html to .\start-cdsample.html
+copying about-ppr-japan.html to .\about-ppr-japan.html
+copying ora-ppr-japan.gif to .\ora-ppr-japan.gif
+copying ora-ppr-japan-big.gif to .\ora-ppr-japan-big.gif
+copying boulder-classes.html to .\boulder-classes.html
+copying old-lpdraft1.html to .\old-lpdraft1.html
+copying old-part1extras.html to .\old-part1extras.html
+copying rmimove.html to .\rmimove.html
+copying starship-index.html to .\starship-index.html
+copying starship-old.html to .\starship-old.html
+Done: 142 files copied.
+
+

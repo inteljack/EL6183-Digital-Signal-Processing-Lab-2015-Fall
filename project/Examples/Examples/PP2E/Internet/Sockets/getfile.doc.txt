@@ -1,0 +1,15 @@
+########################################################
+# implement client and server side logic to transfer an
+# arbitrary file from server to client over a socket; 
+# uses a simple control-info protocol, rather than 
+# separate sockets for control and data (as in ftp), and 
+# must loop to transfer the entire file by blocks;  see
+# ftplib examples for a higher-level transport scheme;
+# serverthread also compares the size returned by a 
+# send to len(bytes) just in case of a network glitch;
+# could instead load the whole file at once with read
+# and loop until the entire byte count has been sent;
+# note: there is no reason to use makefile() and send
+# filenames in a terminated line here, except that an
+# explicit line simplifies filenames longer than blksz;
+########################################################

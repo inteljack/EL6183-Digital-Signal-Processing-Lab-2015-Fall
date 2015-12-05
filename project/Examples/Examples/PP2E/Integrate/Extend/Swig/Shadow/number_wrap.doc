@@ -1,0 +1,28 @@
+number_wrap.c
+
+[ Python Module : number ]
+
+
+1.  class Number
+================
+[ created from class Number ]
+
+
+Number(start)
+        [ Constructor: returns Number * ]
+
+del this
+        [ Destructor: returns void  ]
+
+add(value)
+        [ Member : returns void  ]
+
+sub(value)
+        [ Member : returns void  ]
+
+display()
+        [ Member : returns void  ]
+
+self.data
+        [ Member data: returns int  ]
+

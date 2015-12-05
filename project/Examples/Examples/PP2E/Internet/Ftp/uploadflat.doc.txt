@@ -1,0 +1,13 @@
+##########################################################################
+# use ftp to upload all files from a local dir to a remote site/directory;
+# e.g., run me to copy an ftp site's files from your machine to your ISP,
+# especially handy if you only have ftp access to your website, not a
+# telnet/shell account access (else you could tar up all files and 
+# transfer in a single step to the remote machine and untar there);
+# to upload subdirectories too, use os.path.isdir(path), FTP().mkd(path),
+# and recursion--see uploadall.py for a version that supports subdirs.
+# note that we need 'rb' mode to write things like gif files, due to the
+# automatic \r\n <=> \n mapping on MS-Windows in text mode; we could
+# use 'rb' for text too, but ftplib makes all eolns '\r\n' either way;
+# that means that text files show up in MS-DOS linefeed mode at the site.
+##########################################################################

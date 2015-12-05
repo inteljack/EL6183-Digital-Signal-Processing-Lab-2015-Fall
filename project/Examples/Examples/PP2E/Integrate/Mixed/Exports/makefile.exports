@@ -1,0 +1,98 @@
+######################################################################
+# Build examples in this dir: "make -f makefile.exports [test1|2|3]",
+# which export C variables to embedded Python code.  Generates:
+# - cinterface.so: a dynamically-loaded extension module; exports 
+#   funcs plus a C type interface to C names, for use in embedded code
+# - runpy.o: a statically-linked object which defines an API 
+#   used from C to run the embedded code (uses the libppembed.a API)
+# - prog*: C main programs/executables which use runpy.o to run 
+#   embedded Python code strings (script*.py files), which in turn 
+#   use cinterface.so to get/set variables in the enclosing C layer.  
+#   The main programs define either CnameMapTable or CnameMapLookup,
+#   used by module cinterface.so to handle C name access from Python.
+#
+# In other words, C is on top, and calls Python code, which calls
+# out to more C extension code to access C components.  This is a
+# comprehensive and typical structure; Tkinter callbacks are dispatched
+# similarly, except that Python is on top initially--Python calls C 
+# to register callback handlers, C calls Python code on events, 
+# which calls back to C code for widget services (as done here). 
+# And really, any time embedded Python code uses a built-in module
+# it is calling out to the C layer as well (built-ins are precoded
+# C extension modules, statically linked into Python libs and execs).
+# Here, we wrote the C extension layer used by embedded code, so 
+# the layering is more explicit.
+#
+# Be sure to set the Python search path to find imported modules: 
+# source $PP2EHOME/PP2E/Config/setup-pp-embed.csh if need to find .so.  
+# We run a C 'prog*' program to test here, not 'python', so Python 
+# may have trouble guessing the standard library dirs, if it's not on 
+# $PYTHONPATH.  Also see Extend/Swig: SWIG is able to automate access 
+# to global C variables from Python, roughly like cinterface.c.
+######################################################################
+
+PY    = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+PYLIB = $(PY)/libpython1.5.a  
+PYINC = -I$(PY)/Include -I$(PY)
+
+LIBS  = -L/usr/lib \
+        -L/usr/X11R6/lib \
+        -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+
+APIDIR  = ../../Embed/HighLevelApi
+APILIB  = $(APIDIR)/libppembed.a
+
+#############################################################################
+# test1: 
+#     link default lookup routine into the cinterface.so module, and
+#     provide a mapping table externally in enclosing C layer main-table.c
+# test2: 
+#     provide a custom lookup function in enclosing C layer main-function.c
+# test3: 
+#     like test1, but link lookup routine with main-table.c, not cinterace.so
+#############################################################################
+
+test1: prog1 cinterface-default.so 
+	cp cinterface-default.so cinterface.so
+test2: prog2 cinterface-custom.so
+	cp cinterface-custom.so cinterface.so
+test3: prog3 cinterface-custom.so
+	cp cinterface-custom.so cinterface.so
+
+prog1: main-table.o runpy.o $(APILIB)
+	gcc main-table.o runpy.o \
+                    $(APILIB) $(PYLIB) $(LIBS) -g -export-dynamic -o prog1
+
+prog2: main-function.o runpy.o $(APILIB)
+	gcc main-function.o runpy.o \
+                    $(APILIB) $(PYLIB) $(LIBS) -g -export-dynamic -o prog2
+
+prog3: main-table.o runpy.o $(APILIB) defaultlookup.o
+	gcc main-table.o runpy.o defaultlookup.o \
+                    $(APILIB) $(PYLIB) $(LIBS) -g -export-dynamic -o prog3
+
+main%.o: main%.c runpy.h cinterface.h $(APIDIR)/ppembed.h
+	gcc main$*.c -g -c $(PYINC) -o main$*.o
+
+runpy.o: runpy.c runpy.h
+	gcc runpy.c -g -c $(PYINC) -I$(APIDIR)
+
+cinterface-default.so: cinterface.c defaultlookup.c cinterface.h
+	gcc cinterface.c defaultlookup.c \
+                -g $(PYINC) -fpic -shared -o cinterface-default.so
+
+cinterface-custom.so: cinterface.c cinterface.h
+	gcc cinterface.c -g $(PYINC) -fpic -shared -o cinterface-custom.so
+
+defaultlookup.so: defaultlookup.c cinterface.h
+	gcc defaultlookup.c -g $(PYINC) -fpic -shared -o defaultlookup.so
+
+defaultlookup.o: defaultlookup.c cinterface.h
+	gcc -c defaultlookup.c -g $(PYINC) -o defaultlookup.o
+ 
+$(APILIB):
+	cd $(APIDIR); make -f makefile.api
+ 
+clean: 
+	rm -f *.o *.so *.pyc core prog1 prog2 prog3
+

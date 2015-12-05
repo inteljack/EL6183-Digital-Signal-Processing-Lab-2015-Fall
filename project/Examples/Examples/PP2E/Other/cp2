@@ -1,0 +1,6 @@
+#!/usr/local/bin/python
+import sys
+while 1:
+    line = sys.stdin.readline()     # read line-by-line
+    if not line: break
+    print line,                     # print adds a '\n'

@@ -1,0 +1,17 @@
+# 1.3 makefile (similar in 1.4)
+# needed 4 python libs plus 2 python .o's
+
+PY = /home/mark/python-1.3/Python-1.3
+
+PLIBS = $(PY)/Modules/libModules.a \
+        $(PY)/Python/libPython.a \
+        $(PY)/Objects/libObjects.a \
+        $(PY)/Parser/libParser.a
+
+POBJS = $(PY)/Modules/config.o $(PY)/Modules/getpath.o
+
+embed:	embed.o
+	cc embed.o $(POBJS) $(PLIBS) -lm -o embed
+
+embed.o: embed.c
+	cc embed.c -c -I$(PY)/Include -I$(PY)/.

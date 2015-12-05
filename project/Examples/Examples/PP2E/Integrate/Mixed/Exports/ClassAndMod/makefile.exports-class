@@ -1,0 +1,43 @@
+######################################################################
+# Exports C variables to embedded Python code, using a Python
+# class to overload attribute access, and a simpler C extension
+# module to interface to C data, instead of a C extension type.
+# Backward-compatible with the original type-based version in ..
+# NOTE: Be sure to source setup-class.csh to set path--need to get
+# cinterface in . not .., but also need scripttools.py from ..;
+######################################################################
+
+PY    = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+PYLIB = $(PY)/libpython1.5.a  
+PYINC = -I$(PY)/Include -I$(PY)
+
+LIBS  = -L/usr/lib \
+        -L/usr/X11R6/lib \
+        -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+
+APIDIR  = ../../../Embed/HighLevelApi
+APILIB  = $(APIDIR)/libppembed.a
+UP      = ..
+
+all: prog1 cinterfacemod.so 
+
+prog1: main-table.o $(UP)/runpy.o $(APILIB)
+	gcc main-table.o $(UP)/runpy.o \
+                    $(APILIB) $(PYLIB) $(LIBS) -g -export-dynamic -o prog1
+
+main-table.o: main-table.c $(UP)/runpy.h $(UP)/cinterface.h $(APIDIR)/ppembed.h
+	gcc main-table.c -g -c $(PYINC) -I$(UP) -o main-table.o
+
+cinterfacemod.so: cinterfacemod.c $(UP)/defaultlookup.c $(UP)/cinterface.h
+	gcc cinterfacemod.c $(UP)/defaultlookup.c \
+                -g $(PYINC) -I$(UP) -fpic -shared -o cinterfacemod.so
+
+$(UP)/runpy.o: 
+	cd $(UP); make -f makefile.exports runpy.o
+
+$(APILIB):
+	cd $(APIDIR); make -f makefile.api
+
+clean: 
+	rm -f *.o *.so *.pyc core prog1
+

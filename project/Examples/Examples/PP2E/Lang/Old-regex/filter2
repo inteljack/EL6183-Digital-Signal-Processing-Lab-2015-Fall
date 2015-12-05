@@ -1,0 +1,6 @@
+#!/usr/local/bin/python
+import sys, regsub                   # use regex/regsub
+line = sys.stdin.readline()          # read line-by-line
+while line:
+    sys.stdout.write( regsub.gsub('\t', '.'*4, line) )
+    line = sys.stdin.readline()

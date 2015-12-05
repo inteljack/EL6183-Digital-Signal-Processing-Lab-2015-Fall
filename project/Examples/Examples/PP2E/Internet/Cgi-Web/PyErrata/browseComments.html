@@ -1,0 +1,31 @@
+<html><body bgcolor="#FFFFFF">
+<title>PP2E Browse Comments</title>
+<h1>PP2E Browse Comment Reports</h1>
+
+<p>Please select the field  you wish to sort by below, and press
+the submit button to display comments.  The display does not include
+any emailed reports which have not been manually posted.  Click 
+'With index' for a top-of-page index, or 'Index only' for an index 
+with links to individual pages.
+</p>
+
+<hr>
+<form method=POST action="browseComments.cgi">
+      <h3>Sort reports by:</h3> 
+
+      <p><input type=radio name=key value="Submit date" checked> Submit date 
+      <p><input type=radio name=key value="Submitter name"> Submitter name 
+      <p><input type=radio name=key value="Submitter email"> Submitter email 
+      <p><input type=radio name=key value="Report state"> Report state
+
+      <h3>Display options:</h3> 
+       <p><input type=radio name=display value="list">Simple list
+          <input type=radio name=display value="indexed" checked>With index
+          <input type=radio name=display value="indexonly">Index only
+      <p><input type=submit>
+</form>
+
+<hr>
+<a href="pyerrata.html">Back to errata page</A>
+</body></html>
+

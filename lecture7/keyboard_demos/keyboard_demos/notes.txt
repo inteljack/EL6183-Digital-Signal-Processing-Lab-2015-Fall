@@ -1,0 +1,27 @@
+
+pygame documentation:
+
+http://www.pygame.org/hifi.html
+
+http://www.pygame.org/wiki/GettingStarted
+
+
+To install pygame, you can use a package manager like PiP or brew (for mac).
+
+-------------------------------------------------------
+For installing pygame on a mac:
+
+Install brew
+http://brew.sh
+
+After installing brew, in the terminal, type:
+
+>> brew search pygame
+homebrew/python/pygame
+
+>> brew install homebrew/python/pygame
+(or whatever is the answer to the previous command)
+
+You should first make sure your X-code is up to date.
+-------------------------------------------------------
+

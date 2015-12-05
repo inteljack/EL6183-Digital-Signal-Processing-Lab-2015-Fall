@@ -1,0 +1,39 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Environ]$ make -f makefile.environ-swig force
+rm -f *.o *.so core environ_wrap.c environ_wrap.doc
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Environ]$ ls
+environ.i  makefile.environ-swig
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Environ]$ make -f makefile.environ-swig
+../myswig -python environ.i
+Generating wrappers for Python
+gcc environ_wrap.c -g -I/home/mark/python1.5.2-ddjcd/Python-1.5.2/Include -I/home/mark/python1.5.2-ddjcd/Python-1.5.2 -shared -o environ.so
+
+
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Extend/Swig/Environ]$ python
+Python 1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91.66 19990314/Linux (egcs- on linux2
+Copyright 1991-1995 Stichting Mathematisch Centrum, Amsterdam
+>>> import environ
+>>> environ.getenv('USER')
+'mark'
+>>> environ.putenv('USER=gilligan')
+0
+>>> environ.getenv('USER')
+'gilligan'
+
+>>> import os
+>>> os.environ['USER'] = 'skipper'
+>>> environ.getenv('USER')
+'skipper'
+>>> environ.putenv('professor')
+0
+>>> environ.getenv('USER')
+'skipper'
+
+>>> dir(environ)
+['__doc__', '__file__', '__name__', 'getenv', 'putenv']
+>>> environ.__name__, environ.__file__, environ
+('environ', './environ.so', <module 'environ' from './environ.so'>)
+>>>

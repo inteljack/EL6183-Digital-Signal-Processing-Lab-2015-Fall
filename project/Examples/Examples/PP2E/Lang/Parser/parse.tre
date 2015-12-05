@@ -1,0 +1,5 @@
+PlusNode( NumNode(1), 
+          TimesNode( NumNode(3), 
+                     PlusNode( TimesNode(NumNode(2), NumNode(3)), 
+                               NumNode(4) ))).apply({})
+

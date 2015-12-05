@@ -1,0 +1,850 @@
+ACTION OF CONTRACT, NEGLIGENCE OR OTHER TORTIOUS ACTION, ARISING OUT
+OF OR IN CONNECTION WITH THE USE OR PERFORMANCE OF THIS SOFTWARE.
+
+******************************************************************/
+
+/* Execute compiled code */
+
+#include "allobjects.h"
+
+#include "import.h"
+#include "sysmodule.h"
+#include "bltinmodule.h"
+#include "compile.h"
+#include "frameobject.h"
+#include "eval.h"
+#include "ceval.h"
+#include "opcode.h"
+#include "traceback.h"
+#include "graminit.h"
+#include "pythonrun.h"
+
+#include <ctype.h>
+
+extern int suppress_print; /* Declared in pythonrun.c, set in pythonmain.c */
+
+/* Turn this on if your compiler chokes on the big switch: */
+/* #define CASE_TOO_BIG 1 */
+
+/* Turn this on if you want to debug the interpreter: */
+/* (This can be on even if NDEBUG is defined) */
+/* #define DEBUG 1 */
+
+#if defined(DEBUG) || !defined(NDEBUG)
+/* For debugging the interpreter: */
+#define LLTRACE  1	/* Low-level trace feature */
+#define CHECKEXC 1	/* Double-check exception checking */
+#endif
+
+
+/* Forward declarations */
+
+#ifdef LLTRACE
+static int prtrace PROTO((object *, char *));
+#endif
+static void call_exc_trace PROTO((object **, object**, frameobject *));
+static int call_trace
+	PROTO((object **, object **, frameobject *, char *, object *));
+static object *add PROTO((object *, object *));
+static object *sub PROTO((object *, object *));
+static object *mul PROTO((object *, object *));
+static object *divide PROTO((object *, object *));
+static object *mod PROTO((object *, object *));
+static object *neg PROTO((object *));
+static object *pos PROTO((object *));
+static object *not PROTO((object *));
+static object *invert PROTO((object *));
+static object *lshift PROTO((object *, object *));
+static object *rshift PROTO((object *, object *));
+static object *and PROTO((object *, object *));
+static object *xor PROTO((object *, object *));
+static object *or PROTO((object *, object *));
+static object *call_builtin PROTO((object *, object *));
+static object *call_function PROTO((object *, object *));
+static object *apply_subscript PROTO((object *, object *));
+static object *loop_subscript PROTO((object *, object *));
+static int slice_index PROTO((object *, int, int *));
+static object *apply_slice PROTO((object *, object *, object *));
+static int assign_subscript PROTO((object *, object *, object *));
+static int assign_slice PROTO((object *, object *, object *, object *));
+static int cmp_exception PROTO((object *, object *));
+static int cmp_member PROTO((object *, object *));
+static object *cmp_outcome PROTO((int, object *, object *));
+static int import_from PROTO((object *, object *, object *));
+static object *build_class PROTO((object *, object *, object *));
+static int access_statement PROTO((object *, object *, frameobject *));
+static int exec_statement PROTO((object *, object *, object *));
+static object *find_from_args PROTO((frameobject *, int));
+
+
+/* Pointer to current frame, used to link new frames to */
+
+static frameobject *current_frame;
+
+#ifdef WITH_THREAD
+
+#include <errno.h>
+#include "thread.h"
+
+static type_lock interpreter_lock = 0;
+static long main_thread = 0;
+
+void
+init_save_thread()
+{
+	if (interpreter_lock)
+		return;
+	interpreter_lock = allocate_lock();
+	acquire_lock(interpreter_lock, 1);
+	main_thread = get_thread_ident();
+}
+
+#endif
+
+/* Functions save_thread and restore_thread are always defined so
+   dynamically loaded modules needn't be compiled separately for use
+   with and without threads: */
+
+object *
+save_thread()
+{
+#ifdef WITH_THREAD
+	if (interpreter_lock) {
+		object *res;
+		res = (object *)current_frame;
+		current_frame = NULL;
+		release_lock(interpreter_lock);
+		return res;
+	}
+#endif
+	return NULL;
+}
+
+void
+restore_thread(x)
+	object *x;
+{
+#ifdef WITH_THREAD
+	if (interpreter_lock) {
+		int err;
+		err = errno;
+		acquire_lock(interpreter_lock, 1);
+		errno = err;
+		current_frame = (frameobject *)x;
+	}
+#endif
+}
+
+
+/* Mechanism whereby asynchronously executing callbacks (e.g. UNIX
+   signal handlers or Mac I/O completion routines) can schedule calls
+   to a function to be called synchronously.
+   The synchronous function is called with one void* argument.
+   It should return 0 for success or -1 for failure -- failure should
+   be accompanied by an exception.
+
+   If registry succeeds, the registry function returns 0; if it fails
+   (e.g. due to too many pending calls) it returns -1 (without setting
+   an exception condition).
+
+   Note that because registry may occur from within signal handlers,
+   or other asynchronous events, calling malloc() is unsafe!
+
+#ifdef WITH_THREAD
+   Any thread can schedule pending calls, but only the main thread
+   will execute them.
+#endif
+
+   XXX WARNING!  ASYNCHRONOUSLY EXECUTING CODE!
+   There are two possible race conditions:
+   (1) nested asynchronous registry calls;
+   (2) registry calls made while pending calls are being processed.
+   While (1) is very unlikely, (2) is a real possibility.
+   The current code is safe against (2), but not against (1).
+   The safety against (2) is derived from the fact that only one
+   thread (the main thread) ever takes things out of the queue.
+*/
+
+#define NPENDINGCALLS 32
+static struct {
+	int (*func) PROTO((ANY *));
+	ANY *arg;
+} pendingcalls[NPENDINGCALLS];
+static volatile int pendingfirst = 0;
+static volatile int pendinglast = 0;
+
+int
+Py_AddPendingCall(func, arg)
+	int (*func) PROTO((ANY *));
+	ANY *arg;
+{
+	static int busy = 0;
+	int i, j;
+	/* XXX Begin critical section */
+	/* XXX If you want this to be safe against nested
+	   XXX asynchronous calls, you'll have to work harder! */
+	if (busy)
+		return -1;
+	busy = 1;
+	i = pendinglast;
+	j = (i + 1) % NPENDINGCALLS;
+	if (j == pendingfirst)
+		return -1; /* Queue full */
+	pendingcalls[i].func = func;
+	pendingcalls[i].arg = arg;
+	pendinglast = j;
+	busy = 0;
+	/* XXX End critical section */
+	return 0;
+}
+
+int
+Py_MakePendingCalls()
+{
+	static int busy = 0;
+#ifdef WITH_THREAD
+	if (get_thread_ident() != main_thread)
+		return 0;
+#endif
+	if (busy)
+		return 0;
+	busy = 1;
+	for (;;) {
+		int i;
+		int (*func) PROTO((ANY *));
+		ANY *arg;
+		i = pendingfirst;
+		if (i == pendinglast)
+			break; /* Queue empty */
+		func = pendingcalls[i].func;
+		arg = pendingcalls[i].arg;
+		pendingfirst = (i + 1) % NPENDINGCALLS;
+		if (func(arg) < 0) {
+			busy = 0;
+			return -1;
+		}
+	}
+	busy = 0;
+	return 0;
+}
+
+
+/* Status code for main loop (reason for stack unwind) */
+
+enum why_code {
+		WHY_NOT,	/* No error */
+		WHY_EXCEPTION,	/* Exception occurred */
+		WHY_RERAISE,	/* Exception re-raised by 'finally' */
+		WHY_RETURN,	/* 'return' statement */
+		WHY_BREAK	/* 'break' statement */
+};
+
+
+/* Interpreter main loop */
+
+object *
+eval_code(co, globals, locals, owner, arg)
+	codeobject *co;
+	object *globals;
+	object *locals;
+	object *owner;
+	object *arg;
+{
+	register unsigned char *next_instr;
+	register int opcode;	/* Current opcode */
+	register int oparg;	/* Current opcode argument, if any */
+	register object **stack_pointer;
+	register enum why_code why; /* Reason for block stack unwind */
+	register int err;	/* Error status -- nonzero if error */
+	register object *x;	/* Result object -- NULL if error */
+	register object *v;	/* Temporary objects popped off stack */
+	register object *w;
+	register object *u;
+	register object *t;
+	register frameobject *f; /* Current frame */
+	register listobject *fastlocals = NULL;
+	object *retval;		/* Return value iff why == WHY_RETURN */
+	int needmerge = 0;	/* Set if need to merge locals back at end */
+	int defmode = 0;	/* Default access mode for new variables */
+#ifdef LLTRACE
+	int lltrace;
+#endif
+#if defined( DEBUG ) || defined( LLTRACE )
+	/* Make it easier to find out where we are with dbx */
+	char *filename = getstringvalue(co->co_filename);
+#endif
+
+/* Code access macros */
+
+#define GETCONST(i)	Getconst(f, i)
+#define GETNAME(i)	Getname(f, i)
+#define GETNAMEV(i)	Getnamev(f, i)
+#define FIRST_INSTR()	(GETUSTRINGVALUE(f->f_code->co_code))
+#define INSTR_OFFSET()	(next_instr - FIRST_INSTR())
+#define NEXTOP()	(*next_instr++)
+#define NEXTARG()	(next_instr += 2, (next_instr[-1]<<8) + next_instr[-2])
+#define JUMPTO(x)	(next_instr = FIRST_INSTR() + (x))
+#define JUMPBY(x)	(next_instr += (x))
+
+/* Stack manipulation macros */
+
+#define STACK_LEVEL()	(stack_pointer - f->f_valuestack)
+#define EMPTY()		(STACK_LEVEL() == 0)
+#define TOP()		(stack_pointer[-1])
+#define BASIC_PUSH(v)	(*stack_pointer++ = (v))
+#define BASIC_POP()	(*--stack_pointer)
+
+#define CHECK_STACK(n)	(STACK_LEVEL() + (n) < f->f_nvalues || \
+			  (stack_pointer = extend_stack(f, STACK_LEVEL(), n)))
+
+#ifdef LLTRACE
+#define PUSH(v)		(BASIC_PUSH(v), lltrace && prtrace(TOP(), "push"))
+#define POP()		(lltrace && prtrace(TOP(), "pop"), BASIC_POP())
+#else
+#define PUSH(v)		BASIC_PUSH(v)
+#define POP()		BASIC_POP()
+#endif
+
+	if (globals == NULL || locals == NULL) {
+		err_setstr(SystemError, "eval_code: NULL globals or locals");
+		return NULL;
+	}
+
+#ifdef LLTRACE
+	lltrace = dictlookup(globals, "__lltrace__") != NULL;
+#endif
+
+	f = newframeobject(
+			current_frame,		/*back*/
+			co,			/*code*/
+			globals,		/*globals*/
+			locals,			/*locals*/
+			owner,			/*owner*/
+			50,			/*nvalues*/
+			20);			/*nblocks*/
+	if (f == NULL)
+		return NULL;
+	
+	current_frame = f;
+
+	if (sys_trace != NULL) {
+		/* sys_trace, if defined, is a function that will
+		   be called  on *every* entry to a code block.
+		   Its return value, if not None, is a function that
+		   will be called at the start of each executed line
+		   of code.  (Actually, the function must return
+		   itself in order to continue tracing.)
+		   The trace functions are called with three arguments:
+		   a pointer to the current frame, a string indicating
+		   why the function is called, and an argument which
+		   depends on the situation.  The global trace function
+		   (sys.trace) is also called whenever an exception
+		   is detected. */
+		if (call_trace(&sys_trace, &f->f_trace, f, "call", arg)) {
+			/* Trace function raised an error */
+			current_frame = f->f_back;
+			DECREF(f);
+			return NULL;
+		}
+	}
+
+	if (sys_profile != NULL) {
+		/* Similar for sys_profile, except it needn't return
+		   itself and isn't called for "line" events */
+		if (call_trace(&sys_profile, (object**)0, f, "call", arg)) {
+			current_frame = f->f_back;
+			DECREF(f);
+			return NULL;
+		}
+	}
+
+	next_instr = GETUSTRINGVALUE(f->f_code->co_code);
+	stack_pointer = f->f_valuestack;
+	
+	if (arg != NULL) {
+		INCREF(arg);
+		PUSH(arg);
+	}
+	
+	why = WHY_NOT;
+	err = 0;
+	x = None;	/* Not a reference, just anything non-NULL */
+	
+	for (;;) {
+		static int ticker;
+		
+		/* Do periodic things.
+		   Doing this every time through the loop would add
+		   too much overhead (a function call per instruction).
+		   So we do it only every Nth instruction. */
+		
+		if (pendingfirst != pendinglast) {
+			if (Py_MakePendingCalls() < 0) {
+				why = WHY_EXCEPTION;
+				goto on_error;
+			}
+		}
+		
+		if (--ticker < 0) {
+			ticker = sys_checkinterval;
+			if (sigcheck()) {
+				why = WHY_EXCEPTION;
+				goto on_error;
+			}
+
+#ifdef WITH_THREAD
+			if (interpreter_lock) {
+				/* Give another thread a chance */
+
+				current_frame = NULL;
+				release_lock(interpreter_lock);
+
+				/* Other threads may run now */
+
+				acquire_lock(interpreter_lock, 1);
+				current_frame = f;
+			}
+#endif
+		}
+
+		/* Extract opcode and argument */
+
+#ifdef DEBUG
+		f->f_lasti = INSTR_OFFSET();
+#endif
+		
+		opcode = NEXTOP();
+		if (HAS_ARG(opcode))
+			oparg = NEXTARG();
+
+#ifdef LLTRACE
+		/* Instruction tracing */
+		
+		if (lltrace) {
+			if (HAS_ARG(opcode)) {
+				printf("%d: %d, %d\n",
+					(int) (INSTR_OFFSET() - 3),
+					opcode, oparg);
+			}
+			else {
+				printf("%d: %d\n",
+					(int) (INSTR_OFFSET() - 1), opcode);
+			}
+		}
+#endif
+
+		if (!CHECK_STACK(3)) {
+			x = NULL;
+			break;
+		}
+
+		/* Main switch on opcode */
+		
+		switch (opcode) {
+		
+		/* BEWARE!
+		   It is essential that any operation that fails sets either
+		   x to NULL, err to nonzero, or why to anything but WHY_NOT,
+		   and that no operation that succeeds does this! */
+		
+		/* case STOP_CODE: this is an error! */
+		
+		case POP_TOP:
+			v = POP();
+			DECREF(v);
+			break;
+		
+		case ROT_TWO:
+			v = POP();
+			w = POP();
+			PUSH(v);
+			PUSH(w);
+			break;
+		
+		case ROT_THREE:
+			v = POP();
+			w = POP();
+			x = POP();
+			PUSH(v);
+			PUSH(x);
+			PUSH(w);
+			break;
+		
+		case DUP_TOP:
+			v = TOP();
+			INCREF(v);
+			PUSH(v);
+			break;
+		
+		case UNARY_POSITIVE:
+			v = POP();
+			x = pos(v);
+			DECREF(v);
+			PUSH(x);
+			break;
+		
+		case UNARY_NEGATIVE:
+			v = POP();
+			x = neg(v);
+			DECREF(v);
+			PUSH(x);
+			break;
+		
+		case UNARY_NOT:
+			v = POP();
+			x = not(v);
+			DECREF(v);
+			PUSH(x);
+			break;
+		
+		case UNARY_CONVERT:
+			v = POP();
+			x = reprobject(v);
+			DECREF(v);
+			PUSH(x);
+			break;
+		
+		case UNARY_CALL:
+			v = POP();
+			f->f_lasti = INSTR_OFFSET() - 1; /* For tracing */
+			x = call_object(v, (object *)NULL);
+			DECREF(v);
+			PUSH(x);
+			break;
+			
+		case UNARY_INVERT:
+			v = POP();
+			x = invert(v);
+			DECREF(v);
+			PUSH(x);
+			break;
+		
+		case BINARY_MULTIPLY:
+			w = POP();
+			v = POP();
+			x = mul(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_DIVIDE:
+			w = POP();
+			v = POP();
+			x = divide(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_MODULO:
+			w = POP();
+			v = POP();
+			x = mod(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_ADD:
+			w = POP();
+			v = POP();
+			x = add(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_SUBTRACT:
+			w = POP();
+			v = POP();
+			x = sub(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_SUBSCR:
+			w = POP();
+			v = POP();
+			x = apply_subscript(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_CALL:
+			w = POP();
+			v = POP();
+			f->f_lasti = INSTR_OFFSET() - 1; /* For tracing */
+			x = call_object(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_LSHIFT:
+			w = POP();
+			v = POP();
+			x = lshift(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_RSHIFT:
+			w = POP();
+			v = POP();
+			x = rshift(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_AND:
+			w = POP();
+			v = POP();
+			x = and(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_XOR:
+			w = POP();
+			v = POP();
+			x = xor(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case BINARY_OR:
+			w = POP();
+			v = POP();
+			x = or(v, w);
+			DECREF(v);
+			DECREF(w);
+			PUSH(x);
+			break;
+		
+		case SLICE+0:
+		case SLICE+1:
+		case SLICE+2:
+		case SLICE+3:
+			if ((opcode-SLICE) & 2)
+				w = POP();
+			else
+				w = NULL;
+			if ((opcode-SLICE) & 1)
+				v = POP();
+			else
+				v = NULL;
+			u = POP();
+			x = apply_slice(u, v, w);
+			DECREF(u);
+			XDECREF(v);
+			XDECREF(w);
+			PUSH(x);
+			break;
+		
+		case STORE_SLICE+0:
+		case STORE_SLICE+1:
+		case STORE_SLICE+2:
+		case STORE_SLICE+3:
+			if ((opcode-STORE_SLICE) & 2)
+				w = POP();
+			else
+				w = NULL;
+			if ((opcode-STORE_SLICE) & 1)
+				v = POP();
+			else
+				v = NULL;
+			u = POP();
+			t = POP();
+			err = assign_slice(u, v, w, t); /* u[v:w] = t */
+			DECREF(t);
+			DECREF(u);
+			XDECREF(v);
+			XDECREF(w);
+			break;
+		
+		case DELETE_SLICE+0:
+		case DELETE_SLICE+1:
+		case DELETE_SLICE+2:
+		case DELETE_SLICE+3:
+			if ((opcode-DELETE_SLICE) & 2)
+				w = POP();
+			else
+				w = NULL;
+			if ((opcode-DELETE_SLICE) & 1)
+				v = POP();
+			else
+				v = NULL;
+			u = POP();
+			err = assign_slice(u, v, w, (object *)NULL);
+							/* del u[v:w] */
+			DECREF(u);
+			XDECREF(v);
+			XDECREF(w);
+			break;
+		
+		case STORE_SUBSCR:
+			w = POP();
+			v = POP();
+			u = POP();
+			/* v[w] = u */
+			err = assign_subscript(v, w, u);
+			DECREF(u);
+			DECREF(v);
+			DECREF(w);
+			break;
+		
+		case DELETE_SUBSCR:
+			w = POP();
+			v = POP();
+			/* del v[w] */
+			err = assign_subscript(v, w, (object *)NULL);
+			DECREF(v);
+			DECREF(w);
+			break;
+		
+		case PRINT_EXPR:
+			v = POP();
+			/* Print value except if procedure result */
+			/* Before printing, also assign to '_' */
+			if (v != None &&
+			    (err = dictinsert(f->f_builtins, "_", v)) == 0 &&
+			    !suppress_print) {
+				flushline();
+				x = sysget("stdout");
+				err = writeobject(v, x, 0);
+				softspace(x, 1);
+				flushline();
+			}
+			DECREF(v);
+			break;
+		
+		case PRINT_ITEM:
+			v = POP();
+			w = sysget("stdout");
+			if (softspace(w, 1))
+				writestring(" ", w);
+			err = writeobject(v, w, PRINT_RAW);
+			if (err == 0 && is_stringobject(v)) {
+				/* XXX move into writeobject() ? */
+				char *s = getstringvalue(v);
+				int len = getstringsize(v);
+				if (len > 0 &&
+				    isspace(Py_CHARMASK(s[len-1])) &&
+				    s[len-1] != ' ')
+					softspace(w, 0);
+			}
+			DECREF(v);
+			break;
+		
+		case PRINT_NEWLINE:
+			x = sysget("stdout");
+			if (x == NULL)
+				err_setstr(RuntimeError, "lost sys.stdout");
+			else {
+				writestring("\n", x);
+				softspace(x, 0);
+			}
+			break;
+		
+		case BREAK_LOOP:
+			why = WHY_BREAK;
+			break;
+		
+		case RAISE_EXCEPTION:
+			v = POP();
+			w = POP();
+			/* A tuple is equivalent to its first element here */
+			while (is_tupleobject(w) && gettuplesize(w) > 0) {
+				u = w;
+				w = GETTUPLEITEM(u, 0);
+				INCREF(w);
+				DECREF(u);
+			}
+			if (is_stringobject(w)) {
+				err_setval(w, v);
+			} else if (is_classobject(w)) {
+				if (!is_instanceobject(v)
+				    || !issubclass((object*)((instanceobject*)v)->in_class,
+						   w))
+					err_setstr(TypeError,
+						   "a class exception must have a value that is an instance of the class");
+				else
+					err_setval(w,v);
+			} else if (is_instanceobject(w)) {
+				if (v != None)
+					err_setstr(TypeError,
+						   "an instance exception may not have a separate value");
+				else {
+					DECREF(v);
+					v = w;
+					w = (object*) ((instanceobject*)w)->in_class;
+					INCREF(w);
+					err_setval(w, v);
+				}
+			} else
+				err_setstr(TypeError,
+					"exceptions must be strings, classes, or instances");
+			DECREF(v);
+			DECREF(w);
+			why = WHY_EXCEPTION;
+			break;
+		
+		case LOAD_LOCALS:
+			v = f->f_locals;
+			INCREF(v);
+			PUSH(v);
+			break;
+		
+		case RETURN_VALUE:
+			retval = POP();
+			why = WHY_RETURN;
+			break;
+
+		case LOAD_GLOBALS:
+			v = f->f_locals;
+			INCREF(v);
+			PUSH(v);
+			break;
+
+		case EXEC_STMT:
+			w = POP();
+			v = POP();
+			u = POP();
+			err = exec_statement(u, v, w);
+			DECREF(u);
+			DECREF(v);
+			DECREF(w);
+			break;
+		
+		case BUILD_FUNCTION:
+			v = POP();
+			x = newfuncobject(v, f->f_globals);
+			DECREF(v);
+			PUSH(x);
+			break;
+
+		case SET_FUNC_ARGS:
+			v = POP(); /* The function */
+			w = POP(); /* The argument list */
+			err = setfuncargstuff(v, oparg, w);
+			PUSH(v);
+			DECREF(w);
+			break;
+		
+	s = getstringvalue(prog);
+	if (strlen(s) != getstringsize(prog)) {
+		err_setstr(ValueError, "embedded '\\0' in exec string");
+		return -1;
+	}
+	if ((v = run_string(s, file_input, globals, locals)) == NULL)
+		return -1;
+	DECREF(v);
+	return 0;
+}

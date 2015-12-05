@@ -1,0 +1,45 @@
+(dp0
+S'Page number'
+p1
+S'sss'
+p2
+sS'Description'
+p3
+S'Type a description here\015\012          '
+p4
+sS'Type'
+p5
+S'Grammar'
+p6
+sS'Chapter number'
+p7
+S''
+p8
+sS'Submit date'
+p9
+S'1999/10/08, 17:51:21'
+p10
+sS'Report state'
+p11
+S'Not yet verified'
+p12
+sS'Submitter name'
+p13
+g8
+sS'Submitter email'
+p14
+g8
+sS'Severity'
+p15
+S'Low'
+p16
+sS'Submit mode'
+p17
+g8
+sS'Part number'
+p18
+g8
+sS'Printing Date'
+p19
+g8
+s.

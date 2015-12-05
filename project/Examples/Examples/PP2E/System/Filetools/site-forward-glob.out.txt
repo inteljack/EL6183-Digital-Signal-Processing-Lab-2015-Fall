@@ -1,0 +1,39 @@
+C:\Stuff\Mark\Website>python site-forward-glob.py
+
+['public_html\\GILLIGN2.GIF', 'public_html\\FUZZY.GIF', 'public_html\\demo05.gif
+', 'public_html\\grail.gif', 'public_html\\handbook.gif', 'public_html\\HILLS.GI
+F', 'public_html\\IMG00001.GIF', 'public_html\\IMG00002.GIF', 'public_html\\IMG0
+0003.GIF', 'public_html\\IMG00004.GIF', 'public_html\\IMG00005.GIF', 'public_htm
+l\\IMG00006.GIF', 'public_html\\IMG00007.GIF', 'public_html\\KIDS.GIF', 'public_
+html\\pic13.html', 'public_html\\mel1new-bw-small.gif', 'public_html\\MEL4B.GIF'
+, 'public_html\\Mel5.gif', 'public_html\\MLUTZ.JPG', 'public_html\\ora-lp.gif',
+'public_html\\ora-pp.gif', 'public_html\\ora-ppr.gif', 'public_html\\prico.gif',
+ 'public_html\\progdiff.tar', 'public_html\\PythonPoweredAnim.gif', 'public_html
+\\Pywin.gif', 'public_html\\UPDATES', 'public_html\\SONY_PCG818.jpg', 'public_ht
+ml\\talkmore.html', 'public_html\\about-lp.html', 'public_html\\about-lp-toc.htm
+.
+.
+.
+creating public_html about-ppr-japan.html as rmi-forward\about-ppr-japan.html
+creating public_html ora-ppr-japan-big.gif as rmi-forward\ora-ppr-japan-big.gif
+creating public_html All-html-011600.tar as rmi-forward\All-html-011600.tar
+creating public_html boulder-classes.html as rmi-forward\boulder-classes.html
+Last file =>
+<HTML><BODY>
+<H1>This page has moved</H1>
+
+<P>This page now lives at this address:
+
+<P><A HREF="http://starship.python.net/~lutz/boulder-classes.html">
+http://starship.python.net/~lutz/boulder-classes.html</A>
+
+<P>Please click on the new address to jump to this page, and
+update any links accordingly.
+</P>
+
+<HR>
+<H3><A HREF="rmimove.html">Why the move? - The RMI story</A></H3>
+
+</BODY></HTML>
+
+Done: 150 forward files created.

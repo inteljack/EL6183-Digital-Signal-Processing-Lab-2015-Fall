@@ -1,0 +1,138 @@
+[mark@toy ~/PP2ndEd/dev/examples/Part3/Embed/TestApi]$ testapi
+Hello from C.
+
+SIMPLE STRINGS
+Hello, mark.
+Args:  ['testapi']
+Plat:  linux2
+Path:  ['', '/home/mark/PP2ndEd/dev/examples/Part3/Extend/Stacks', '.'] ...
+
+STACK EXTENSION
+[Stack:
+3: 'M'
+2: 'A'
+1: 'P'
+0: 'S'
+]
+ 4
+[Stack:
+]
+Hello api world
+
+DYNAMIC RELOADING
+result => 12
+change testapi.py now...
+result => 32
+change testapi.py now...
+Error running func
+  File "testapi.py", line 14
+    return x \ y             # change me
+                                        ^
+SyntaxError: invalid token
+change testapi.py now...
+Error running func
+Traceback (innermost last):
+  File "testapi.py", line 14, in func
+    return x / 0             # change me
+ZeroDivisionError: integer division or modulo
+change testapi.py now...
+result => 65536
+
+DYNAMIC DEBUGGING
+Debug code string--type s to step...
+> <string>(0)?()
+(Pdb) s
+> testapi.py(13)func()
+-> def func(x, y):              # called by C
+(Pdb) s
+> testapi.py(14)func()
+-> return pow(x, y)         # change me
+(Pdb) w
+  <string>(0)?()
+> testapi.py(14)func()
+-> return pow(x, y)         # change me
+(Pdb) p x, y
+(4, 8)
+(Pdb) l 13,15
+ 13     def func(x, y):              # called by C
+ 14  ->     return pow(x, y)         # change me
+ 15
+(Pdb) s
+--Return--
+> testapi.py(14)func()->65536
+-> return pow(x, y)         # change me
+(Pdb) s
+--Return--
+> <string>(0)?()->65536
+(Pdb) s
+C status, result => 0, 65536
+
+Debug module function call--type s to step...
+> testapi.py(13)func()
+-> def func(x, y):              # called by C
+(Pdb) l 13,15
+ 13  -> def func(x, y):              # called by C
+ 14         return pow(x, y)         # change me
+ 15
+(Pdb) c
+> testapi.py(14)func()
+-> return pow(x, y)         # change me
+(Pdb) c
+--Return--
+> testapi.py(14)func()->65536
+-> return pow(x, y)         # change me
+(Pdb) c
+C status, result => 0, 65536
+
+Debug compiled bytecode--type s to step...
+> <PP_Compile_Codestr>(0)?()
+(Pdb) s
+> testapi.py(13)func()
+-> def func(x, y):              # called by C
+(Pdb) b 14
+Breakpoint 1 at testapi.py:14
+(Pdb) l 13,15
+ 13  -> def func(x, y):              # called by C
+ 14 B       return pow(x, y)         # change me
+ 15
+(Pdb) c
+> testapi.py(14)func()
+-> return pow(x, y)         # change me
+(Pdb) c
+--Return--
+> <PP_Compile_Codestr>(0)?()->65536
+(Pdb) c
+C status, result => 0, 65536
+
+Debug direct object call--type s to step...
+> testapi.py(13)func()
+-> def func(x, y):              # called by C
+(Pdb) s
+> testapi.py(14)func()
+-> return pow(x, y)         # change me
+(Pdb) p x, y
+(4, 8)
+(Pdb) c
+--Return--
+> testapi.py(14)func()->65536
+-> return pow(x, y)         # change me
+(Pdb) c
+C status, result => 0, 65536
+
+
+OBJECT ATTRIBUTES
+[check sys.version <ctrl-d exits>]
+>>> sys
+<module 'sys' (built-in)>
+>>> sys.version[:50]
+'1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91'
+>>> dir()
+['Stack', '__builtins__', '__doc__', '__name__', 'c', 'error', 'os', 'sys', 'x']
+>>>
+fetched sys.version => 1.5.2 (#16, Oct 19 1999, 15:47:45)  [GCC egcs-2.91...
+changed sys.version => 2.0 (2001?)
+sys.modules.has_key('testapi')  result => 1
+sys.modules.has_key('nonesuch') result => 0
+Sending text to sys.stdout.write...<stdout text>
+Bye from C.                                                                   
+

@@ -1,0 +1,4 @@
+#!/usr/local/bin/python 
+from sys import *                    # use splitfields, read input all at once
+from string import *
+stdout.write( joinfields( splitfields(stdin.read(), '\t'), '.'*4) )

@@ -1,0 +1,117 @@
+[server window, localhost]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -mode server
+Server connected by ('127.0.0.1', 1089) at Thu Mar 16 11:54:21 2000
+Server connected by ('127.0.0.1', 1090) at Thu Mar 16 11:54:37 2000
+
+
+
+[client window, localhost]
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>ls
+class-server.py   echo.out.txt      testdir           thread-server.py
+echo-client.py    fork-server.py    testecho.py
+echo-server.py    getfile.py        testechowait.py
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -file testdir\python15.lib -port 50001
+Client got testdir\python15.lib at Thu Mar 16 11:54:21 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -file testdir\textfile
+Client got testdir\textfile at Thu Mar 16 11:54:37 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>ls
+class-server.py   echo.out.txt      python15.lib      testechowait.py
+echo-client.py    fork-server.py    testdir           textfile
+echo-server.py    getfile.py        testecho.py       thread-server.py
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>fc /B python1
+.lib testdir\python15.lib
+Comparing files python15.lib and testdir\python15.lib
+FC: no differences encountered
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>fc /B textfil
+ testdir\textfile
+Comparing files textfile and testdir\textfile
+FC: no differences encountered
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>ls -l python1
+.lib textfile
+-rwxrwxrwa   1 0        0         295484 Mar 16 11:54 python15.lib
+-rwxrwxrwa   1 0        0             26 Mar 16 11:54 textfile
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>ls -l testdir
+python15.lib testdir\textfile
+-rwxrwxrwx   1 0        0         295484 Mar 16 11:50 testdir\python15.lib
+-rwxrwxrwa   1 0        0             26 Mar 16 11:33 testdir\textfile
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>rm textfile
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -file testdir\textfile -port 50001 -host localhost
+Client got testdir\textfile at Thu Mar 16 11:58:56 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>fc /B textfile
+ testdir\textfile
+Comparing files textfile and testdir\textfile
+FC: no differences encountered
+
+
+--------------------------------------------------------------------------------
+
+
+[running server remotely on starship, clients on win98 pc dos consoles]
+
+
+[server telnet window: first message is 
+the python15.lib request in client window1;
+times were skewed between the two machines]
+
+[lutz@starship lutz]$ python getfile.py -mode server
+Server connected by ('166.93.216.248', 1185) at Thu Mar 16 16:02:07 2000
+Server connected by ('166.93.216.248', 1187) at Thu Mar 16 16:03:24 2000
+Server connected by ('166.93.216.248', 1189) at Thu Mar 16 16:03:52 2000
+Server connected by ('166.93.216.248', 1191) at Thu Mar 16 16:04:09 2000
+Server connected by ('166.93.216.248', 1193) at Thu Mar 16 16:04:38 2000
+
+
+[client window 1: started first, runs in thread while other client
+requests are made in client window 2, and processed by other server threads]
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -mode client -host starship.python.net -port 50001 -file python15.lib
+Client got python15.lib at Thu Mar 16 14:07:37 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>fc /B python15
+.lib testdir\python15.lib
+Comparing files python15.lib and testdir\python15.lib
+FC: no differences encountered
+
+
+
+[client window 2: requests made while client window 1 request downloading]
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -host starship.python.net -file textfile
+Client got textfile at Thu Mar 16 14:02:29 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>fc textfile te
+stdir\textfile
+Comparing files textfile and testdir\textfile
+FC: no differences encountered
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -host starship.python.net -file textfile
+Client got textfile at Thu Mar 16 14:04:11 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -host starship.python.net -file textfile
+Client got textfile at Thu Mar 16 14:04:21 2000
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Sockets>python getfile
+.py -host starship.python.net -file index.html
+Client got index.html at Thu Mar 16 14:06:22 2000
+

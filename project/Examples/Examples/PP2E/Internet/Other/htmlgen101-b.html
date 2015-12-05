@@ -1,0 +1,41 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 3.2//EN">
+<HTML>
+
+<!-- This file generated using Python HTMLgen module. -->
+<HEAD>
+  <META NAME="GENERATOR" CONTENT="HTMLgen 2.2.2">
+        <TITLE>HTMLgen 101 B</TITLE>
+</HEAD>
+<BODY>
+<H1>Source code</H1>
+
+<P><PRE>import sys
+from HTMLgen import *
+d = SimpleDocument(title="HTMLgen 101 B")
+
+# show this script
+text = open('htmlgen101-b.py', 'r').read()
+d.append(Heading(1, 'Source code')) 
+d.append(Paragraph( PRE(text) )) 
+
+# add gif and links 
+site  = 'http://www.python.org'
+gif   = 'PythonPoweredSmall.gif'
+image = Image(gif, alt='picture', align='left', hspace=10, border=0)
+
+d.append(HR())
+d.append(Href(site, image))
+d.append(Href(site, 'Python home page'))
+
+if len(sys.argv) == 1:
+    print d  
+else:
+    open(sys.argv[1], 'w').write(str(d))
+</PRE>
+</P>
+
+<HR>
+<A HREF="http://www.python.org"><IMG src="PythonPoweredSmall.gif" height="22" width="55" alt="picture" border="0" align="left" hspace="10"></A>
+<A HREF="http://www.python.org">Python home page</A>
+
+</BODY> </HTML>

@@ -1,0 +1,12 @@
+##################################################################
+# Compile cenviron.c into cenviron.so--a shareable object file 
+# on Linux, which is loaded dynamically when first imported. 
+##################################################################
+
+PY = $(MYPY)
+
+cenviron.so: cenviron.c
+	gcc cenviron.c -g -I$(PY)/Include -I$(PY) -fpic -shared -o cenviron.so
+
+clean:
+	rm -f *.pyc cenviron.so

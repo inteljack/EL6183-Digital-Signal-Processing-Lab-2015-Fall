@@ -1,0 +1,3 @@
+#!/usr/local/bin/python
+import sys       
+sys.stdout.write(sys.stdin.read())   # run method on whole file

@@ -1,0 +1,62 @@
+[mark@toy ...Internet/Cgi-Web/PyErrata/Mutex]$ python $X/PyTools/tounix.py *.py
+[['__init__.py'], ['launch-mutex-simple.py'], ['launch-mutex.py'], 
+['launch-test.py'], ['mutexcntl.py'], ['testread-mutex.py'], ['testread.py'],
+['testwrite-mutex.py'], ['testwrite.py']]
+__init__.py
+launch-mutex-simple.py
+launch-mutex.py
+launch-test.py
+mutexcntl.py
+testread-mutex.py
+testread.py
+testwrite-mutex.py
+testwrite.py
+
+[mark@toy ...Internet/Cgi-Web/PyErrata/Mutex]$ ./testwrite.py
+1010 start writer 960919842.773
+1010 got write lock 960919842.78
+1010 unlocking
+
+[mark@toy ...Internet/Cgi-Web/PyErrata/Mutex]$ ./testread.py
+1013 start reader 960919900.146
+1013 got read lock 960919900.153
+lines so far:     132 Shared.txt
+1013 unlocking
+
+[mark@toy ...Internet/Cgi-Web/PyErrata/Mutex]$ python launch-test.py
+1016 start writer 960919933.206
+1016 got write lock 960919933.213
+1017 start reader 960919933.416
+1018 start reader 960919933.455
+1022 start reader 960919933.474
+1021 start reader 960919933.486
+1020 start writer 960919933.497
+1019 start writer 960919933.508
+1023 start writer 960919933.52
+1016 unlocking
+
+1017 got read lock 960919936.228
+1018 got read lock 960919936.234
+1021 got read lock 960919936.24
+1022 got read lock 960919936.246
+lines so far:     133 Shared.txt
+1022 unlocking
+
+lines so far:     133 Shared.txt
+1018 unlocking
+
+lines so far:     133 Shared.txt
+1017 unlocking
+
+lines so far:     133 Shared.txt
+1021 unlocking
+
+1019 got write lock 960919939.375
+1019 unlocking
+
+1020 got write lock 960919942.379
+1020 unlocking
+
+1023 got write lock 960919945.388
+1023 unlocking
+

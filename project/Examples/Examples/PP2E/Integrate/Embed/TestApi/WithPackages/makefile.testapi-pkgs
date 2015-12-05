@@ -1,0 +1,35 @@
+##############################################################################
+# Package reference/reload version (see ../makefile* for more details).
+# Build testapi, a C program that tests basic and enhanced embedding
+# API calls.  To run, source $PP2E/setup-pp-embed.csh for PYTHONPATH.
+##############################################################################
+
+PY    = /home/mark/python1.5.2-ddjcd/Python-1.5.2
+PYLIB = $(PY)/libpython1.5.a
+PYINC = -I$(PY)/Include -I$(PY)
+
+LIBS = -L/usr/lib \
+       -L/usr/X11R6/lib \
+       -lgdbm -ltk8.0 -ltcl8.0 -lX11 -lm -ldl
+
+APIDIR = $(PP2EHOME)/Integrate/Embed/HighLevelApi
+APILIB = $(APIDIR)/libppembed.a
+
+STACKDIR = $(PP2EHOME)/Integrate/Extend/Stacks
+STACKMOD = $(STACKDIR)/stacktype.so
+
+testapi: testapi.o $(APILIB) $(STACKMOD)
+	gcc testapi.o $(APILIB) $(PYLIB) $(LIBS) -g -export-dynamic -o testapi
+
+testapi.o: testapi.c $(APIDIR)/ppembed.h
+	gcc testapi.c -c -g -I$(APIDIR) $(PYINC)
+
+$(APILIB):
+	cd $(APIDIR); make -f makefile.api
+
+$(STACKMOD):
+	cd $(STACKDIR); make -f makefile.stack stacktype.so
+
+clean: 
+	rm -f testapi testapi.o *.pyc pkgdir/*.pyc core
+

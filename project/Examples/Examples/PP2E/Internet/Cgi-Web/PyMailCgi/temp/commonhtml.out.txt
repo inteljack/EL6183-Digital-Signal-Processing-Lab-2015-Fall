@@ -1,0 +1,59 @@
+OLD - used old escape scheme
+
+
+[can test locally at cmd line, or by invoking on server from web page 
+ via giving exe access, (possibly) renaming with a '.cgi' extension, and
+ using url: "http://starship.python.net/~lutz/PyMailCgi/commonhtml.cgi")]
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Cgi-Web\PyMailCgi>pyth
+on commonhtml.py
+Content-type: text/html
+
+<html><head><title>PyMailCgi: View page (PP2E)</title></head>
+<body bgcolor="#FFFFFF"><h1>PyMailCgi View</h1><hr>
+<ol>
+<li><a href="http://starship.python.net/~lutz/PyMailCgi/page1.cgi?a=1">
+    text1</a>
+<li><a href="http://starship.python.net/~lutz/PyMailCgi/page1.cgi?b=3&a=2">
+    text2</a>
+<li><a href="http://starship.python.net/~lutz/PyMailCgi/page2.cgi?z=?&x=a+b&y=a&
+lt;b&amp;c">
+    text3</a>
+<li><a href="http://starship.python.net/~lutz/PyMailCgi/page2.cgi?z=None&&lt;x&g
+t;=?&y=&lt;a&gt;">
+    te&lt;&gt;4</a>
+</ol>
+<hr><a href="http://www.python.org">
+<img src="..\pyerrata\PythonPoweredSmall.gif"
+align=left alt="[Python Logo]" border=0 hspace=15></a>
+<a href="pymailcgi.html">Back to root page</a>
+</body></html>
+
+
+
+C:\Stuff\Mark\Writing\PP2ndEd\dev\examples\Part2\Internet\Cgi-Web\PyMailCgi>pyth
+on commonhtml.py 1
+Content-type: text/html
+
+<html><head><title>PyMailCgi: View page (PP2E)</title></head>
+<body bgcolor="#FFFFFF"><h1>PyMailCgi View</h1><hr>
+<table>
+<tr><td>01: <a href="http://starship.python.net/~lutz/PyMailCgi/page1.cgi?a=1">
+    text1</a>
+<tr><td>02: <a href="http://starship.python.net/~lutz/PyMailCgi/page1.cgi?b=3&a=
+2">
+    text2</a>
+<tr><td>03: <a href="http://starship.python.net/~lutz/PyMailCgi/page2.cgi?z=?&x=
+a+b&y=a&lt;b&amp;c">
+    text3</a>
+<tr><td>04: <a href="http://starship.python.net/~lutz/PyMailCgi/page2.cgi?z=None
+&&lt;x&gt;=?&y=&lt;a&gt;">
+    te&lt;&gt;4</a>
+</table>
+<hr><a href="http://www.python.org">
+<img src="..\pyerrata\PythonPoweredSmall.gif"
+align=left alt="[Python Logo]" border=0 hspace=15></a>
+<a href="pymailcgi.html">Back to root page</a>
+</body></html>
+

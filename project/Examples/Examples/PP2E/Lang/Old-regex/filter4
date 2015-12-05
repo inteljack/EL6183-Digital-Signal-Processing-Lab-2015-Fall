@@ -1,0 +1,7 @@
+#!/usr/local/bin/python
+from string import *                 # use spilt/joinfields
+import sys                           # read a line at a time,
+line = sys.stdin.readline()          # in case stdin is a pipe
+while line:
+    sys.stdout.write( joinfields( splitfields(line, '\t'), '.'*4) )
+    line = sys.stdin.readline()
