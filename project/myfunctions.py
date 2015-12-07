@@ -8,6 +8,20 @@ def clip16( x ):
     else:
         x = x        
     return int(x)
+    
+def clip16_arr( x ):
+    i = 0
+    k = [0.0 for n in range(0, len(x))]
+
+    for n in x:
+        if n > 32767:
+            k[i] = 32767
+        elif n < -32768:
+            k[i] = -32768
+        else:
+            k[i] = n
+        i = i + 1     
+    return k
 
 def clip16_warning( x ):    
     # Clipping for 16 bits
