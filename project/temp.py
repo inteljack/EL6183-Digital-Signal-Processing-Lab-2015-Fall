@@ -1,16 +1,23 @@
-from Tkinter import *
+import time
+for n in range(0,10):
+	print n
+	time.sleep(1)
+	if n == 5:
+		break
 
-class quitButton(Button):
-    def __init__(self, parent):
-        Button.__init__(self, parent)
-        self['text'] = 'Good Bye'
-        # Command to close the window (the destory method)
-        self['command'] = parent.destroy
-        self.pack(side=BOTTOM)
+# from Tkinter import *
 
-root = Tk()
-quitButton(root)
-mainloop()
+# class quitButton(Button):
+#     def __init__(self, parent):
+#         Button.__init__(self, parent)
+#         self['text'] = 'Good Bye'
+#         # Command to close the window (the destory method)
+#         self['command'] = parent.destroy
+#         self.pack(side=BOTTOM)
+
+# root = Tk()
+# quitButton(root)
+# mainloop()
 
 # # Run tkinter code in another thread
 

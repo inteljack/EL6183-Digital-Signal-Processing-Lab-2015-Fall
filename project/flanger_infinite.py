@@ -11,17 +11,15 @@ from myfunctions import clip16
 
 def flanger_effect(f,w,gain):
 
-    BLOCKSIZE = 1024      # Number of frames per block
+    BLOCKSIZE = 2048      # Number of frames per block
 
-    RECORD_SECONDS = 10
+    # RECORD_SECONDS = 100
 
     # f0 = f
     # W1 = w  
     # f1 = f0
     # W2 = W1
     
-    gain = gain
-
     p = pyaudio.PyAudio()
     WIDTH = 2           # bytes per sample
     RATE = 44100    # Sampling rate (samples/second)
@@ -45,8 +43,6 @@ def flanger_effect(f,w,gain):
     output_block = [0.0 for n in range(0, 2*BLOCKSIZE)]
 
 
-    # Number of blocks in wave file
-    num_blocks = int(RATE / BLOCKSIZE * RECORD_SECONDS)
     # Create a buffer (delay line) for past values
     # buffer_MAX =  1024                          # Buffer length
     buffer = [0.0 for i in range(BLOCKSIZE)]   # Initialize to zero
@@ -78,7 +74,7 @@ def flanger_effect(f,w,gain):
     print ('* Playing...')
 
     # Loop through wave file 
-    for i in range(0, num_blocks):
+    while(1):
         # Get sample from wave file
         input_string = stream.read(BLOCKSIZE)
 

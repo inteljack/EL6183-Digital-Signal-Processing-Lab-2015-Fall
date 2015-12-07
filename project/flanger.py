@@ -9,30 +9,30 @@ import struct
 import math
 from myfunctions import clip16
 
-def flanger_effect(f,w):
+def flanger_effect(f,w,gain,Go_NoGo):
 
-    BLOCKSIZE = 4096      # Number of frames per block
+    BLOCKSIZE = 1024      # Number of frames per block
 
-    # RECORD_SECONDS = 100
+    RECORD_SECONDS = 10
 
     # f0 = f
     # W1 = w  
     # f1 = f0
     # W2 = W1
     
-    gain = 0.6
+    gain = gain
 
     p = pyaudio.PyAudio()
     WIDTH = 2           # bytes per sample
     RATE = 44100    # Sampling rate (samples/second)
 
-    # number_of_devices = p.get_device_count()
-    # print('There are {0:d} devices'.format(number_of_devices))
-    # property_list = ['defaultSampleRate', 'maxInputChannels', 'maxOutputChannels']
-    # for i in range(0, number_of_devices):
-    #     print('Device {0:d} has:'.format(i))
-    #     for s in property_list:
-    #         print ' ', s, '=', p.get_device_info_by_index(i)[s]
+    number_of_devices = p.get_device_count()
+    print('There are {0:d} devices'.format(number_of_devices))
+    property_list = ['defaultSampleRate', 'maxInputChannels', 'maxOutputChannels']
+    for i in range(0, number_of_devices):
+        print('Device {0:d} has:'.format(i))
+        for s in property_list:
+            print ' ', s, '=', p.get_device_info_by_index(i)[s]
 
     stream = p.open(format = p.get_format_from_width(WIDTH),
                     channels = 2,
@@ -45,6 +45,8 @@ def flanger_effect(f,w):
     output_block = [0.0 for n in range(0, 2*BLOCKSIZE)]
 
 
+    # Number of blocks in wave file
+    num_blocks = int(RATE / BLOCKSIZE * RECORD_SECONDS)
     # Create a buffer (delay line) for past values
     # buffer_MAX =  1024                          # Buffer length
     buffer = [0.0 for i in range(BLOCKSIZE)]   # Initialize to zero
@@ -76,7 +78,9 @@ def flanger_effect(f,w):
     print ('* Playing...')
 
     # Loop through wave file 
-    while(1):
+    for i in range(0, num_blocks):
+        if Go_NoGo == 0:
+            break
         # Get sample from wave file
         input_string = stream.read(BLOCKSIZE)
 
@@ -141,4 +145,4 @@ def flanger_effect(f,w):
     stream.close()
     p.terminate()
 
-# flanger(1,1)
+# flanger_effect(50,0.5,1.2,1)
