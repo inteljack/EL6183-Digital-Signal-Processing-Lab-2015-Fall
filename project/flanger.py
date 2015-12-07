@@ -26,13 +26,13 @@ def flanger_effect(f,w):
     WIDTH = 2           # bytes per sample
     RATE = 44100    # Sampling rate (samples/second)
 
-    number_of_devices = p.get_device_count()
-    print('There are {0:d} devices'.format(number_of_devices))
-    property_list = ['defaultSampleRate', 'maxInputChannels', 'maxOutputChannels']
-    for i in range(0, number_of_devices):
-        print('Device {0:d} has:'.format(i))
-        for s in property_list:
-            print ' ', s, '=', p.get_device_info_by_index(i)[s]
+    # number_of_devices = p.get_device_count()
+    # print('There are {0:d} devices'.format(number_of_devices))
+    # property_list = ['defaultSampleRate', 'maxInputChannels', 'maxOutputChannels']
+    # for i in range(0, number_of_devices):
+    #     print('Device {0:d} has:'.format(i))
+    #     for s in property_list:
+    #         print ' ', s, '=', p.get_device_info_by_index(i)[s]
 
     stream = p.open(format = p.get_format_from_width(WIDTH),
                     channels = 2,
