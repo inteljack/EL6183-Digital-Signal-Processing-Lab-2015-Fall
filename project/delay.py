@@ -10,20 +10,21 @@ import math
 from myfunctions import clip16,clip16_arr
 import sys
 
-def delay_effect():
+def delay_effect(Gfb,Gdp,Gff,delay_sec):
     BLOCKSIZE = 1024     # Number of frames per block
 
     RECORD_SECONDS = 20
-    delay_sec = 0.5
+    
     p = pyaudio.PyAudio()
     WIDTH = 2           # bytes per sample
     RATE = 44100    # Sampling rate (samples/second)
 
     d = int( math.floor( RATE * delay_sec ) ) 
     # Set parameters of delay system
-    Gfb = .55       # feed-back gain
-    Gdp = 1.0       # direct-path gain
-    Gff = .500     # feed-forward gain
+    # Gfb = .55       # feed-back gain
+    # Gdp = 1.0       # direct-path gain
+    # Gff = .5       # feed-forward gain
+    # delay_sec = 0.5
     # Gff = 0.0         # feed-forward gain (set to zero for no effect)
 
 
@@ -127,4 +128,4 @@ def delay_effect():
     stream.close()
     p.terminate()
 
-delay_effect()
+delay_effect(0.55,1.0,0.5,0.5)

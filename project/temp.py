@@ -1,9 +1,22 @@
-import time
-for n in range(0,10):
-	print n
-	time.sleep(1)
-	if n == 5:
-		break
+class Parameters():
+	def __init__(self):
+		self.MODE = 1.0
+		self.GAIN = 0.5
+	def Print_fun(self):
+		print self.MODE, self.GAIN
+parameters = Parameters()
+# print what.MODE, what.GAIN
+parameters.Print_fun()
+parameters.MODE = 0.9
+parameters.GAIN = 1
+print parameters.MODE, parameters.GAIN
+
+# import time
+# for n in range(0,10):
+# 	print n
+# 	time.sleep(1)
+# 	if n == 5:
+# 		break
 
 # from Tkinter import *
 
