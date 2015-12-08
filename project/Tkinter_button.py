@@ -6,8 +6,9 @@ import time
 import pyaudio
 import struct
 import math
-from myfunctions import clip16,clip16_arr
+from myfunctions import clip16, clip16_arr, clip16_flt
 from scipy.signal import butter, lfilter
+import numpy as np
 
 #####Color table#####
 RED = (200,0,0)
@@ -19,22 +20,24 @@ GREY = (200,200,200)
 class Parameters():
 	def __init__(self):
 		# initialize all parameter values
-		self.GAIN = 0.5
+		self.GAIN = 1
+
+		# parameter for Flanger effect
+		self.flanger_f = 50
+		self.flanger_w = 0.5
+		self.flanger_gain = 0.5
+
+		# parameter for WahWah effect
+		self.wahwah_f_lfo = 2
+		self.wahwah_fc_min = 250
+		self.wahwah_w = 0.05
 
 		# parameter for Delay effect
 		self.delay_Gfb = 0.55
 		self.delay_Gdp = 1
 		self.delay_Gff = 0.5
 		self.delay_sec = 0.5
-
-		# parameter for Flanger effect
-		self.flanger_f = 50
-		self.flanger_w = 0.5
-
-		# parameter for WahWah effect
-		self.wahwah_w = 0.05
-		self.wahwah_f_lfo = 2
-		self.wahwah_fc_min = 1000
+		self.d = 0 # index for delay buffer calculated from delay_sec
 
 	def Print_prmtr(self):
 		print self.GAIN
@@ -48,58 +51,58 @@ class App(threading.Thread):
 		print "Initial Mode is ", self.MODE
 		self.start()
 	
-	def Pressed(self):                          #function
+	def Pressed(self):                          # effect passing function
 		self.MODE = self.v.get()
 		# print self.v.get()
 
+	######## Effect paramter passing functions ########
+	## Trigger when the scale is moved
+	def Parameter0(self,scaleValue):                          # flanger_f
+		parameters.flanger_f = int(scaleValue)
 
-	def Parameter0(self,scaleValue):                          #function
+	def Parameter1(self,scaleValue):                          # flanger_w
+		# print float(scaleValue)
+		parameters.flanger_w = float(scaleValue)
+	
+	def Parameter2(self,scaleValue):                          # flanger_gain
+		parameters.flanger_gain = float(scaleValue)
+
+	def Parameter3(self,scaleValue):                          # wahwah_f_lfo
+		parameters.wahwah_f_lfo = float(scaleValue)
+
+	def Parameter4(self,scaleValue):                          # wahwah_fc_min
+		parameters.wahwah_fc_min = int(scaleValue)
+	
+	def Parameter5(self,scaleValue):                          # wahwah_w
+		parameters.wahwah_w = float(scaleValue)
+
+	def Parameter6(self,scaleValue):                          # delay_Gfb
+		parameters.delay_Gfb = float(scaleValue)
+	
+	def Parameter7(self,scaleValue):                          # delay_Gdp
+		parameters.delay_Gdp = float(scaleValue)
+
+	def Parameter8(self,scaleValue):                          # delay_Gff
+		parameters.delay_Gff = float(scaleValue)
+	
+	def Parameter9(self,scaleValue):                          # delay_sec
+		parameters.delay_sec = float(scaleValue)
+		parameters.d = int( math.floor( 44100 * parameters.delay_sec ) ) 
+
+	def Parameter10(self,scaleValue):                          # empty function parameter passing
+		float(scaleValue)
+	
+	def Parameter11(self,scaleValue):                          # empty function parameter passing
+		float(scaleValue)
+
+	def Parameter12(self,scaleValue):                          # empty function parameter passing
 		print float(scaleValue)
-
-	def Parameter1(self,scaleValue):                          #function
-		print float(scaleValue)
 	
-	def Parameter2(self,scaleValue):                          #function
-		float(scaleValue)
-
-	def Parameter3(self,scaleValue):                          #function
-		float(scaleValue)
-
-	def Parameter4(self,scaleValue):                          #function
-		float(scaleValue)
-	
-	def Parameter5(self,scaleValue):                          #function
-		float(scaleValue)
-
-	def Parameter6(self,scaleValue):                          #function
-		float(scaleValue)
-	
-	def Parameter7(self,scaleValue):                          #function
-		float(scaleValue)
-
-	def Parameter8(self,scaleValue):                          #function
-		float(scaleValue)
-	
-	def Parameter9(self,scaleValue):                          #function
-		float(scaleValue)
-
-	def Parameter10(self,scaleValue):                          #function
-		float(scaleValue)
-	
-	def Parameter11(self,scaleValue):                          #function
-		float(scaleValue)
-
-	def Parameter12(self,scaleValue):                          #function
-		print float(scaleValue)
 	# def Parameter2(self,scaleValue):                          #function
 	# 	print "Parameter2 is :", float(self.s2.get())
 
 	# def Parameter3(self,scaleValue):                          #function
 	# 	print "Parameter3 is :", float(self.s3.get())
-
-
-
-
 
 
 	def callback(self):
@@ -108,8 +111,8 @@ class App(threading.Thread):
 	def run(self):
 		self.root = Tk()
 		self.root.protocol("WM_DELETE_WINDOW", self.callback)
-		self.root.geometry("500x280+300+300")
-
+		self.root.geometry("900x480+300+200")
+		self.root.title("Guitar Effect Box")
 		self.v = StringVar()
 		self.v.set("Normal")
 
@@ -118,39 +121,14 @@ class App(threading.Thread):
 			self.s[n] = DoubleVar()
 			self.s[n].set(0.0)
 		
-		# self.s0 = DoubleVar()
-		# self.s0.set(0.0)
-		# self.s1 = DoubleVar()
-		# self.s1.set(0.0)
-		# self.s2 = DoubleVar()
-		# self.s2.set(0.0)
-		# self.s3 = DoubleVar()
-		# self.s3.set(0.0)
-		# self.s4 = DoubleVar()
-		# self.s4.set(0.0)
-		# self.s5 = DoubleVar()
-		# self.s5.set(0.0)
-		# self.s6 = DoubleVar()
-		# self.s6.set(0.0)
-		# self.s7 = DoubleVar()
-		# self.s7.set(0.0)
-		# self.s8 = DoubleVar()
-		# self.s8.set(0.0)
-		# self.s9 = DoubleVar()
-		# self.s9.set(0.0)
-		# self.s10 = DoubleVar()
-		# self.s10.set(0.0)
-		# self.s11 = DoubleVar()
-		# self.s11.set(0.0)
-		# self.s12 = DoubleVar()
-		# self.s12.set(0.0)
-
-		label = Label(self.root, text="Hello World")	#Title
+		label = Label(self.root, text="DSP final project Guitar Effect Box ver.prototype")	#Title
 		label.pack(anchor=N, fill=X, expand=False)
 
 		frame0 = Frame(self.root, relief = RAISED, borderwidth = 2)
-		frame1 = Frame(self.root, relief = RAISED, borderwidth = 2)
-		frame2 = Frame(self.root, relief = RAISED, borderwidth = 2)
+		frame3 = Frame(self.root, relief = RAISED, borderwidth = 2)
+		frame1 = Frame(frame3, relief = RAISED, borderwidth = 2)
+		frame2 = Frame(frame3, relief = RAISED, borderwidth = 2)
+		
 
 		# Options using radio buttons
 		rad0 = Radiobutton(frame0, text='Delay', value='Delay', variable=self.v, command=self.Pressed)
@@ -160,34 +138,63 @@ class App(threading.Thread):
 		rad4 = Radiobutton(frame0, text='Normal', value='Normal', variable=self.v, command=self.Pressed)
 		rad9 = Radiobutton(frame0, text='Stop', value='Stop', variable=self.v, command=self.Pressed)
 		
-
-		# gui = Radiobar(root, ['flanger', 'WahWah', 'Normal'], side=TOP, anchor=NW)
-		# gui.pack(side=RIGHT, fill=Y)
-		# gui.config(relief=RIDGE,  bd=2)
-
-		# button1 = Button(root, text = 'Press', command = Pressed)
-		# button1.pack(side = RIGHT, pady = 5, padx = 5)
-		# button2 = Button(root, text = 'Press', command = Pressed)
-		# button2.pack(side = RIGHT, pady = 5, padx = 5)
-
-		# button = Button(root, text = 'Press me', command = Call)
-		# button.pack()
-		scale0 = Scale(frame1, orient=HORIZONTAL, label='scale0', length=200, from_=1.0, to=100.0,
-		 resolution=0.1, variable=self.s[0], command=self.Parameter0)
-		scale1 = Scale(frame1, orient=HORIZONTAL, label='scale1', length=200, from_=1.0, to=100.0,
-		 resolution=0.1, variable=self.s[1], command=self.Parameter1)
-		scale2 = Scale(frame1, orient=HORIZONTAL, label='scale2', length=200, from_=1.0, to=100.0,
-		 resolution=0.1, variable=self.s[2], command=self.Parameter2)
-		scale3 = Scale(frame1, orient=HORIZONTAL, label='scale3', length=200, from_=1.0, to=100.0,
+		scale0 = Scale(frame1, orient=VERTICAL, label='flanger_f', length=150, from_=0.0, to=500.0,
+		 resolution=1.0, variable=self.s[0], command=self.Parameter0)
+		scale1 = Scale(frame1, orient=VERTICAL, label='flanger_w', length=150, from_=0.0, to=1.0,
+		 resolution=0.01, variable=self.s[1], command=self.Parameter1)
+		scale2 = Scale(frame1, orient=VERTICAL, label='flanger_gain', length=150, from_=0.0, to=1.0,
+		 resolution=0.01, variable=self.s[2], command=self.Parameter2)
+		scale3 = Scale(frame1, orient=VERTICAL, label='wahwah_f_lfo', length=150, from_=0.2, to=5,
+		 resolution=0.1, variable=self.s[3], command=self.Parameter3)
+		scale4 = Scale(frame1, orient=VERTICAL, label='wahwah_fc_min', length=150, from_=250.0, to=500.0,
+		 resolution=1.0, variable=self.s[4], command=self.Parameter4)
+		scale5 = Scale(frame1, orient=VERTICAL, label='wahwah_w', length=150, from_=0.01, to=0.1,
+		 resolution=0.01, variable=self.s[5], command=self.Parameter5)
+		scale6 = Scale(frame1, orient=VERTICAL, label='delay_Gfb', length=150, from_=0.0, to=1.0,
+		 resolution=0.1, variable=self.s[6], command=self.Parameter6)
+		scale7 = Scale(frame2, orient=VERTICAL, label='delay_Gdp', length=150, from_=0.0, to=1.0,
+		 resolution=0.1, variable=self.s[7], command=self.Parameter7)
+		scale8 = Scale(frame2, orient=VERTICAL, label='delay_Gff', length=150, from_=0.0, to=1.0,
+		 resolution=0.1, variable=self.s[8], command=self.Parameter8)
+		scale9 = Scale(frame2, orient=VERTICAL, label='delay_sec', length=150, from_=0.0, to=2.0,
+		 resolution=0.1, variable=self.s[9], command=self.Parameter9)
+		scale10 = Scale(frame2, orient=VERTICAL, label='empty', length=150, from_=1.0, to=100.0,
+		 resolution=0.1, variable=self.s[10], command=self.Parameter10)
+		scale11 = Scale(frame2, orient=VERTICAL, label='empty', length=150, from_=1.0, to=100.0,
+		 resolution=0.1, variable=self.s[11], command=self.Parameter11)
+		scale12 = Scale(frame2, orient=VERTICAL, label='empty', length=150, from_=1.0, to=100.0,
 		 resolution=0.1, variable=parameters.GAIN, command=self.Parameter12)
 
-		scale0.pack(expand=True)
-		scale1.pack(expand=True)
-		scale2.pack(expand=True)
-		scale3.pack(expand=True)
+		scale0.set(parameters.flanger_f)
+		scale1.set(parameters.flanger_w)
+		scale2.set(parameters.flanger_gain)
+		scale3.set(parameters.wahwah_f_lfo)
+		scale4.set(parameters.wahwah_fc_min)
+		scale5.set(parameters.wahwah_w)
+		scale6.set(parameters.delay_Gfb)
+		scale7.set(parameters.delay_Gdp)
+		scale8.set(parameters.delay_Gff)
+		scale9.set(parameters.delay_sec)
+
+		scale0.pack(side=RIGHT, expand=True)
+		scale1.pack(side=RIGHT, expand=True)
+		scale2.pack(side=RIGHT, expand=True)
+		scale3.pack(side=RIGHT, expand=True)
+		scale4.pack(side=RIGHT, expand=True)
+		scale5.pack(side=RIGHT, expand=True)
+		scale6.pack(side=RIGHT, expand=True)
+		scale7.pack(side=RIGHT, expand=True)
+		scale8.pack(side=RIGHT, expand=True)
+		scale9.pack(side=RIGHT, expand=True)
+		scale10.pack(side=RIGHT, expand=True)
+		scale11.pack(side=RIGHT, expand=True)
+		scale12.pack(side=RIGHT, expand=True)
+
 		frame0.pack(side=RIGHT, anchor=N, fill=BOTH, expand=False)
-		frame1.pack(side=TOP, anchor=W, fill=BOTH, expand=True)
-		frame2.pack(side=TOP, anchor=W, fill=BOTH, expand=True)
+		frame1.pack(side=TOP, anchor=N, fill=BOTH, expand=True)
+		frame2.pack(side=TOP, anchor=N, fill=BOTH, expand=True)
+		frame3.pack(side=RIGHT, anchor=W, fill=BOTH, expand=True)
+		
 		rad0.pack(side=TOP, anchor=N, fill=X, expand=True)
 		rad1.pack(side=TOP, anchor=N, fill=X, expand=True)
 		rad2.pack(side=TOP, anchor=N, fill=X, expand=True)
@@ -196,28 +203,34 @@ class App(threading.Thread):
 		rad9.pack(side=TOP, anchor=N, fill=X, expand=True)
 		self.root.mainloop()
 
-
 app = App()
 
 print('Now we can continue running code while mainloop runs!')
 ############
 
-def wah_effect(fw,damp):
+######  wah_version_2 ######
+def butter_bandpass(lowcut, highcut, fs, order=5):
+    nyq = 0.5 * fs
+    low = lowcut / nyq
+    high = highcut / nyq
+    b, a = butter(order, [low, high], btype='band')
+    return b, a
 
-	RECORD_SECONDS = 15
+def butter_bandpass_filter(data, lowcut, highcut, fs, order=3):
+    b, a = butter_bandpass(lowcut, highcut, fs, order=order)
+    y = lfilter(b, a, data)
+    return y
+
+def wah_effect():
+	RECORD_SECONDS = 20
 	BLOCKSIZE = 1024     # Number of frames per block
+
+	gain = 1
+	fc_max = 1200 # initial
+
 	p = pyaudio.PyAudio()
 	WIDTH = 2           # bytes per sample
 	RATE = 44100    # Sampling rate (samples/second)
-
-	# damp = 0.015
-	gain = 1
-	# w = 1
-	# f = 1
-	fw_min = 300
-	fw_max = 9000
-	# fw = 2000
-	delta = fw / RATE
 
 	stream = p.open(format = p.get_format_from_width(WIDTH),
 					channels = 2,
@@ -227,53 +240,96 @@ def wah_effect(fw,damp):
 
 	# Create a buffer (delay line) for past values
 	# Create block (initialize to zero)
-	yh = [0.0 for n in range(0, 2*BLOCKSIZE)]
-	yb = [0.0 for n in range(0, 2*BLOCKSIZE)]
-	yl = [0.0 for n in range(0, 2*BLOCKSIZE)]
-
 	output_block = [0.0 for n in range(0, 2*BLOCKSIZE)]
+	output_block_filt = [0.0 for n in range(0, 2*BLOCKSIZE)]
+	bandpass = [0.0 for n in range(0, 2*BLOCKSIZE)]
+	mix = [0.0 for n in range(0, 2*BLOCKSIZE)]
+
+	# Create a buffer (delay line) for past values
+	buffer = [0.0 for i in range(BLOCKSIZE)]   # Initialize to zero
+	buffer2 = [0.0 for i in range(BLOCKSIZE)]   # Initialize to zero
+
+	# Buffer (delay line) indices
+	kr = 0  # read index
+	kw = int(0.5 * BLOCKSIZE)  # write index (initialize to middle of buffer)
+	kw = BLOCKSIZE/2
+
 	output_all = ''            # output signal in all (string)
+	fc_bandpass = 0.0
+
+	# Initialize angle
+	theta = 0.0
 
 	num_blocks = int(RATE / BLOCKSIZE * RECORD_SECONDS)
-	print ('**** Playing WahWah effect****')
 
-	# Loop through wave file 
+	print ('* Playing...')
+
+    # Loop through wave file 
 	for i in range(0, num_blocks):
 		if app.MODE != "WahWah":
 			break
+		# Block-to-block angle increment <----reduce calculation
+		theta_del = (float(BLOCKSIZE*parameters.wahwah_f_lfo)/RATE - math.floor(BLOCKSIZE*parameters.wahwah_f_lfo/RATE)) * 2.0 * math.pi
+
 		# Get sample from wave file
 		input_string = stream.read(BLOCKSIZE)
 
 		# Convert string to number
 		input_value = struct.unpack('hh'* BLOCKSIZE, input_string)
-		fc = fw_min
-		f1 = 2 * math.sin(math.pi*fc/RATE)
+		bandpass = butter_bandpass_filter(input_value,parameters.wahwah_fc_min,fc_max,RATE,order = 1)
 
-        # Go through block
+		# Go through block
 		for n in range(0, BLOCKSIZE):
 
-			if fc >= fw_max:
-				delta = -delta
-			if fc <= fw_min:
-				delta = -delta
+			# Amplitude modulation  (f0 Hz cosine)
+			# Get previous and next buffer values (since kr is fractional)
+			kr_prev = int(math.floor(kr))               
+			kr_next = kr_prev + 1
+			frac = kr - kr_prev    # 0 <= frac < 1
+			#print frac
+			if kr_next >= BLOCKSIZE:
+			    kr_next = kr_next - BLOCKSIZE
 
-			f1 = 2 * math.sin(math.pi*fc/RATE)
-			Q1 = 2 * damp
+			# Compute output value using interpolation
+			k = buffer[kr_prev] * (1-frac)
+			r = buffer[kr_next] * frac
+			k2 = buffer2[kr_prev] * (1-frac)
+			r2 = buffer2[kr_next] * frac
 
-			yh[2*n] = input_value[2*n] - yl[2*(n-1)] - Q1 * yb[2*(n-1)]
-			yb[2*n] = f1 * yh[2*n] + yb[2*(n-1)]
-			yl[2*n] = f1 * yb[2*n] + yl[2*(n-1)]
+			output_block[2*n] = k + r + k2 +r2
+			output_block[2*n] = clip16(output_block[2*n])
+			output_block[2*n+1] = output_block[2*n]
 
-			fc = fc + delta
-			yb[2*n] = clip16(yb[2*n])
-			yb[2*n+1] = clip16(yb[2*n])
+			# buffer
 
-		output_string = struct.pack('hh'* BLOCKSIZE , *yb)
+			buffer[kw] = input_value[2*n]
+			buffer2[kw] = bandpass[2*n]
+			# Increment read index
+			kr = kr + 1 + parameters.wahwah_w * math.sin( 2 * math.pi * parameters.wahwah_f_lfo * n  / RATE + theta)     
+			# Note: kr is fractional (not integer!)
+
+			# Ensure that 0 <= kr < buffer_MAX
+			if kr >= BLOCKSIZE:
+			# End of buffer. Circle back to front.
+				kr = 0
+            # Increment write index    
+			kw = kw + 1
+			if kw == BLOCKSIZE:
+			# End of buffer. Circle back to front.
+				kw = 0
+
+			fc_bandpass = parameters.wahwah_fc_min + 0.5 * parameters.wahwah_w * (1 + math.sin(2 * math.pi * parameters.wahwah_f_lfo * n /RATE ))
+			f_max = 2 * fc_bandpass + parameters.wahwah_fc_min
+
+		theta = theta + theta_del
+
+		output_string = struct.pack('hh'* BLOCKSIZE , *output_block)
 
 		# Write output to audio stream
 		stream.write(output_string)
 
 		output_all = output_all + output_string
+
 
 	print('* Done')
 
@@ -290,12 +346,7 @@ def delay_effect(Gfb,Gdp,Gff,delay_sec):
 	WIDTH = 2           # bytes per sample
 	RATE = 44100    # Sampling rate (samples/second)
 
-	d = int( math.floor( RATE * delay_sec ) ) 
-	# Set parameters of delay system
-	# Gfb = .55       # feed-back gain
-	# Gdp = 1.0       # direct-path gain
-	# Gff = .500     # feed-forward gain (set to zero for no effect)
-
+	parameters.d = int( math.floor( RATE * parameters.delay_sec ) ) 
 	# Open an output audio stream
 	p = pyaudio.PyAudio()
 	stream = p.open(format      = p.get_format_from_width(WIDTH),
@@ -305,7 +356,7 @@ def delay_effect(Gfb,Gdp,Gff,delay_sec):
 					output      = True )
 
 	output_block = [0.0 for n in range(0, 2*BLOCKSIZE)]
-	delay_buff = [0.0 for n in range(0, d)]
+	delay_buff = [0.0 for n in range(0, parameters.d)]
 	num_blocks = int(RATE / BLOCKSIZE * RECORD_SECONDS)
 	k = 0
 
@@ -323,12 +374,12 @@ def delay_effect(Gfb,Gdp,Gff,delay_sec):
 		for n in range(0, BLOCKSIZE):
 
 			# Update buffer
-			delay_buff[k] = input_value[2*n] + Gfb * delay_buff[k]
+			delay_buff[k] = input_value[2*n] + parameters.delay_Gfb * delay_buff[k]
 			k = k + 1
-			if k == d:
+			if k == parameters.d:
 				# We have reached the end of the buffer. Circle back to front.
 				k = 0
-			output_block[2*n] = Gdp * input_value[2*n] + Gff * delay_buff[k];
+			output_block[2*n] = parameters.delay_Gdp * input_value[2*n] + parameters.delay_Gff * delay_buff[k];
 			output_block[2*n] = clip16(output_block[2*n])
 			output_block[2*n+1] = clip16(output_block[2*n])
 
@@ -345,7 +396,7 @@ def delay_effect(Gfb,Gdp,Gff,delay_sec):
 	p.terminate()
 
 
-def flanger_effect(f,w,gain):
+def flanger_effect():
 
 	BLOCKSIZE = 1024      # Number of frames per block
 
@@ -380,13 +431,15 @@ def flanger_effect(f,w,gain):
 	# Initialize angle
 	theta = 0.0
 
-	# Block-to-block angle increment
-	theta_del = (float(BLOCKSIZE*f)/RATE - math.floor(BLOCKSIZE*f/RATE)) * 2.0 * math.pi
+	
 
 	print ('**** Playing Flanger effect****')
 
 	# Loop through wave file 
 	for i in range(0, num_blocks):
+		# Block-to-block angle increment
+		theta_del = (float(BLOCKSIZE*parameters.flanger_f)/RATE - math.floor(BLOCKSIZE*parameters.flanger_f/RATE)) * 2.0 * math.pi
+		
 		if app.MODE != "Flanger":
 			break
 		# Get sample from wave file
@@ -410,7 +463,7 @@ def flanger_effect(f,w,gain):
 			k = buffer[kr_prev] * (1-frac)
 			r = buffer[kr_next] * frac
 
-			output_block[2*n] = k + r + input_value[2*n] * gain
+			output_block[2*n] = k + r + input_value[2*n] * parameters.flanger_gain
 
 			output_block[2*n] = clip16(output_block[2*n])
 			output_block[2*n+1] = output_block[2*n]
@@ -420,7 +473,7 @@ def flanger_effect(f,w,gain):
 			buffer[kw] = input_value[2*n]
 
 			# Increment read index
-			kr = kr + 1 + w * math.sin( 2 * math.pi * f * n  / RATE + theta)     
+			kr = kr + 1 + parameters.flanger_w * math.sin( 2 * math.pi * parameters.flanger_f * n  / RATE + theta)     
 			# Note: kr is fractional (not integer!)
 
 			# Ensure that 0 <= kr < buffer_MAX
@@ -443,6 +496,93 @@ def flanger_effect(f,w,gain):
 
 		output_all = output_all + output_string
 
+
+	print('* Done')
+
+	stream.stop_stream()
+	stream.close()
+	p.terminate()
+
+def get_type_convert(np_type):
+   convert_type = type(np.zeros(1,np_type).tolist()[0])
+   return (convert_type)
+
+def fuzz_effect():
+	RECORD_SECONDS = 10
+	BLOCKSIZE = 1024     # Number of frames per block
+	p = pyaudio.PyAudio()
+	WIDTH = 2           # bytes per sample
+	RATE = 44100    # Sampling rate (samples/second)
+	mix = 1 
+	gain = 11 
+
+	stream = p.open(format = p.get_format_from_width(WIDTH),
+					channels = 2,
+					rate = RATE,
+					input = True,
+					output = True)
+
+	output_block = [0.0 for n in range(0, 2*BLOCKSIZE)]
+
+	q = 0.0
+	X = 0.0	
+	y = 0.0
+	z = 0.000001
+	r = 0.0
+	max_z = 0.000001
+	max_r = 0
+
+	output_all = ''            # output signal in all (string)
+	num_blocks = int(RATE / BLOCKSIZE * RECORD_SECONDS)
+	print ('* Playing...')
+
+	# Loop through wave file 
+	for i in range(0, num_blocks):
+		if app.MODE != "Fuzzy":
+			break
+		# Get sample from wave file
+		input_string = stream.read(BLOCKSIZE)
+
+		# Convert string to number
+		input_value = struct.unpack('hh'* BLOCKSIZE, input_string)
+
+		X = np.fft.fft(input_value)
+		max_val = abs(np.max(X))
+		# print type(max_val)
+		max_val = max_val.item()
+		# print type(max_val)
+		# max_val = int(max_val)
+
+		for n in range(0, BLOCKSIZE):
+			x = input_value[2*n]
+			q = x * gain / max_val
+
+			if q == 0:
+				z = 0
+			else:
+				z = -q/abs(q) * (1 - math.exp(-q*q/abs(q)))
+
+			if z > max_z:
+				max_z = z
+				
+			r = mix * z * max_val / abs(max_z) + (1 - mix) * x
+			# k = np.asscalar(r)
+			if r > max_r:
+				max_r = r
+
+			if abs(max_r) ==0:
+				out = 0
+			else:
+				out = r * abs(x) / abs(max_r)
+			output_block[2*n] = clip16_flt(out)
+			output_block[2*n+1] = clip16_flt(out)
+
+		output_string = struct.pack('hh'* BLOCKSIZE , *output_block)
+
+		# Write output to audio stream
+		stream.write(output_string)
+
+		output_all = output_all + output_string
 
 	print('* Done')
 
@@ -484,7 +624,7 @@ while(1):
 
 		if print_WahWah_counter == 1:	# print only one time
 			print app.MODE
-			wah_effect(2000,0.05)
+			wah_effect()
 			print_WahWah_counter = 0
 
 	if app.MODE == "Flanger":
@@ -496,7 +636,7 @@ while(1):
 
 		if print_Flanger_counter == 1:	# print only one time
 			print app.MODE
-			flanger_effect(50,0.5,1.2)
+			flanger_effect()
 			print_Flanger_counter = 0
 
 	if app.MODE == "Delay":
@@ -520,7 +660,7 @@ while(1):
 
 		if print_Fuzzy_counter == 1:	# print only one time
 			print app.MODE
-			fuzzy_effect()
+			fuzz_effect()
 			print_Fuzzy_counter = 0
 
 print "Program Ended"	

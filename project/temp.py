@@ -11,6 +11,19 @@ parameters.MODE = 0.9
 parameters.GAIN = 1
 print parameters.MODE, parameters.GAIN
 
+# gui = Radiobar(root, ['flanger', 'WahWah', 'Normal'], side=TOP, anchor=NW)
+# gui.pack(side=RIGHT, fill=Y)
+# gui.config(relief=RIDGE,  bd=2)
+
+# button1 = Button(root, text = 'Press', command = Pressed)
+# button1.pack(side = RIGHT, pady = 5, padx = 5)
+# button2 = Button(root, text = 'Press', command = Pressed)
+# button2.pack(side = RIGHT, pady = 5, padx = 5)
+
+# button = Button(root, text = 'Press me', command = Call)
+# button.pack()
+
+
 # import time
 # for n in range(0,10):
 # 	print n

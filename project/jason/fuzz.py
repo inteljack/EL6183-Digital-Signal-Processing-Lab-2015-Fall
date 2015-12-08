@@ -3,16 +3,13 @@ from scipy.signal import butter, lfilter
 import pyaudio
 import struct
 import math
-from myfunctions import clip16, clip16_arr,clip16_flt
+from myfunctions import clip16, clip16_arr, clip16_flt
 import numpy as np
 def get_type_convert(np_type):
    convert_type = type(np.zeros(1,np_type).tolist()[0])
    return (convert_type)
 
-
 def fuzz_effect():
-
-
     RECORD_SECONDS = 10
     BLOCKSIZE = 1024     # Number of frames per block
     p = pyaudio.PyAudio()
@@ -78,7 +75,6 @@ def fuzz_effect():
             x = input_value[2*n]
             q = x * gain / max_val
 
-
             if q == 0:
                 z = 0
             else:
@@ -115,7 +111,7 @@ def fuzz_effect():
     stream.close()
     p.terminate()
 
-fuzz()
+fuzz_effect()
 
 
 
