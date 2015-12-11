@@ -1,5 +1,4 @@
 from Tkinter import *
-from flanger import *
 import threading
 import time
 
@@ -22,22 +21,26 @@ class Parameters():
 		# initialize all parameter values
 		self.GAIN = 1
 
-		# parameter for Flanger effect
-		self.flanger_f = 50
-		self.flanger_w = 0.5
+		# parameters for Flanger effect
+		self.flanger_f = 30
+		self.flanger_w = 0.1
 		self.flanger_gain = 0.5
 
-		# parameter for WahWah effect
+		# parameters for WahWah effect
 		self.wahwah_f_lfo = 2
 		self.wahwah_fc_min = 250
-		self.wahwah_w = 0.05
+		self.wahwah_w = 0.01
 
-		# parameter for Delay effect
+		# parameters for Delay effect
 		self.delay_Gfb = 0.55
 		self.delay_Gdp = 1
 		self.delay_Gff = 0.5
-		self.delay_sec = 0.5
-		self.d = 0 # index for delay buffer calculated from delay_sec
+		self.delay_sec = 2.0
+		self.d = 88200 # index for delay buffer calculated from delay_sec
+
+		# parameters for Fuzzy effect
+		self.fuzzy_mix = 1
+		self.fuzzy_gain = 1
 
 	def Print_prmtr(self):
 		print self.GAIN
@@ -86,23 +89,17 @@ class App(threading.Thread):
 		parameters.delay_Gff = float(scaleValue)
 	
 	def Parameter9(self,scaleValue):                          # delay_sec
-		parameters.delay_sec = float(scaleValue)
-		parameters.d = int( math.floor( 44100 * parameters.delay_sec ) ) 
+		parameters.delay_sec = float(scaleValue) 
+		parameters.d = int( math.floor( 44100 * parameters.delay_sec ) )
 
 	def Parameter10(self,scaleValue):                          # empty function parameter passing
-		float(scaleValue)
+		parameters.fuzzy_mix = float(scaleValue)
 	
 	def Parameter11(self,scaleValue):                          # empty function parameter passing
-		float(scaleValue)
+		parameters.fuzzy_gain = float(scaleValue)
 
 	def Parameter12(self,scaleValue):                          # empty function parameter passing
 		print float(scaleValue)
-	
-	# def Parameter2(self,scaleValue):                          #function
-	# 	print "Parameter2 is :", float(self.s2.get())
-
-	# def Parameter3(self,scaleValue):                          #function
-	# 	print "Parameter3 is :", float(self.s3.get())
 
 
 	def callback(self):
@@ -111,7 +108,7 @@ class App(threading.Thread):
 	def run(self):
 		self.root = Tk()
 		self.root.protocol("WM_DELETE_WINDOW", self.callback)
-		self.root.geometry("900x480+300+200")
+		self.root.geometry("1000x480+300+200")
 		self.root.title("Guitar Effect Box")
 		self.v = StringVar()
 		self.v.set("Normal")
@@ -138,32 +135,32 @@ class App(threading.Thread):
 		rad4 = Radiobutton(frame0, text='Normal', value='Normal', variable=self.v, command=self.Pressed)
 		rad9 = Radiobutton(frame0, text='Stop', value='Stop', variable=self.v, command=self.Pressed)
 		
-		scale0 = Scale(frame1, orient=VERTICAL, label='flanger_f', length=150, from_=0.0, to=500.0,
-		 resolution=1.0, variable=self.s[0], command=self.Parameter0)
-		scale1 = Scale(frame1, orient=VERTICAL, label='flanger_w', length=150, from_=0.0, to=1.0,
-		 resolution=0.01, variable=self.s[1], command=self.Parameter1)
-		scale2 = Scale(frame1, orient=VERTICAL, label='flanger_gain', length=150, from_=0.0, to=1.0,
-		 resolution=0.01, variable=self.s[2], command=self.Parameter2)
-		scale3 = Scale(frame1, orient=VERTICAL, label='wahwah_f_lfo', length=150, from_=0.2, to=5,
-		 resolution=0.1, variable=self.s[3], command=self.Parameter3)
-		scale4 = Scale(frame1, orient=VERTICAL, label='wahwah_fc_min', length=150, from_=250.0, to=500.0,
-		 resolution=1.0, variable=self.s[4], command=self.Parameter4)
-		scale5 = Scale(frame1, orient=VERTICAL, label='wahwah_w', length=150, from_=0.01, to=0.1,
-		 resolution=0.01, variable=self.s[5], command=self.Parameter5)
-		scale6 = Scale(frame1, orient=VERTICAL, label='delay_Gfb', length=150, from_=0.0, to=1.0,
-		 resolution=0.1, variable=self.s[6], command=self.Parameter6)
-		scale7 = Scale(frame2, orient=VERTICAL, label='delay_Gdp', length=150, from_=0.0, to=1.0,
-		 resolution=0.1, variable=self.s[7], command=self.Parameter7)
-		scale8 = Scale(frame2, orient=VERTICAL, label='delay_Gff', length=150, from_=0.0, to=1.0,
-		 resolution=0.1, variable=self.s[8], command=self.Parameter8)
-		scale9 = Scale(frame2, orient=VERTICAL, label='delay_sec', length=150, from_=0.0, to=2.0,
-		 resolution=0.1, variable=self.s[9], command=self.Parameter9)
-		scale10 = Scale(frame2, orient=VERTICAL, label='empty', length=150, from_=1.0, to=100.0,
-		 resolution=0.1, variable=self.s[10], command=self.Parameter10)
-		scale11 = Scale(frame2, orient=VERTICAL, label='empty', length=150, from_=1.0, to=100.0,
-		 resolution=0.1, variable=self.s[11], command=self.Parameter11)
-		scale12 = Scale(frame2, orient=VERTICAL, label='empty', length=150, from_=1.0, to=100.0,
-		 resolution=0.1, variable=parameters.GAIN, command=self.Parameter12)
+		scale0 = Scale(frame1, orient=VERTICAL, label='flanger_f', length=150, from_=200.0, to=1.0,
+		 resolution=-1.0, variable=self.s[0], command=self.Parameter0)
+		scale1 = Scale(frame1, orient=VERTICAL, label='flanger_w', length=150, from_=1.0, to=0.0,
+		 resolution=-0.01, variable=self.s[1], command=self.Parameter1)
+		scale2 = Scale(frame1, orient=VERTICAL, label='flanger_gain', length=150, from_=1.0, to=0.0,
+		 resolution=-0.01, variable=self.s[2], command=self.Parameter2)
+		scale3 = Scale(frame1, orient=VERTICAL, label='wahwah_f_lfo', length=150, from_=5, to=0.2,
+		 resolution=-0.1, variable=self.s[3], command=self.Parameter3)
+		scale4 = Scale(frame1, orient=VERTICAL, label='wahwah_fc_min', length=150, from_=500.0, to=250.0,
+		 resolution=-1.0, variable=self.s[4], command=self.Parameter4)
+		scale5 = Scale(frame1, orient=VERTICAL, label='wahwah_w', length=150, from_=0.2, to=0.001,
+		 resolution=-0.005, variable=self.s[5], command=self.Parameter5)
+		scale6 = Scale(frame1, orient=VERTICAL, label='delay_Gfb', length=150, from_=1.0, to=0.0,
+		 resolution=-0.1, variable=self.s[6], command=self.Parameter6)
+		scale7 = Scale(frame2, orient=VERTICAL, label='delay_Gdp', length=150, from_=1.0, to=0.0,
+		 resolution=-0.1, variable=self.s[7], command=self.Parameter7)
+		scale8 = Scale(frame2, orient=VERTICAL, label='delay_Gff', length=150, from_=1.0, to=0.0,
+		 resolution=-0.1, variable=self.s[8], command=self.Parameter8)
+		scale9 = Scale(frame2, orient=VERTICAL, label='delay_sec', length=150, from_=2.0, to=0.0,
+		 resolution=-0.1, variable=self.s[9], command=self.Parameter9)
+		scale10 = Scale(frame2, orient=VERTICAL, label='fuzzy_gain', length=150, from_=30.0, to=1.0,
+		 resolution=-1.0, variable=self.s[10], command=self.Parameter10)
+		scale11 = Scale(frame2, orient=VERTICAL, label='fuzzy_mix', length=150, from_=10.0, to=1.0,
+		 resolution=-0.1, variable=self.s[11], command=self.Parameter11)
+		scale12 = Scale(frame2, orient=VERTICAL, label='empty', length=150, from_=100.0, to=1.0,
+		 resolution=-0.1, variable=parameters.GAIN, command=self.Parameter12)
 
 		scale0.set(parameters.flanger_f)
 		scale1.set(parameters.flanger_w)
@@ -175,6 +172,8 @@ class App(threading.Thread):
 		scale7.set(parameters.delay_Gdp)
 		scale8.set(parameters.delay_Gff)
 		scale9.set(parameters.delay_sec)
+		scale10.set(parameters.fuzzy_gain)
+		scale11.set(parameters.fuzzy_mix)
 
 		scale0.pack(side=RIGHT, expand=True)
 		scale1.pack(side=RIGHT, expand=True)
@@ -222,7 +221,7 @@ def butter_bandpass_filter(data, lowcut, highcut, fs, order=3):
     return y
 
 def wah_effect():
-	RECORD_SECONDS = 20
+	RECORD_SECONDS = 500
 	BLOCKSIZE = 1024     # Number of frames per block
 
 	gain = 1
@@ -340,7 +339,7 @@ def wah_effect():
 def delay_effect(Gfb,Gdp,Gff,delay_sec):
 	BLOCKSIZE = 1024     # Number of frames per block
 
-	RECORD_SECONDS = 20
+	RECORD_SECONDS = 500
 	# delay_sec = 0.5
 	p = pyaudio.PyAudio()
 	WIDTH = 2           # bytes per sample
@@ -376,7 +375,7 @@ def delay_effect(Gfb,Gdp,Gff,delay_sec):
 			# Update buffer
 			delay_buff[k] = input_value[2*n] + parameters.delay_Gfb * delay_buff[k]
 			k = k + 1
-			if k == parameters.d:
+			if k >= parameters.d:
 				# We have reached the end of the buffer. Circle back to front.
 				k = 0
 			output_block[2*n] = parameters.delay_Gdp * input_value[2*n] + parameters.delay_Gff * delay_buff[k];
@@ -400,7 +399,7 @@ def flanger_effect():
 
 	BLOCKSIZE = 1024      # Number of frames per block
 
-	RECORD_SECONDS = 10
+	RECORD_SECONDS = 500
 	p = pyaudio.PyAudio()
 	WIDTH = 2           # bytes per sample
 	RATE = 44100    # Sampling rate (samples/second)
@@ -473,7 +472,7 @@ def flanger_effect():
 			buffer[kw] = input_value[2*n]
 
 			# Increment read index
-			kr = kr + 1 + parameters.flanger_w * math.sin( 2 * math.pi * parameters.flanger_f * n  / RATE + theta)     
+			kr = kr + 1 + parameters.flanger_w * math.sin( 2 * math.pi * parameters.flanger_f * n  / RATE + theta)
 			# Note: kr is fractional (not integer!)
 
 			# Ensure that 0 <= kr < buffer_MAX
@@ -508,13 +507,11 @@ def get_type_convert(np_type):
    return (convert_type)
 
 def fuzz_effect():
-	RECORD_SECONDS = 10
+	RECORD_SECONDS = 500
 	BLOCKSIZE = 1024     # Number of frames per block
 	p = pyaudio.PyAudio()
 	WIDTH = 2           # bytes per sample
 	RATE = 44100    # Sampling rate (samples/second)
-	mix = 1 
-	gain = 11 
 
 	stream = p.open(format = p.get_format_from_width(WIDTH),
 					channels = 2,
@@ -534,7 +531,7 @@ def fuzz_effect():
 
 	output_all = ''            # output signal in all (string)
 	num_blocks = int(RATE / BLOCKSIZE * RECORD_SECONDS)
-	print ('* Playing...')
+	print ('#####  playing Fuzzy #####')
 
 	# Loop through wave file 
 	for i in range(0, num_blocks):
@@ -548,14 +545,11 @@ def fuzz_effect():
 
 		X = np.fft.fft(input_value)
 		max_val = abs(np.max(X))
-		# print type(max_val)
 		max_val = max_val.item()
-		# print type(max_val)
-		# max_val = int(max_val)
 
 		for n in range(0, BLOCKSIZE):
 			x = input_value[2*n]
-			q = x * gain / max_val
+			q = x * parameters.fuzzy_gain / max_val
 
 			if q == 0:
 				z = 0
@@ -565,7 +559,7 @@ def fuzz_effect():
 			if z > max_z:
 				max_z = z
 				
-			r = mix * z * max_val / abs(max_z) + (1 - mix) * x
+			r = parameters.fuzzy_mix * z * max_val / abs(max_z) + (1 - parameters.fuzzy_mix) * x
 			# k = np.asscalar(r)
 			if r > max_r:
 				max_r = r
@@ -574,6 +568,7 @@ def fuzz_effect():
 				out = 0
 			else:
 				out = r * abs(x) / abs(max_r)
+			
 			output_block[2*n] = clip16_flt(out)
 			output_block[2*n+1] = clip16_flt(out)
 
@@ -598,6 +593,7 @@ print_Flanger_counter = 1
 print_Delay_counter = 1
 print_Fuzzy_counter = 1
 time.sleep(3)
+print "loop started..."
 
 while(1):
 	if app.MODE == "Stop":
@@ -609,7 +605,7 @@ while(1):
 		print_WahWah_counter = 1
 		print_Flanger_counter = 1
 		print_Delay_counter = 1
-		print_Fuzzy_counter == 1
+		print_Fuzzy_counter = 1
 		
 		if print_Normal_counter == 1:	# print only one time
 			print app.MODE
@@ -620,7 +616,7 @@ while(1):
 		print_Normal_counter = 1
 		print_Flanger_counter = 1
 		print_Delay_counter = 1
-		print_Fuzzy_counter == 1
+		print_Fuzzy_counter = 1
 
 		if print_WahWah_counter == 1:	# print only one time
 			print app.MODE
@@ -632,7 +628,7 @@ while(1):
 		print_Normal_counter = 1
 		print_WahWah_counter = 1
 		print_Delay_counter = 1
-		print_Fuzzy_counter == 1
+		print_Fuzzy_counter = 1
 
 		if print_Flanger_counter == 1:	# print only one time
 			print app.MODE
@@ -644,7 +640,7 @@ while(1):
 		print_Normal_counter = 1
 		print_WahWah_counter = 1
 		print_Flanger_counter = 1
-		print_Fuzzy_counter == 1
+		print_Fuzzy_counter = 1
 
 		if print_Delay_counter == 1:	# print only one time
 			print app.MODE
