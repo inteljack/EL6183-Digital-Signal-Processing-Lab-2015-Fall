@@ -261,7 +261,7 @@ def wah_effect():
 
 	num_blocks = int(RATE / BLOCKSIZE * RECORD_SECONDS)
 
-	print ('* Playing...')
+	print ('**** Playing Auto-Wah ****')
 
     # Loop through wave file 
 	for i in range(0, num_blocks):
