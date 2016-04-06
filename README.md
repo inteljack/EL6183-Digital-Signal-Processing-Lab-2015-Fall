@@ -4,5 +4,5 @@ Nevertheless, the project folder is a work of my and my partner Cheng-Shun Lee i
 It is a real-time guitar effecter written in python with TKinter UI, which implemented several common electric guitar modulater.
 A project report is within the folder.
 ## keywords
-Pyaudio, Python, Tkinter, DSP
+Pyaudio, Python, Tkinter, DSP, numpy
 
