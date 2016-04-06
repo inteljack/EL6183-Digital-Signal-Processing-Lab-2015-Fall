@@ -6,3 +6,8 @@ A project report is within the folder.
 ## keywords
 Pyaudio, Python, Tkinter, DSP, numpy
 
+## Requirements
+The project runs on Python 2.7 and require Pyaudio, numpy, Tkinter which are available to install with python-pip.
+Related install packages are included in the root folder.
+
+
